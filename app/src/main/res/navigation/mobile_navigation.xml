@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    android:label="@string/menu_map"
+    app:startDestination="@id/nav_map">
+    <fragment
+        android:id="@+id/nav_acerca"
+        android:name="com.example.merakiapp.ui.acercade.AcercadeFragment"
+        android:label="@string/menu_acerca"
+        tools:layout="@layout/fragment_acerca_de" />
+    <fragment
+        android:id="@+id/nav_help"
+        android:name="com.example.merakiapp.ui.ayuda.AyudaFragment"
+        android:label="@string/action_help"
+        tools:layout="@layout/fragment_ayuda" />
+    <fragment
+        android:id="@+id/nav_map"
+        android:name="com.example.merakiapp.ui.mapa.MapaFragment"
+        android:label="@string/menu_map"
+        tools:layout="@layout/fragment_mapa" />
+
+
+</navigation>

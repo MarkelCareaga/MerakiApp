@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".juegos.BadatozEstatuaActivity">
+
+
+    <ImageView
+        android:id="@+id/imagen1drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="9dp"
+        android:tag="figure8"
+        app:layout_constraintBottom_toTopOf="@+id/imagen4drag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative"
+        app:srcCompat="@drawable/imagen8" />
+
+    <ImageView
+        android:id="@+id/imagen2drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="9dp"
+        android:tag="figure2"
+        app:layout_constraintBottom_toTopOf="@+id/imagen5drag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative"
+        app:srcCompat="@drawable/imagen2" />
+
+    <ImageView
+        android:id="@+id/imagen3drag"
+        android:layout_width="115dp"
+        android:layout_height="76dp"
+        android:layout_marginTop="9dp"
+        android:layout_marginEnd="4dp"
+        android:tag="figure6"
+        app:layout_constraintBottom_toTopOf="@+id/imagen6drag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relative"
+        app:srcCompat="@drawable/imagen6" />
+
+    <ImageView
+        android:id="@+id/imagen4drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:tag="figure4"
+        app:layout_constraintBottom_toTopOf="@+id/imagen7drag"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen1drag"
+        app:srcCompat="@drawable/imagen4" />
+
+    <ImageView
+        android:id="@+id/imagen5drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="10dp"
+        android:tag="figure9"
+        app:layout_constraintBottom_toTopOf="@+id/imagen8drag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen2drag"
+        app:srcCompat="@drawable/imagen9" />
+
+    <ImageView
+        android:id="@+id/imagen6drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
+        android:tag="figure7"
+        app:layout_constraintBottom_toTopOf="@+id/imagen9drag"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen3drag"
+        app:srcCompat="@drawable/imagen7" />
+
+    <ImageView
+        android:id="@+id/imagen7drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="120dp"
+        android:tag="figure3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen4drag"
+        app:layout_constraintVertical_bias="0.518"
+        app:srcCompat="@drawable/imagen3" />
+
+    <ImageView
+        android:id="@+id/imagen8drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="120dp"
+        android:tag="figure5"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen5drag"
+        app:layout_constraintVertical_bias="0.518"
+        app:srcCompat="@drawable/imagen5" />
+
+    <ImageView
+        android:id="@+id/imagen9drag"
+        android:layout_width="114dp"
+        android:layout_height="81dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="120dp"
+        android:tag="figure1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imagen6drag"
+        app:srcCompat="@drawable/imagen1" />
+
+
+    <RelativeLayout
+        android:id="@+id/relative"
+        android:layout_width="402dp"
+        android:layout_height="255dp"
+        android:layout_marginBottom="300dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.513"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="382dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
+            app:srcCompat="@drawable/fondopuzle" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/con"
+            android:layout_width="match_parent"
+            android:layout_height="251dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+
+            <ImageView
+                android:id="@+id/imagen3target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="-1dp"
+                android:tag="figure3"
+                app:layout_constraintBottom_toTopOf="@+id/imagen6target"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imagen2target"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/imagen3" />
+
+            <ImageView
+                android:id="@+id/imagen7target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="-1dp"
+                android:tag="figure7"
+                app:layout_constraintEnd_toStartOf="@+id/imagen8target"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagen4target"
+                app:srcCompat="@drawable/imagen7" />
+
+            <ImageView
+                android:id="@+id/imagen8target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginTop="-1dp"
+                android:tag="figure8"
+                app:layout_constraintEnd_toStartOf="@+id/imagen9target"
+                app:layout_constraintStart_toEndOf="@+id/imagen7target"
+                app:layout_constraintTop_toBottomOf="@+id/imagen5target"
+                app:srcCompat="@drawable/imagen8" />
+
+            <ImageView
+                android:id="@+id/imagen9target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginTop="-1dp"
+                android:layout_marginEnd="20dp"
+                android:tag="figure9"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imagen8target"
+                app:layout_constraintTop_toBottomOf="@+id/imagen6target"
+                app:srcCompat="@drawable/imagen9" />
+
+            <ImageView
+                android:id="@+id/imagen6target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="8dp"
+                android:tag="figure6"
+                app:layout_constraintBottom_toTopOf="@+id/imagen9target"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imagen5target"
+                app:layout_constraintTop_toBottomOf="@+id/imagen3target"
+                app:srcCompat="@drawable/imagen6" />
+
+            <ImageView
+                android:id="@+id/imagen5target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:tag="figure5"
+                app:layout_constraintBottom_toTopOf="@+id/imagen8target"
+                app:layout_constraintEnd_toStartOf="@+id/imagen6target"
+                app:layout_constraintStart_toEndOf="@+id/imagen4target"
+                app:layout_constraintTop_toBottomOf="@+id/imagen2target"
+                app:srcCompat="@drawable/imagen5" />
+
+            <ImageView
+                android:id="@+id/imagen1target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="-1dp"
+                android:tag="figure1"
+                app:layout_constraintBottom_toTopOf="@+id/imagen4target"
+                app:layout_constraintEnd_toStartOf="@+id/imagen2target"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/imagen1" />
+
+            <ImageView
+                android:id="@+id/imagen2target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginBottom="-1dp"
+                android:tag="figure2"
+                app:layout_constraintBottom_toTopOf="@+id/imagen5target"
+                app:layout_constraintEnd_toStartOf="@+id/imagen3target"
+                app:layout_constraintStart_toEndOf="@+id/imagen1target"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/imagen2" />
+
+            <ImageView
+                android:id="@+id/imagen4target"
+                android:layout_width="124dp"
+                android:layout_height="83dp"
+                android:layout_marginStart="20dp"
+                android:tag="figure4"
+                app:layout_constraintBottom_toTopOf="@+id/imagen7target"
+                app:layout_constraintEnd_toStartOf="@+id/imagen5target"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imagen1target"
+                app:srcCompat="@drawable/imagen4" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </RelativeLayout>
+
+    <ImageView
+        android:id="@+id/gifAplausosBadatoz"
+        android:layout_width="103dp"
+        android:layout_height="99dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.09"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974"
+        app:srcCompat="@drawable/aplausos" />
+
+    <ImageButton
+        android:id="@+id/btnVolverExplicacionBadatoz"
+        android:layout_width="99dp"
+        android:layout_height="99dp"
+        android:layout_marginStart="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.974"
+        app:srcCompat="@mipmap/boton_volver"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnFinalizarBadatoz"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="32dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@mipmap/boton_finalizar"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/btnComprobarBadatoz"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_marginEnd="32dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.976"
+        app:srcCompat="@mipmap/boton_resultado"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/btnInfoPantallaBadatoz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toTopOf="@+id/relative"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnAyudaBadatoz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        app:layout_constraintBottom_toTopOf="@+id/relative"
+        app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaBadatoz"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_ayuda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/fondoDemo"
+            android:layout_width="624dp"
+            android:layout_height="398dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageButton
+            android:id="@+id/btnStop"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/fondoDemo"
+            android:layout_alignParentRight="true"
+            android:layout_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
+            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+            app:srcCompat="@drawable/ic_baseline_audio_stop"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnRestart"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/fondoDemo"
+            android:layout_alignParentLeft="true"
+            android:layout_toStartOf="@+id/btnPlayPause"
+            android:layout_toLeftOf="@id/btnPlayPause"
+            android:layout_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+            app:srcCompat="@drawable/ic_baseline_audio_restart"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnPlayPause"
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_below="@id/fondoDemo"
+            android:layout_marginStart="4dp"
+            android:layout_toLeftOf="@id/btnStop"
+            android:layout_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btnRestart"
+            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+            app:srcCompat="@drawable/ic_baseline_audio_play"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <TextView
+            android:id="@+id/txtExplicacionDemo"
+            android:layout_width="617dp"
+            android:layout_height="648dp"
+            android:layout_below="@id/btnPlayPause"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="636dp"
+            android:maxLines="2000"
+            android:paddingLeft="5dp"
+            android:scrollbars="vertical"
+            android:text="TextView"
+            android:textSize="34sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgPatxi"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentLeft="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/patxi" />
+
+        <ImageView
+            android:id="@+id/imgPatxiBoca"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentLeft="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/patxi_boca" />
+
+        <ImageView
+            android:id="@+id/imgMiren"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="624dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/miren" />
+
+        <ImageView
+            android:id="@+id/imgMirenBoca"
+            android:layout_width="400dp"
+            android:layout_height="400dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="624dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/miren_boca" />
+
+        <ImageButton
+            android:id="@+id/btnInfoPantallaExplicacion"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignEnd="@+id/fondoDemo"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="4dp"
+            app:layout_constraintStart_toEndOf="@+id/btnAyudaExplicacion"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_rotacion_activada"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnAyudaExplicacion"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="480dp"
+            android:layout_toStartOf="@+id/btnInfoPantallaExplicacion"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_ayuda"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnAccederVideo"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_video_player"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout2"
+            android:layout_width="564dp"
+            android:layout_height="175dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="56dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.023"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btnStop">
+
+            <ImageButton
+                android:id="@+id/btnSiguiente"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@mipmap/boton_siguiente"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+            <ImageButton
+                android:id="@+id/btnVolver"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginBottom="16dp"
+                android:background="@null"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:srcCompat="@mipmap/boton_volver2"
+                tools:ignore="SpeakableTextPresentCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>

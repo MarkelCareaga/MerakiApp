@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".explicaciones.DemoActivity">
+
+    <TextView
+        android:id="@+id/txtDemo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Versión: DEMO"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnDemoIntroduccion"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2196F3"
+        android:text="Introducción"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtDemo"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoPuertaSanJuan"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#F44336"
+        android:text="1.- Puerta San Juan"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoIntroduccion"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoBadatozEstatua"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8BC34A"
+        android:text="2.- Badatoz Estatua"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoPuertaSanJuan"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoFeriaPescado"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8BC34A"
+        android:text="3.- Feria del pescado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoBadatozEstatua"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoOlatuaEstatua"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8BC34A"
+        android:text="4.- Olatua estatua"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoFeriaPescado"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoXixili"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8BC34A"
+        android:text="5.- Xixili"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoOlatuaEstatua"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoIslaIzaro"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#F44336"
+        android:text="6.- Isla de Izaro"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoXixili"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnDemoGaztelugatxe"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#8BC34A"
+        android:text="7.- Gaztelugatxe"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoIslaIzaro"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnVolverMapa"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2196F3"
+        android:text="Volver"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.507"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnAbrirFinal"
+        tools:ignore="TouchTargetSizeCheck" />
+
+    <Button
+        android:id="@+id/btnAbrirFinal"
+        android:layout_width="216dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="8dp"
+        android:backgroundTint="#2196F3"
+        android:text="Final"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDemoGaztelugatxe"
+        tools:ignore="TouchTargetSizeCheck" />
+</androidx.constraintlayout.widget.ConstraintLayout>

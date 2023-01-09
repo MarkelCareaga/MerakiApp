@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Inicio">
+
+    <ImageView
+        android:id="@+id/imgLogoMeraki"
+        android:layout_width="417dp"
+        android:layout_height="271dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo" />
+
+    <Button
+        android:id="@+id/btnLibre"
+        android:layout_width="338dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="#95c799"
+        android:text="@string/libre"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:icon="@drawable/img_modo_libre"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnExplorador" />
+
+    <Button
+        android:id="@+id/btnExplorador"
+        android:layout_width="338dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="@android:color/holo_blue_light"
+        android:text="@string/explorador"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:icon="@drawable/img_modo_explorador"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgLogoMeraki" />
+
+    <Button
+        android:id="@+id/btnDemo"
+        android:layout_width="338dp"
+        android:layout_height="72dp"
+        android:layout_marginTop="26dp"
+        android:backgroundTint="#EA6C45"
+        android:text="@string/demo"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:icon="@drawable/img_modo_demo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
+</androidx.constraintlayout.widget.ConstraintLayout>

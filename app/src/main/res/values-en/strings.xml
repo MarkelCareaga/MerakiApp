@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MerakiAPP</string>
+    <string name="menu_map">Map</string>
+    <string name="menu_acerca">About us</string>
+    <string name="menu_principal">Start</string>
+    <string name="jugar">Play</string>
+    <string name="menu_salir">Exit application</string>
+    <string name="action_help">Help</string>
+    <string name="explorador">Explorer mode</string>
+    <string name="libre">Free mode</string>
+    <string name="verresultado">See result</string>
+    <string name="finalizar">To finalize</string>
+    <string name="volveralaexplicacion">Back to explanation</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="demo">Demo Mode</string>
+    <string name="puzzle">Do the puzzle</string>
+    <string name="siguiente">Next</string>
+    <string name="volver">Return</string>
+    <string name="puzzleCompletado">Puzzle Completed</string>
+    <string name="faltanpiezas">You are missing pieces</string>
+    <string name="piezamalcolocada">Misplaced piece</string>
+    <string name="comprobar">Check</string>
+    <string name="volveraescuchar">Listen Again</string>
+    <string name="distancia">You are far away, come at least 50 meters from the point</string>
+    <string name="FQ">Frecuent Questions</string>
+</resources>

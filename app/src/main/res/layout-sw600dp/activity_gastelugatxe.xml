@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityGaztelugatxe"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".juegos.GaztelugatxeActivity"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="7dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="619dp"
+        android:layout_height="649dp"
+        android:layout_marginTop="35dp"
+        android:background="#B2FFFBFB"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.419"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.271">
+
+        <RadioGroup
+            android:id="@+id/gp3"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/gp1"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿En qué provincia se sitúa San Juan de Gaztelugatxe?"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Gipuzkoa"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="33dp" />
+
+            <RadioButton
+                android:id="@+id/rb8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Bizkaia "
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="81dp" />
+
+            <RadioButton
+                android:id="@+id/rb9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Araba"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="129dp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/gp2"
+            android:layout_width="270dp"
+            android:layout_height="245dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gp1">
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Cuántas veces hay que tocar la campana de la ermita para tener buena suerte?"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="1"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="222dp" />
+
+            <RadioButton
+                android:id="@+id/rb5"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="2"
+                android:textSize="24sp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="270dp" />
+
+            <RadioButton
+                android:id="@+id/rb6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="3"
+                android:textSize="24sp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="318dp" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/gp1"
+            android:layout_width="270dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="300dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="270dp"
+                android:layout_height="wrap_content"
+                android:text="¿Cuántas escaleras hay que subir para llegar a la ermita?"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="241 "
+                android:textSize="24sp" />
+
+            <RadioButton
+                android:id="@+id/rb2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="300 "
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="81dp" />
+
+            <RadioButton
+                android:id="@+id/rb3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="157"
+                android:textSize="24sp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="24dp"
+                tools:layout_editor_absoluteY="129dp" />
+
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/gp4"
+            android:layout_width="270dp"
+            android:layout_height="245dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/gp2"
+            app:layout_constraintTop_toBottomOf="@+id/gp3">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="¿Que serie internacional se ha grabado en San Juan de Gaztelugatxe?"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <RadioButton
+                android:id="@+id/rb10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Agente 007"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="222dp" />
+
+            <RadioButton
+                android:id="@+id/rb11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Juego de tronos"
+                android:textSize="24sp"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="270dp" />
+
+            <RadioButton
+                android:id="@+id/rb12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Los pitufos"
+                android:textSize="24sp"
+                tools:ignore="TouchTargetSizeCheck"
+                tools:layout_editor_absoluteX="221dp"
+                tools:layout_editor_absoluteY="318dp" />
+        </RadioGroup>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btnVolverGaztelugatxe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/boton_volver"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/gifAplausos"
+        android:layout_width="172dp"
+        android:layout_height="162dp"
+        android:layout_marginStart="48dp"
+        android:layout_marginBottom="32dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/aplausos" />
+
+    <ImageButton
+        android:id="@+id/btnComprobarGaztelugatxe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_resultado"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/btnFinalizarGaztelugatxe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_finalizar"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnInfoPantallaGaztelugatxe"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnAyudaGaztelugatxe"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="2dp"
+        app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaGaztelugatxe"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_ayuda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

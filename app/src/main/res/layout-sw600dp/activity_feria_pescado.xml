@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityFeriaPescado"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".juegos.FeriaPescadoActivity">
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="1900dp"
+        android:layout_height="0dp"
+        android:background="@drawable/fondoferiapescado"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/contenedorTransparente"
+        app:layout_constraintVertical_bias="0.644" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contenedorTransparente"
+        android:layout_width="800dp"
+        android:layout_height="751dp"
+        android:background="#C8FFFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtObjetivoFeriaPescado"
+            android:layout_width="118dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="16dp"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgMarisco"
+            android:layout_width="177dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="3dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn31"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgCongelado"
+            app:srcCompat="@drawable/mariscos" />
+
+        <ImageButton
+            android:id="@+id/btn11"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="56dp"
+            app:layout_constraintStart_toEndOf="@+id/imgAhumado"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoFeriaPescado"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/imgCongelado"
+            android:layout_width="177dp"
+            android:layout_height="128dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn21"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgAhumado"
+            app:srcCompat="@drawable/pescadocongelado" />
+
+        <ImageView
+            android:id="@+id/imgAhumado"
+            android:layout_width="177dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn11"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoFeriaPescado"
+            app:srcCompat="@drawable/salmonahumado" />
+
+        <ImageButton
+            android:id="@+id/btn21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="76dp"
+            app:layout_constraintStart_toEndOf="@+id/imgCongelado"
+            app:layout_constraintTop_toBottomOf="@+id/btn11"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            app:layout_constraintStart_toEndOf="@+id/imgPrecocinado"
+            app:layout_constraintTop_toBottomOf="@+id/btn41"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageView
+            android:id="@+id/imgConservas"
+            android:layout_width="177dp"
+            android:layout_height="128dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn41"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgMarisco"
+            app:srcCompat="@drawable/pescadoconserva" />
+
+        <ImageView
+            android:id="@+id/imgPrecocinado"
+            android:layout_width="177dp"
+            android:layout_height="128dp"
+            android:layout_marginTop="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn51"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgConservas"
+            app:srcCompat="@drawable/pescadoprecocinado" />
+
+        <TextView
+            android:id="@+id/txtCongelado"
+            android:layout_width="118dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="48dp"
+            android:text="Pescado congelado"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintStart_toEndOf="@+id/btn42"
+            app:layout_constraintTop_toBottomOf="@+id/txtConservas" />
+
+        <TextView
+            android:id="@+id/txtPrecocinado"
+            android:layout_width="155dp"
+            android:layout_height="65dp"
+            android:layout_marginTop="48dp"
+            android:text="Pescado precocinado"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.296"
+            app:layout_constraintStart_toEndOf="@+id/btn12"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoFeriaPescado" />
+
+        <TextView
+            android:id="@+id/txtMarisco"
+            android:layout_width="118dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="56dp"
+            android:gravity="center_vertical"
+            android:text="Marisco"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintStart_toEndOf="@+id/btn22"
+            app:layout_constraintTop_toBottomOf="@+id/txtPrecocinado" />
+
+        <TextView
+            android:id="@+id/txtConservas"
+            android:layout_width="111dp"
+            android:layout_height="84dp"
+            android:layout_marginTop="56dp"
+            android:text="Pescado en conservas"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.236"
+            app:layout_constraintStart_toEndOf="@+id/btn32"
+            app:layout_constraintTop_toBottomOf="@+id/txtMarisco" />
+
+        <TextView
+            android:id="@+id/txtAhumado"
+            android:layout_width="118dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="64dp"
+            android:text="Pescado ahumado"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.244"
+            app:layout_constraintStart_toEndOf="@+id/btn52"
+            app:layout_constraintTop_toBottomOf="@+id/txtCongelado" />
+
+        <ImageButton
+            android:id="@+id/btn12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="56dp"
+            app:layout_constraintStart_toEndOf="@+id/btn11"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoFeriaPescado"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn22"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="76dp"
+            app:layout_constraintStart_toEndOf="@+id/btn21"
+            app:layout_constraintTop_toBottomOf="@+id/btn12"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn32"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/btn31"
+            app:layout_constraintTop_toBottomOf="@+id/btn22"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn42"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/btn41"
+            app:layout_constraintTop_toBottomOf="@+id/btn32"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btn52"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="350dp"
+            android:layout_marginTop="88dp"
+            app:layout_constraintStart_toEndOf="@+id/btn51"
+            app:layout_constraintTop_toBottomOf="@+id/btn42"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="96dp"
+            app:layout_constraintStart_toEndOf="@+id/imgMarisco"
+            app:layout_constraintTop_toBottomOf="@+id/btn21"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn41"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="80dp"
+            app:layout_constraintStart_toEndOf="@+id/imgConservas"
+            app:layout_constraintTop_toBottomOf="@+id/btn31"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btnInfoPantallaFeriaPescado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnAyudaFeriaPescado"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaFeriaPescado"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_ayuda"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <RelativeLayout
+            android:id="@+id/layoutLineas"
+            android:layout_width="880dp"
+            android:layout_height="702dp"
+            android:layout_marginEnd="1dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btnVolverExplicacionFeriaPescado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@mipmap/boton_volver"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnComprobarFeriaPescado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_resultado"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/btnFinalizarFeriaPescado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="28dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:srcCompat="@mipmap/boton_finalizar"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/gifAplausosFeriaPescado"
+        android:layout_width="145dp"
+        android:layout_height="149dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/aplausos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

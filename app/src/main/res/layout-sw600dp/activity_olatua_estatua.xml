@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityOlatua"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".juegos.OlatuaEstatuaActivity" >
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contenedorTransparenteB"
+        style="@style/Theme.MerakiApp"
+        android:layout_width="797dp"
+        android:layout_height="661dp"
+        android:background="#C8FFFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txtObjetivoOlatua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:textSize="15sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.492"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtWave"
+            android:layout_width="119dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="3dp"
+            android:gravity="center|center_vertical"
+            android:text="Wave"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn31B"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOlatu" />
+
+        <ImageButton
+            android:id="@+id/btn11B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toEndOf="@+id/txtOla"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txtOlatu"
+            android:layout_width="119dp"
+            android:layout_height="89dp"
+            android:gravity="center"
+            android:text="Olatu"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn21B"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOla" />
+
+        <TextView
+            android:id="@+id/txtOla"
+            android:layout_width="119dp"
+            android:layout_height="89dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Ola"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn11B"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua" />
+
+        <ImageButton
+            android:id="@+id/btn21B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/txtOlatu"
+            app:layout_constraintTop_toBottomOf="@+id/btn11B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn51B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/txtWelle"
+            app:layout_constraintTop_toBottomOf="@+id/btn41B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn61B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/txtOnda"
+            app:layout_constraintTop_toBottomOf="@+id/btn51B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <TextView
+            android:id="@+id/txtOnde"
+            android:layout_width="118dp"
+            android:layout_height="95dp"
+            android:gravity="center"
+            android:text="Onde"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn41B"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtWave" />
+
+        <TextView
+            android:id="@+id/txtWelle"
+            android:layout_width="119dp"
+            android:layout_height="79dp"
+            android:layout_marginTop="2dp"
+            android:gravity="center|center_horizontal"
+            android:text="Welle"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn51B"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtOnde" />
+
+
+        <TextView
+            android:id="@+id/txtOnda"
+            android:layout_width="119dp"
+            android:layout_height="79dp"
+            android:layout_marginTop="12dp"
+            android:gravity="center|center_horizontal"
+            android:text="Onda"
+            android:textSize="24sp"
+            app:layout_constraintEnd_toStartOf="@+id/btn51B"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtWelle" />
+
+        <TextView
+            android:id="@+id/txtFrances"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="63dp"
+            android:gravity="center_vertical"
+            android:text="Francés"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn42B"
+            app:layout_constraintTop_toBottomOf="@+id/txtAleman" />
+
+        <TextView
+            android:id="@+id/txtIngles"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:gravity="center_vertical"
+            android:text="Inglés"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn12B"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua" />
+
+        <TextView
+            android:id="@+id/txtCastellano"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="55dp"
+            android:gravity="center_vertical"
+            android:text="Castellano"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn22B"
+            app:layout_constraintTop_toBottomOf="@+id/txtIngles" />
+
+        <TextView
+            android:id="@+id/txtAleman"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="55dp"
+            android:gravity="center_vertical"
+            android:text="Alemán"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn32B"
+            app:layout_constraintTop_toBottomOf="@+id/txtCastellano" />
+
+        <TextView
+            android:id="@+id/txtEuskera"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="56dp"
+            android:gravity="center_vertical"
+            android:text="Euskera"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn52B"
+            app:layout_constraintTop_toBottomOf="@+id/txtFrances" />
+
+        <TextView
+            android:id="@+id/txtItaliano"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="56dp"
+            android:gravity="center_vertical"
+            android:text="Italiano"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/btn62B"
+            app:layout_constraintTop_toBottomOf="@+id/txtEuskera" />
+
+        <ImageButton
+            android:id="@+id/btn12B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="36dp"
+            app:layout_constraintStart_toEndOf="@+id/btn11B"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn22B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/btn21B"
+            app:layout_constraintTop_toBottomOf="@+id/btn12B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn32B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/btn31B"
+            app:layout_constraintTop_toBottomOf="@+id/btn22B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn42B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/btn41B"
+            app:layout_constraintTop_toBottomOf="@+id/btn32B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btn52B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/btn51B"
+            app:layout_constraintTop_toBottomOf="@+id/btn42B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn62B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="430dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/btn61B"
+            app:layout_constraintTop_toBottomOf="@+id/btn52B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn31B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/txtWave"
+            app:layout_constraintTop_toBottomOf="@+id/btn21B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btn41B"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="52dp"
+            app:layout_constraintStart_toEndOf="@+id/txtOnde"
+            app:layout_constraintTop_toBottomOf="@+id/btn31B"
+            app:srcCompat="@drawable/ic_baseline_boton_radio"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btnInfoPantallaOlatua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
+            tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
+
+        <ImageButton
+            android:id="@+id/btnAyudaOlatua"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="2dp"
+            app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaOlatua"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_ayuda"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <RelativeLayout
+            android:id="@+id/layoutLineasB"
+            android:layout_width="856dp"
+            android:layout_height="590dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua"
+            app:layout_constraintVertical_bias="1.0">
+
+        </RelativeLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageButton
+        android:id="@+id/btnVolverExplicacionOlatua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="36dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/boton_volver"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnComprobarOlatua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="36dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/boton_resultado"
+        tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
+
+    <ImageButton
+        android:id="@+id/btnFinalizarOlatua"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginBottom="36dp"
+        android:background="@null"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
+        app:layout_constraintVertical_bias="1.0"
+        app:srcCompat="@mipmap/boton_finalizar"
+        tools:ignore="SpeakableTextPresentCheck" />
+
+    <ImageView
+        android:id="@+id/gifAplausosOlatua"
+        android:layout_width="150dp"
+        android:layout_height="145dp"
+        android:layout_marginStart="36dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
+        app:layout_constraintVertical_bias="0.924"
+        app:srcCompat="@drawable/aplausos" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

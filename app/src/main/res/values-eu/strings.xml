@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MerakiAPP</string>
+    <string name="menu_map">Mapa</string>
+    <string name="action_help">Laguntza</string>
+    <string name="menu_acerca">Guri buruz</string>
+    <string name="menu_principal">Hasiera</string>
+    <string name="jugar">Jokatu</string>
+    <string name="menu_salir">Irten aplikazioa</string>
+    <string name="explorador">Esploratzaile modua</string>
+    <string name="libre">Doako modua</string>
+    <string name="verresultado">Ikusi emaitza</string>
+    <string name="finalizar">Amaitzeko</string>
+    <string name="volveralaexplicacion">Azalpenera itzuli</string>
+    <string name="navigation_drawer_open">Ireki Nabigazio tiradera</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="navigation_drawer_close">Itxi nabigazio tiradera</string>
+    <string name="nav_header_desc">Nabigazio goiburua</string>
+    <string name="demo">Demo Modua</string>
+    <string name="puzzle">Egin puzzlea</string>
+    <string name="siguiente">Hurrengoa</string>
+    <string name="volver">Itzuli</string>
+    <string name="puzzleCompletado">Puzzlea Osatuta</string>
+    <string name="faltanpiezas">Piezak falta zaizkizu</string>
+    <string name="piezamalcolocada">Gaizki kokatutako pieza</string>
+    <string name="comprobar">Egiaztatu</string>
+    <string name="volveraescuchar">Entzun Berriro</string>
+    <string name="distancia">" Urruti zaude, etorri puntutik 50 metrora gutxienez"</string>
+    <string name="FQ">Galdera orokorrak</string>
+</resources>
