@@ -12,8 +12,10 @@ val tituloVideo = "VIDEO"
 val tituloFinal = "BIEN HECHO"
 val tituloDialogFallo = "VUELVE A INTENTARLO"
 val tituloRotarPantalla = "INFO"
+val permisoDenegado= "Permisos no aceptados"
 
 // --------------- LISTA DE MENSAJES ---------------
+val mensajePermisos= "Por favor acepte los permises de ubicacion para acceder a la siguiente pantalla."
 val mensajeExplicacion = "Lee y/o escucha atentamente la explicación. Te servirá de ayuda para completar correctamente el juego."
 val mensajeFeriaPescado = "Une las imágenes con sus nombres correspondientes.\n" +
         "Para unir dichos elementos, pulsa los botones circulares."

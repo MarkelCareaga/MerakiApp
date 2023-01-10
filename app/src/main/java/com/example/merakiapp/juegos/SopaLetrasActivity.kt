@@ -355,42 +355,44 @@ class SopaLetrasActivity : AppCompatActivity() {
                         if (isPointInsideView(event.rawX, event.rawY, textView)) {
                             val backgroundDrawable = textView.background
                             if (backgroundDrawable !is ColorDrawable || (backgroundDrawable.color != Color.GREEN && backgroundDrawable.color != Color.CYAN)) {
-                                // Set the TextView's background color to red
-                                textView.setBackgroundColor(Color.CYAN)
-                                Cont++
-                                when (textView) {
-                                    binding.Sanfrantzisko, binding.sAnfrantzisko, binding.saNfrantzisko, binding.sanFrantzisko, binding.sanfRantzisko, binding.sanfrAntzisko, binding.sanfraNtzisko, binding.sanfranTzisko, binding.sanfrantZisko, binding.sanfrantzIsko, binding.sanfrantziSko, binding.sanfrantzisKo, binding.sanfrantziskO -> {
-                                        ContSanfrantzisko++
+                                if(Cont < 13){
+                                    // Set the TextView's background color to red
+                                    textView.setBackgroundColor(Color.CYAN)
+                                    Cont++
+                                    when (textView) {
+                                        binding.Sanfrantzisko, binding.sAnfrantzisko, binding.saNfrantzisko, binding.sanFrantzisko, binding.sanfRantzisko, binding.sanfrAntzisko, binding.sanfraNtzisko, binding.sanfranTzisko, binding.sanfrantZisko, binding.sanfrantzIsko, binding.sanfrantziSko, binding.sanfrantzisKo, binding.sanfrantziskO -> {
+                                            ContSanfrantzisko++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Santabarbara, binding.sAntabarbara, binding.saNtabarbara, binding.sanTabarbara, binding.santAbarbara, binding.santaBarbara, binding.santabArbara, binding.santabaRbara, binding.santabarBara, binding.santabarbAra, binding.santabarbaRa, binding.santabarbarA -> {
-                                        ContSantabarbara++
+                                    when (textView) {
+                                        binding.Santabarbara, binding.sAntabarbara, binding.saNtabarbara, binding.sanTabarbara, binding.santAbarbara, binding.santaBarbara, binding.santabArbara, binding.santabaRbara, binding.santabarBara, binding.santabarbAra, binding.santabarbaRa, binding.santabarbarA -> {
+                                            ContSantabarbara++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Sanmigel, binding.sAnmigel, binding.saNmigel, binding.sanMigel, binding.sanmIgel, binding.sanmiGel, binding.sanmigEl, binding.sanmigeL -> {
-                                        ContSanmigel++
+                                    when (textView) {
+                                        binding.Sanmigel, binding.sAnmigel, binding.saNmigel, binding.sanMigel, binding.sanmIgel, binding.sanmiGel, binding.sanmigEl, binding.sanmigeL -> {
+                                            ContSanmigel++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Errenteria, binding.eRrenteria, binding.erRenteria, binding.errEnteria, binding.erreNteria, binding.errenTeria, binding.errentEria, binding.errenteRia, binding.errenterIa, binding.errenteriA -> {
-                                        ContErrenteria++
+                                    when (textView) {
+                                        binding.Errenteria, binding.eRrenteria, binding.erRenteria, binding.errEnteria, binding.erreNteria, binding.errenTeria, binding.errentEria, binding.errenteRia, binding.errenterIa, binding.errenteriA -> {
+                                            ContErrenteria++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Erremedio, binding.eRremedio, binding.erRemedio, binding.errEmedio, binding.erreMedio, binding.erremEdio, binding.erremeDio, binding.erremedIo, binding.erremediO -> {
-                                        ContErremedio++
+                                    when (textView) {
+                                        binding.Erremedio, binding.eRremedio, binding.erRemedio, binding.errEmedio, binding.erreMedio, binding.erremEdio, binding.erremeDio, binding.erremedIo, binding.erremediO -> {
+                                            ContErremedio++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Sanjuan, binding.sAnjuan, binding.saNjuan, binding.sanJuan, binding.sanjUan, binding.sanjuAn, binding.sanjuaN -> {
-                                        ContSanjuan++
+                                    when (textView) {
+                                        binding.Sanjuan, binding.sAnjuan, binding.saNjuan, binding.sanJuan, binding.sanjUan, binding.sanjuAn, binding.sanjuaN -> {
+                                            ContSanjuan++
+                                        }
                                     }
-                                }
-                                when (textView) {
-                                    binding.Bei, binding.bEi, binding.beI -> {
-                                        ContBei ++
+                                    when (textView) {
+                                        binding.Bei, binding.bEi, binding.beI -> {
+                                            ContBei ++
+                                        }
                                     }
                                 }
                             }
