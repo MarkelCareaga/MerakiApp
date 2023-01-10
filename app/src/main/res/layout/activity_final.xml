@@ -5,6 +5,8 @@
     android:id="@+id/activityFinal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondoSplash"
+    android:backgroundTint="@color/fondoSplash"
     tools:context=".FinalActivity">
 
     <ImageButton
@@ -33,11 +35,12 @@
         android:id="@+id/btnSiguienteFinal"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginBottom="120dp"
         android:background="@null"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@mipmap/boton_siguiente"
         tools:ignore="SpeakableTextPresentCheck" />
@@ -46,10 +49,13 @@
         android:id="@+id/txtFelicidades"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="44dp"
+        android:fontFamily="@font/alatsi"
         android:text="¡¡¡ ENHORABUENA !!!"
+        android:textColor="#010101"
         android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.464"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,8 +67,10 @@
         android:layout_marginBottom="100dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtFelicidades"
+        app:layout_constraintVertical_bias="0.239"
         app:srcCompat="@drawable/aplausos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
