@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.*
@@ -55,6 +56,7 @@ class SopaLetrasActivity : AppCompatActivity() {
     private var respuesta = 0
 
 
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
