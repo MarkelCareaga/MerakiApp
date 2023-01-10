@@ -22,6 +22,8 @@ class SplashScreen : AppCompatActivity() {
 
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
+
+
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
         progressAnimator.duration = 5000
         progressAnimator.interpolator = LinearInterpolator()
