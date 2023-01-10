@@ -50,12 +50,9 @@ class SopaLetrasActivity : AppCompatActivity() {
     // AUDIO Y FONDO
     private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
     private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
-    private var pantallaSeleccionada = "puerta_de_san_juan"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
-
     private var respuesta = 0
-
-
+    
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
@@ -110,92 +107,17 @@ class SopaLetrasActivity : AppCompatActivity() {
 
         // Obtiene la vista del GridLayout
         val gridLayout = binding.gridLayout
-        //val gridLayout = findViewById<GridLayout>(R.id.gridLayout)
 
-        //SANFRANTZISKO
-        val Sanfrantzisko = binding.Sanfrantzisko
-        val sAnfrantzisko = binding.sAnfrantzisko
-        val saNfrantzisko = binding.saNfrantzisko
-        val sanFrantzisko = binding.sanFrantzisko
-        val sanfRantzisko = binding.sanfRantzisko
-        val sanfrAntzisko = binding.sanfrAntzisko
-        val sanfraNtzisko = binding.sanfraNtzisko
-        val sanfranTzisko = binding.sanfranTzisko
-        val sanfrantZisko = binding.sanfrantZisko
-        val sanfrantzIsko = binding.sanfrantzIsko
-        val sanfrantziSko = binding.sanfrantziSko
-        val sanfrantzisKo = binding.sanfrantzisKo
-        val sanfrantziskO = binding.sanfrantziskO
-
-        //SANTABARBARA
-        val Santabarbara = binding.Santabarbara
-        val sAntabarbara = binding.sAntabarbara
-        val saNtabarbara = binding.saNtabarbara
-        val sanTabarbara = binding.sanTabarbara
-        val santAbarbara = binding.santAbarbara
-        val santaBarbara = binding.santaBarbara
-        val santabArbara = binding.santabArbara
-        val santabaRbara = binding.santabaRbara
-        val santabarBara = binding.santabarBara
-        val santabarbAra = binding.santabarbAra
-        val santabarbaRa = binding.santabarbaRa
-        val santabarbarA = binding.santabarbarA
-
-        //SANMIGEL
-        val Sanmigel = binding.Sanmigel
-        val sAnmigel = binding.sAnmigel
-        val saNmigel = binding.saNmigel
-        val sanMigel = binding.sanMigel
-        val sanmIgel = binding.sanmIgel
-        val sanmiGel = binding.sanmiGel
-        val sanmigEl = binding.sanmigEl
-        val sanmigeL = binding.sanmigeL
-
-        //ERRENTERIA
-        val Errenteria = binding.Errenteria
-        val eRrenteria = binding.eRrenteria
-        val erRenteria = binding.erRenteria
-        val errEnteria = binding.errEnteria
-        val erreNteria = binding.erreNteria
-        val errenTeria = binding.errenTeria
-        val errentEria = binding.errentEria
-        val errenteRia = binding.errenteRia
-        val errenterIa = binding.errenterIa
-        val errenteriA = binding.errenteriA
-
-        //ERREMEDIO
-        val Erremedio = binding.Erremedio
-        val eRremedio = binding.eRremedio
-        val erRemedio = binding.erRemedio
-        val errEmedio = binding.errEmedio
-        val erreMedio = binding.erreMedio
-        val erremEdio = binding.erremEdio
-        val erremeDio = binding.erremeDio
-        val erremedIo = binding.erremedIo
-        val erremediO = binding.erremediO
-
-        //SANJUAN
-        val Sanjuan = binding.Sanjuan
-        val sAnjuan = binding.sAnjuan
-        val saNjuan = binding.saNjuan
-        val sanJuan = binding.sanJuan
-        val sanjUan = binding.sanjUan
-        val sanjuAn = binding.sanjuAn
-        val sanjuaN = binding.sanjuaN
-
-        //BEI
-        val Bei = binding.Bei
-        val bEi = binding.bEi
-        val beI = binding.beI
-
+        //Comprobar si todas las palabras son correctas
         fun Comprobarpalabras(){
-
+            //Si todos los booleanos de las palabras estan en TRUE:
             if(SANFRANTZISKO && SANTABARBARA && SANMIGEL && ERRENTERIA && ERREMEDIO && SANJUAN && BEI){
 
+                //Suma 1 al contador del audio
                 ContAudio++
 
+                //Si el ContAudio es igual a 7 haz:
                 if (ContAudio == 7){
-                    Toast.makeText(this, "Felicidades", Toast.LENGTH_SHORT).show()
 
                     // Elementos a ocultar
                     binding.btnVolverExplicacionSopaLetras.visibility = Button.GONE
@@ -215,184 +137,219 @@ class SopaLetrasActivity : AppCompatActivity() {
 
         }
 
+        //Cambiar
         fun CambiarColor(){
 
+            //Si SANFRANTZISKO es TRUE
             if(SANFRANTZISKO){
                 // Pon el color verde
-                Sanfrantzisko.setBackgroundColor(Color.GREEN)
-                sAnfrantzisko.setBackgroundColor(Color.GREEN)
-                saNfrantzisko.setBackgroundColor(Color.GREEN)
-                sanFrantzisko.setBackgroundColor(Color.GREEN)
-                sanfRantzisko.setBackgroundColor(Color.GREEN)
-                sanfrAntzisko.setBackgroundColor(Color.GREEN)
-                sanfraNtzisko.setBackgroundColor(Color.GREEN)
-                sanfranTzisko.setBackgroundColor(Color.GREEN)
-                sanfrantZisko.setBackgroundColor(Color.GREEN)
-                sanfrantzIsko.setBackgroundColor(Color.GREEN)
-                sanfrantziSko.setBackgroundColor(Color.GREEN)
-                sanfrantzisKo.setBackgroundColor(Color.GREEN)
-                sanfrantziskO.setBackgroundColor(Color.GREEN)
+                binding.Sanfrantzisko.setBackgroundColor(Color.GREEN)
+                binding.sAnfrantzisko.setBackgroundColor(Color.GREEN)
+                binding.saNfrantzisko.setBackgroundColor(Color.GREEN)
+                binding.sanFrantzisko.setBackgroundColor(Color.GREEN)
+                binding.sanfRantzisko.setBackgroundColor(Color.GREEN)
+                binding.sanfrAntzisko.setBackgroundColor(Color.GREEN)
+                binding.sanfraNtzisko.setBackgroundColor(Color.GREEN)
+                binding.sanfranTzisko.setBackgroundColor(Color.GREEN)
+                binding.sanfrantZisko.setBackgroundColor(Color.GREEN)
+                binding.sanfrantzIsko.setBackgroundColor(Color.GREEN)
+                binding.sanfrantziSko.setBackgroundColor(Color.GREEN)
+                binding.sanfrantzisKo.setBackgroundColor(Color.GREEN)
+                binding.sanfrantziskO.setBackgroundColor(Color.GREEN)
 
                 binding.textInfSanfrantzisko.setTextColor(Color.GREEN)
                 binding.textInfSanfrantzisko.setTypeface(binding.textInfSanfrantzisko.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
             }
+
+            //Si SANTABARBARA es TRUE
             if(SANTABARBARA){
 
                 // Pon el color verde
-                Santabarbara.setBackgroundColor(Color.GREEN)
-                sAntabarbara.setBackgroundColor(Color.GREEN)
-                saNtabarbara.setBackgroundColor(Color.GREEN)
-                sanTabarbara.setBackgroundColor(Color.GREEN)
-                santAbarbara.setBackgroundColor(Color.GREEN)
-                santaBarbara.setBackgroundColor(Color.GREEN)
-                santabArbara.setBackgroundColor(Color.GREEN)
-                santabaRbara.setBackgroundColor(Color.GREEN)
-                santabarBara.setBackgroundColor(Color.GREEN)
-                santabarbAra.setBackgroundColor(Color.GREEN)
-                santabarbaRa.setBackgroundColor(Color.GREEN)
-                santabarbarA.setBackgroundColor(Color.GREEN)
+                binding.Santabarbara.setBackgroundColor(Color.GREEN)
+                binding.sAntabarbara.setBackgroundColor(Color.GREEN)
+                binding.saNtabarbara.setBackgroundColor(Color.GREEN)
+                binding.sanTabarbara.setBackgroundColor(Color.GREEN)
+                binding.santAbarbara.setBackgroundColor(Color.GREEN)
+                binding.santaBarbara.setBackgroundColor(Color.GREEN)
+                binding.santabArbara.setBackgroundColor(Color.GREEN)
+                binding.santabaRbara.setBackgroundColor(Color.GREEN)
+                binding.santabarBara.setBackgroundColor(Color.GREEN)
+                binding.santabarbAra.setBackgroundColor(Color.GREEN)
+                binding.santabarbaRa.setBackgroundColor(Color.GREEN)
+                binding.santabarbarA.setBackgroundColor(Color.GREEN)
 
                 binding.textInfSantabarbara.setTextColor(Color.GREEN)
                 binding.textInfSantabarbara.setTypeface(binding.textInfSantabarbara.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
+            //Si SANMIGEL es TRUE
             if(SANMIGEL){
 
-                Sanmigel.setBackgroundColor(Color.GREEN)
-                sAnmigel.setBackgroundColor(Color.GREEN)
-                saNmigel.setBackgroundColor(Color.GREEN)
-                sanMigel.setBackgroundColor(Color.GREEN)
-                sanmIgel.setBackgroundColor(Color.GREEN)
-                sanmiGel.setBackgroundColor(Color.GREEN)
-                sanmigEl.setBackgroundColor(Color.GREEN)
-                sanmigeL.setBackgroundColor(Color.GREEN)
+                binding.Sanmigel.setBackgroundColor(Color.GREEN)
+                binding.sAnmigel.setBackgroundColor(Color.GREEN)
+                binding.saNmigel.setBackgroundColor(Color.GREEN)
+                binding.sanMigel.setBackgroundColor(Color.GREEN)
+                binding.sanmIgel.setBackgroundColor(Color.GREEN)
+                binding.sanmiGel.setBackgroundColor(Color.GREEN)
+                binding.sanmigEl.setBackgroundColor(Color.GREEN)
+                binding.sanmigeL.setBackgroundColor(Color.GREEN)
 
                 binding.textInfSanmigel.setTextColor(Color.GREEN)
                 binding.textInfSanmigel.setTypeface(binding.textInfSanmigel.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
+            //Si ERRENTERIA es TRUE
             if(ERRENTERIA){
 
                 // Pon el color verde
-                Errenteria.setBackgroundColor(Color.GREEN)
-                eRrenteria.setBackgroundColor(Color.GREEN)
-                erRenteria.setBackgroundColor(Color.GREEN)
-                errEnteria.setBackgroundColor(Color.GREEN)
-                erreNteria.setBackgroundColor(Color.GREEN)
-                errenTeria.setBackgroundColor(Color.GREEN)
-                errentEria.setBackgroundColor(Color.GREEN)
-                errenteRia.setBackgroundColor(Color.GREEN)
-                errenterIa.setBackgroundColor(Color.GREEN)
-                errenteriA.setBackgroundColor(Color.GREEN)
+                binding.Errenteria.setBackgroundColor(Color.GREEN)
+                binding.eRrenteria.setBackgroundColor(Color.GREEN)
+                binding.erRenteria.setBackgroundColor(Color.GREEN)
+                binding.errEnteria.setBackgroundColor(Color.GREEN)
+                binding.erreNteria.setBackgroundColor(Color.GREEN)
+                binding.errenTeria.setBackgroundColor(Color.GREEN)
+                binding.errentEria.setBackgroundColor(Color.GREEN)
+                binding.errenteRia.setBackgroundColor(Color.GREEN)
+                binding.errenterIa.setBackgroundColor(Color.GREEN)
+                binding.errenteriA.setBackgroundColor(Color.GREEN)
 
                 binding.textInfErrenteria.setTextColor(Color.GREEN)
                 binding.textInfErrenteria.setTypeface(binding.textInfErrenteria.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
+            //Si ERREMEDIO es TRUE
             if(ERREMEDIO){
 
                 // Pon el color verde
-                Erremedio.setBackgroundColor(Color.GREEN)
-                eRremedio.setBackgroundColor(Color.GREEN)
-                erRemedio.setBackgroundColor(Color.GREEN)
-                errEmedio.setBackgroundColor(Color.GREEN)
-                erreMedio.setBackgroundColor(Color.GREEN)
-                erremEdio.setBackgroundColor(Color.GREEN)
-                erremeDio.setBackgroundColor(Color.GREEN)
-                erremedIo.setBackgroundColor(Color.GREEN)
-                erremediO.setBackgroundColor(Color.GREEN)
+                binding.Erremedio.setBackgroundColor(Color.GREEN)
+                binding.eRremedio.setBackgroundColor(Color.GREEN)
+                binding.erRemedio.setBackgroundColor(Color.GREEN)
+                binding.errEmedio.setBackgroundColor(Color.GREEN)
+                binding.erreMedio.setBackgroundColor(Color.GREEN)
+                binding.erremEdio.setBackgroundColor(Color.GREEN)
+                binding.erremeDio.setBackgroundColor(Color.GREEN)
+                binding.erremedIo.setBackgroundColor(Color.GREEN)
+                binding.erremediO.setBackgroundColor(Color.GREEN)
 
                 binding.textInfErremedio.setTextColor(Color.GREEN)
                 binding.textInfErremedio.setTypeface(binding.textInfErremedio.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
+            //Si SANJUAN es TRUE
             if(SANJUAN){
 
                 // Pon el color verde
-                Sanjuan.setBackgroundColor(Color.GREEN)
-                sAnjuan.setBackgroundColor(Color.GREEN)
-                saNjuan.setBackgroundColor(Color.GREEN)
-                sanJuan.setBackgroundColor(Color.GREEN)
-                sanjUan.setBackgroundColor(Color.GREEN)
-                sanjuAn.setBackgroundColor(Color.GREEN)
-                sanjuaN.setBackgroundColor(Color.GREEN)
+                binding.Sanjuan.setBackgroundColor(Color.GREEN)
+                binding.sAnjuan.setBackgroundColor(Color.GREEN)
+                binding.saNjuan.setBackgroundColor(Color.GREEN)
+                binding.sanJuan.setBackgroundColor(Color.GREEN)
+                binding.sanjUan.setBackgroundColor(Color.GREEN)
+                binding.sanjuAn.setBackgroundColor(Color.GREEN)
+                binding.sanjuaN.setBackgroundColor(Color.GREEN)
 
                 binding.textInfSanjuan.setTextColor(Color.GREEN)
                 binding.textInfSanjuan.setTypeface(binding.textInfSanjuan.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
+            //Si BEI es TRUE
             if(BEI){
 
                 // Pon el color verde
-                Bei.setBackgroundColor(Color.GREEN)
-                bEi.setBackgroundColor(Color.GREEN)
-                beI.setBackgroundColor(Color.GREEN)
+                binding.Bei.setBackgroundColor(Color.GREEN)
+                binding.bEi.setBackgroundColor(Color.GREEN)
+                binding.beI.setBackgroundColor(Color.GREEN)
 
                 binding.textInfBei.setTextColor(Color.GREEN)
                 binding.textInfBei.setTypeface(binding.textInfBei.typeface, Typeface.BOLD)
 
+                //Llama a la funcion para comprobrobar todas las palabras
                 Comprobarpalabras()
 
             }
         }
 
+        //Cuando presionamos algun textview del gridlyout
         gridLayout.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_MOVE -> {
                     // Recorre todos los TextView del GridLayout y cambia su color si el dedo está encima
                     for (i in 0 until gridLayout.childCount) {
                         val textView = gridLayout.getChildAt(i) as TextView
+                        //
                         if (isPointInsideView(event.rawX, event.rawY, textView)) {
                             val backgroundDrawable = textView.background
+                            //Se comprueba que el background de los textviews que estamos seleccionando no estes ya pintados de otro color
                             if (backgroundDrawable !is ColorDrawable || (backgroundDrawable.color != Color.GREEN && backgroundDrawable.color != Color.CYAN)) {
+                                //Si Cont es menor que 13
                                 if(Cont < 13){
-                                    // Set the TextView's background color to red
+                                    // Pinta el background de color CYAN
                                     textView.setBackgroundColor(Color.CYAN)
+                                    //Suma 1 a Cont
                                     Cont++
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANFRANTSIKO
                                     when (textView) {
                                         binding.Sanfrantzisko, binding.sAnfrantzisko, binding.saNfrantzisko, binding.sanFrantzisko, binding.sanfRantzisko, binding.sanfrAntzisko, binding.sanfraNtzisko, binding.sanfranTzisko, binding.sanfrantZisko, binding.sanfrantzIsko, binding.sanfrantziSko, binding.sanfrantzisKo, binding.sanfrantziskO -> {
+                                            //Suma 1 al contador de SANFRANTSIKO
                                             ContSanfrantzisko++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANTABARBARA
                                     when (textView) {
                                         binding.Santabarbara, binding.sAntabarbara, binding.saNtabarbara, binding.sanTabarbara, binding.santAbarbara, binding.santaBarbara, binding.santabArbara, binding.santabaRbara, binding.santabarBara, binding.santabarbAra, binding.santabarbaRa, binding.santabarbarA -> {
+                                            //Suma 1 al contador de SANTABARBARA
                                             ContSantabarbara++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANMIGEL
                                     when (textView) {
                                         binding.Sanmigel, binding.sAnmigel, binding.saNmigel, binding.sanMigel, binding.sanmIgel, binding.sanmiGel, binding.sanmigEl, binding.sanmigeL -> {
+                                            //Suma 1 al contador de SANMIGEL
                                             ContSanmigel++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a ERRENTERIA
                                     when (textView) {
                                         binding.Errenteria, binding.eRrenteria, binding.erRenteria, binding.errEnteria, binding.erreNteria, binding.errenTeria, binding.errentEria, binding.errenteRia, binding.errenterIa, binding.errenteriA -> {
+                                            //Suma 1 al contador de ERRENTERIA
                                             ContErrenteria++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a ERREMEDIO
                                     when (textView) {
                                         binding.Erremedio, binding.eRremedio, binding.erRemedio, binding.errEmedio, binding.erreMedio, binding.erremEdio, binding.erremeDio, binding.erremedIo, binding.erremediO -> {
+                                            //Suma 1 al contador de ERREMEDIO
                                             ContErremedio++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANJUAN
                                     when (textView) {
                                         binding.Sanjuan, binding.sAnjuan, binding.saNjuan, binding.sanJuan, binding.sanjUan, binding.sanjuAn, binding.sanjuaN -> {
+                                            //Suma 1 al contador de SANJUAN
                                             ContSanjuan++
                                         }
                                     }
+                                    //Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a BEI
                                     when (textView) {
                                         binding.Bei, binding.bEi, binding.beI -> {
+                                            //Suma 1 al contador de BEI
                                             ContBei ++
                                         }
                                     }
@@ -401,56 +358,73 @@ class SopaLetrasActivity : AppCompatActivity() {
                         }
                     }
                 }
+                //Cuando dejamos de presionar cualquir TextView y levantamos el dedo de la pantalla
                 MotionEvent.ACTION_UP -> {
                     // Recorre todos los TextViews y si no están pintados de verde, los devuelve a su color original
                     for (i in 0 until gridLayout.childCount) {
                         val textView = gridLayout.getChildAt(i) as TextView
                         val backgroundDrawable = textView.background
+                        //Comprueba si los textviews son de color diferente a verde
                         if (backgroundDrawable !is ColorDrawable || backgroundDrawable.color != Color.GREEN) {
+                            //Quita el color de background de los textviews
                             textView.setBackground(null)
-
+                            //SI el contador de SANFRANTZISKO y el CONT general es igual a 13
                             if (ContSanfrantzisko == 13 && Cont == 13) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 SANFRANTZISKO = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de SANTABARBARA y el CONT general es igual a 12
                             if (ContSantabarbara == 12 && Cont == 12) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 SANTABARBARA = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de SANMIGEL y el CONT general es igual a 8
                             if (ContSanmigel == 8 && Cont == 8) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 SANMIGEL = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de ERRENTERIA y el CONT general es igual a 10
                             if (ContErrenteria == 10 && Cont == 10) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 ERRENTERIA = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de ERREMEDIO y el CONT general es igual a 9
                             if (ContErremedio == 9 && Cont == 9) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 ERREMEDIO = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de SANJUAN y el CONT general es igual a 7
                             if (ContSanjuan == 7 && Cont == 7) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 SANJUAN = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
 
                             }
+                            //SI el contador de BEI y el CONT general es igual a 3
                             if (ContBei == 3 && Cont == 3) {
+                                //SANFRANTZISKO se pone a valor TRUE
                                 BEI = true
-
+                                //Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
 
+                            // Se resetea todos los contadores a 0
                             Cont = 0
 
                             ContSanfrantzisko = 0
