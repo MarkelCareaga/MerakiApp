@@ -2,6 +2,7 @@ package com.example.merakiapp
 
 import android.Manifest
 import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
@@ -18,6 +19,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
@@ -31,7 +33,6 @@ import java.io.Console
 class Inicio : AppCompatActivity(), OnMapReadyCallback {
     var libre :Boolean = false
     lateinit var mapa :GoogleMap
-    var permiso: Boolean = false
     private lateinit var binding: ActivityInicioBinding
     @SuppressLint("CommitPrefEdits", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,52 +44,6 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
         binding=ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.btnLibre.isEnabled=false
-        binding.btnExplorador.isEnabled=false
-        if (ActivityCompat.checkSelfPermission(
-                this@Inicio, android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this@Inicio, android.Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this@Inicio, arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                1
-            )
-            binding.btnLibre.isEnabled=true
-            binding.btnExplorador.isEnabled=true
-
-
-        }else  if (ActivityCompat.checkSelfPermission(
-                    this@Inicio, android.Manifest.permission.ACCESS_FINE_LOCATION
-                )
-                != PackageManager.PERMISSION_GRANTED
-                && ActivityCompat.checkSelfPermission(
-                    this@Inicio, android.Manifest.permission.ACCESS_COARSE_LOCATION
-                )
-                != PackageManager.PERMISSION_GRANTED
-            ) {
-                ActivityCompat.requestPermissions(
-                    this@Inicio, arrayOf(
-                        android.Manifest.permission.ACCESS_FINE_LOCATION,
-                        android.Manifest.permission.ACCESS_COARSE_LOCATION
-                    ),
-                    1
-                )
-            return
-
-                //binding.btnLibre.isEnabled=false
-                //binding.btnExplorador.isEnabled=false
-
-
-            }
-
 
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
@@ -99,45 +54,55 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
             startActivity(Intent(this, DemoActivity::class.java))
         }
         binding.btnExplorador.setOnClickListener {
+            if ((ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=PackageManager.PERMISSION_GRANTED) && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
+                mostrar_dialog(this, permisoDenegado, mensajePermisos)
+            else{
+                val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+                val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
-            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+                if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
+                    pantallacodigo()
+                }else{
+                    this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
+                    this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
+                    this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
+                    this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
+                    this.getSharedPreferences("validar4",0).edit().putBoolean("validar4",false).apply()
+                    this.getSharedPreferences("validar5",0).edit().putBoolean("validar5",false).apply()
+                    this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
+                    this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
-            if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
-                pantallacodigo()
-            }else{
-               this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
-                this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
-                this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
-                this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
-                this.getSharedPreferences("validar4",0).edit().putBoolean("validar4",false).apply()
-                this.getSharedPreferences("validar5",0).edit().putBoolean("validar5",false).apply()
-                this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
-                this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
-
-                val textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
-                        "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
-                        "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
-                        "las actividades.Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías de " +
-                        "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
-                        "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
-                val intent = Intent(this, ExplicacionesActivity::class.java)
-                    // Añadir datos referentes a la ventana de Introducción
-                    .putExtra("pantallaSeleccionada", "introduccion")
-                    .putExtra("audioSeleccionado", R.raw.audiointro)
-                    .putExtra("fondoSeleccionado", R.drawable.fondoprincipiofinal)
-                    .putExtra("textoSeleccionado", textoSeleccionado)
-                startActivity(intent)
+                    val textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
+                            "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
+                            "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
+                            "las actividades.Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías de " +
+                            "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
+                            "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
+                    val intent = Intent(this, ExplicacionesActivity::class.java)
+                        // Añadir datos referentes a la ventana de Introducción
+                        .putExtra("pantallaSeleccionada", "introduccion")
+                        .putExtra("audioSeleccionado", R.raw.audiointro)
+                        .putExtra("fondoSeleccionado", R.drawable.fondoprincipiofinal)
+                        .putExtra("textoSeleccionado", textoSeleccionado)
+                    startActivity(intent)
+                }
             }
+
+
         }
 
         binding.btnLibre.setOnClickListener {
+            if ((ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=PackageManager.PERMISSION_GRANTED) && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
+                mostrar_dialog(this, permisoDenegado, mensajePermisos)
+            else{
                 libre = true
                 val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+                val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
                 val intent = Intent(this, MenuNav::class.java)
                 startActivity(intent)
+            }
+
             }
 
 
