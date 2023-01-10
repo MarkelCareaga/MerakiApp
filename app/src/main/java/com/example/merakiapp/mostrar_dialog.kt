@@ -23,6 +23,7 @@ val mensajeGaztelugatxe = "Selecciona las respuestas correctas."
 val mensajeOlatua = "Une los idiomas con sus palabras correspondientes.\n" +
         "Para unir dichos elementos, pulsa los botones circulares."
 val mensajePuertaSanJuan = "Introduce la respuesta correcta."
+val mensajeSopaLetras = "Busca las 7 palabras"
 val mensajeVideoFeriaPescado = "Video sobre la Feria del Pescado."
 val mensajeXixili = "Rellena los huecos del párrafo con las frases correctas. \n" +
         "Para arrastrar una frase, manten pulsado unos segundos sobre ella."

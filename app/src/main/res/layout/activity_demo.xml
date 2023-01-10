@@ -35,7 +35,7 @@
         android:layout_width="216dp"
         android:layout_height="47dp"
         android:layout_marginTop="8dp"
-        android:backgroundTint="#F44336"
+        android:backgroundTint="#8BC34A"
         android:text="1.- Puerta San Juan"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.507"
