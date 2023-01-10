@@ -10,39 +10,45 @@ import com.example.merakiapp.databinding.FragmentAyudaBinding
 class AyudaFragment : Fragment() {
 
     private var _binding: FragmentAyudaBinding? = null
+    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
     lateinit private var preguntas: List<Pregunta>
+    // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var PreguntasAdapter :PreguntasAdapter
 
-    // This property is only valid between onCreateView and
-    // onDestroyView.
+    // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
-
+    // Carga el archivo de diseño asociado con este fragmento y devuelve la vista
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        // Carga el archivo de diseño y establece la variable _binding con la instancia de FragmentAyudaBinding
         _binding = FragmentAyudaBinding.inflate(inflater, container, false)
 
         return binding.root
     }
-
+    // este método se llama inmediatamente después de onCreateView
     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Aqui se llama a la funcion cargarPreguntas
         cargarPreguntas()
         PreguntasAdapter = PreguntasAdapter(preguntas)
         _binding?.RecyclerPreguntasReespuestas?.adapter = PreguntasAdapter
 
     }
 
+    //este método se llama cuando la vista del fragmento ya no es necesaria
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
 
     }
 
+    // este método se utiliza para cargar preguntas
     private fun cargarPreguntas (){
+        // las preguntas se definen predefinidos aquí
         preguntas= listOf(
             Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),
             Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),

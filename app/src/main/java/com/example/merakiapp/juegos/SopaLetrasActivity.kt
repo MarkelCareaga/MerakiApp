@@ -289,10 +289,10 @@ class SopaLetrasActivity : AppCompatActivity() {
         gridLayout.setOnTouchListener { view, event ->
             when (event.action) {
                 MotionEvent.ACTION_MOVE -> {
-                    // Recorre todos los TextView del GridLayout y cambia su color si el dedo está encima
+                    // Recorre todos los TextView del GridLayout
                     for (i in 0 until gridLayout.childCount) {
                         val textView = gridLayout.getChildAt(i) as TextView
-                        //
+                        //Recoger las coordenadas de los textviews pulsados por el usuario
                         if (isPointInsideView(event.rawX, event.rawY, textView)) {
                             val backgroundDrawable = textView.background
                             //Se comprueba que el background de los textviews que estamos seleccionando no estes ya pintados de otro color
@@ -359,7 +359,7 @@ class SopaLetrasActivity : AppCompatActivity() {
                 }
                 //Cuando dejamos de presionar cualquir TextView y levantamos el dedo de la pantalla
                 MotionEvent.ACTION_UP -> {
-                    // Recorre todos los TextViews y si no están pintados de verde, los devuelve a su color original
+                    // Recorre todos los TextViews
                     for (i in 0 until gridLayout.childCount) {
                         val textView = gridLayout.getChildAt(i) as TextView
                         val backgroundDrawable = textView.background

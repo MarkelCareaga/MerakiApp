@@ -74,6 +74,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
              * install it inside the SupportMapFragment. This method will only be triggered once the
              * user has installed Google Play services and returned to the app.
              */
+            // Verifica si la preferencia "libre" es igual a false
             juego1 = requireActivity().getSharedPreferences("juego1", 0).getBoolean("1", false)
             juego2 = requireActivity().getSharedPreferences("juego2", 0).getBoolean("2", false)
             juego3 = requireActivity().getSharedPreferences("juego3", 0).getBoolean("3", false)
@@ -98,7 +99,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
             }
 
 
-
+            // Habilitar la localización del usuario y varios controles en el mapa
             mapa.isMyLocationEnabled = true
             mapa.uiSettings.isCompassEnabled = true
             mapa.uiSettings.isZoomControlsEnabled = true
