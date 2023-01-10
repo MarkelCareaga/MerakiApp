@@ -50,6 +50,17 @@ class PuertaSanJuanActivity : AppCompatActivity() {
         }
         // -------------------------------------------------------------------------
 
+        // -------------------------------- DIALOGS --------------------------------
+        // BOTONES AYUDA Y ROTACIÓN
+        binding.btnAyudaPuertaSanJuan.setOnClickListener {
+            val mensaje = mensajePuertaSanJuan
+            mostrar_dialog(this, tituloJuegos, mensaje)
+        }
+        binding.btnInfoPantallaPuertaSanJuan.setOnClickListener {
+            mostrar_info_pantalla(this, false)
+        }
+        // -------------------------------------------------------------------------
+
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
@@ -89,7 +100,7 @@ class PuertaSanJuanActivity : AppCompatActivity() {
         // Finalizar juego
         binding.btnSiguientePuertaSanJuan.setOnClickListener {
             //startActivity(Intent(this, SopaLetrasActivity::class.java))
-            startActivity(Intent(this, DemoActivity::class.java))
+            startActivity(Intent(this, SopaLetrasActivity::class.java))
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 
