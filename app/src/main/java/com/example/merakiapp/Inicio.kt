@@ -2,33 +2,22 @@ package com.example.merakiapp
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.ContentValues.TAG
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
-import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import androidx.core.content.PermissionChecker.PERMISSION_GRANTED
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.launch
-import java.io.Console
+import com.example.merakiapp.room.Usuario
+import com.example.merakiapp.room.UsuarioRoomApp
 
 class Inicio : AppCompatActivity(), OnMapReadyCallback {
     var libre :Boolean = false
@@ -63,6 +52,9 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                 if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
                     pantallacodigo()
                 }else{
+                    val usuario1=Usuario("".toLong(),"Perfil1",0,null, null,0,null)
+                    // ISERTAMOS alumnoI mediante @insert de alumnoDao
+                    UsuarioRoomApp.database!!.usuarioDao.insertarUsuario(usuario1)
                     this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
                     this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
                     this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()

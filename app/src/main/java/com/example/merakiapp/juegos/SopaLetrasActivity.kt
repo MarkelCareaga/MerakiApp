@@ -51,7 +51,8 @@ class SopaLetrasActivity : AppCompatActivity() {
     private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
     private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
     var estadoAudio = ""
-
+    private var respuesta = 0
+    
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
