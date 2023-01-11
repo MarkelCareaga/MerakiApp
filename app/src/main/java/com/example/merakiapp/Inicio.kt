@@ -33,25 +33,36 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
         binding=ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
+        // se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
+        // se establece un listener al boton btnDemo
         binding.btnDemo.setOnClickListener {
+            // se guarda el valor false en el sharedPreferences "libre"
             val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+            // se guarda el valor 0 en el sharedPreferences "PlayPause"
             val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
+            // se inicia la actividad DemoActivity
             startActivity(Intent(this, DemoActivity::class.java))
         }
+        // se establece un listener al boton btnExplorador
         binding.btnExplorador.setOnClickListener {
+            // se comprueban los permisos de localizacion, si no estan dados se muestra un dialog
             if ((ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=PackageManager.PERMISSION_GRANTED) && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
                 mostrar_dialog(this, permisoDenegado, mensajePermisos)
             else{
+                // se guarda el valor false en el sharedPreferences "libre"
                 val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+                // se guarda el valor 0 en el sharedPreferences "PlayPause"
                 val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
+                // se comprueba si ya existe una partida guardada
                 if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
+                    // si existe se inicia pantalla de codigo
                     pantallacodigo()
                 }else{
+                    // se crea un objeto de tipo usuario
                     val usuario1=Usuario("".toLong(),"Perfil1",0,null, null,0,null)
                     // ISERTAMOS alumnoI mediante @insert de alumnoDao
                     UsuarioRoomApp.database!!.usuarioDao.insertarUsuario(usuario1)
@@ -84,13 +95,17 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
         }
 
         binding.btnLibre.setOnClickListener {
+            // Comprueba si el usuario ha otorgado permisos de ubicación
             if ((ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION) !=PackageManager.PERMISSION_GRANTED) && ContextCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION) !=PackageManager.PERMISSION_GRANTED)
+                // Si no ha otorgado los permisos, muestra un diálogo de permiso denegado
                 mostrar_dialog(this, permisoDenegado, mensajePermisos)
             else{
+                // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
                 libre = true
                 val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
                 val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
+                // Inicia un intent para ir a otra actividad
                 val intent = Intent(this, MenuNav::class.java)
                 startActivity(intent)
             }
@@ -115,13 +130,13 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
         layout.addView(txtMensaje)
 
 
-
+        // Crea un cuadro de diálogo con un botón de "Nueva partida"
         val builder: android.app.AlertDialog.Builder = android.app.AlertDialog.Builder(this)
         builder
             .setTitle("Se ha detectado una partida empezada")
             .setPositiveButton("Nueva partida",
                 DialogInterface.OnClickListener { dialog, which ->
-
+                    // Guarda una preferencia en SharedPreferences y inicia un intent para ir a otra actividad
                     val partida = this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
                     this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
                     this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()

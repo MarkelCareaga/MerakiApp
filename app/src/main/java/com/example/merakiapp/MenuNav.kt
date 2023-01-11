@@ -54,46 +54,53 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
 
         */
 
-
+        // se establece una barra de herramientas
         setSupportActionBar(binding.appBarMain.toolbar)
 
-
+        // se crea un DrawerLayout y un NavigationView
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
 
+        // se obtiene un controlador de navegación
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
 
-
+        // se establecen las opciones de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.nav_map, R.id.nav_acerca, R.id.nav_inicio, R.id.nav_help, R.id.nav_salida
             ), drawerLayout
         )
+        // se configura la barra de herramientas con el controlador de navegación
         setupActionBarWithNavController(navController, appBarConfiguration)
+        // se obtiene el elemento "salida" del menú de navegación
         val salida = navView.menu.findItem(R.id.nav_salida)
 
+        // se establece un escucha de clic en el elemento "salida" del menú de navegación
         salida.setOnMenuItemClickListener(){
             borrar = true
             finish()
             return@setOnMenuItemClickListener true
         }
 
+        // se obtiene el elemento "inicio" del menú de navegación
         val inicio = navView.menu.findItem(R.id.nav_inicio)
 
+        // se establece un escucha de clic en el elemento "inicio" del menú de navegación
         inicio.setOnMenuItemClickListener(){
             borrar = false
             finish()
             return@setOnMenuItemClickListener true
         }
 
+        // se configura el NavigationView con el controlador de navegación
         navView.setupWithNavController(navController)
     }
 
 
 
-
+    // sobreescribe el metodo onSupportNavigateUp para navegar con el controlador de navegación
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_main)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
@@ -101,7 +108,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
 
 
 
-
+    // sobreescribe el metodo onDestroy para cerrar la aplicacion completamente si se ha establecido borrar como true
     override fun onDestroy() {
         super.onDestroy()
         if (borrar) {
@@ -109,7 +116,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
             Process.killProcess(Process.myPid())
         }
     }
-
+    // sobreescribe el metodo onBackPressed para salir de la aplicación sin cerrarla completamente
     override fun onBackPressed() {
 
             borrar = false
@@ -117,7 +124,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
             finish()
             return
     }
-
+    // implementa el metodo onMapReady pero no hace nada ya que el TODO("Not yet implemented") indica que todavia no esta implementado
     override fun onMapReady(p0: GoogleMap) {
         TODO("Not yet implemented")
     }

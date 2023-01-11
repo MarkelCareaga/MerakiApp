@@ -14,16 +14,17 @@ import java.util.Timer
 import java.util.TimerTask
 
 class SplashScreen : AppCompatActivity() {
+    // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
     private val SplashTime:Long = 5000 // 5 segundos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
 
-
+        // Obtiene una referencia al ProgressBar de la vista
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
 
-
+        // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
         progressAnimator.duration = 5000
         progressAnimator.interpolator = LinearInterpolator()
@@ -31,6 +32,7 @@ class SplashScreen : AppCompatActivity() {
 
         val intent=Intent(this,Inicio::class.java)
 
+        // Crea un temporizador para cambiar a la siguiente actividad después del tiempo de pantalla de bienvenida
         Timer().schedule(object : TimerTask(){
             override fun run() {
                 startActivity(intent)
@@ -38,6 +40,7 @@ class SplashScreen : AppCompatActivity() {
             }
         },SplashTime)
 
+        // Verifica si la aplicación tiene permisos para acceder a la ubicación del dispositivo
         if (ActivityCompat.checkSelfPermission(
                 this, android.Manifest.permission.ACCESS_FINE_LOCATION
             )
@@ -56,7 +59,6 @@ class SplashScreen : AppCompatActivity() {
             )
 
 
-
         }else  if (ActivityCompat.checkSelfPermission(
                 this, android.Manifest.permission.ACCESS_FINE_LOCATION
             )
@@ -66,6 +68,7 @@ class SplashScreen : AppCompatActivity() {
             )
             != PackageManager.PERMISSION_GRANTED
         ) {
+            // Si no tiene permisos, solicita permisos para ACCESS_FINE_LOCATION y ACCESS_COARSE_LOCATION
             ActivityCompat.requestPermissions(
                 this, arrayOf(
                     android.Manifest.permission.ACCESS_FINE_LOCATION,
