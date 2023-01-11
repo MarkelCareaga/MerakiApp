@@ -1,153 +1,173 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondoback"
     xmlns:tools="http://schemas.android.com/tools"
     android:paddingLeft="16dp"
     android:paddingRight="16dp">
 
+    <ImageView
+        android:id="@+id/fondoDemo"
+        android:layout_width="359dp"
+        android:layout_height="192dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imgPatxiBoca"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="@+id/imgPatxi"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/patxi_boca" />
+
+    <ImageView
+        android:id="@+id/imgPatxi"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="@+id/fondoDemo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/patxi" />
+
+    <ImageView
+        android:id="@+id/imgMirenBoca"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/miren_boca" />
+
+    <ImageView
+        android:id="@+id/imgMiren"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="176dp"
+        android:layout_marginTop="56dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/miren" />
+
+    <ImageButton
+        android:id="@+id/btnInfoPantallaExplicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/fondoDemo"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toEndOf="@+id/btnAyudaExplicacion"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_rotacion_activada"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnAyudaExplicacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="276dp"
+        android:layout_marginTop="24dp"
+        android:layout_toStartOf="@+id/btnInfoPantallaExplicacion"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_ayuda"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnAccederVideo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_video_player"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnRestart"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fondoDemo"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
+        android:layout_toLeftOf="@id/btnPlayPause"
+        android:layout_weight="1"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+        app:srcCompat="@drawable/ic_baseline_audio_restart"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnPlayPause"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fondoDemo"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
+        android:layout_toLeftOf="@id/btnStop"
+        android:layout_weight="1"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toEndOf="@+id/btnRestart"
+        app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+        app:srcCompat="@drawable/ic_baseline_audio_play"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnStop"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fondoDemo"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="28dp"
+        android:layout_weight="1"
+        android:backgroundTint="@color/fondoSplash"
+        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
+        app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+        app:srcCompat="@drawable/ic_baseline_audio_stop"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <TextView
+        android:id="@+id/txtExplicacionDemo"
+        android:layout_width="wrap_content"
+        android:maxWidth="340dp"
+        android:layout_height="202dp"
+        android:layout_below="@id/btnPlayPause"
+        android:layout_marginEnd="6dp"
+        android:background="@drawable/tarjetas"
+        android:fontFamily="@font/alatsi"
+        android:maxLines="2000"
+        android:paddingLeft="5dp"
+        android:scrollbars="vertical"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:textAlignment="center"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/fondoDemo"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.363" />
+
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <ImageView
-            android:id="@+id/fondoDemo"
-            android:layout_width="353dp"
-            android:layout_height="215dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <ImageView
-            android:id="@+id/imgPatxiBoca"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="@+id/imgPatxi"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/patxi_boca" />
-
-        <ImageView
-            android:id="@+id/imgPatxi"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginTop="40dp"
-            app:layout_constraintStart_toStartOf="@+id/fondoDemo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/patxi" />
-
-        <ImageView
-            android:id="@+id/imgMirenBoca"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/miren_boca" />
-
-        <ImageView
-            android:id="@+id/imgMiren"
-            android:layout_width="200dp"
-            android:layout_height="200dp"
-            android:layout_alignParentRight="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginTop="36dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/miren" />
-
-        <ImageButton
-            android:id="@+id/btnInfoPantallaExplicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignEnd="@+id/fondoDemo"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="4dp"
-            app:layout_constraintStart_toEndOf="@+id/btnAyudaExplicacion"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_rotacion_activada"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btnAyudaExplicacion"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="252dp"
-            android:layout_toStartOf="@+id/btnInfoPantallaExplicacion"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_ayuda"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btnAccederVideo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_baseline_video_player"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btnRestart"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fondoDemo"
-            android:layout_alignParentLeft="true"
-            android:layout_toLeftOf="@id/btnPlayPause"
-            android:layout_weight="1"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
-            app:srcCompat="@drawable/ic_baseline_audio_restart"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btnPlayPause"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fondoDemo"
-            android:layout_toLeftOf="@id/btnStop"
-            android:layout_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/btnRestart"
-            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
-            app:srcCompat="@drawable/ic_baseline_audio_play"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <ImageButton
-            android:id="@+id/btnStop"
-            android:layout_width="120dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/fondoDemo"
-            android:layout_alignParentRight="true"
-            android:layout_weight="1"
-            app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
-            app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
-            app:srcCompat="@drawable/ic_baseline_audio_stop"
-            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-        <TextView
-            android:id="@+id/txtExplicacionDemo"
-            android:layout_width="336dp"
-            android:layout_height="146dp"
-            android:layout_below="@id/btnPlayPause"
-            android:layout_marginEnd="6dp"
-            android:maxLines="2000"
-            android:paddingLeft="5dp"
-            android:scrollbars="vertical"
-            android:text="TextView"
-            app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/fondoDemo"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/constraintLayout"
             android:layout_width="287dp"
             android:layout_height="wrap_content"
@@ -183,4 +203,3 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</RelativeLayout>
