@@ -17,6 +17,7 @@
         android:layout_height="222dp"
         android:layout_marginTop="368dp"
         android:fontFamily="@font/alatsi"
+        android:background="@drawable/tarjetas"
         android:maxLines="2000"
         android:paddingLeft="5dp"
         android:scrollbars="vertical"

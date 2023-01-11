@@ -14,8 +14,9 @@ import java.util.Timer
 import java.util.TimerTask
 
 class SplashScreen : AppCompatActivity() {
+
     // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
-    private val SplashTime:Long = 5000 // 5 segundos
+    private val SplashTime:Long = 3000 // 3 segundos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash_screen)
@@ -26,7 +27,7 @@ class SplashScreen : AppCompatActivity() {
 
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
-        progressAnimator.duration = 5000
+        progressAnimator.duration = 3000
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
 
