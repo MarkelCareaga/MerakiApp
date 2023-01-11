@@ -12,6 +12,8 @@ class IslaIzaroActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        //Deshabilitar menu superior
+        supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)

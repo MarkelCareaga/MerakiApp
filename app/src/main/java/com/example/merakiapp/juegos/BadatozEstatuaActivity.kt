@@ -32,10 +32,13 @@ class BadatozEstatuaActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        //Deshabilitar menu superior
+        supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
         binding = ActivityBadatozEstatuaBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
             binding.btnVolverExplicacionBadatoz.visibility = View.VISIBLE
