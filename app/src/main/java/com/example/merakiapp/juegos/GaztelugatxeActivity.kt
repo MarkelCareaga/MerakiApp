@@ -33,6 +33,9 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
+        //Deshabilitar menu superior
+        supportActionBar?.hide()
+
         super.onCreate(savedInstanceState)
         binding = ActivityGastelugatxeBinding.inflate(layoutInflater)
         setContentView(binding.root)

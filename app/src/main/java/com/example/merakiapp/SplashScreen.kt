@@ -2,6 +2,7 @@ package com.example.merakiapp
 
 import android.animation.ObjectAnimator
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -17,6 +18,7 @@ class SplashScreen : AppCompatActivity() {
     private val SplashTime:Long = 3000 // 5 segundos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_splash_screen)
 
 

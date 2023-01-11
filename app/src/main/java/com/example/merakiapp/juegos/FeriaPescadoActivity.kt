@@ -26,6 +26,7 @@ import kotlinx.coroutines.withContext
 class FeriaPescadoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFeriaPescadoBinding
 
+
     // AUDIO Y FONDO
     private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
     private var fondoSeleccionado = R.drawable.fondoferiapescado        // Fondo a mostrar
@@ -83,6 +84,8 @@ class FeriaPescadoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        //Deshabilitar menu superior
+        supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)

@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <style name="CustomProgresBar" parent="android:Widget.ProgressBar.Large">
-        <item name="android:backgroundTint">@color/fondoProgressBar</item>
-    </style>
-
-
-</resources>

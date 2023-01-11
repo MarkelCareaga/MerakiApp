@@ -58,6 +58,9 @@ class SopaLetrasActivity : AppCompatActivity() {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
+        //Deshabilitar menu superior
+        supportActionBar?.hide()
+
         super.onCreate(savedInstanceState)
         binding = ActivitySopaLetrasBinding.inflate(layoutInflater)
         setContentView(binding.root)

@@ -31,6 +31,9 @@ class ExplicacionesActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityExplicacionesBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        //Deshabilitar Menu superior
+        supportActionBar?.hide()
+
         // Por defecto
         binding.imgMirenBoca.visibility = ImageView.INVISIBLE
         binding.imgPatxiBoca.visibility = ImageView.INVISIBLE
