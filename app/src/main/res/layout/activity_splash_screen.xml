@@ -8,11 +8,14 @@
     android:foregroundTint="#CC9A9A"
     tools:context=".SplashScreen">
 
+
     <ImageView
         android:id="@+id/imageView5"
         android:layout_width="417dp"
-        android:layout_height="332dp"
+        android:layout_height="333dp"
+        android:layout_marginTop="36dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Titulo"
         app:srcCompat="@drawable/icono_circular" />
@@ -20,9 +23,9 @@
     <TextView
         android:id="@+id/Titulo"
         android:layout_width="187dp"
-        android:layout_height="82dp"
+        android:layout_height="0dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/alatsi"
+        android:fontFamily="sans-serif"
         android:text="MerakiApp"
         android:textAlignment="center"
         android:textSize="34sp"
@@ -36,7 +39,7 @@
         style="@style/Widget.AppCompat.ProgressBar.Horizontal"
         android:layout_width="253dp"
         android:layout_height="44dp"
-        android:layout_marginTop="52dp"
+        android:layout_marginTop="16dp"
         android:indeterminate="false"
         android:progress="50"
         android:progressDrawable="@drawable/custom_progressbar"
@@ -50,11 +53,26 @@
         android:layout_height="38dp"
         android:layout_marginTop="4dp"
         android:layout_marginEnd="132dp"
+        android:fontFamily="sans-serif"
         android:text="100%"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/progressBar" />
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/ltAnimation"
+        android:layout_width="209dp"
+        android:layout_height="181dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="100dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/progressBar"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/loading" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
