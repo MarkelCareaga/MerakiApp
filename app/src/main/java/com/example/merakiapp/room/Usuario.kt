@@ -13,12 +13,12 @@ class Usuario(
     @ColumnInfo(name = "Pasos Usuario")
     var pasosUsuario: Int,
     @ColumnInfo(name = "Icono")
-    var icono: Bitmap?,
+    var icono: ByteArray?,
     @ColumnInfo(name = "Nombre Usuario Adversario")
     var nombreUsuarioAdversario: String?,
     @ColumnInfo(name = "Pasos Usuario Adversario")
     var pasosUsuarioAdversario:Int,
     @ColumnInfo(name = "Icono Adversario")
-    var iconoAdversario: Bitmap?,
+    var iconoAdversario: ByteArray?,
 
     ) {}
