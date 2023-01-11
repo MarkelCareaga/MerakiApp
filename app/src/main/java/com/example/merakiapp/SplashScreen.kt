@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.app.ActivityCompat
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import java.util.Timer
@@ -33,6 +34,15 @@ class SplashScreen : AppCompatActivity() {
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
 
+        var progreso= findViewById<TextView>(R.id.txtPorcentaje)
+        Thread(Runnable {
+            for (i in 0 .. 100) {
+                Thread.sleep(30)
+                runOnUiThread {progreso.text="$i%" }
+            }
+        }).start()
+
+
         val intent=Intent(this,Inicio::class.java)
 
         // Crea un temporizador para cambiar a la siguiente actividad después del tiempo de pantalla de bienvenida
@@ -42,6 +52,9 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
         },SplashTime)
+
+
+
 
         // Verifica si la aplicación tiene permisos para acceder a la ubicación del dispositivo
         if (ActivityCompat.checkSelfPermission(
