@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/fondoback"
+    android:background="@color/fondoSplash"
     tools:context=".ui.ayuda.AyudaFragment">
 
     <TextView
@@ -26,8 +26,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="68dp"
-        android:backgroundTint="@color/fondoback"
-        android:background="@color/white"
+        android:backgroundTint="@color/fondoSplash"
+        android:background="@color/fondoSplash"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -37,7 +37,7 @@
         tools:listitem="@layout/item_pregunta" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgPreguntas"
         android:layout_width="43dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"
