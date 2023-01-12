@@ -19,7 +19,7 @@ import java.util.TimerTask
 class SplashScreen : AppCompatActivity() {
 
     // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
-    private val SplashTime:Long = 2000 // 3 segundos
+    private val SplashTime:Long = 2000 // 2 segundos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)

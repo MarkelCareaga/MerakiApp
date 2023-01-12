@@ -20,7 +20,7 @@
         android:id="@+id/btnLibre"
         android:layout_width="338dp"
         android:layout_height="72dp"
-        android:layout_marginTop="26dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#95c799"
         android:text="@string/libre"
         android:textAlignment="center"
@@ -28,7 +28,7 @@
         android:textSize="20sp"
         app:icon="@drawable/img_modo_libre"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.508"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnExplorador" />
 
@@ -50,7 +50,7 @@
         android:id="@+id/btnDemo"
         android:layout_width="338dp"
         android:layout_height="72dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:backgroundTint="#EA6C45"
         android:text="@string/demo"
         android:textAlignment="center"
