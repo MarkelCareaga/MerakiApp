@@ -237,7 +237,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
 
             val location = LocationServices.getFusedLocationProviderClient(this.requireContext())
 
-
+            mapa.isMyLocationEnabled = true
             mapa.uiSettings.isCompassEnabled = true
             mapa.uiSettings.isZoomControlsEnabled = true
             mapa.uiSettings.isMyLocationButtonEnabled = true
