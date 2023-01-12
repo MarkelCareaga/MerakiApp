@@ -100,7 +100,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
 
 
             // Habilitar la localización del usuario y varios controles en el mapa
-            mapa.isMyLocationEnabled = true
+
             mapa.uiSettings.isCompassEnabled = true
             mapa.uiSettings.isZoomControlsEnabled = true
             mapa.uiSettings.isMyLocationButtonEnabled = true

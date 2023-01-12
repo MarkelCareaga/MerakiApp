@@ -86,6 +86,8 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                     ),
                     1
                 )
+
+                
             }
 
         }
