@@ -1,5 +1,6 @@
 package com.example.merakiapp
 
+import android.Manifest
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -11,18 +12,21 @@ import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
-import com.example.merakiapp.databinding.ActivityInicioBinding
+import androidx.core.content.ContextCompat
 import java.util.Timer
 import java.util.TimerTask
 
 class SplashScreen : AppCompatActivity() {
 
     // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
-    private val SplashTime:Long = 3000 // 3 segundos
+    private val SplashTime:Long = 2000 // 3 segundos
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_splash_screen)
+
+        //Ocultar toolbar
+        supportActionBar?.hide()
 
         // Obtiene una referencia al ProgressBar de la vista
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
@@ -30,14 +34,14 @@ class SplashScreen : AppCompatActivity() {
 
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
-        progressAnimator.duration = 3000
+        progressAnimator.duration = 2000
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
 
         var progreso= findViewById<TextView>(R.id.txtPorcentaje)
         Thread(Runnable {
             for (i in 0 .. 100) {
-                Thread.sleep(30)
+                Thread.sleep(20)
                 runOnUiThread {progreso.text="$i%" }
             }
         }).start()
@@ -52,53 +56,5 @@ class SplashScreen : AppCompatActivity() {
                 finish()
             }
         },SplashTime)
-
-
-
-
-        // Verifica si la aplicación tiene permisos para acceder a la ubicación del dispositivo
-        if (ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            == PackageManager.PERMISSION_GRANTED
-        ) {
-            ActivityCompat.requestPermissions(
-                this, arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                1
-            )
-
-
-        }else  if (ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_FINE_LOCATION
-            )
-            != PackageManager.PERMISSION_GRANTED
-            && ActivityCompat.checkSelfPermission(
-                this, android.Manifest.permission.ACCESS_COARSE_LOCATION
-            )
-            != PackageManager.PERMISSION_GRANTED
-        ) {
-            // Si no tiene permisos, solicita permisos para ACCESS_FINE_LOCATION y ACCESS_COARSE_LOCATION
-            ActivityCompat.requestPermissions(
-                this, arrayOf(
-                    android.Manifest.permission.ACCESS_FINE_LOCATION,
-                    android.Manifest.permission.ACCESS_COARSE_LOCATION
-                ),
-                1
-            )
-            return
-
-            //binding.btnLibre.isEnabled=false
-            //binding.btnExplorador.isEnabled=false
-
-
-        }
-
     }
 }
