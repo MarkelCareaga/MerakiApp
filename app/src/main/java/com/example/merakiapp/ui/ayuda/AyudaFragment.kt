@@ -50,10 +50,14 @@ class AyudaFragment : Fragment() {
     private fun cargarPreguntas (){
         // las preguntas se definen predefinidos aquí
         preguntas= listOf(
-            Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),
-            Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),
-            Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),
-            Pregunta("Que es Meraki?","Meraki es una App para entretener a niños"),
+            Pregunta("¿Qué es Meraki?","Meraki es una aplicación que te permite " +
+                    "disfrutar de una serie de juegos, mientrás exploras el pueblo de Bermeo."),
+            Pregunta("¿Qué es el 'Modo Explorador'?","En el 'Modo Explorador' puedes" +
+                    " acceder a cada juego solo si estás posicionado en su correspondiente ubicación, " +
+                    "la cual se indica en el mapa."),
+            Pregunta("¿Qué es el 'Modo Libre'?","En el 'Modo Libre', puedes acceder " +
+                    "a todos los juego desde el principio, sin necesidad de estar posicionado en cada " +
+                    "una de sus correspondientes ubicaciones.")
         )
     }
 }

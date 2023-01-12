@@ -1250,8 +1250,8 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaSopaLetras"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -1261,8 +1261,8 @@
 
     <ImageButton
         android:id="@+id/btnAyudaSopaLetras"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="2dp"
         app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaSopaLetras"

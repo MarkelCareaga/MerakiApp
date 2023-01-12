@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/fondoback"
+    android:layout_height="match_parent"
+    android:background="@color/fondoSplash"
     tools:context=".ui.ayuda.AyudaFragment">
 
     <TextView
@@ -12,7 +12,6 @@
         android:layout_width="261dp"
         android:layout_height="44dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/alatsi"
         android:text="@string/FQ"
         android:textAlignment="center"
         android:textSize="24sp"
@@ -24,10 +23,9 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/RecyclerPreguntasReespuestas"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginTop="68dp"
-        android:backgroundTint="@color/fondoback"
-        android:background="@color/white"
+        android:backgroundTint="@color/fondoSplash"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -37,7 +35,7 @@
         tools:listitem="@layout/item_pregunta" />
 
     <ImageView
-        android:id="@+id/imageView2"
+        android:id="@+id/imgPreguntas"
         android:layout_width="43dp"
         android:layout_height="35dp"
         android:layout_marginStart="16dp"

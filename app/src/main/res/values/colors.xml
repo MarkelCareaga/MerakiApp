@@ -10,6 +10,9 @@
     <color name="fondoTextos">#A5EF94</color>
     <color name="fondoback">#DAEDD5</color>
     <color name="fondoSplash">#f0d5ad</color>
+    <color name="fondoPregunta">#F1C584</color>
     <color name="fondoProgressBar">#deb954</color>
+    <color name="fondoNavBar">#E89742</color>
     <color name="fondoJuegos"> #ccffcc</color>
+    <color name="botonesParteSuperior">#D3CFCF</color>
 </resources>
