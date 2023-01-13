@@ -121,7 +121,7 @@ class XixiliActivity : AppCompatActivity() {
 
         // Finalizar juego
         binding.btnFinalizarXixili.setOnClickListener {
-            startActivity(Intent(this, DemoActivity::class.java))
+            startActivity(Intent(this, MenuNav::class.java))
             this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", true).apply()
         }
 

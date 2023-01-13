@@ -177,7 +177,7 @@ class FeriaPescadoActivity : AppCompatActivity() {
 
         // Finalizar juego
         btnFinalizar.setOnClickListener {
-            startActivity(Intent(this, DemoActivity::class.java))
+            startActivity(Intent(this, MenuNav::class.java))
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()
         }
 

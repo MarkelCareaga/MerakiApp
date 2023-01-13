@@ -6,8 +6,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
+import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -26,6 +28,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding: ActivityInicioBinding
     @SuppressLint("CommitPrefEdits", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
+
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
