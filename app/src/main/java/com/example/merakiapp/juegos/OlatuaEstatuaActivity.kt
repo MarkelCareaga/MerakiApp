@@ -181,7 +181,7 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
 
         // Finalizar juego
         btnFinalizar.setOnClickListener {
-            startActivity(Intent(this, DemoActivity::class.java))
+            startActivity(Intent(this, MenuNav::class.java))
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()
         }
 
