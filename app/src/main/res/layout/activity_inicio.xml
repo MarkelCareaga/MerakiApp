@@ -26,23 +26,14 @@
         android:elevation="00dp"
         android:text="@string/libre"
         android:textAlignment="center"
-        android:textColor="@color/textoBotonesInicio"
+        android:textColor="@color/white"
         android:textSize="20sp"
+        app:icon="@drawable/halcon"
+        app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnExplorador" />
-
-    <ImageView
-        android:id="@+id/imageView6"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="104dp"
-        android:elevation="10dp"
-        app:layout_constraintStart_toStartOf="@+id/btnExplorador"
-        app:layout_constraintTop_toTopOf="@+id/btnExplorador"
-        app:srcCompat="@drawable/halcon" />
 
     <Button
         android:id="@+id/btnExplorador"
@@ -53,8 +44,11 @@
         android:backgroundTint="@android:color/holo_blue_light"
         android:elevation="00dp"
         android:text="@string/explorador"
-        android:textColor="@color/textoBotonesInicio"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="20sp"
+        app:icon="@drawable/mapa"
+        app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoMeraki" />
@@ -64,28 +58,17 @@
         android:layout_width="338dp"
         android:layout_height="72dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bordesredondos"
         android:backgroundTint="#EA6C45"
         android:text="@string/demo"
         android:textAlignment="center"
-        android:textColor="@color/textoBotonesInicio"
-        android:background="@drawable/bordesredondos"
+        android:textColor="@color/white"
         android:textSize="20sp"
         app:icon="@drawable/img_modo_demo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.506"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="12dp"
-        android:elevation="10dp"
-        app:layout_constraintStart_toStartOf="@+id/btnExplorador"
-        app:layout_constraintTop_toTopOf="@+id/btnExplorador"
-        app:srcCompat="@drawable/mapa" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
