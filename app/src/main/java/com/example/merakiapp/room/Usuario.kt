@@ -1,24 +1,23 @@
 package com.example.merakiapp.room
 
-import android.graphics.Bitmap
+
+import androidx.annotation.NonNull
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-@Entity
+
+@Entity(tableName = "Usuarios")
 class Usuario(
     @PrimaryKey(autoGenerate = true)
     var id:Long,
     @ColumnInfo(name = "Nombre Usuario")
+    @NonNull
     var nombreusuario:String,
     @ColumnInfo(name = "Pasos Usuario")
+    @NonNull
     var pasosUsuario: Int,
-    @ColumnInfo(name = "Icono")
-    var icono: ByteArray?,
-    @ColumnInfo(name = "Nombre Usuario Adversario")
-    var nombreUsuarioAdversario: String?,
-    @ColumnInfo(name = "Pasos Usuario Adversario")
-    var pasosUsuarioAdversario:Int,
-    @ColumnInfo(name = "Icono Adversario")
-    var iconoAdversario: ByteArray?,
+    @ColumnInfo(name = "Imagen")
+    @NonNull
+    var imagen: Int,
 
-    ) {}
+    ){}

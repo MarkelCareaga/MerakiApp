@@ -18,7 +18,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 import com.example.merakiapp.room.Usuario
-import com.example.merakiapp.room.UsuarioRoomApp
 
 class Inicio : AppCompatActivity(), OnMapReadyCallback {
     var libre :Boolean = false

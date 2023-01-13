@@ -1,14 +1,16 @@
 package com.example.merakiapp.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 
 @Dao
 interface UsuarioDAO {
-    @Query("SELECT * FROM Usuario")
-    fun buscarUsuarios(): List<Usuario>
-    @Query("SELECT * FROM Usuario where id in (:lista)")
-    fun buscarUsuarioenLista(lista:List<String>): List<Usuario>
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Query("SELECT * FROM Usuarios")
+    fun TodosUsuarios(): List<Usuario>
+    @Query("SELECT * FROM Usuarios where id =:id")
+    fun buscarUsuarioenLista(id:Long): Usuario
+    @Insert(onConflict = REPLACE)
     fun insertarUsuario(usuario: Usuario)
     @Delete
     fun borrarUsuario(usuario: Usuario)

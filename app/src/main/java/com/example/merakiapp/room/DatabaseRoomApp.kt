@@ -3,14 +3,15 @@ package com.example.merakiapp.room
 import android.app.Application
 import androidx.room.Room
 
-class UsuarioRoomApp: Application() {
+class DatabaseRoomApp: Application() {
     companion object{
-        var database:UsuarioDB?=null
+        lateinit var database:UsuarioDB
     }
+
     override fun onCreate() {
         super.onCreate()
-        UsuarioRoomApp.database= Room
-            .databaseBuilder(this,UsuarioDB::class.java,UsuarioDB.DATABASE_NAME)
+        database= Room
+            .databaseBuilder(this,UsuarioDB::class.java, UsuarioDB.DATABASE_NAME)
             .allowMainThreadQueries()
             .build()
     }

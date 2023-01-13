@@ -6,8 +6,10 @@ import androidx.room.RoomDatabase
 @Database(entities = [Usuario::class], version = 1)
 
 abstract class UsuarioDB: RoomDatabase() {
-    companion object{
-        const val DATABASE_NAME= "Usuario"
-    }
-    abstract val usuarioDao: UsuarioDAO
+
+        abstract val usuarioDao:UsuarioDAO
+
+        companion object{
+            const val DATABASE_NAME = "usuarios"
+        }
 }

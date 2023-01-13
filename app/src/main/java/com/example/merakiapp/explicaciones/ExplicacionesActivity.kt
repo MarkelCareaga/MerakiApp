@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.ActivityExplicacionesBinding
 import com.example.merakiapp.juegos.*
+import com.example.merakiapp.room.SeleccionarUsuario
 import com.example.merakiapp.servicios.ServicioAudios
 
 // ACTIVITY DE DEMOSTRACIÓN: APARTADO PARA EXPLICAR LA UBICACIÓN SELECCIONADA
@@ -248,7 +249,7 @@ class ExplicacionesActivity : AppCompatActivity() {
                 }
                 "isla_de_izaro" -> {
                     finish()
-                    startActivity(Intent(this, IslaIzaroActivity::class.java))
+                    startActivity(Intent(this, SeleccionarUsuario::class.java))
                 }
                 "gaztelugatxe" -> {
                     finish()
