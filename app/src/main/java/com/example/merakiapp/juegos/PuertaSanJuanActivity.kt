@@ -103,7 +103,7 @@ class PuertaSanJuanActivity : AppCompatActivity() {
         // Finalizar juego
         binding.btnSiguientePuertaSanJuan.setOnClickListener {
             //startActivity(Intent(this, SopaLetrasActivity::class.java))
-            startActivity(Intent(this, SopaLetrasActivity::class.java))
+            startActivity(Intent(this, MenuNav::class.java))
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 

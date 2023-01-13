@@ -9,24 +9,27 @@
 
     <ImageView
         android:id="@+id/imgLogoMeraki"
-        android:layout_width="417dp"
-        android:layout_height="271dp"
+        android:layout_width="298dp"
+        android:layout_height="235dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/logo" />
+        android:src="@drawable/logo"/>
 
     <Button
         android:id="@+id/btnLibre"
         android:layout_width="338dp"
         android:layout_height="72dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bordesredondos"
         android:backgroundTint="#95c799"
+        android:elevation="00dp"
         android:text="@string/libre"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:icon="@drawable/img_modo_libre"
+        app:icon="@drawable/halcon"
+        app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,11 +40,15 @@
         android:layout_width="338dp"
         android:layout_height="72dp"
         android:layout_marginTop="26dp"
+        android:background="@drawable/bordesredondos"
         android:backgroundTint="@android:color/holo_blue_light"
+        android:elevation="00dp"
         android:text="@string/explorador"
         android:textAlignment="center"
+        android:textColor="@color/white"
         android:textSize="20sp"
-        app:icon="@drawable/img_modo_explorador"
+        app:icon="@drawable/mapa"
+        app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoMeraki" />
@@ -51,6 +58,7 @@
         android:layout_width="338dp"
         android:layout_height="72dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bordesredondos"
         android:backgroundTint="#EA6C45"
         android:text="@string/demo"
         android:textAlignment="center"
@@ -62,13 +70,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
 
-    <com.airbnb.lottie.LottieAnimationView
-        android:id="@+id/ltAnimation"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:lottie_autoPlay="true"
-        app:lottie_loop="true"
-        tools:layout_editor_absoluteX="0dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

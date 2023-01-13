@@ -166,11 +166,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="16dp"
-                android:background="@null"
+                android:background="@drawable/estilo_botones_siguiente"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:srcCompat="@mipmap/boton_siguiente"
                 tools:ignore="SpeakableTextPresentCheck" />
 
             <ImageButton
@@ -179,11 +178,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginBottom="16dp"
-                android:background="@null"
+                android:background="@drawable/estilo_botones_volver2"
                 android:scaleType="fitXY"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:srcCompat="@mipmap/boton_volver2"
                 tools:ignore="SpeakableTextPresentCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -74,6 +74,9 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
     private var estado_btn52 = true
     private var estado_btn62 = true
 
+    // TEST
+    var screenSize: Boolean = false
+
     // LISTA Y CONTADOR
     // Lista para asociar valores a cada botón
     private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5,6,6)
@@ -85,6 +88,9 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
 
         //Deshabilitar menu superior
         supportActionBar?.hide()
+
+        // TEST
+        screenSize = getResources().getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
         binding = ActivityOlatuaEstatuaBinding.inflate(layoutInflater)
@@ -181,7 +187,7 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
 
         // Finalizar juego
         btnFinalizar.setOnClickListener {
-            startActivity(Intent(this, DemoActivity::class.java))
+            startActivity(Intent(this, MenuNav::class.java))
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()
         }
 
@@ -374,7 +380,11 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
     // Función para dibujar la linea entre los botones especificados
     private fun dibujarLinea(btnIzquierda: ImageButton, btnDerecha: ImageButton) {
         var layout: RelativeLayout = binding.layoutLineasB
-        val fondo = Linea(this, btnIzquierda, btnDerecha, 2)
+
+        var esTablet = false
+        if (screenSize) esTablet = true
+
+        val fondo = Linea(this, btnIzquierda, btnDerecha, 2, esTablet)
         layout.addView(fondo)
     }
 

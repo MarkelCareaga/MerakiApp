@@ -15,4 +15,5 @@
     <color name="fondoNavBar">#E89742</color>
     <color name="fondoJuegos"> #ccffcc</color>
     <color name="botonesParteSuperior">#D3CFCF</color>
+    <color name="textoBotonesInicio">#755704</color>
 </resources>

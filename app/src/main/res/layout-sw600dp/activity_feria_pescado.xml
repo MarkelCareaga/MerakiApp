@@ -122,7 +122,7 @@
             android:layout_width="118dp"
             android:layout_height="70dp"
             android:layout_marginTop="48dp"
-            android:text="Pescado congelado"
+            android:text="@string/pescado_congelado"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.244"
@@ -134,7 +134,7 @@
             android:layout_width="155dp"
             android:layout_height="65dp"
             android:layout_marginTop="48dp"
-            android:text="Pescado precocinado"
+            android:text="@string/pescado_precocinado"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.296"
@@ -147,7 +147,7 @@
             android:layout_height="70dp"
             android:layout_marginTop="56dp"
             android:gravity="center_vertical"
-            android:text="Marisco"
+            android:text="@string/marisco"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.244"
@@ -159,7 +159,7 @@
             android:layout_width="111dp"
             android:layout_height="84dp"
             android:layout_marginTop="56dp"
-            android:text="Pescado en conservas"
+            android:text="@string/pescado_conservas"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.236"
@@ -171,7 +171,7 @@
             android:layout_width="118dp"
             android:layout_height="70dp"
             android:layout_marginTop="64dp"
-            android:text="Pescado ahumado"
+            android:text="@string/pescado_ahumado"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.244"
@@ -293,11 +293,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/boton_volver"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -306,11 +305,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -319,11 +317,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_finalizar"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
