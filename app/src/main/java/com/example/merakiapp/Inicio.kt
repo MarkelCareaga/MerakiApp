@@ -129,10 +129,6 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                         // si existe se inicia pantalla de codigo
                         pantallacodigo()
                     }else{
-                        // se crea un objeto de tipo usuario
-                        //val usuario1=Usuario("".toLong(),"Perfil1",0,null, null,0,null)
-                        // ISERTAMOS alumnoI mediante @insert de alumnoDao
-                        //UsuarioRoomApp.database!!.usuarioDao.insertarUsuario(usuario1)
                         this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
                         this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
                         this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
