@@ -98,12 +98,11 @@
         android:layout_marginStart="80dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="44dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver2"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtExplicacionDemo"
-        app:srcCompat="@mipmap/boton_volver2"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -124,12 +123,11 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="60dp"
         android:layout_marginBottom="44dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_siguiente"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtExplicacionDemo"
-        app:srcCompat="@mipmap/boton_siguiente"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
@@ -182,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
         android:fontFamily="@font/alatsi"
-        android:text="Explicación"
+        android:text="@string/titulo_explicacion"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"

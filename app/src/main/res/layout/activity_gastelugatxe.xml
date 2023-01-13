@@ -47,7 +47,7 @@
                 android:id="@+id/textView4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿En qué provincia se sitúa San Juan de Gaztelugatxe?"
+                android:text="@string/pregunta_test_3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -89,7 +89,7 @@
                 android:id="@+id/textView6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Cuántas veces hay que tocar la campana de la ermita para tener buena suerte?"
+                android:text="@string/pregunta_test_2"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -134,7 +134,7 @@
                 android:id="@+id/textView3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Cuántas escaleras hay que subir para llegar a la ermita?"
+                android:text="@string/pregunta_test_1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -178,7 +178,7 @@
                 android:id="@+id/textView5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="¿Que serie internacional se ha grabado en San Juan de Gaztelugatxe?"
+                android:text="@string/pregunta_test_4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
@@ -211,13 +211,12 @@
 
     <ImageButton
         android:id="@+id/btnVolverGaztelugatxe"
-        app:srcCompat="@mipmap/boton_volver"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:layout_marginTop="600dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -229,11 +228,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -242,11 +240,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_finalizar"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton

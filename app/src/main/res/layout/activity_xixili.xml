@@ -151,11 +151,10 @@
         android:layout_height="100dp"
         android:layout_marginStart="32dp"
         android:layout_marginBottom="32dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/boton_volver"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -164,11 +163,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -177,11 +175,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="32dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_finalizar"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton

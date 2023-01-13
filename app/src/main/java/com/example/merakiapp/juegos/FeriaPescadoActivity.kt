@@ -1,27 +1,16 @@
 package com.example.merakiapp.juegos
 
-import android.content.Context
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.graphics.Canvas
 import android.graphics.Color
-import android.graphics.Paint
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import androidx.lifecycle.lifecycleScope
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class FeriaPescadoActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFeriaPescadoBinding
@@ -76,6 +65,9 @@ class FeriaPescadoActivity : AppCompatActivity() {
     private var estado_btn42 = true
     private var estado_btn52 = true
 
+    // TEST
+    var screenSize: Boolean = false
+
     // LISTA Y CONTADOR
     // Lista para asociar valores a cada botón
     private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5)
@@ -86,6 +78,9 @@ class FeriaPescadoActivity : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         //Deshabilitar menu superior
         supportActionBar?.hide()
+
+        // TEST
+        screenSize = getResources().getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)
@@ -327,7 +322,11 @@ class FeriaPescadoActivity : AppCompatActivity() {
     // Función para dibujar la linea entre los botones especificados
     private fun dibujarLinea(btnIzquierda: ImageButton, btnDerecha: ImageButton) {
         var layout: RelativeLayout = binding.layoutLineas
-        val fondo = Linea(this, btnIzquierda, btnDerecha, 1)
+
+        var esTablet = false
+        if (screenSize) esTablet = true
+
+        val fondo = Linea(this, btnIzquierda, btnDerecha, 1, esTablet)
         layout.addView(fondo)
     }
 

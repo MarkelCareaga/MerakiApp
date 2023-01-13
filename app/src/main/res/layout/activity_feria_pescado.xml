@@ -118,51 +118,51 @@
 
         <TextView
             android:id="@+id/txtCongelado"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginTop="52dp"
-            android:text="Pescado congelado"
+            android:text="@string/pescado_congelado"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn42"
             app:layout_constraintTop_toBottomOf="@+id/txtConservas" />
 
         <TextView
             android:id="@+id/txtPrecocinado"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginTop="36dp"
-            android:text="Pescado precocinado"
+            android:text="@string/pescado_precocinado"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn12"
             app:layout_constraintTop_toBottomOf="@+id/txtObjetivoFeriaPescado" />
 
         <TextView
             android:id="@+id/txtMarisco"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginTop="48dp"
             android:gravity="center_vertical"
-            android:text="Marisco"
+            android:text="@string/marisco"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn22"
             app:layout_constraintTop_toBottomOf="@+id/txtPrecocinado" />
 
         <TextView
             android:id="@+id/txtConservas"
-            android:layout_width="72dp"
+            android:layout_width="80dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="56dp"
-            android:text="Pescado en conservas"
+            android:text="@string/pescado_conservas"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn32"
             app:layout_constraintTop_toBottomOf="@+id/txtMarisco" />
 
         <TextView
             android:id="@+id/txtAhumado"
-            android:layout_width="70dp"
+            android:layout_width="80dp"
             android:layout_height="40dp"
             android:layout_marginTop="52dp"
-            android:text="Pescado ahumado"
+            android:text="@string/pescado_ahumado"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/btn52"
             app:layout_constraintTop_toBottomOf="@+id/txtCongelado" />
@@ -284,11 +284,10 @@
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/boton_volver"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -297,11 +296,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -310,11 +308,10 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_finalizar"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView

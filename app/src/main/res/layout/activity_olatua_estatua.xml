@@ -34,7 +34,7 @@
             android:layout_height="89dp"
             android:layout_marginTop="3dp"
             android:gravity="center|center_vertical"
-            android:text="Wave"
+            android:text="@string/wave"
             app:layout_constraintEnd_toStartOf="@+id/btn31B"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtOlatu" />
@@ -54,7 +54,7 @@
             android:layout_width="100dp"
             android:layout_height="89dp"
             android:gravity="center"
-            android:text="Olatu"
+            android:text="@string/olatu"
             app:layout_constraintEnd_toStartOf="@+id/btn21B"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtOla" />
@@ -65,7 +65,7 @@
             android:layout_height="89dp"
             android:layout_marginTop="12dp"
             android:gravity="center"
-            android:text="Ola"
+            android:text="@string/ola"
             app:layout_constraintEnd_toStartOf="@+id/btn11B"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -106,7 +106,7 @@
             android:layout_width="100dp"
             android:layout_height="95dp"
             android:gravity="center"
-            android:text="Onde"
+            android:text="@string/onde"
             app:layout_constraintEnd_toStartOf="@+id/btn41B"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -118,7 +118,7 @@
             android:layout_height="79dp"
             android:layout_marginTop="2dp"
             android:gravity="center|center_horizontal"
-            android:text="Welle"
+            android:text="@string/welle"
             app:layout_constraintEnd_toStartOf="@+id/btn51B"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,7 +131,7 @@
             android:layout_height="79dp"
             android:layout_marginTop="12dp"
             android:gravity="center|center_horizontal"
-            android:text="Onda"
+            android:text="@string/onda"
             app:layout_constraintEnd_toStartOf="@+id/btn51B"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -144,7 +144,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="60dp"
             android:gravity="center_vertical"
-            android:text="Francés"
+            android:text="@string/frances"
             app:layout_constraintStart_toEndOf="@+id/btn42B"
             app:layout_constraintTop_toBottomOf="@+id/txtAleman" />
 
@@ -155,7 +155,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="36dp"
             android:gravity="center_vertical"
-            android:text="Inglés"
+            android:text="@string/ingles"
             app:layout_constraintStart_toEndOf="@+id/btn12B"
             app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua" />
 
@@ -166,7 +166,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="48dp"
             android:gravity="center_vertical"
-            android:text="Castellano"
+            android:text="@string/castellano"
             app:layout_constraintStart_toEndOf="@+id/btn22B"
             app:layout_constraintTop_toBottomOf="@+id/txtIngles" />
 
@@ -177,7 +177,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="64dp"
             android:gravity="center_vertical"
-            android:text="Alemán"
+            android:text="@string/aleman"
             app:layout_constraintStart_toEndOf="@+id/btn32B"
             app:layout_constraintTop_toBottomOf="@+id/txtCastellano" />
 
@@ -188,7 +188,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="52dp"
             android:gravity="center_vertical"
-            android:text="Euskera"
+            android:text="@string/euskera"
             app:layout_constraintStart_toEndOf="@+id/btn52B"
             app:layout_constraintTop_toBottomOf="@+id/txtFrances" />
 
@@ -199,7 +199,7 @@
             android:layout_marginStart="10dp"
             android:layout_marginTop="52dp"
             android:gravity="center_vertical"
-            android:text="Italiano"
+            android:text="@string/italiano"
             app:layout_constraintStart_toEndOf="@+id/btn62B"
             app:layout_constraintTop_toBottomOf="@+id/txtEuskera" />
 
@@ -333,13 +333,12 @@
         android:layout_height="100dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="36dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/boton_volver"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -348,13 +347,12 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="36dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -363,13 +361,12 @@
         android:layout_height="100dp"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="36dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
         app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@mipmap/boton_finalizar"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView

@@ -35,7 +35,7 @@
             android:layout_width="478dp"
             android:layout_height="197dp"
             android:layout_marginTop="116dp"
-            android:text="¿Cuántas puertas había en la muralla de Bermeo?"
+            android:text="@string/pregunta_puerta_san_juan"
             android:textAlignment="center"
             android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -49,7 +49,7 @@
             android:layout_height="153dp"
             android:layout_marginTop="20dp"
             android:ems="10"
-            android:hint="Introduce aquí tu respuesta"
+            android:hint="@string/introduce_respuesta_puerta_san_juan"
             android:inputType="number"
             android:textSize="34sp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -65,11 +65,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@mipmap/boton_volver"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
@@ -78,11 +77,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_resultado"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
@@ -91,11 +89,10 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"
         android:layout_marginBottom="28dp"
-        android:background="@null"
+        android:background="@drawable/estilo_botones_siguiente"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@mipmap/boton_siguiente"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
