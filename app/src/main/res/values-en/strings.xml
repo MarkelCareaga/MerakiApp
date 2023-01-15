@@ -52,4 +52,5 @@
     <string name="pregunta_test_4">¿Que serie internacional se ha grabado en San Juan de Gaztelugatxe?</string>
     <string name="pregunta_puerta_san_juan">¿Cuántas puertas había en la muralla de Bermeo?</string>
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
+    <string name="seleccionUsuario">Add a user to be able to play by clicking the button in the corner</string>
 </resources>

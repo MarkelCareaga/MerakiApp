@@ -4,38 +4,44 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.lifecycle.Observer
-import androidx.recyclerview.widget.LinearLayoutManager
+import android.widget.Toast
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ActivitySeleccionarUsuarioBinding
-import com.example.merakiapp.juegos.IslaIzaroActivity
-import com.example.merakiapp.ui.ayuda.Pregunta
-import com.example.merakiapp.ui.ayuda.PreguntasAdapter
+import com.example.merakiapp.databinding.ItemProductoUsuarioBinding
 
 class SeleccionarUsuario : AppCompatActivity(){
-    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
-    // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
+    lateinit var conexion: UsuarioDB
     private lateinit var UsuariosAdapter : ListaAdapter
     private lateinit var binding: ActivitySeleccionarUsuarioBinding
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivitySeleccionarUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val user = DatabaseRoomApp.database.usuarioDao.TodosUsuarios()
-        UsuariosAdapter= ListaAdapter(user)
-        binding?.lista?.adapter = UsuariosAdapter
+        conexion = UsuarioDB(this)
+        val arrayList = ArrayList<Usuario>()
+        val cursor = conexion.listaTodos()
+
+        if (cursor.isNotEmpty()){
+            binding.lista.visibility= View.VISIBLE
+            binding.txtInfo.visibility= View.GONE
+            cursor.forEach {
+                arrayList.add(it)
+            }
+            UsuariosAdapter= ListaAdapter(arrayList, this)
+            binding.lista.adapter = UsuariosAdapter
+        }else{
+            binding.lista.visibility= View.GONE
+            binding.txtInfo.visibility= View.VISIBLE
+        }
+
 
         binding.floatingAdd.setOnClickListener {
             val intent = Intent(this, NuevoUsuario::class.java)
             startActivity(intent)
+            this.finish()
         }
 
     }
-
-   /* override fun onItemJugar(item: Usuario) {
-        val intent = Intent(this, IslaIzaroActivity::class.java)
-            .putExtra("Usuario", item)
-        startActivity(intent)
-
-    }*/
 }

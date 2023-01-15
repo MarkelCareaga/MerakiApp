@@ -1,58 +1,61 @@
 package com.example.merakiapp.room
 
+import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
+import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.merakiapp.R
-import com.example.merakiapp.databinding.ItemPreguntaBinding
-import com.example.merakiapp.ui.ayuda.Pregunta
-import com.example.merakiapp.ui.ayuda.PreguntasAdapter
+import com.example.merakiapp.databinding.ItemProductoUsuarioBinding
+import com.example.merakiapp.juegos.IslaIzaroActivity
 
-class ListaAdapter(private val usuarios: List<Usuario>): RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
+class ListaAdapter(val arrayList: ArrayList<Usuario>,val contexta:Context) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
 
-    private class DiffCallback : DiffUtil.ItemCallback<Usuario>() {
-        override fun areItemsTheSame(oldItem: Usuario, newItem: Usuario): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Usuario, newItem: Usuario): Boolean {
-            return oldItem.id == newItem.id
-        }
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val vista = LayoutInflater.from(parent.context).inflate(R.layout.item_producto_usuario, parent, false)
+        val vista = LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_producto_usuario, parent, false)
         return ViewHolder(vista)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(usuarios[position])
+        holder.bind(arrayList[position], contexta)
+
     }
 
-   inner class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
 
-        private val tvNombre = itemView.findViewById(R.id.nombre_et) as TextView
-        private val btnJugar = itemView.findViewById(R.id.button_play) as Button
-        private val imagen = itemView.findViewById(R.id.imagenUsuario) as ImageView
+    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+        val binding = ItemProductoUsuarioBinding.bind(view)
 
-       fun bind(item: Usuario) {
-            tvNombre.text = item.nombreusuario
+        fun bind(usuario: Usuario, contexta: Context) {
+            with(binding) {
 
-            btnJugar.setOnClickListener {
-                println("Item")
+                nombreUsuario.setText(usuario.nombreusuario)
+                val imagen = usuario.imagen?.toUri()
+                if(usuario.imagen != null){
+                    imagenUsuario.setImageURI(imagen)
+                }
+                buttonPlay.setOnClickListener {
+                    val intent = Intent(contexta,IslaIzaroActivity::class.java)
+                        .putExtra("id", usuario.id)
+                        .putExtra("name", usuario.nombreusuario)
+                        .putExtra("pasos", usuario.pasosUsuario)
+                        .putExtra("imagen", usuario.imagen)
+                    contexta.startActivity(intent);
+                    Toast.makeText(contexta,"${usuario.id}, ${usuario.nombreusuario}, ${usuario.pasosUsuario}, ${usuario.imagen}", Toast.LENGTH_LONG).show()
+                }
             }
+
         }
     }
-
     interface OnItemClickListener {
         fun onItemJugar(item: Usuario)
-        
+
     }
 
-    override fun getItemCount(): Int = usuarios.size    }
+    override fun getItemCount(): Int = arrayList.size
+}
