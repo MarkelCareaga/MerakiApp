@@ -97,8 +97,9 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaPuertaSanJuan"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="3dp"
         android:layout_marginEnd="8dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -108,10 +109,11 @@
 
     <ImageButton
         android:id="@+id/btnAyudaPuertaSanJuan"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="3dp"
-        android:layout_marginEnd="2dp"
+        android:layout_marginEnd="10dp"
         app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaPuertaSanJuan"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_ayuda"

@@ -316,8 +316,9 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaBadatoz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="5dp"
@@ -329,10 +330,11 @@
 
     <ImageButton
         android:id="@+id/btnAyudaBadatoz"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="7dp"
-        android:layout_marginEnd="4dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginBottom="4dp"
         app:layout_constraintBottom_toTopOf="@+id/relative"
         app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaBadatoz"

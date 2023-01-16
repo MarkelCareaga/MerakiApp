@@ -71,8 +71,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                     1
                 )
 
-
-            }else  if (ActivityCompat.checkSelfPermission(
+            } else if (ActivityCompat.checkSelfPermission(
                     this, android.Manifest.permission.ACCESS_FINE_LOCATION
                 )
                 != PackageManager.PERMISSION_GRANTED
@@ -89,31 +88,20 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                     ),
                     1
                 )
-
-
             }
-
         }
 
         binding.btnLibre.setOnClickListener {
+            // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
+            libre = true
+            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
+            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
-                // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
-                libre = true
-                val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
-                val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
-
-                // Inicia un intent para ir a otra actividad
-                val intent = Intent(this, MenuNav::class.java)
-                startActivity(intent)
-
-
-            }
-
-
-
-
-
+            // Inicia un intent para ir a otra actividad
+            val intent = Intent(this, MenuNav::class.java)
+            startActivity(intent)
         }
+    }
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {

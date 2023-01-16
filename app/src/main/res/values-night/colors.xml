@@ -14,8 +14,8 @@
     <color name="fondoProgressBar">#deb954</color>
     <color name="fondoNavBar">#E89742</color>
     <color name="fondoJuegos"> #ccffcc</color>
-    <color name="botonesParteSuperior">#CDC6C6</color>
-    <color name="botonesParteSuperiorPressed">#ACA5A5</color>
-    <color name="botonesMedia">#FFFFFF</color>
+    <color name="botonesParteSuperior">#D85A06</color>
+    <color name="botonesParteSuperiorPressed">#B64D07</color>
+    <color name="botonesMedia">#D85A06</color>
     <color name="textoBotonesInicio">#755704</color>
 </resources>
