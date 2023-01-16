@@ -53,4 +53,5 @@
     <string name="pregunta_puerta_san_juan">¿Cuántas puertas había en la muralla de Bermeo?</string>
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
     <string name="seleccionUsuario">Gehitu erabiltzaile bat jolastu ahal izateko izkinan dagoen botoiarekin</string>
+    <string name="imagen">Txertatu irudi bat beheko irudian klik eginez. Galeria irekiko da.</string>
 </resources>
