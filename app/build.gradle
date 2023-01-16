@@ -59,4 +59,7 @@ android {
         kapt "androidx.room:room-compiler:2.4.3"
         implementation "com.airbnb.android:lottie:3.4.2"
 
+        implementation "androidx.activity:activity-ktx:1.6.1"
+        implementation "androidx.fragment:fragment-ktx:1.5.5"
+
     }
