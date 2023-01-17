@@ -35,7 +35,7 @@
     <ImageView
         android:id="@+id/imagen"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="412dp"
         android:layout_marginTop="10dp"
         android:maxWidth="50dp"
         android:maxHeight="100dp"
@@ -44,7 +44,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.413"
         app:srcCompat="@drawable/imagenpng" />
 
     <Button
@@ -63,10 +63,10 @@
         android:id="@+id/textView9"
         android:layout_width="383dp"
         android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="40dp"
         android:text="@string/imagen"
         android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_et" />
 

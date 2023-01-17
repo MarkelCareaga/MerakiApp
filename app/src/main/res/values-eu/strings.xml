@@ -54,4 +54,5 @@
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
     <string name="seleccionUsuario">Gehitu erabiltzaile bat jolastu ahal izateko izkinan dagoen botoiarekin</string>
     <string name="imagen">Txertatu irudi bat beheko irudian klik eginez. Galeria irekiko da.</string>
+    <string name="nombreUsuarioError">" Sartu erabiltzaile-izena"</string>
 </resources>

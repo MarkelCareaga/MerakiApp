@@ -27,6 +27,7 @@ class IslaIzaroActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val pasos = intent.getIntExtra("pasos",0)
         val imagen = intent.getStringExtra("imagen").toString()
+
         binding.txtUsuario.text= name
         binding.imagenUsuario.setImageURI(imagen.toUri())
         if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){

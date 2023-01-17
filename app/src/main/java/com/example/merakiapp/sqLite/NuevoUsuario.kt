@@ -1,6 +1,7 @@
 package com.example.merakiapp.sqLite
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
@@ -16,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.FileProvider
 import androidx.core.net.toUri
+import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ActivityNuevoUsuarioBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -57,28 +59,35 @@ class NuevoUsuario : AppCompatActivity(){
 
         binding.guardarbtn.setOnClickListener {
             val nombre = binding.nombreEt.text.toString()
+            if (nombre != null || nombre != "") {
                 CoroutineScope(Dispatchers.IO).launch {
                     val usuarios = conexion.listaTodos()
-                    if (usuarios.isNotEmpty()){
-                        if(foto== false){
-                            conexion.insertar_datos(usuarios.last().id + 1 ,nombre, 0, null)
-                        }else{
-                            conexion.insertar_datos(usuarios.last().id + 1 ,nombre, 0, currentsPhotoPath)
-                            foto=false
+                    if (usuarios.isNotEmpty()) {
+                        if (foto == false) {
+                            conexion.insertar_datos(usuarios.last().id + 1, nombre, 0, null)
+                        } else {
+                            conexion.insertar_datos(usuarios.last().id + 1,
+                                nombre,
+                                0,
+                                currentsPhotoPath)
+                            foto = false
                         }
-                    }else{
-                        if(foto== false){
-                            conexion.insertar_datos( 0  ,nombre, 0, null)
-                        }else{
+                    } else {
+                        if (foto == false) {
+                            conexion.insertar_datos(0, nombre, 0, null)
+                        } else {
 
-                            conexion.insertar_datos( 0  ,nombre, 0, currentsPhotoPath)
-                            foto=false
+                            conexion.insertar_datos(0, nombre, 0, currentsPhotoPath)
+                            foto = false
                         }
 
                     }
-                    startActivity(Intent(this@NuevoUsuario,SeleccionarUsuario::class.java))
+                    startActivity(Intent(this@NuevoUsuario, SeleccionarUsuario::class.java))
                     this@NuevoUsuario.finish()
                 }
+            }else{
+                Toast.makeText(this@NuevoUsuario,getString(R.string.nombreUsuarioError), Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

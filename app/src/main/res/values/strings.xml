@@ -53,4 +53,5 @@
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
     <string name="seleccionUsuario">Agregue un usuario para poder jugar haciendo click en el botón de la esquina</string>
     <string name="imagen">Inserte una imagen haciendo click en la imagen de abajo. Se abrirá la galería.</string>
+    <string name="nombreUsuarioError">Inserte el nombre de usuario</string>
 </resources>
