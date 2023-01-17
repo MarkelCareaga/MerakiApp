@@ -98,6 +98,11 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
             val intent = Intent(this, MenuNav::class.java)
             startActivity(intent)
         }
+
+        binding.btnAyudaInicio?.setOnClickListener {
+            val mensaje = Dialogos.mensajeInicio
+            mostrar_dialog(this, Dialogos.tituloExplicacion, mensaje)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,

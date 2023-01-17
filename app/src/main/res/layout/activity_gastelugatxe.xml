@@ -22,7 +22,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="377dp"
         android:layout_height="504dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="#B2FFFBFB"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +34,9 @@
         <RadioGroup
             android:id="@+id/gp3"
             android:layout_width="168dp"
-            android:layout_height="216dp"
+            android:layout_height="211dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="5dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="250dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -46,9 +47,10 @@
             app:layout_constraintVertical_bias="0.421">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtTest2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
                 android:text="@string/pregunta_test_3"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -56,7 +58,7 @@
             <RadioButton
                 android:id="@+id/rb7"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Gipuzkoa"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="33dp" />
@@ -64,7 +66,7 @@
             <RadioButton
                 android:id="@+id/rb8"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Bizkaia "
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="81dp" />
@@ -72,7 +74,7 @@
             <RadioButton
                 android:id="@+id/rb9"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Araba"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="129dp" />
@@ -88,9 +90,10 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txtTest3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
                 android:text="@string/pregunta_test_2"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -98,7 +101,7 @@
             <RadioButton
                 android:id="@+id/rb4"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="1"
                 tools:layout_editor_absoluteX="24dp"
                 tools:layout_editor_absoluteY="222dp" />
@@ -106,7 +109,7 @@
             <RadioButton
                 android:id="@+id/rb5"
                 android:layout_width="match_parent"
-                android:layout_height="36dp"
+                android:layout_height="38dp"
                 android:text="2"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -115,7 +118,7 @@
             <RadioButton
                 android:id="@+id/rb6"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="3"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -133,9 +136,10 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtTest1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
                 android:text="@string/pregunta_test_1"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -143,13 +147,13 @@
             <RadioButton
                 android:id="@+id/rb1"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="241 " />
 
             <RadioButton
                 android:id="@+id/rb2"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="300 "
                 tools:layout_editor_absoluteX="24dp"
                 tools:layout_editor_absoluteY="81dp" />
@@ -157,7 +161,7 @@
             <RadioButton
                 android:id="@+id/rb3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="157"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -169,7 +173,7 @@
             android:id="@+id/gp4"
             android:layout_width="169dp"
             android:layout_height="224dp"
-            android:layout_marginStart="16dp"
+            android:layout_marginStart="22dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -177,9 +181,10 @@
             app:layout_constraintStart_toEndOf="@+id/gp2">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/txtTest4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:paddingLeft="7dp"
                 android:text="@string/pregunta_test_4"
                 android:textSize="18sp"
                 android:textStyle="bold" />
@@ -187,7 +192,7 @@
             <RadioButton
                 android:id="@+id/rb10"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Agente 007"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="222dp" />
@@ -195,7 +200,7 @@
             <RadioButton
                 android:id="@+id/rb11"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Juego de tronos"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="270dp" />
@@ -203,7 +208,7 @@
             <RadioButton
                 android:id="@+id/rb12"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="38dp"
                 android:text="Los pitufos"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"

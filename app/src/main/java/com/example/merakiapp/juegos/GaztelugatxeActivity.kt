@@ -104,10 +104,12 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         if (binding.gp1.checkedRadioButtonId == binding.rb1.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp1.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest1.setTextColor(Color.BLACK)
             correcto1 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp1.setBackgroundColor(Color.RED)
+            binding.txtTest1.setTextColor(Color.WHITE)
             correcto1 = false
         }
 
@@ -115,10 +117,12 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         if (binding.gp2.checkedRadioButtonId == binding.rb6.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp2.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest1.setTextColor(Color.BLACK)
             correcto2 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp2.setBackgroundColor(Color.RED)
+            binding.txtTest2.setTextColor(Color.WHITE)
             correcto2 = false
         }
 
@@ -126,10 +130,12 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         if (binding.gp3.checkedRadioButtonId == binding.rb8.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp3.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest3.setTextColor(Color.BLACK)
             correcto3 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp3.setBackgroundColor(Color.RED)
+            binding.txtTest3.setTextColor(Color.WHITE)
             correcto3 = false
         }
 
@@ -137,10 +143,12 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         if (binding.gp4.checkedRadioButtonId == binding.rb11.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp4.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest4.setTextColor(Color.BLACK)
             correcto4 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp4.setBackgroundColor(Color.RED)
+            binding.txtTest4.setTextColor(Color.WHITE)
             correcto4 = false
         }
 

@@ -18,6 +18,12 @@ interface Dialogos {
         val permisoDenegado= "PERMISOS NO ACEPTADOS"
 
         // --------------- LISTA DE MENSAJES ---------------
+        val mensajeInicio = "Meraki es una aplicación que te permite disfrutar de una serie de juegos, " +
+                "mientrás exploras el pueblo de Bermeo.\n\n" +
+                "En el 'Modo Explorador' puedes acceder a cada juego solo si estás posicionado en su " +
+                "correspondiente ubicación, la cual se indica en el mapa.\n\n" +
+                "En el 'Modo Libre', puedes acceder a todos los juego desde el principio, sin necesidad " +
+                "de estar posicionado en cada una de sus correspondientes ubicaciones."
         val mensajePermisos= "Por favor acepte los permises de ubicacion para acceder a la siguiente pantalla."
         val mensajeExplicacion = "Lee y/o escucha atentamente la explicación. Te servirá de ayuda para completar correctamente el juego."
         val mensajeFeriaPescado = "Une las imágenes con sus nombres correspondientes.\n" +
