@@ -131,6 +131,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Finalizar juego
         binding.btnFinalizarBadatoz.setOnClickListener {
             startActivity(Intent(this, MenuNav::class.java))
+            finish()
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
         }
     }
