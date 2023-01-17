@@ -11,11 +11,13 @@ import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.R
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajePuertaSanJuan
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class PuertaSanJuanActivity : AppCompatActivity() {
+class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
 
     // AUDIO Y FONDO
@@ -96,7 +98,7 @@ class PuertaSanJuanActivity : AppCompatActivity() {
             stopService(intent)
 
             audioSeleccionado = R.raw.audiopuertadesanjuan
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 

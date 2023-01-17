@@ -8,9 +8,11 @@ import android.view.View
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeVideoFeriaPescado
+import com.example.merakiapp.Dialogos.Companion.tituloVideo
 import com.example.merakiapp.databinding.ActivityVideoFeriaPescadoBinding
 
-class VideoFeriaPescadoActivity : AppCompatActivity() {
+class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityVideoFeriaPescadoBinding
     private var fondoSeleccionado = com.example.merakiapp.R.drawable.fondoferiapescado
 

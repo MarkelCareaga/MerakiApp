@@ -7,10 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.example.merakiapp.Dialogos.Companion.mensajeFinal
+import com.example.merakiapp.Dialogos.Companion.tituloFinal
 import com.example.merakiapp.databinding.ActivityFinalBinding
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FinalActivity : AppCompatActivity() {
+class FinalActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityFinalBinding
 
     // AUDIO Y FONDO

@@ -8,6 +8,8 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeExplicacion
+import com.example.merakiapp.Dialogos.Companion.tituloExplicacion
 import com.example.merakiapp.databinding.ActivityExplicacionesBinding
 import com.example.merakiapp.juegos.*
 import com.example.merakiapp.sqLite.SeleccionarUsuario
@@ -15,7 +17,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 // ACTIVITY DE DEMOSTRACIÓN: APARTADO PARA EXPLICAR LA UBICACIÓN SELECCIONADA
 
-class ExplicacionesActivity : AppCompatActivity() {
+class ExplicacionesActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityExplicacionesBinding
 
     private var audioSeleccionado = 0       // Audio a reproducir
@@ -23,6 +25,16 @@ class ExplicacionesActivity : AppCompatActivity() {
     private var textoSeleccionado = ""      // Texto a mostrar
     private var pantallaSeleccionada = ""   // Pantalla enlazada al boton Siguiente
 
+    companion object {
+        private val intro = "introduccion"
+        private val san_juan = "puerta_de_san_juan"
+        private val badatoz = "badatoz_estatua"
+        private val feria_pescado = "feria_del_pescado"
+        private val olatua = "olatua_estatua"
+        private val xixili = "xixili"
+        private val izaro = "isla_de_izaro"
+        private val gaztelugatxe = "gaztelugatxe"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,18 +53,17 @@ class ExplicacionesActivity : AppCompatActivity() {
         var animacionVisible = ""
         var estadoAnimacion = false
         // PATXI | MIREN
-        if (pantallaSeleccionada == "puerta_de_san_juan" || pantallaSeleccionada == "feria_del_pescado"
-            || pantallaSeleccionada == "xixili" || pantallaSeleccionada == "gaztelugatxe") {
+        if (pantallaSeleccionada == san_juan || pantallaSeleccionada == feria_pescado
+            || pantallaSeleccionada == xixili || pantallaSeleccionada == gaztelugatxe) {
             binding.imgMiren.setVisibility(View.INVISIBLE)
             animacionVisible = "Patxi"
         }
 
-        if (pantallaSeleccionada == "badatoz_estatua" || pantallaSeleccionada == "olatua_estatua"
-            || pantallaSeleccionada == "isla_de_izaro") {
+        if (pantallaSeleccionada == badatoz || pantallaSeleccionada == olatua
+            || pantallaSeleccionada == izaro) {
             binding.imgPatxi.setVisibility(View.INVISIBLE)
             animacionVisible = "Miren"
         }
-
 
 
        if (this.getSharedPreferences("pref", 0)?.getBoolean("Stop", false) == true) {
@@ -110,7 +121,7 @@ class ExplicacionesActivity : AppCompatActivity() {
         // --------------- ACTIVAR / DESACTIVAR BOTÓN DEL VIDEO ---------------
         var botonVideo = binding.btnAccederVideo
 
-        if (pantallaSeleccionada == "feria_del_pescado") {
+        if (pantallaSeleccionada == feria_pescado) {
             botonVideo?.visibility = View.VISIBLE
         } else {
             botonVideo?.visibility = View.INVISIBLE
@@ -214,35 +225,35 @@ class ExplicacionesActivity : AppCompatActivity() {
             stopService(intent)
 
             when (pantallaSeleccionada) {
-                "introduccion" -> {
+                intro -> {
                     finish()
                     startActivity(Intent(this, MenuNav::class.java).putExtra("explicacion",true))
                 }
-                "puerta_de_san_juan" -> {
+                san_juan -> {
                     finish()
                     startActivity(Intent(this, PuertaSanJuanActivity::class.java))
                 }
-                "badatoz_estatua" -> {
+                badatoz -> {
                     finish()
                     startActivity(Intent(this, BadatozEstatuaActivity::class.java))
                 }
-                "feria_del_pescado" -> {
+                feria_pescado -> {
                     finish()
                     startActivity(Intent(this, FeriaPescadoActivity::class.java))
                 }
-                "olatua_estatua" -> {
+                olatua -> {
                     finish()
                     startActivity(Intent(this, OlatuaEstatuaActivity::class.java))
                 }
-                "xixili" -> {
+                xixili -> {
                     finish()
                     startActivity(Intent(this, XixiliActivity::class.java))
                 }
-                "isla_de_izaro" -> {
+                izaro -> {
                     finish()
                     startActivity(Intent(this, SeleccionarUsuario::class.java))
                 }
-                "gaztelugatxe" -> {
+                gaztelugatxe -> {
                     finish()
                     startActivity(Intent(this, GaztelugatxeActivity::class.java))
                 }

@@ -11,13 +11,15 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import com.example.merakiapp.Dialogos.Companion.mensajePermisos
+import com.example.merakiapp.Dialogos.Companion.permisoDenegado
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
-class Inicio : AppCompatActivity(), OnMapReadyCallback {
+class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
     var libre :Boolean = false
     lateinit var mapa :GoogleMap
     private lateinit var binding: ActivityInicioBinding

@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
+import com.example.merakiapp.Dialogos
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 
-class IslaIzaroActivity : AppCompatActivity() {
+class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +17,6 @@ class IslaIzaroActivity : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         //Deshabilitar menu superior
         supportActionBar?.hide()
-
-
-
 
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)
