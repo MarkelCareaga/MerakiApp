@@ -3,13 +3,10 @@ package com.example.merakiapp.mapa
 import android.app.Service
 import android.content.Intent
 import android.graphics.Color
-import android.location.Location
 import android.os.IBinder
 import com.example.merakiapp.R
-import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.model.*
-import kotlin.coroutines.cancellation.CancellationException
 
 
 class MapaModoSeguimiento: Service(), OnMapReadyCallback{

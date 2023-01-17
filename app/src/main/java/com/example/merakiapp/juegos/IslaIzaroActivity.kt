@@ -27,9 +27,37 @@ class IslaIzaroActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val pasos = intent.getIntExtra("pasos",0)
         val imagen = intent.getStringExtra("imagen").toString()
-
+        binding.constraintLayout3.visibility = View.GONE
+        binding.barraOponente?.isEnabled  =false
+        binding.barraUsuario?.isEnabled  =false
         binding.txtUsuario.text= name
+        binding.txtUser?.text  = name
         binding.imagenUsuario.setImageURI(imagen.toUri())
+
+        binding.button.setOnClickListener(){
+            binding.constraintLayout3.visibility = View.VISIBLE
+            binding.constraintLayout2.visibility = View.GONE
+
+        }
+        binding.barraUsuario?.max  =100
+        binding.barraOponente?.max  =100
+        binding.barraUsuario?.setProgress(0)
+        binding.barraOponente?.setProgress(0)
+
+        binding.botonMoverBarco?.setOnClickListener(){
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso+1)
+            }
+        }
+        binding.btnSprint?.setOnClickListener(){
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso+2)
+            }
+        }
         if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
            // binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
         }else{

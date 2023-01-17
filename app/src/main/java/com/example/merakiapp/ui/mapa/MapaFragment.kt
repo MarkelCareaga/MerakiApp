@@ -42,7 +42,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
     var juego7 : Boolean = false
     var idJuego :Int = 0
     var juego:Boolean= false
-    var ubica: LatLng? = null
+    lateinit var ubica: LatLng
     val radio:Int = 50
 
     //Puerta de San Juan
@@ -231,6 +231,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
                     MapaModoSeguimiento().map1(mapa)
                 }
             }
+
 
         }else {
             mapa = googleMap
