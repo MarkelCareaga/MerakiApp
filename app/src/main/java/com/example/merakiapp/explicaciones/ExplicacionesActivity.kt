@@ -132,11 +132,6 @@ class ExplicacionesActivity : AppCompatActivity() {
         var intent = Intent(this, ServicioAudios::class.java)
 
 
-
-
-
-
-
         // CONTROL DE BOTONES
         // PLAY | PAUSE | RESUME
         binding.btnPlayPause.setOnClickListener {

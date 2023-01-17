@@ -9,13 +9,14 @@
 
     <EditText
         android:id="@+id/nombre_et"
-        android:layout_width="372dp"
-        android:layout_height="42dp"
+        android:layout_width="734dp"
+        android:layout_height="77dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        android:textSize="34sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
@@ -23,19 +24,20 @@
     <Button
         android:id="@+id/guardarbtn"
         style="@style/Widget.AppCompat.Button.Colored"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="24dp"
+        android:layout_width="154dp"
+        android:layout_height="70dp"
+        android:layout_marginEnd="52dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/bordesredondos"
         android:text="Guardar"
+        android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <ImageView
         android:id="@+id/imagen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="801dp"
+        android:layout_height="791dp"
         android:layout_marginTop="10dp"
         android:maxWidth="50dp"
         android:maxHeight="100dp"
@@ -44,29 +46,30 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9"
-        app:layout_constraintVertical_bias="0.0"
+        app:layout_constraintVertical_bias="0.49"
         app:srcCompat="@drawable/imagenpng" />
 
     <Button
         android:id="@+id/btnFoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
+        android:layout_width="252dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="52dp"
         android:layout_marginBottom="48dp"
         android:background="@drawable/bordesredondos"
         android:text="Tomar Foto"
+        android:textSize="24sp"
         app:icon="@android:drawable/ic_menu_camera"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="383dp"
-        android:layout_height="48dp"
+        android:layout_width="696dp"
+        android:layout_height="93dp"
         android:text="@string/imagen"
-        android:textSize="18sp"
+        android:textSize="34sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.551"
+        app:layout_constraintHorizontal_bias="0.153"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_et" />
 

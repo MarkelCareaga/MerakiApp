@@ -89,6 +89,7 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         // Finalizar juego
         binding.btnFinalizarGaztelugatxe.setOnClickListener {
             startActivity(Intent(this, MenuNav::class.java))
+            finish()
             this.getSharedPreferences("validar7", 0).edit().putBoolean("validar7", true).apply()
         }
 
