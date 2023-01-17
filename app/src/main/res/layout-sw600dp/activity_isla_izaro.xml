@@ -7,6 +7,15 @@
     tools:context=".juegos.IslaIzaroActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout1"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:context=".juegos.IslaIzaroActivity" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -30,8 +39,8 @@
 
         <ImageView
             android:id="@+id/imagenUsuario"
-            android:layout_width="147dp"
-            android:layout_height="137dp"
+            android:layout_width="308dp"
+            android:layout_height="249dp"
             android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -40,8 +49,8 @@
 
         <ImageView
             android:id="@+id/imagenOponente"
-            android:layout_width="147dp"
-            android:layout_height="137dp"
+            android:layout_width="308dp"
+            android:layout_height="249dp"
             android:layout_marginTop="30dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,41 +59,41 @@
 
         <TextView
             android:id="@+id/txtUsuario"
-            android:layout_width="147dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
-            android:textSize="20sp"
+            android:textSize="48sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 
         <TextView
             android:id="@+id/txtOponente"
-            android:layout_width="147dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="29dp"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#F4F0F0"
-            android:textSize="20sp"
+            android:textSize="48sp"
             app:layout_constraintBottom_toTopOf="@+id/imagenOponente"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
             android:id="@+id/imageView7"
-            android:layout_width="253dp"
-            android:layout_height="184dp"
+            android:layout_width="379dp"
+            android:layout_height="250dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toTopOf="@+id/txtOponente"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/imageView5"
             app:layout_constraintTop_toBottomOf="@+id/txtUsuario"
-            app:srcCompat="@drawable/versus" />
+            tools:srcCompat="@drawable/versus" />
 
         <Button
             android:id="@+id/button"
@@ -92,6 +101,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:text="@string/jugar"
+            android:textSize="34sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView5"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"

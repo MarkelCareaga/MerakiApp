@@ -42,7 +42,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
     var juego7 : Boolean = false
     var idJuego :Int = 0
     var juego:Boolean= false
-    lateinit var ubica:LatLng
+    var ubica: LatLng? = null
     val radio:Int = 50
 
     //Puerta de San Juan
@@ -100,7 +100,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
 
 
             // Habilitar la localización del usuario y varios controles en el mapa
-
+            mapa.isMyLocationEnabled = true
             mapa.uiSettings.isCompassEnabled = true
             mapa.uiSettings.isZoomControlsEnabled = true
             mapa.uiSettings.isMyLocationButtonEnabled = true
@@ -354,45 +354,45 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
         binding.btnJugar.setOnClickListener {
             if (idJuego == 1) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
 
             }
             if (idJuego == 2) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 3) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 4) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 5) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 6) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 7) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
+                locationa.latitude = ubica?.latitude!!
+                locationa.longitude = ubica?.longitude!!
                 distancia_a_puntoA(locationa)
             }
         }
