@@ -16,11 +16,13 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeBadatoz
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class BadatozEstatuaActivity : AppCompatActivity() {
+class BadatozEstatuaActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityBadatozEstatuaBinding
 
     private lateinit var Imagen : ImageView

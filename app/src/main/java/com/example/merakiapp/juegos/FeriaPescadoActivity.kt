@@ -8,11 +8,13 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeFeriaPescado
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FeriaPescadoActivity : AppCompatActivity() {
+class FeriaPescadoActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityFeriaPescadoBinding
 
 

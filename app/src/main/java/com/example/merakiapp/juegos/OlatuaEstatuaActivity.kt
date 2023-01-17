@@ -12,11 +12,13 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeOlatua
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityOlatuaEstatuaBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class OlatuaEstatuaActivity : AppCompatActivity() {
+class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityOlatuaEstatuaBinding
 
     // AUDIO Y FONDO

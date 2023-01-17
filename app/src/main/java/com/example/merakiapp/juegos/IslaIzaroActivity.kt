@@ -4,9 +4,10 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.merakiapp.Dialogos
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 
-class IslaIzaroActivity : AppCompatActivity() {
+class IslaIzaroActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivityIslaIzaroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

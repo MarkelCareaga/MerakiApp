@@ -15,12 +15,14 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeSopaLetras
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
 import com.example.merakiapp.databinding.ActivitySopaLetrasBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class SopaLetrasActivity : AppCompatActivity() {
+class SopaLetrasActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivitySopaLetrasBinding
 
     //booleanos correctos

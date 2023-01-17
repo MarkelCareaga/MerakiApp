@@ -10,11 +10,13 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeGaztelugatxe
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityGastelugatxeBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class GaztelugatxeActivity() : AppCompatActivity() {
+class GaztelugatxeActivity() : AppCompatActivity(), Dialogos {
     lateinit var binding: ActivityGastelugatxeBinding
 
     // AUDIO Y FONDO
