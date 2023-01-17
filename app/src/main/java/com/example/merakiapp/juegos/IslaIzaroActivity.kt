@@ -31,12 +31,14 @@ class IslaIzaroActivity : AppCompatActivity() {
         binding.barraOponente?.isEnabled  =false
         binding.barraUsuario?.isEnabled  =false
         binding.txtUsuario.text= name
-        binding.txtUser?.text  = name
         binding.imagenUsuario.setImageURI(imagen.toUri())
 
         binding.button.setOnClickListener(){
             binding.constraintLayout3.visibility = View.VISIBLE
             binding.constraintLayout2.visibility = View.GONE
+
+            binding.txtUser?.text =  name
+
 
         }
         binding.barraUsuario?.max  =100
