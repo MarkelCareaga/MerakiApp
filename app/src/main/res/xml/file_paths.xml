@@ -2,14 +2,14 @@
 <paths>
     <external-files-path
         name="my_images"
-        path="."/>
+        path="/"/>
     <external-media-path
         name="my_images"
-        path="." />
+        path="/" />
     <files-path
         name="my_images"
-        path="." />
+        path="/" />
     <external-path
         name="my_images"
-        path="."/>
+        path="/"/>
 </paths>
