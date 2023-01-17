@@ -1,13 +1,11 @@
-package com.example.merakiapp.room
+package com.example.merakiapp.sqLite
 
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.icu.text.SimpleDateFormat
 import android.net.Uri
 import android.os.Environment
 import java.io.File
-import java.util.*
 
 object ImageController {
     fun selectPhotoFromGallery(activity: Activity, code:Int){

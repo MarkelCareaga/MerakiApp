@@ -1,4 +1,4 @@
-package com.example.merakiapp.room
+package com.example.merakiapp.sqLite
 
 import android.content.ContentValues
 import android.content.Context

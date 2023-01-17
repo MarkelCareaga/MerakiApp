@@ -1,8 +1,9 @@
-package com.example.merakiapp.room
+package com.example.merakiapp.sqLite
 
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import android.icu.text.SimpleDateFormat
 import android.net.Uri
@@ -39,14 +40,15 @@ class NuevoUsuario : AppCompatActivity(){
         super.onCreate(savedInstanceState)
         binding=ActivityNuevoUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
         conexion = UsuarioDB(this)
 
 
         binding.imagen.setOnClickListener() {
-            ImageController.selectPhotoFromGallery(this,REQUEST_CODE_GALERY)
-            foto = true
 
-           // seleccionarGaleria();
+            checkPermissionStorage()
+            // seleccionarGaleria();
         }
 
         binding.btnFoto.setOnClickListener(){
@@ -93,8 +95,27 @@ class NuevoUsuario : AppCompatActivity(){
             }
         }
     }
+    private fun checkPermissionStorage() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (ActivityCompat.checkSelfPermission(this,
+                    Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_GRANTED
+            ) {
+                galeria()
+            } else {
+                ActivityCompat.requestPermissions(
+                    this,
+                    arrayOf(Manifest.permission.ACCESS_MEDIA_LOCATION),
+                    REQUEST_CODE_GALERY
 
+                )
+            }
+        }
+    }
 
+    private fun galeria() {
+        ImageController.selectPhotoFromGallery(this,REQUEST_CODE_GALERY)
+        foto = true
+    }
 
     private fun sacaFoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -139,31 +160,6 @@ class NuevoUsuario : AppCompatActivity(){
         return imagen
     }
 
-   /* private fun seleccionarGaleria() {
-
-
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
-                var photoFile: File(context.filesDir, )
-
-                try {
-                    photoFile = createFile()
-                } catch (e: IOException) {
-                    e.printStackTrace()
-                }
-                if (photoFile != null) {
-                    var photoUri = FileProvider.getUriForFile(
-                        this,
-                        "com.example.merakiapp",
-                        photoFile
-                    )
-                    intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
-                    startActivityForResult(intent, REQUEST_CODE_GALERY)
-
-                }
-
-
-
-    }*/
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,

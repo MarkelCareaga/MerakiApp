@@ -29,14 +29,14 @@
         android:grantUriPermissions="true">
 
         <activity
-            android:name=".room.NuevoUsuario"
+            android:name=".sqLite.NuevoUsuario"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".room.SeleccionarUsuario"
+            android:name=".sqLite.SeleccionarUsuario"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

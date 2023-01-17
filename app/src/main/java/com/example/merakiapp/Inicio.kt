@@ -1,6 +1,5 @@
 package com.example.merakiapp
 
-import android.Manifest
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
@@ -9,17 +8,14 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
-import com.example.merakiapp.room.Usuario
 
 class Inicio : AppCompatActivity(), OnMapReadyCallback {
     var libre :Boolean = false

@@ -1,4 +1,4 @@
-package com.example.merakiapp.room
+package com.example.merakiapp.sqLite
 
 
 data class Usuario(

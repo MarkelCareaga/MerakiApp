@@ -1,20 +1,16 @@
 package com.example.merakiapp.explicaciones
 
 import android.content.Intent
-import android.content.SharedPreferences
-import android.content.res.Configuration
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.ActivityExplicacionesBinding
 import com.example.merakiapp.juegos.*
-import com.example.merakiapp.room.SeleccionarUsuario
+import com.example.merakiapp.sqLite.SeleccionarUsuario
 import com.example.merakiapp.servicios.ServicioAudios
 
 // ACTIVITY DE DEMOSTRACIÓN: APARTADO PARA EXPLICAR LA UBICACIÓN SELECCIONADA
