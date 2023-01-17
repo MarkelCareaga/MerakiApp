@@ -15,7 +15,7 @@ interface Dialogos {
         val tituloFinal = "BIEN HECHO"
         val tituloDialogFallo = "VUELVE A INTENTARLO"
         val tituloRotarPantalla = "INFO"
-        val permisoDenegado= "Permisos no aceptados"
+        val permisoDenegado= "PERMISOS NO ACEPTADOS"
 
         // --------------- LISTA DE MENSAJES ---------------
         val mensajePermisos= "Por favor acepte los permises de ubicacion para acceder a la siguiente pantalla."
