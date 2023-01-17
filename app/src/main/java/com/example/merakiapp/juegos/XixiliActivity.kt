@@ -22,7 +22,7 @@ import com.example.merakiapp.databinding.ActivityXixiliBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class XixiliActivity : AppCompatActivity(), Dialogos {
+class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityXixiliBinding
 
     // AUDIO Y FONDO
@@ -117,7 +117,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos {
             stopService(intent)
 
             audioSeleccionado = R.raw.audioxixili
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 

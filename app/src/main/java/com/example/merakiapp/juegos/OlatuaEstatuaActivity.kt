@@ -16,9 +16,10 @@ import com.example.merakiapp.Dialogos.Companion.mensajeOlatua
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityOlatuaEstatuaBinding
 import com.example.merakiapp.explicaciones.DemoActivity
+import com.example.merakiapp.explicaciones.ExplicacionesActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos {
+class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityOlatuaEstatuaBinding
 
     // AUDIO Y FONDO
@@ -183,7 +184,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos {
             stopService(intent)
 
             audioSeleccionado = R.raw.audioolatua
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 

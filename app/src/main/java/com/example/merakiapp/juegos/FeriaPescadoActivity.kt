@@ -14,7 +14,7 @@ import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FeriaPescadoActivity : AppCompatActivity(), Dialogos {
+class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityFeriaPescadoBinding
 
 
@@ -173,7 +173,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos {
             stopService(intent)
 
             audioSeleccionado = R.raw.audioferiadelpescado
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 

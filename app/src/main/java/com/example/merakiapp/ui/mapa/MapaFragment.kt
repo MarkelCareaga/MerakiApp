@@ -10,12 +10,10 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
-import com.example.merakiapp.R
+import com.example.merakiapp.*
 import com.example.merakiapp.databinding.FragmentMapaBinding
 import com.example.merakiapp.juegos.*
 import com.example.merakiapp.mapa.MapaModoSeguimiento
-import com.example.merakiapp.mostrar_dialog
-import com.example.merakiapp.mostrar_info_pantalla
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -29,7 +27,7 @@ import kotlin.arrayOf
 import kotlin.let
 
 
-class MapaFragment() : Fragment(), OnMapReadyCallback {
+class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
     private lateinit var binding: FragmentMapaBinding
     private lateinit var mapa:GoogleMap

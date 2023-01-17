@@ -17,7 +17,7 @@ import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class PuertaSanJuanActivity : AppCompatActivity(), Dialogos {
+class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
 
     // AUDIO Y FONDO
@@ -98,7 +98,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos {
             stopService(intent)
 
             audioSeleccionado = R.raw.audiopuertadesanjuan
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 

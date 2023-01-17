@@ -22,7 +22,7 @@ import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class BadatozEstatuaActivity : AppCompatActivity(), Dialogos {
+class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
 
     private lateinit var Imagen : ImageView

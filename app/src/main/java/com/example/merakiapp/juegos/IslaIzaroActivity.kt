@@ -5,9 +5,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.merakiapp.Dialogos
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 
-class IslaIzaroActivity : AppCompatActivity(), Dialogos {
+class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

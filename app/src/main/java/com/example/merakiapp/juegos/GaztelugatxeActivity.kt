@@ -16,7 +16,7 @@ import com.example.merakiapp.databinding.ActivityGastelugatxeBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class GaztelugatxeActivity() : AppCompatActivity(), Dialogos {
+class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
     lateinit var binding: ActivityGastelugatxeBinding
 
     // AUDIO Y FONDO
@@ -84,7 +84,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos {
             stopService(intent)
 
             audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent)
         }
 
