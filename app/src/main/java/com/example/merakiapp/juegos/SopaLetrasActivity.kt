@@ -103,8 +103,8 @@ class SopaLetrasActivity : AppCompatActivity() {
 
         // Finalizar juego
         binding.btnFinalizarSopaLetras.setOnClickListener {
-            //startActivity(Intent(this, SopaLetrasActivity::class.java))
             startActivity(Intent(this, MenuNav::class.java))
+            finish()
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 
