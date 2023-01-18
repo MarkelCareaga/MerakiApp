@@ -13,7 +13,7 @@ import com.example.merakiapp.Dialogos.Companion.mensajeVideoFeriaPescado
 import com.example.merakiapp.Dialogos.Companion.tituloVideo
 import com.example.merakiapp.databinding.ActivityVideoFeriaPescadoBinding
 
-class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos {
+class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityVideoFeriaPescadoBinding
     private var fondoSeleccionado = com.example.merakiapp.R.drawable.fondoferiapescado
 
@@ -50,6 +50,16 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos {
         // CONTROL DE BOTONES
         binding.btnVolverDesdeVideo.setOnClickListener {
             finish()
+
+            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+
+            var pantallaSeleccionada = "feria_del_pescado"
+            var audioSeleccionado = com.example.merakiapp.R.raw.audioferiadelpescado
+            fondoSeleccionado = com.example.merakiapp.R.drawable.fondoferiapescado
+
+            var intent_feria_pescado = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            startActivity(intent_feria_pescado)
         }
     }
 
