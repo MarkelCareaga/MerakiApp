@@ -63,6 +63,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/botonesMedia"
+        app:layout_constraintEnd_toStartOf="@+id/btnStop"
         app:layout_constraintStart_toEndOf="@+id/btnRestart"
         app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
         app:srcCompat="@drawable/ic_baseline_audio_play"
@@ -74,7 +75,7 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/botonesMedia"
-        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
         app:srcCompat="@drawable/ic_baseline_audio_stop"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
