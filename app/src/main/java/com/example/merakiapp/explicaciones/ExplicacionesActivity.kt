@@ -3,6 +3,7 @@ package com.example.merakiapp.explicaciones
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -24,6 +25,9 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
     private var fondoSeleccionado = 0       // Fondo a mostrar
     private var textoSeleccionado = ""      // Texto a mostrar
     private var pantallaSeleccionada = ""   // Pantalla enlazada al boton Siguiente
+
+
+    //var intent = Intent(this, ServicioAudios::class.java)
 
     companion object {
         private val intro = "introduccion"
@@ -128,6 +132,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         }
 
         botonVideo?.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             startActivity(Intent(this, VideoFeriaPescadoActivity::class.java))
         }
@@ -331,5 +336,18 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
                 }
             }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        stopService(intent)
+        val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+
     }
 }
