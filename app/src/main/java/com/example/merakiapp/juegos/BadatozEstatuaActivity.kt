@@ -42,12 +42,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
 
 
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverExplicacionBadatoz.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverExplicacionBadatoz.visibility = View.GONE
-        }
-
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.

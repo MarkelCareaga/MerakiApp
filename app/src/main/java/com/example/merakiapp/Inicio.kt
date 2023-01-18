@@ -8,6 +8,7 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -37,6 +38,9 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
         // se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
+        // TEST
+        binding.btnDemo.visibility = View.INVISIBLE
+
         // se establece un listener al boton btnDemo
         binding.btnDemo.setOnClickListener {
             // se guarda el valor false en el sharedPreferences "libre"
@@ -47,6 +51,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
             // se inicia la actividad DemoActivity
             startActivity(Intent(this, DemoActivity::class.java))
         }
+
         // se establece un listener al boton btnExplorador
         binding.btnExplorador.setOnClickListener {
 

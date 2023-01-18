@@ -98,9 +98,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         binding.btnFinalizarSopaLetras.visibility = Button.GONE
 
         // Volver a la Activity anterior
-        binding.btnVolverExplicacionSopaLetras.setOnClickListener {
+        binding.btnVolverSopaLetras.setOnClickListener {
             finish()
             stopService(intent)
+            startActivity(Intent(this, PuertaSanJuanActivity::class.java))
         }
 
         // Finalizar juego
@@ -125,7 +126,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 if (ContAudio == 7){
 
                     // Elementos a ocultar
-                    binding.btnVolverExplicacionSopaLetras.visibility = Button.GONE
+                    binding.btnVolverSopaLetras.visibility = Button.GONE
 
                     // Elementos a mostrar
                     binding.gifAplausosSopaLetras.visibility = ImageView.VISIBLE

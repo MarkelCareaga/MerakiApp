@@ -66,7 +66,7 @@
         app:icon="@drawable/img_modo_demo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
+        app:layout_constraintTop_toBottomOf="@+id/btnAyudaInicio" />
 
     <Button
         android:id="@+id/btnAyudaInicio"
@@ -82,5 +82,5 @@
         app:icon="@drawable/logo_ayuda"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnDemo" />
+        app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
 </androidx.constraintlayout.widget.ConstraintLayout>

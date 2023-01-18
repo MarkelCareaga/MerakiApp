@@ -31,6 +31,11 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
     private lateinit var binding: FragmentMapaBinding
     private lateinit var mapa:GoogleMap
+
+    private var pantallaSeleccionada = ""
+    private var audioSeleccionado = 0
+    private var fondoSeleccionado = 0
+
     var juego1 : Boolean = false
     var juego2 : Boolean = false
     var juego3 : Boolean = false
@@ -72,6 +77,22 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
              * install it inside the SupportMapFragment. This method will only be triggered once the
              * user has installed Google Play services and returned to the app.
              */
+
+            /**
+             *
+             *
+             *
+             * MODO GUIADO
+             *
+             *
+             *
+             *
+             */
+
+
+
+
+
             // Verifica si la preferencia "libre" es igual a false
             juego1 = requireActivity().getSharedPreferences("juego1", 0).getBoolean("1", false)
             juego2 = requireActivity().getSharedPreferences("juego2", 0).getBoolean("2", false)
@@ -232,6 +253,18 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
 
         }else {
+
+
+            /**
+             *
+             *
+             *
+             * MODO LIBRE
+             *
+             *
+             *
+             *
+             */
             mapa = googleMap
 
             val location = LocationServices.getFusedLocationProviderClient(this.requireContext())
@@ -288,32 +321,60 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
             mapa.setOnMarkerClickListener{ marker ->
                 val juego = marker.position
                 if(juego1 == marker.position){
-                    val intent = Intent(this.requireActivity(), PuertaSanJuanActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "puerta_de_san_juan"
+                    audioSeleccionado = R.raw.audiopuertadesanjuan
+                    fondoSeleccionado = R.drawable.fondopuertasanjuan
+
+                    var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_puerta_san_juan)
                 }
                 if(juego2 == marker.position){
-                    val intent = Intent(this.requireActivity(), BadatozEstatuaActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "badatoz_estatua"
+                    audioSeleccionado = R.raw.audiobadatoz
+                    fondoSeleccionado = R.drawable.fondobadatoz
+
+                    var intent_badatoz = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_badatoz)
                 }
                 if(juego3 == marker.position){
-                    val intent = Intent(this.requireActivity(), FeriaPescadoActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "feria_del_pescado"
+                    audioSeleccionado = R.raw.audioferiadelpescado
+                    fondoSeleccionado = R.drawable.fondoferiapescado
+
+                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_feria_pescado)
                 }
                 if(juego4 == marker.position){
-                    val intent = Intent(this.requireActivity(), OlatuaEstatuaActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "olatua_estatua"
+                    audioSeleccionado = R.raw.audioolatua
+                    fondoSeleccionado = R.drawable.fondoolatua
+
+                    var intent_olatua = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_olatua)
                 }
                 if(juego5 == marker.position){
-                    val intent = Intent(this.requireActivity(), XixiliActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "xixili"
+                    audioSeleccionado = R.raw.audioxixili
+                    fondoSeleccionado = R.drawable.fondoxixili
+
+                    var intent_xixili = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_xixili)
                 }
                 if(juego6 == marker.position){
-                    val intent = Intent(this.requireActivity(), IslaIzaroActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "isla_de_izaro"
+                    audioSeleccionado = R.raw.audioisladeizaro
+                    fondoSeleccionado = R.drawable.fondoizaro1
+
+                    var intent_isla_izaro = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_isla_izaro)
                 }
                 if(juego7 == marker.position){
-                    val intent = Intent(this.requireActivity(), GaztelugatxeActivity::class.java)
-                    startActivity(intent)
+                    pantallaSeleccionada = "gaztelugatxe"
+                    audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
+                    fondoSeleccionado = R.drawable.fondogaztelugatxe
+
+                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_gaztelugatxe)
                 }
                 return@setOnMarkerClickListener true
 
@@ -434,9 +495,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
         if (localitation.distanceTo(location1) <= radio.toDouble()) {
             activity?.finish()
 
-            val intent = Intent(this.requireContext(), PuertaSanJuanActivity::class.java)
+            pantallaSeleccionada = "puerta_de_san_juan"
+            audioSeleccionado = R.raw.audiopuertadesanjuan
+            fondoSeleccionado = R.drawable.fondopuertasanjuan
 
-            startActivity(intent)
+            var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            startActivity(intent_puerta_san_juan)
 
         }else{
             val location2 = Location("Juego")
@@ -446,9 +510,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
             if (localitation.distanceTo(location2) <= radio.toDouble()) {
                 activity?.finish()
 
-                val intent = Intent(this.requireContext(), BadatozEstatuaActivity::class.java)
+                pantallaSeleccionada = "badatoz_estatua"
+                audioSeleccionado = R.raw.audiobadatoz
+                fondoSeleccionado = R.drawable.fondobadatoz
 
-            startActivity(intent)
+                var intent_badatoz = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                startActivity(intent_badatoz)
 
             }else {
                 val location3 = Location("Juego")
@@ -457,9 +524,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
                 if (localitation.distanceTo(location3) <= radio.toDouble()) {
                     activity?.finish()
 
-                    val intent = Intent(this.requireContext(), FeriaPescadoActivity::class.java)
+                    pantallaSeleccionada = "feria_del_pescado"
+                    audioSeleccionado = R.raw.audioferiadelpescado
+                    fondoSeleccionado = R.drawable.fondoferiapescado
 
-                    startActivity(intent)
+                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                    startActivity(intent_feria_pescado)
 
                 } else {
                     val location4 = Location("Juego")
@@ -468,9 +538,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
                     if (localitation.distanceTo(location4) <= radio.toDouble()) {
                         activity?.finish()
 
-                        val intent = Intent(this.requireContext(), OlatuaEstatuaActivity::class.java)
+                        pantallaSeleccionada = "olatua_estatua"
+                        audioSeleccionado = R.raw.audioolatua
+                        fondoSeleccionado = R.drawable.fondoolatua
 
-                        startActivity(intent)
+                        var intent_olatua = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                        startActivity(intent_olatua)
 
                     } else {
                         val location5 = Location("Juego")
@@ -480,8 +553,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
                         if (localitation.distanceTo(location5) <= radio.toDouble()) {
                             activity?.finish()
 
-                            val intent = Intent(this.requireContext(), XixiliActivity::class.java)
-                            startActivity(intent)
+                            pantallaSeleccionada = "xixili"
+                            audioSeleccionado = R.raw.audioxixili
+                            fondoSeleccionado = R.drawable.fondoxixili
+
+                            var intent_xixili = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                            startActivity(intent_xixili)
 
                         } else {
                             val location6 = Location("Juego")
@@ -491,9 +568,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
                             if (localitation.distanceTo(location6) <= radio.toDouble()) {
                                 activity?.finish()
 
-                                val intent = Intent(this.requireContext(), IslaIzaroActivity::class.java)
+                                pantallaSeleccionada = "isla_de_izaro"
+                                audioSeleccionado = R.raw.audioisladeizaro
+                                fondoSeleccionado = R.drawable.fondoizaro1
 
-                                startActivity(intent)
+                                var intent_isla_izaro = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                                startActivity(intent_isla_izaro)
 
                             } else {
                                 val location7 = Location("Juego")
@@ -503,8 +583,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
                                 if (localitation.distanceTo(location7) <= radio.toDouble()) {
                                     activity?.finish()
 
-                                    val intent = Intent(this.requireContext(), GaztelugatxeActivity::class.java)
-                                    startActivity(intent)
+                                    pantallaSeleccionada = "gaztelugatxe"
+                                    audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
+                                    fondoSeleccionado = R.drawable.fondogaztelugatxe
+
+                                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+                                    startActivity(intent_gaztelugatxe)
 
                                 }else{
                                     Toast.makeText(this.requireContext(),getString(R.string.distancia), Toast.LENGTH_LONG).show()

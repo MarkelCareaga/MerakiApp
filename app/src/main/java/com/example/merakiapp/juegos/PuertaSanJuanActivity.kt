@@ -38,22 +38,6 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityPuertaSanJuanBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverPuertaSanJuan.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverPuertaSanJuan.visibility = View.GONE
-        }
-
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
-        binding.btnAyudaPuertaSanJuan.setOnClickListener {
-            val mensaje = mensajePuertaSanJuan
-            mostrar_dialog(this, tituloJuegos, mensaje)
-        }
-        binding.btnInfoPantallaPuertaSanJuan.setOnClickListener {
-            mostrar_info_pantalla(this, false)
-        }
-        // -------------------------------------------------------------------------
 
         // -------------------------------- DIALOGS --------------------------------
         // BOTONES AYUDA Y ROTACIÓN

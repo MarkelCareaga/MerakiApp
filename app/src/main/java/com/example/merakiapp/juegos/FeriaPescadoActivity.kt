@@ -87,11 +87,6 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            // binding.btnVolverExplicacionBadatoz.visibility = View.VISIBLE
-        }else{
-            //binding.btnVolverExplicacionBadatoz.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.

@@ -100,12 +100,6 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
         btnVolver = binding.btnVolverExplicacionOlatua
 
-        if (this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false) {
-            btnVolver.visibility = View.VISIBLE
-        } else {
-            btnVolver.visibility = View.GONE
-        }
-
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.

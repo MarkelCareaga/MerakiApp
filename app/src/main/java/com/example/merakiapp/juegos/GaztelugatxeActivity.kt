@@ -41,11 +41,6 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityGastelugatxeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverGaztelugatxe.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // BOTONES AYUDA Y ROTACIÓN

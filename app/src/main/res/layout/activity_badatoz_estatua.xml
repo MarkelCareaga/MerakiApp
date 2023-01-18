@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fondoSplash"
     tools:context=".juegos.BadatozEstatuaActivity">
 
 
@@ -318,10 +319,10 @@
         android:id="@+id/btnInfoPantallaBadatoz"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="4dp"
         android:layout_marginBottom="5dp"
+        android:background="@drawable/estilo_botones_superiores"
         app:layout_constraintBottom_toTopOf="@+id/relative"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -332,10 +333,10 @@
         android:id="@+id/btnAyudaBadatoz"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="7dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="4dp"
+        android:background="@drawable/estilo_botones_superiores"
         app:layout_constraintBottom_toTopOf="@+id/relative"
         app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaBadatoz"
         app:layout_constraintTop_toTopOf="parent"

@@ -44,11 +44,6 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityXixiliBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverExplicacionXixili.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverExplicacionXixili.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
