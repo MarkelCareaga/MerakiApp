@@ -16,7 +16,6 @@
         android:layout_width="wrap_content"
         android:layout_height="222dp"
         android:layout_marginTop="368dp"
-        android:fontFamily="@font/alatsi"
         android:background="@drawable/tarjetas"
         android:maxLines="2000"
         android:paddingLeft="5dp"
@@ -49,7 +48,7 @@
 
     <ImageButton
         android:id="@+id/btnRestart"
-        android:layout_width="124dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/botonesMedia"
@@ -60,13 +59,24 @@
 
     <ImageButton
         android:id="@+id/btnPlayPause"
-        android:layout_width="124dp"
+        android:layout_width="110dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:backgroundTint="@color/botonesMedia"
         app:layout_constraintStart_toEndOf="@+id/btnRestart"
         app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
         app:srcCompat="@drawable/ic_baseline_audio_play"
+        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+    <ImageButton
+        android:id="@+id/btnStop"
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:backgroundTint="@color/botonesMedia"
+        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
+        app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
+        app:srcCompat="@drawable/ic_baseline_audio_stop"
         tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageView
@@ -95,7 +105,7 @@
         android:id="@+id/btnVolver"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginStart="80dp"
+        android:layout_marginStart="60dp"
         android:layout_marginTop="40dp"
         android:layout_marginBottom="44dp"
         android:background="@drawable/estilo_botones_volver2"
@@ -104,17 +114,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txtExplicacionDemo"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/btnStop"
-        android:layout_width="124dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:backgroundTint="@color/botonesMedia"
-        app:layout_constraintStart_toEndOf="@+id/btnPlayPause"
-        app:layout_constraintTop_toBottomOf="@+id/fondoDemo"
-        app:srcCompat="@drawable/ic_baseline_audio_stop"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btnSiguiente"
@@ -179,7 +178,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:fontFamily="@font/alatsi"
         android:text="@string/titulo_explicacion"
         android:textAlignment="center"
         android:textSize="34sp"
