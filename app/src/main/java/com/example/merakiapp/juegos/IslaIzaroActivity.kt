@@ -74,13 +74,33 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.botonMoverBarco?.setOnClickListener(){
             socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
         }
-        binding.btnSprint?.setOnClickListener(){
-            socket.emit("incrementation2", name,binding.barraUsuario?.progress,imagen)
-        }
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-           // binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
-        }else{
+
+
+        val botonX2 = binding.btnSprint
+        val animationView = binding.animationView
+
+        binding.btnSprint?.setOnClickListener() {
+            socket.emit("incrementation2", name, binding.barraUsuario?.progress, imagen)
+
+
             //binding.btnVolverGaztelugatxe.visibility = View.GONE
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso + 2)
+            }
+
+
+            botonX2!!.isEnabled = false
+            animationView!!.speed = 0.3f
+            animationView.playAnimation()
+            Thread {
+                Thread.sleep(5000)
+                runOnUiThread {
+                    botonX2.isEnabled = true
+                    animationView.cancelAnimation()
+                }
+            }.start()
         }
         // TEMPORAL
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()

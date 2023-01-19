@@ -10,7 +10,7 @@ interface Explicaciones {
         // TEXTO
         var textoSeleccionado = ""
         when(pantallaSeleccionada) {
-            "introduccion" -> {
+            Recursos.pantalla_Introduccion -> {
                 textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
                         "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
                         "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
@@ -18,7 +18,7 @@ interface Explicaciones {
                         "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
                         "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
             }
-            "puerta_de_san_juan" -> {
+            Recursos.pantalla_PuertaSanJuan -> {
                 textoSeleccionado = "En el siglo XIV, Bermeo estaba rodeado de una gran muralla. Esa muralla " +
                         "tenía 7 puertas en forma de arco para poder entrar al pueblo. Cada una de esas puertas " +
                         "daban la opción de entrar al pueblo por las calles más famosas.\n\n" +
@@ -33,7 +33,7 @@ interface Explicaciones {
                         "- Errenteriaportale\n\n" +
                         "- Sanjuanportale\n\n"
             }
-            "badatoz_estatua" -> {
+            Recursos.pantalla_Badatoz -> {
                 textoSeleccionado = "Bermeo desde siempre ha sido un pueblo pesquero, por ello los bermeanos " +
                         "son grandes navegadores y controlan el mar mejor que nadie.\n\n" +
                         "Pero hace mucho tiempo, en un día de verano unos pescadores bermeanos se encontraron " +
@@ -47,7 +47,7 @@ interface Explicaciones {
                         "Esta escultura simboliza el horror y tristeza de los bermeanos al enterarse de la noticia y " +
                         "fue creada por Enrique Zubia Elorduy.\n\n"
             }
-            "feria_del_pescado" -> {
+            Recursos.pantalla_FeriaPescado -> {
                 textoSeleccionado = "La Arrain Azoka es la feria del pescado de Bermeo. Es una de las ferias y eventos " +
                         "festivos más importante de Euskal Herria, y muestra la relación que los habitantes de Bermeo han " +
                         "tenido con la mar desde hace siglos.\n\n" +
@@ -59,7 +59,7 @@ interface Explicaciones {
                         "pueblo más famoso. Además, durante la feria, se realizan muchas actividades para los visitantes y " +
                         "la gente del pueblo, como por ejemplo un concurso de pintxos.\n\n"
             }
-            "olatua_estatua" -> {
+            Recursos.pantalla_Olatua -> {
                 textoSeleccionado = "Esta escultura fue creada por el artista Néstor Basterretxea y está situada en el " +
                         "puerto de Bermeo, pueblo en el que nació. La escultura fue inaugurada en abril de 2006, está " +
                         "construida en un material llamado acero cortén, y cuenta con una altura de 8 metros. Según el " +
@@ -69,7 +69,7 @@ interface Explicaciones {
                         "derecha, el escultor escribió unas palabras en euskera, las cuales, traducidas al castellano, " +
                         "significan esto: “Bermeo, mi querido pueblo, eras la impresionante fuerza de una gigantesca ola.”\n\n"
             }
-            "xixili" -> {
+            Recursos.pantalla_Xixili -> {
                 textoSeleccionado = "Érase una vez un pescador que mientras trabajaba, encontró a una lamia " +
                         "que estaba herida.\n\n" +
                         "El pescador quiso ayudarla, y pensó que lo mejor era llevarla a su pueblo, Bermeo. " +
@@ -81,7 +81,7 @@ interface Explicaciones {
                         "Finalmente, después de pasar tanto tiempo juntos en el mar, el pescador y la lamia se " +
                         "enamoraron y la lamia se convirtió en una mujer."
             }
-            "isla_de_izaro" -> {
+            Recursos.pantalla_Izaro -> {
                 textoSeleccionado = "Hoy en día, la isla de Izaro pertenece a Bermeo, aunque esto no siempre fue así. " +
                         "La historia de cómo pasó a ser territorio de Bermeo es la más famosa de toda la costa de Urdaibai.\n\n" +
                         "Hubo una época en la que dos pueblos querían quedarse con la isla: Mundaka y Bermeo. Para saber " +
@@ -92,7 +92,7 @@ interface Explicaciones {
                         "cuente esta anécdota la historia puede variar, ya que existen teorías de que los bermeanos hicieron " +
                         "trampas emborrachando a los mundakeses o haciendo cantar al gallo antes de tiempo.\n\n"
             }
-            "gaztelugatxe" -> {
+            Recursos.pantalla_Gaztelugatxe -> {
                 textoSeleccionado = "San Juan de Gaztelugatxe es una isla con forma de cono que está situada " +
                         "entre Bermeo y Bakio. En lo más alto de la isla hay una ermita, una iglesia pequeña. " +
                         "La ermita está dedicada a San Juan Bautista. Según cuenta la leyenda de la isla, San " +
