@@ -39,18 +39,18 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
         // TEST
-        binding.btnDemo.visibility = View.INVISIBLE
 
         // se establece un listener al boton btnDemo
-        binding.btnDemo.setOnClickListener {
-            // se guarda el valor false en el sharedPreferences "libre"
-            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
-            // se guarda el valor 0 en el sharedPreferences "PlayPause"
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
-            // se inicia la actividad DemoActivity
-            startActivity(Intent(this, DemoActivity::class.java))
-        }
+//        binding.btnDemo!!.setOnClickListener {
+//            // se guarda el valor false en el sharedPreferences "libre"
+//            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+//            // se guarda el valor 0 en el sharedPreferences "PlayPause"
+//            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+//
+//            // se inicia la actividad DemoActivity
+//            startActivity(Intent(this, DemoActivity::class.java))
+//        }
 
         // se establece un listener al boton btnExplorador
         binding.btnExplorador.setOnClickListener {

@@ -52,12 +52,31 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 binding.barraUsuario?.setProgress(progreso+1)
             }
         }
+
+
+        val botonX2 = binding.btnSprint
+        val animationView = binding.animationView
+
         binding.btnSprint?.setOnClickListener(){
+
             val progreso = binding.barraUsuario?.getProgress()
 
             if (progreso != null) {
                 binding.barraUsuario?.setProgress(progreso+2)
             }
+
+
+            botonX2!!.isEnabled = false
+            animationView!!.speed = 0.3f
+            animationView.playAnimation()
+            Thread {
+                Thread.sleep(5000)
+                runOnUiThread {
+                    botonX2.isEnabled = true
+                    animationView.cancelAnimation()
+                }
+            }.start()
+
         }
         // TEMPORAL
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
