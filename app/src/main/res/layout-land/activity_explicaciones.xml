@@ -205,19 +205,18 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/txtTituloExplicacionLand"
         android:layout_width="365dp"
         android:layout_height="48dp"
-        android:layout_marginBottom="300dp"
         android:fontFamily="@font/alatsi"
         android:paddingBottom="-20dp"
         android:text="@string/titulo_explicacion"
         android:textAlignment="center"
         android:textSize="34sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

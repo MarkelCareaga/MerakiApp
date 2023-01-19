@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/txtTest2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pregunta_test_3"
@@ -79,7 +79,7 @@
             app:layout_constraintTop_toBottomOf="@+id/gp1">
 
             <TextView
-                android:id="@+id/textView6"
+                android:id="@+id/txtTest3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pregunta_test_2"
@@ -127,7 +127,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/txtTest1"
                 android:layout_width="270dp"
                 android:layout_height="wrap_content"
                 android:text="@string/pregunta_test_1"
@@ -174,7 +174,7 @@
             app:layout_constraintTop_toBottomOf="@+id/gp3">
 
             <TextView
-                android:id="@+id/textView5"
+                android:id="@+id/txtTest4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/pregunta_test_4"

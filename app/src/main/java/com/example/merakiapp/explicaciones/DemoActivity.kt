@@ -4,15 +4,12 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import com.example.merakiapp.FinalActivity
-import com.example.merakiapp.Inicio
-import com.example.merakiapp.R
-import com.example.merakiapp.abrirExplicacionTest
+import com.example.merakiapp.*
 import com.example.merakiapp.databinding.ActivityDemoBinding
 
 // ACTIVITY DE DEMOSTRACIÓN: LISTA DE ACCESOS DIRECTOS A EXPLICACIONES
 
-class DemoActivity : AppCompatActivity() {
+class DemoActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityDemoBinding
 
     private var audioSeleccionado = 0                   // Audio a reproducir en la siguiente Activity
@@ -30,12 +27,13 @@ class DemoActivity : AppCompatActivity() {
 
         // CONTROL DE BOTONES
         // Introducción
+        /*
         binding.btnDemoIntroduccion.setOnClickListener {
             pantallaSeleccionada = "introduccion"
             audioSeleccionado = R.raw.audiointro
             fondoSeleccionado = R.drawable.fondoprincipiofinal
 
-            var intent_demo = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_demo = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_demo)
         }
 
@@ -45,7 +43,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audiopuertadesanjuan
             fondoSeleccionado = R.drawable.fondopuertasanjuan
 
-            var intent_puerta_san_juan = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_puerta_san_juan = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_puerta_san_juan)
         }
 
@@ -55,7 +53,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audiobadatoz
             fondoSeleccionado = R.drawable.fondobadatoz
 
-            var intent_badatoz = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_badatoz = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_badatoz)
         }
 
@@ -65,7 +63,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audioferiadelpescado
             fondoSeleccionado = R.drawable.fondoferiapescado
 
-            var intent_feria_pescado = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_feria_pescado = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_feria_pescado)
         }
 
@@ -75,7 +73,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audioolatua
             fondoSeleccionado = R.drawable.fondoolatua
 
-            var intent_olatua = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_olatua = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_olatua)
         }
 
@@ -85,7 +83,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audioxixili
             fondoSeleccionado = R.drawable.fondoxixili
 
-            var intent_xixili = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_xixili = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_xixili)
         }
 
@@ -95,7 +93,7 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audioisladeizaro
             fondoSeleccionado = R.drawable.fondoizaro1
 
-            var intent_isla_izaro = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_isla_izaro = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_isla_izaro)
         }
 
@@ -105,9 +103,11 @@ class DemoActivity : AppCompatActivity() {
             audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
             fondoSeleccionado = R.drawable.fondogaztelugatxe
 
-            var intent_gaztelugatxe = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_gaztelugatxe = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_gaztelugatxe)
         }
+
+         */
 
         // Final
         binding.btnAbrirFinal.setOnClickListener {

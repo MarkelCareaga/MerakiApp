@@ -56,7 +56,7 @@ class AyudaFragment : Fragment() {
                     " acceder a cada juego solo si estás posicionado en su correspondiente ubicación, " +
                     "la cual se indica en el mapa."),
             Pregunta("¿Qué es el 'Modo Libre'?","En el 'Modo Libre', puedes acceder " +
-                    "a todos los juego desde el principio, sin necesidad de estar posicionado en cada " +
+                    "a todos los juegos desde el principio, sin necesidad de estar posicionado en cada " +
                     "una de sus correspondientes ubicaciones.")
         )
     }

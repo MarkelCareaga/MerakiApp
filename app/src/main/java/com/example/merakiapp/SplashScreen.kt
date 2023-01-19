@@ -19,7 +19,8 @@ import java.util.TimerTask
 class SplashScreen : AppCompatActivity() {
 
     // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
-    private val SplashTime:Long = 2000 // 2 segundos
+    private val duracion_splash: Int = 2
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -31,7 +32,6 @@ class SplashScreen : AppCompatActivity() {
         // Obtiene una referencia al ProgressBar de la vista
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
-
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
         progressAnimator.duration = 2000
@@ -41,7 +41,7 @@ class SplashScreen : AppCompatActivity() {
         var progreso= findViewById<TextView>(R.id.txtPorcentaje)
         Thread(Runnable {
             for (i in 0 .. 100) {
-                Thread.sleep(20)
+                Thread.sleep(duracion_splash.tiempo_hilo())
                 runOnUiThread {progreso.text="$i%" }
             }
         }).start()
@@ -55,6 +55,16 @@ class SplashScreen : AppCompatActivity() {
                 startActivity(intent)
                 finish()
             }
-        },SplashTime)
+        },duracion_splash.milisegundos())
     }
+
+    // Funciones de extensión
+    fun Int.milisegundos(): Long {
+        return (this * 1000).toLong()
+    }
+
+    fun Int.tiempo_hilo(): Long {
+        return (this * 10).toLong()
+    }
+
 }

@@ -5,22 +5,17 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeGaztelugatxe
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityGastelugatxeBinding
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class GaztelugatxeActivity() : AppCompatActivity() {
+class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
     lateinit var binding: ActivityGastelugatxeBinding
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondogaztelugatxe        // Fondo a mostrar
-    private var pantallaSeleccionada = "gaztelugatxe"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     var correcto1: Boolean = false      // Resultado de la primera pregunta
@@ -39,11 +34,6 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityGastelugatxeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverGaztelugatxe.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // BOTONES AYUDA Y ROTACIÓN
@@ -56,9 +46,15 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         }
         // -------------------------------------------------------------------------
 
+        // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
+        // Reproducir audio
+        estadoAudio = "play"
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Gaztelugatxe_Preguntas)
+        // -------------------------------------------------------------------------
+
         // FONDO
         var activityGaztelugatxe = binding.activityGaztelugatxe
-        activityGaztelugatxe.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityGaztelugatxe.background = resources.getDrawable(Recursos.fondo_Gaztelugatxe, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -81,13 +77,14 @@ class GaztelugatxeActivity() : AppCompatActivity() {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
+                Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
             startActivity(intent)
         }
 
         // Finalizar juego
         binding.btnFinalizarGaztelugatxe.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar7", 0).edit().putBoolean("validar7", true).apply()
@@ -102,10 +99,18 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         if (binding.gp1.checkedRadioButtonId == binding.rb1.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp1.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest1.setTextColor(Color.BLACK)
+            binding.rb1.setTextColor(Color.BLACK)
+            binding.rb2.setTextColor(Color.BLACK)
+            binding.rb3.setTextColor(Color.BLACK)
             correcto1 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp1.setBackgroundColor(Color.RED)
+            binding.txtTest1.setTextColor(Color.WHITE)
+            binding.rb1.setTextColor(Color.WHITE)
+            binding.rb2.setTextColor(Color.WHITE)
+            binding.rb3.setTextColor(Color.WHITE)
             correcto1 = false
         }
 
@@ -113,10 +118,18 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         if (binding.gp2.checkedRadioButtonId == binding.rb6.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp2.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest1.setTextColor(Color.BLACK)
+            binding.rb4.setTextColor(Color.BLACK)
+            binding.rb5.setTextColor(Color.BLACK)
+            binding.rb6.setTextColor(Color.BLACK)
             correcto2 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp2.setBackgroundColor(Color.RED)
+            binding.txtTest2.setTextColor(Color.WHITE)
+            binding.rb4.setTextColor(Color.WHITE)
+            binding.rb5.setTextColor(Color.WHITE)
+            binding.rb6.setTextColor(Color.WHITE)
             correcto2 = false
         }
 
@@ -124,10 +137,18 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         if (binding.gp3.checkedRadioButtonId == binding.rb8.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp3.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest3.setTextColor(Color.BLACK)
+            binding.rb7.setTextColor(Color.BLACK)
+            binding.rb8.setTextColor(Color.BLACK)
+            binding.rb9.setTextColor(Color.BLACK)
             correcto3 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp3.setBackgroundColor(Color.RED)
+            binding.txtTest3.setTextColor(Color.WHITE)
+            binding.rb7.setTextColor(Color.WHITE)
+            binding.rb8.setTextColor(Color.WHITE)
+            binding.rb9.setTextColor(Color.WHITE)
             correcto3 = false
         }
 
@@ -135,10 +156,18 @@ class GaztelugatxeActivity() : AppCompatActivity() {
         if (binding.gp4.checkedRadioButtonId == binding.rb11.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp4.setBackgroundColor(Color.TRANSPARENT)
+            binding.txtTest4.setTextColor(Color.BLACK)
+            binding.rb10.setTextColor(Color.BLACK)
+            binding.rb11.setTextColor(Color.BLACK)
+            binding.rb12.setTextColor(Color.BLACK)
             correcto4 = true
         } else {
             // Si la respuesta es incorrecta, el fondo se volverá rojo
             binding.gp4.setBackgroundColor(Color.RED)
+            binding.txtTest4.setTextColor(Color.WHITE)
+            binding.rb10.setTextColor(Color.WHITE)
+            binding.rb11.setTextColor(Color.WHITE)
+            binding.rb12.setTextColor(Color.WHITE)
             correcto4 = false
         }
 
@@ -157,7 +186,7 @@ class GaztelugatxeActivity() : AppCompatActivity() {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
         }
     }
 

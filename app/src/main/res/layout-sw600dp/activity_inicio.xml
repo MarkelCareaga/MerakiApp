@@ -21,9 +21,10 @@
         android:id="@+id/btnLibre"
         android:layout_width="526dp"
         android:layout_height="100dp"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="48dp"
         android:background="@drawable/bordesredondos"
         android:backgroundTint="#95c799"
+        android:elevation="00dp"
         android:text="@string/libre"
         android:textAlignment="center"
         android:textColor="@color/white"
@@ -45,15 +46,36 @@
         android:layout_marginTop="48dp"
         android:background="@drawable/bordesredondos"
         android:backgroundTint="@android:color/holo_blue_light"
+        android:elevation="00dp"
         android:text="@string/explorador"
         android:textAlignment="center"
         android:textSize="24sp"
         app:icon="@drawable/mapa"
         app:iconSize="102dp"
+        android:textColor="@color/white"
         app:iconTint="@null"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.474"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgLogoMeraki" />
+
+
+
+    <Button
+        android:id="@+id/btnAyudaInicio"
+        android:layout_width="526dp"
+        android:layout_height="100dp"
+        android:layout_marginTop="48dp"
+        android:background="@drawable/bordesredondos"
+        android:backgroundTint="#EA6C45"
+        android:text="@string/ayuda"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        app:icon="@drawable/logo_ayuda"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.474"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnLibre" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

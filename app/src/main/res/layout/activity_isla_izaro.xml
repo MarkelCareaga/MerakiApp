@@ -4,6 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:scrollbarSize="@dimen/activity_horizontal_margin"
+    android:scrollbarThumbHorizontal="@drawable/ic_baseline_directions_boat_24"
+    android:scrollbarThumbVertical="@drawable/ic_baseline_directions_boat_24"
     tools:context=".juegos.IslaIzaroActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/pantalladecarga"
+            android:scrollbarSize="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
@@ -96,14 +100,108 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout3"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/juegoisla"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".juegos.IslaIzaroActivity" />
+        tools:context=".juegos.IslaIzaroActivity">
+
+        <SeekBar
+            android:id="@+id/barraUsuario"
+            android:layout_width="143dp"
+            android:layout_height="742dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginBottom="10dp"
+            android:rotation="270"
+            android:scaleX="4"
+            android:scaleY="4"
+            android:scrollbarSize="30sp"
+            android:splitTrack="false"
+            android:thumb="@drawable/ic_baseline_directions_boat_24"
+            app:layout_constraintBottom_toTopOf="@+id/botonMoverBarco"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="656dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/meta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/txtUser"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="60dp"
+            android:layout_marginBottom="90dp"
+            android:text="TextView"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <SeekBar
+            android:id="@+id/barraOponente"
+            android:layout_width="143dp"
+            android:layout_height="742dp"
+            android:layout_marginEnd="30dp"
+            android:layout_marginBottom="10dp"
+            android:rotation="270"
+            android:scaleX="4"
+            android:scaleY="4"
+            android:scrollbarSize="30sp"
+            android:splitTrack="false"
+            android:thumb="@drawable/ic_baseline_directions_boat_24"
+            app:layout_constraintBottom_toTopOf="@+id/botonMoverBarco"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/txtUserOponent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="90dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <Button
+            android:id="@+id/botonMoverBarco"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bordesredondos"
+            android:text="Navegar Hacia delante"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btnSprint"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bordesredondos"
+            android:text="+2"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

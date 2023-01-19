@@ -8,18 +8,13 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeFeriaPescado
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FeriaPescadoActivity : AppCompatActivity() {
+class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityFeriaPescadoBinding
-
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondoferiapescado        // Fondo a mostrar
-    private var pantallaSeleccionada = "feria_del_pescado"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     // BOTONES A PULSAR DENTRO DEL JUEGO
@@ -85,11 +80,6 @@ class FeriaPescadoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            // binding.btnVolverExplicacionBadatoz.visibility = View.VISIBLE
-        }else{
-            //binding.btnVolverExplicacionBadatoz.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
@@ -112,12 +102,12 @@ class FeriaPescadoActivity : AppCompatActivity() {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.unelasimagenes)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_FeriaPescado)
         // -------------------------------------------------------------------------
 
         // FONDO
         var activityFeriaPescado = binding.activityFeriaPescado
-        activityFeriaPescado.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
 
         // AUDIO
         // Conexión con el Servicio de Audios
@@ -170,13 +160,14 @@ class FeriaPescadoActivity : AppCompatActivity() {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audioferiadelpescado
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
+                Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
             startActivity(intent)
         }
 
         // Finalizar juego
         btnFinalizar.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()
@@ -367,7 +358,7 @@ class FeriaPescadoActivity : AppCompatActivity() {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
         } else {
             // Resetear el juego

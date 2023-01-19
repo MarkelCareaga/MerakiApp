@@ -54,4 +54,5 @@
     <string name="seleccionUsuario">Agregue un usuario para poder jugar haciendo click en el botón de la esquina</string>
     <string name="imagen">Inserte una imagen haciendo click en la imagen de abajo. Se abrirá la galería.</string>
     <string name="nombreUsuarioError">Inserte el nombre de usuario</string>
+    <string name="ayuda">Ayuda</string>
 </resources>

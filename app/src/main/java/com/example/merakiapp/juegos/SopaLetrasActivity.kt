@@ -15,12 +15,14 @@ import android.widget.TextView
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeSopaLetras
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
 import com.example.merakiapp.databinding.ActivitySopaLetrasBinding
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class SopaLetrasActivity : AppCompatActivity() {
+class SopaLetrasActivity : AppCompatActivity(), Dialogos {
     private lateinit var binding: ActivitySopaLetrasBinding
 
     //booleanos correctos
@@ -46,10 +48,6 @@ class SopaLetrasActivity : AppCompatActivity() {
 
     //Contador Audio
     var ContAudio = 0
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
     var estadoAudio = ""
     private var respuesta = 0
     
@@ -79,12 +77,12 @@ class SopaLetrasActivity : AppCompatActivity() {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.buscalos7)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_SopaLetras)
         // -------------------------------------------------------------------------
 
         // FONDO
         var activityPuertaSanJuan = binding.activitySopaLetras
-        activityPuertaSanJuan.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -96,13 +94,15 @@ class SopaLetrasActivity : AppCompatActivity() {
         binding.btnFinalizarSopaLetras.visibility = Button.GONE
 
         // Volver a la Activity anterior
-        binding.btnVolverExplicacionSopaLetras.setOnClickListener {
+        binding.btnVolverSopaLetras.setOnClickListener {
             finish()
             stopService(intent)
+            startActivity(Intent(this, PuertaSanJuanActivity::class.java))
         }
 
         // Finalizar juego
         binding.btnFinalizarSopaLetras.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
@@ -123,7 +123,7 @@ class SopaLetrasActivity : AppCompatActivity() {
                 if (ContAudio == 7){
 
                     // Elementos a ocultar
-                    binding.btnVolverExplicacionSopaLetras.visibility = Button.GONE
+                    binding.btnVolverSopaLetras.visibility = Button.GONE
 
                     // Elementos a mostrar
                     binding.gifAplausosSopaLetras.visibility = ImageView.VISIBLE
@@ -134,7 +134,7 @@ class SopaLetrasActivity : AppCompatActivity() {
 
                     // Reproducir audio
                     estadoAudio = "play"
-                    iniciarServicioAudio(estadoAudio, audioSeleccionado)
+                    iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
                 }
             }
 

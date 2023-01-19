@@ -16,17 +16,14 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeBadatoz
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class BadatozEstatuaActivity : AppCompatActivity() {
+class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
-
     private lateinit var Imagen : ImageView
-    private var audioSeleccionado = 0                           // Audio a reproducir en la siguiente Activity
-    private var fondoSeleccionado = R.drawable.fondobadatoz     // Fondo a mostrar en la siguiente Activity
-    private var pantallaSeleccionada = "badatoz_estatua"        // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,12 +36,6 @@ class BadatozEstatuaActivity : AppCompatActivity() {
         binding = ActivityBadatozEstatuaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverExplicacionBadatoz.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverExplicacionBadatoz.visibility = View.GONE
-        }
 
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
@@ -67,7 +58,7 @@ class BadatozEstatuaActivity : AppCompatActivity() {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.ahorateneisquecompletarelpuzzle)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
         // -------------------------------------------------------------------------
 
         // DRAG -> Imagenes a mover
@@ -121,14 +112,16 @@ class BadatozEstatuaActivity : AppCompatActivity() {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiobadatoz
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
+                Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
             startActivity(intent)
         }
 
         // Finalizar juego
         binding.btnFinalizarBadatoz.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
+            finish()
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
         }
     }
@@ -238,11 +231,9 @@ class BadatozEstatuaActivity : AppCompatActivity() {
 
            mostrarGif()
 
-           audioSeleccionado = R.raw.gritoninos
            estadoAudio = "play"
-           iniciarServicioAudio(estadoAudio, audioSeleccionado)
+           iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
-           //binding.textViewStatus.text = getString(R.string.puzzleCompletado)
            // Elementos a ocultar
            binding.btnComprobarBadatoz.visibility = Button.GONE
            binding.btnVolverExplicacionBadatoz.visibility = Button.GONE

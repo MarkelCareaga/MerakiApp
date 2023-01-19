@@ -5,24 +5,19 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
+import com.example.merakiapp.Dialogos.Companion.mensajeOlatua
+import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityOlatuaEstatuaBinding
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
-class OlatuaEstatuaActivity : AppCompatActivity() {
+class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityOlatuaEstatuaBinding
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondoolatua          // Fondo a mostrar
-    private var pantallaSeleccionada = "olatua_estatua"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     // BOTONES A PULSAR DENTRO DEL JUEGO
@@ -97,12 +92,6 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
         setContentView(binding.root)
         btnVolver = binding.btnVolverExplicacionOlatua
 
-        if (this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false) {
-            btnVolver.visibility = View.VISIBLE
-        } else {
-            btnVolver.visibility = View.GONE
-        }
-
         // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
@@ -123,7 +112,7 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
 
         // FONDO
         var activityOlatua = binding.activityOlatua
-        activityOlatua.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityOlatua.background = resources.getDrawable(Recursos.fondo_Olatua, theme)
 
         // AUDIO
         // Conexión con el Servicio de Audios
@@ -180,13 +169,13 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audioolatua
-            var intent = abrirExplicacionTest(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
             startActivity(intent)
         }
 
         // Finalizar juego
         btnFinalizar.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()
@@ -407,7 +396,7 @@ class OlatuaEstatuaActivity : AppCompatActivity() {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
         } else {
             // Resetear el juego

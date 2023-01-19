@@ -7,5 +7,4 @@ data class Usuario(
     var pasosUsuario: Int,
     var imagen: String?,
 
-    ) {
-}
+    )

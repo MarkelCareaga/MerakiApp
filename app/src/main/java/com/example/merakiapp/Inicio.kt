@@ -8,16 +8,19 @@ import android.content.pm.PackageManager
 import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
+import com.example.merakiapp.Dialogos.Companion.mensajePermisos
+import com.example.merakiapp.Dialogos.Companion.permisoDenegado
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
-class Inicio : AppCompatActivity(), OnMapReadyCallback {
+class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones {
     var libre :Boolean = false
     lateinit var mapa :GoogleMap
     private lateinit var binding: ActivityInicioBinding
@@ -35,7 +38,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
         // se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
+        // TEST
+
         // se establece un listener al boton btnDemo
+
 //        binding.btnDemo!!.setOnClickListener {
 //            // se guarda el valor false en el sharedPreferences "libre"
 //            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
@@ -45,6 +51,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
 //            // se inicia la actividad DemoActivity
 //            startActivity(Intent(this, DemoActivity::class.java))
 //        }
+
         // se establece un listener al boton btnExplorador
         binding.btnExplorador.setOnClickListener {
 
@@ -96,6 +103,11 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
             val intent = Intent(this, MenuNav::class.java)
             startActivity(intent)
         }
+
+        binding.btnAyudaInicio?.setOnClickListener {
+            val mensaje = Dialogos.mensajeInicio
+            mostrar_dialog(this, Dialogos.tituloExplicacion, mensaje)
+        }
     }
 
     override fun onRequestPermissionsResult(requestCode: Int,
@@ -124,19 +136,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback {
                         this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
                         this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
-                        val textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
-                                "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
-                                "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
-                                "las actividades.Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías de " +
-                                "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
-                                "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
-                        val intent = Intent(this, ExplicacionesActivity::class.java)
-                            // Añadir datos referentes a la ventana de Introducción
-                            .putExtra("pantallaSeleccionada", "introduccion")
-                            .putExtra("audioSeleccionado", R.raw.audiointro)
-                            .putExtra("fondoSeleccionado", R.drawable.fondoprincipiofinal)
-                            .putExtra("textoSeleccionado", textoSeleccionado)
-                        startActivity(intent)
+                        var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
+                            Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
+                        startActivity(intent_introduccion)
+
                     }
                 } else {
                     // Si no se reciben los permisos, muestra un mensaje de error

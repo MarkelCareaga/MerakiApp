@@ -5,9 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import androidx.core.net.toUri
+import com.example.merakiapp.Dialogos
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 
-class IslaIzaroActivity : AppCompatActivity() {
+class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -15,9 +17,6 @@ class IslaIzaroActivity : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         //Deshabilitar menu superior
         supportActionBar?.hide()
-
-
-
 
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)
@@ -27,13 +26,38 @@ class IslaIzaroActivity : AppCompatActivity() {
         val name = intent.getStringExtra("name")
         val pasos = intent.getIntExtra("pasos",0)
         val imagen = intent.getStringExtra("imagen").toString()
-
+        binding.constraintLayout3.visibility = View.GONE
+        binding.barraOponente?.isEnabled  =false
+        binding.barraUsuario?.isEnabled  =false
         binding.txtUsuario.text= name
         binding.imagenUsuario.setImageURI(imagen.toUri())
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-           // binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
-        }else{
-            //binding.btnVolverGaztelugatxe.visibility = View.GONE
+
+        binding.button.setOnClickListener(){
+            binding.constraintLayout3.visibility = View.VISIBLE
+            binding.constraintLayout2.visibility = View.GONE
+
+            binding.txtUser?.text =  name
+
+
+        }
+        binding.barraUsuario?.max  =100
+        binding.barraOponente?.max  =100
+        binding.barraUsuario?.setProgress(0)
+        binding.barraOponente?.setProgress(0)
+
+        binding.botonMoverBarco?.setOnClickListener(){
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso+1)
+            }
+        }
+        binding.btnSprint?.setOnClickListener(){
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso+2)
+            }
         }
         // TEMPORAL
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
