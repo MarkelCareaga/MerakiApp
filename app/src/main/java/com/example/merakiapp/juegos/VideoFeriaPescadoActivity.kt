@@ -12,7 +12,6 @@ import com.example.merakiapp.databinding.ActivityVideoFeriaPescadoBinding
 
 class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityVideoFeriaPescadoBinding
-    private var fondoSeleccionado = com.example.merakiapp.R.drawable.fondoferiapescado
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
@@ -50,7 +49,7 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
             val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
-
+            
             var intent_feria_pescado = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
                 Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
             startActivity(intent_feria_pescado)

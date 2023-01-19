@@ -314,6 +314,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
             mapa.setOnMarkerClickListener{ marker ->
                 val juego = marker.position
+
                 if(juego1 == marker.position){
                     var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(),
                         Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
@@ -349,6 +350,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                         Recursos.pantalla_Gaztelugatxe, Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
                     startActivity(intent_gaztelugatxe)
                 }
+
                 return@setOnMarkerClickListener true
 
             }
@@ -467,6 +469,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
         if (localitation.distanceTo(location1) <= radio.toDouble()) {
             activity?.finish()
+
             var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(),
                 Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
             startActivity(intent_puerta_san_juan)
@@ -478,6 +481,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
             if (localitation.distanceTo(location2) <= radio.toDouble()) {
                 activity?.finish()
+
                 var intent_badatoz = abrirExplicacion(this.requireActivity(),
                     Recursos.pantalla_Badatoz, Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
                 startActivity(intent_badatoz)
@@ -486,8 +490,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                 val location3 = Location("Juego")
                 location3.latitude = juegos3.latitude
                 location3.longitude = juegos3.longitude
+
                 if (localitation.distanceTo(location3) <= radio.toDouble()) {
                     activity?.finish()
+
                     var intent_feria_pescado = abrirExplicacion(this.requireActivity(),
                         Recursos.pantalla_FeriaPescado, Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
                     startActivity(intent_feria_pescado)
@@ -496,8 +502,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                     val location4 = Location("Juego")
                     location4.latitude = juegos4.latitude
                     location4.longitude = juegos4.longitude
+
                     if (localitation.distanceTo(location4) <= radio.toDouble()) {
                         activity?.finish()
+
                         var intent_olatua = abrirExplicacion(this.requireActivity(),
                             Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
                         startActivity(intent_olatua)
@@ -509,6 +517,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
                         if (localitation.distanceTo(location5) <= radio.toDouble()) {
                             activity?.finish()
+
                             var intent_xixili = abrirExplicacion(this.requireActivity(),
                                 Recursos.pantalla_Xixili, Recursos.audio_Xixili, Recursos.fondo_Xixili)
                             startActivity(intent_xixili)
@@ -520,6 +529,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
                             if (localitation.distanceTo(location6) <= radio.toDouble()) {
                                 activity?.finish()
+
                                 var intent_isla_izaro = abrirExplicacion(this.requireActivity(),
                                     Recursos.pantalla_Izaro, Recursos.audio_Izaro, Recursos.fondo_Izaro)
                                 startActivity(intent_isla_izaro)
@@ -531,6 +541,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
                                 if (localitation.distanceTo(location7) <= radio.toDouble()) {
                                     activity?.finish()
+
                                     var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(),
                                         Recursos.pantalla_Gaztelugatxe, Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
                                     startActivity(intent_gaztelugatxe)
