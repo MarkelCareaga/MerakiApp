@@ -47,7 +47,7 @@
             app:layout_constraintVertical_bias="0.421">
 
             <TextView
-                android:id="@+id/txtTest2"
+                android:id="@+id/txtTest3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="7dp"
@@ -90,7 +90,7 @@
             app:layout_constraintStart_toStartOf="parent">
 
             <TextView
-                android:id="@+id/txtTest3"
+                android:id="@+id/txtTest2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="7dp"

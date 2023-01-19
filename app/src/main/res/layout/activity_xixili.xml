@@ -31,12 +31,11 @@
 
     <ImageView
         android:id="@+id/imgTexto3"
-        android:layout_width="400dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="343dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="32dp"
         android:tag="figura3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.461"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTexto1"
         app:srcCompat="@drawable/texto_enunciado_3" />
@@ -55,11 +54,12 @@
 
     <ImageView
         android:id="@+id/imgTexto1"
-        android:layout_width="257dp"
-        android:layout_height="27dp"
-        android:layout_marginTop="20dp"
+        android:layout_width="203dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="32dp"
         android:tag="figura1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTextoMal1"
         app:srcCompat="@drawable/texto_enunciado_1" />
@@ -79,12 +79,11 @@
 
     <ImageView
         android:id="@+id/imgTexto2"
-        android:layout_width="402dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="16dp"
+        android:layout_width="339dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="32dp"
         android:tag="figura2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.444"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgTexto4"
         app:srcCompat="@drawable/texto_enunciado_2" />
@@ -103,9 +102,9 @@
 
     <ImageView
         android:id="@+id/imgTexto4"
-        android:layout_width="299dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="241dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="32dp"
         android:tag="figura4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -126,9 +125,9 @@
 
     <ImageView
         android:id="@+id/imgTextoMal2"
-        android:layout_width="356dp"
-        android:layout_height="33dp"
-        android:layout_marginTop="12dp"
+        android:layout_width="285dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="32dp"
         android:tag="figuramal2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -137,12 +136,11 @@
 
     <ImageView
         android:id="@+id/imgTextoMal1"
-        android:layout_width="291dp"
-        android:layout_height="22dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="181dp"
+        android:layout_height="16dp"
+        android:layout_marginTop="16dp"
         android:tag="figuramal1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imgEnunciado"
         app:srcCompat="@drawable/texto_enunciado_mal_1" />

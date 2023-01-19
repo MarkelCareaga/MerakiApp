@@ -118,7 +118,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         if (binding.gp2.checkedRadioButtonId == binding.rb6.id) {
             // Si la respuesta es correcta, el fondo no sufrirá ningún cambio
             binding.gp2.setBackgroundColor(Color.TRANSPARENT)
-            binding.txtTest1.setTextColor(Color.BLACK)
+            binding.txtTest2.setTextColor(Color.BLACK)
             binding.rb4.setTextColor(Color.BLACK)
             binding.rb5.setTextColor(Color.BLACK)
             binding.rb6.setTextColor(Color.BLACK)
