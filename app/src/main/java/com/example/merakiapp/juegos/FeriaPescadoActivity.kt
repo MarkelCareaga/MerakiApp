@@ -19,9 +19,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondoferiapescado        // Fondo a mostrar
-    private var pantallaSeleccionada = "feria_del_pescado"             // Pantalla enlazada al boton Siguiente del próximo Activity
+    var recursoFeriaPescado = Recurso(this, "feria_del_pescado", R.raw.audioferiadelpescado, R.drawable.fondoferiapescado)
     var estadoAudio = ""
 
     // BOTONES A PULSAR DENTRO DEL JUEGO
@@ -114,7 +112,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityFeriaPescado = binding.activityFeriaPescado
-        activityFeriaPescado.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityFeriaPescado.background = resources.getDrawable(recursoFeriaPescado.fondo, theme)
 
         // AUDIO
         // Conexión con el Servicio de Audios
@@ -167,8 +165,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audioferiadelpescado
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(recursoFeriaPescado)
             startActivity(intent)
         }
 
@@ -364,7 +361,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, R.raw.gritoninos)
 
         } else {
             // Resetear el juego

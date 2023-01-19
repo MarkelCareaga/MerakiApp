@@ -26,9 +26,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
 
     private lateinit var Imagen : ImageView
-    private var audioSeleccionado = 0                           // Audio a reproducir en la siguiente Activity
-    private var fondoSeleccionado = R.drawable.fondobadatoz     // Fondo a mostrar en la siguiente Activity
-    private var pantallaSeleccionada = "badatoz_estatua"        // Pantalla enlazada al boton Siguiente del próximo Activity
+
+    var recursoBadatoz = Recurso(this, "badatoz_estatua", R.raw.audiobadatoz, R.drawable.fondobadatoz)
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -117,8 +116,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiobadatoz
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(recursoBadatoz)
             startActivity(intent)
         }
 
@@ -235,9 +233,9 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
            mostrarGif()
 
-           audioSeleccionado = R.raw.gritoninos
+
            estadoAudio = "play"
-           iniciarServicioAudio(estadoAudio, audioSeleccionado)
+           iniciarServicioAudio(estadoAudio, R.raw.gritoninos)
 
            //binding.textViewStatus.text = getString(R.string.puzzleCompletado)
            // Elementos a ocultar

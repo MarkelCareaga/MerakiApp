@@ -32,9 +32,16 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
     private lateinit var binding: FragmentMapaBinding
     private lateinit var mapa:GoogleMap
 
-    private var pantallaSeleccionada = ""
-    private var audioSeleccionado = 0
-    private var fondoSeleccionado = 0
+    var contexto = this.requireActivity()
+
+    // Lista de recursos para abrir Explicaciones
+    var recursoPuertaSanJuan = Recurso(contexto, "puerta_de_san_juan", R.raw.audiopuertadesanjuan, R.drawable.fondopuertasanjuan)
+    var recursoBadatoz = Recurso(contexto, "badatoz_estatua", R.raw.audiobadatoz, R.drawable.fondobadatoz)
+    var recursoFeriaPescado = Recurso(contexto, "feria_del_pescado", R.raw.audioferiadelpescado, R.drawable.fondoferiapescado)
+    var recursoOlatua = Recurso(contexto, "olatua_estatua", R.raw.audioolatua, R.drawable.fondoolatua)
+    var recursoXixili = Recurso(contexto, "xixili", R.raw.audioxixili, R.drawable.fondoxixili)
+    var recursoIslaIzaro = Recurso(contexto, "isla_de_izaro", R.raw.audioisladeizaro, R.drawable.fondoizaro1)
+    var recursoGaztelugatxe = Recurso(contexto, "gaztelugatxe", R.raw.audiosanjuandegaztelugatxe, R.drawable.fondogaztelugatxe)
 
     var juego1 : Boolean = false
     var juego2 : Boolean = false
@@ -320,62 +327,21 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
             mapa.setOnMarkerClickListener{ marker ->
                 val juego = marker.position
-                if(juego1 == marker.position){
-                    pantallaSeleccionada = "puerta_de_san_juan"
-                    audioSeleccionado = R.raw.audiopuertadesanjuan
-                    fondoSeleccionado = R.drawable.fondopuertasanjuan
 
-                    var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_puerta_san_juan)
-                }
-                if(juego2 == marker.position){
-                    pantallaSeleccionada = "badatoz_estatua"
-                    audioSeleccionado = R.raw.audiobadatoz
-                    fondoSeleccionado = R.drawable.fondobadatoz
+                if (juego1 == marker.position) startActivity(abrirExplicacion(recursoPuertaSanJuan))
 
-                    var intent_badatoz = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_badatoz)
-                }
-                if(juego3 == marker.position){
-                    pantallaSeleccionada = "feria_del_pescado"
-                    audioSeleccionado = R.raw.audioferiadelpescado
-                    fondoSeleccionado = R.drawable.fondoferiapescado
+                if (juego2 == marker.position) startActivity(abrirExplicacion(recursoBadatoz))
 
-                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_feria_pescado)
-                }
-                if(juego4 == marker.position){
-                    pantallaSeleccionada = "olatua_estatua"
-                    audioSeleccionado = R.raw.audioolatua
-                    fondoSeleccionado = R.drawable.fondoolatua
+                if (juego3 == marker.position) startActivity(abrirExplicacion(recursoFeriaPescado))
 
-                    var intent_olatua = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_olatua)
-                }
-                if(juego5 == marker.position){
-                    pantallaSeleccionada = "xixili"
-                    audioSeleccionado = R.raw.audioxixili
-                    fondoSeleccionado = R.drawable.fondoxixili
+                if (juego4 == marker.position) startActivity(abrirExplicacion(recursoOlatua))
 
-                    var intent_xixili = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_xixili)
-                }
-                if(juego6 == marker.position){
-                    pantallaSeleccionada = "isla_de_izaro"
-                    audioSeleccionado = R.raw.audioisladeizaro
-                    fondoSeleccionado = R.drawable.fondoizaro1
+                if (juego5 == marker.position) startActivity(abrirExplicacion(recursoXixili))
 
-                    var intent_isla_izaro = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_isla_izaro)
-                }
-                if(juego7 == marker.position){
-                    pantallaSeleccionada = "gaztelugatxe"
-                    audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
-                    fondoSeleccionado = R.drawable.fondogaztelugatxe
+                if (juego6 == marker.position) startActivity(abrirExplicacion(recursoIslaIzaro))
 
-                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_gaztelugatxe)
-                }
+                if (juego7 == marker.position) startActivity(abrirExplicacion(recursoGaztelugatxe))
+
                 return@setOnMarkerClickListener true
 
             }
@@ -494,13 +460,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
         if (localitation.distanceTo(location1) <= radio.toDouble()) {
             activity?.finish()
-
-            pantallaSeleccionada = "puerta_de_san_juan"
-            audioSeleccionado = R.raw.audiopuertadesanjuan
-            fondoSeleccionado = R.drawable.fondopuertasanjuan
-
-            var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-            startActivity(intent_puerta_san_juan)
+            startActivity(abrirExplicacion(recursoPuertaSanJuan))
 
         }else{
             val location2 = Location("Juego")
@@ -509,42 +469,24 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
             if (localitation.distanceTo(location2) <= radio.toDouble()) {
                 activity?.finish()
-
-                pantallaSeleccionada = "badatoz_estatua"
-                audioSeleccionado = R.raw.audiobadatoz
-                fondoSeleccionado = R.drawable.fondobadatoz
-
-                var intent_badatoz = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                startActivity(intent_badatoz)
+                startActivity(abrirExplicacion(recursoBadatoz))
 
             }else {
                 val location3 = Location("Juego")
                 location3.latitude = juegos3.latitude
                 location3.longitude = juegos3.longitude
+
                 if (localitation.distanceTo(location3) <= radio.toDouble()) {
                     activity?.finish()
-
-                    pantallaSeleccionada = "feria_del_pescado"
-                    audioSeleccionado = R.raw.audioferiadelpescado
-                    fondoSeleccionado = R.drawable.fondoferiapescado
-
-                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                    startActivity(intent_feria_pescado)
-
+                    startActivity(abrirExplicacion(recursoFeriaPescado))
                 } else {
                     val location4 = Location("Juego")
                     location4.latitude = juegos4.latitude
                     location4.longitude = juegos4.longitude
+
                     if (localitation.distanceTo(location4) <= radio.toDouble()) {
                         activity?.finish()
-
-                        pantallaSeleccionada = "olatua_estatua"
-                        audioSeleccionado = R.raw.audioolatua
-                        fondoSeleccionado = R.drawable.fondoolatua
-
-                        var intent_olatua = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                        startActivity(intent_olatua)
-
+                        startActivity(abrirExplicacion(recursoOlatua))
                     } else {
                         val location5 = Location("Juego")
                         location5.latitude = juegos5.latitude
@@ -552,14 +494,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
                         if (localitation.distanceTo(location5) <= radio.toDouble()) {
                             activity?.finish()
-
-                            pantallaSeleccionada = "xixili"
-                            audioSeleccionado = R.raw.audioxixili
-                            fondoSeleccionado = R.drawable.fondoxixili
-
-                            var intent_xixili = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                            startActivity(intent_xixili)
-
+                            startActivity(abrirExplicacion(recursoXixili))
                         } else {
                             val location6 = Location("Juego")
                             location6.latitude = juegos6.latitude
@@ -567,13 +502,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
                             if (localitation.distanceTo(location6) <= radio.toDouble()) {
                                 activity?.finish()
-
-                                pantallaSeleccionada = "isla_de_izaro"
-                                audioSeleccionado = R.raw.audioisladeizaro
-                                fondoSeleccionado = R.drawable.fondoizaro1
-
-                                var intent_isla_izaro = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                                startActivity(intent_isla_izaro)
+                                startActivity(abrirExplicacion(recursoIslaIzaro))
 
                             } else {
                                 val location7 = Location("Juego")
@@ -582,14 +511,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones {
 
                                 if (localitation.distanceTo(location7) <= radio.toDouble()) {
                                     activity?.finish()
-
-                                    pantallaSeleccionada = "gaztelugatxe"
-                                    audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
-                                    fondoSeleccionado = R.drawable.fondogaztelugatxe
-
-                                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
-                                    startActivity(intent_gaztelugatxe)
-
+                                    startActivity(abrirExplicacion(recursoGaztelugatxe))
                                 }else{
                                     Toast.makeText(this.requireContext(),getString(R.string.distancia), Toast.LENGTH_LONG).show()
                                 }

@@ -20,9 +20,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
     lateinit var binding: ActivityGastelugatxeBinding
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondogaztelugatxe        // Fondo a mostrar
-    private var pantallaSeleccionada = "gaztelugatxe"             // Pantalla enlazada al boton Siguiente del próximo Activity
+    var recursoGaztelugatxe = Recurso(this, "gaztelugatxe", R.raw.audiosanjuandegaztelugatxe, R.drawable.fondogaztelugatxe)
     var estadoAudio = ""
 
     var correcto1: Boolean = false      // Resultado de la primera pregunta
@@ -55,7 +53,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityGaztelugatxe = binding.activityGaztelugatxe
-        activityGaztelugatxe.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityGaztelugatxe.background = resources.getDrawable(recursoGaztelugatxe.fondo, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -78,8 +76,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiosanjuandegaztelugatxe
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(recursoGaztelugatxe)
             startActivity(intent)
         }
 
@@ -186,7 +183,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, R.raw.gritoninos)
         }
     }
 

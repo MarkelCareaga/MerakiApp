@@ -23,9 +23,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityOlatuaEstatuaBinding
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondoolatua          // Fondo a mostrar
-    private var pantallaSeleccionada = "olatua_estatua"             // Pantalla enlazada al boton Siguiente del próximo Activity
+    var recursoOlatua = Recurso(this, "olatua_estatua", R.raw.audioolatua, R.drawable.fondoolatua)
     var estadoAudio = ""
 
     // BOTONES A PULSAR DENTRO DEL JUEGO
@@ -120,7 +118,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityOlatua = binding.activityOlatua
-        activityOlatua.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityOlatua.background = resources.getDrawable(recursoOlatua.fondo, theme)
 
         // AUDIO
         // Conexión con el Servicio de Audios
@@ -177,8 +175,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audioolatua
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(recursoOlatua)
             startActivity(intent)
         }
 
@@ -404,7 +401,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, R.raw.gritoninos)
 
         } else {
             // Resetear el juego

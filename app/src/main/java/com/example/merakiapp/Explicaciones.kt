@@ -6,10 +6,10 @@ import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
 interface Explicaciones {
 
-    fun abrirExplicacion(context: Context, pantallaSeleccionada: String, audioSeleccionado: Int, fondoSeleccionado: Int): Intent {
+    fun abrirExplicacion(recurso: Recurso): Intent {
         // TEXTO
         var textoSeleccionado = ""
-        when(pantallaSeleccionada) {
+        when(recurso.pantalla) {
             "introduccion" -> {
                 textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
                         "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
@@ -108,12 +108,12 @@ interface Explicaciones {
         }
 
         // Especificar el Activity a mostrar
-        val intent = Intent(context, ExplicacionesActivity::class.java)
+        val intent = Intent(recurso.contexto, ExplicacionesActivity::class.java)
 
         // Pasar las variables a dicha Activity
-        intent.putExtra("pantallaSeleccionada", pantallaSeleccionada)
-        intent.putExtra("audioSeleccionado", audioSeleccionado)
-        intent.putExtra("fondoSeleccionado", fondoSeleccionado)
+        intent.putExtra("pantallaSeleccionada", recurso.pantalla)
+        intent.putExtra("audioSeleccionado", recurso.audio)
+        intent.putExtra("fondoSeleccionado", recurso.fondo)
         intent.putExtra("textoSeleccionado", textoSeleccionado)
 
         // Devolver el Intent para poder iniciar la Activity deseada

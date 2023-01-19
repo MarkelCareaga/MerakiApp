@@ -21,9 +21,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
-    private var pantallaSeleccionada = "puerta_de_san_juan"             // Pantalla enlazada al boton Siguiente del próximo Activity
+    var recursoPuertaSanJuan = Recurso(this, "puerta_de_san_juan", R.raw.audiopuertadesanjuan, R.drawable.fondopuertasanjuan)
     var estadoAudio = ""
 
     private var respuesta = 0
@@ -58,7 +56,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityPuertaSanJuan = binding.activityPuertaSanJuan
-        activityPuertaSanJuan.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityPuertaSanJuan.background = resources.getDrawable(recursoPuertaSanJuan.fondo, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -81,8 +79,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiopuertadesanjuan
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(recursoPuertaSanJuan)
             startActivity(intent)
         }
 
@@ -122,7 +119,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, R.raw.gritoninos)
 
             // Cambiar color
             binding.txtRespuestaPuertaSanJuan.setBackgroundColor(Color.GREEN)
