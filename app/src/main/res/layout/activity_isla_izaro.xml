@@ -148,32 +148,32 @@
 
         <TextView
             android:id="@+id/txtSala2"
-            android:layout_width="0dp"
-            android:layout_height="140dp"
+            android:layout_width="324dp"
+            android:layout_height="wrap_content"
             android:layout_marginStart="34dp"
+            android:layout_marginTop="250dp"
             android:layout_marginEnd="34dp"
-            android:layout_marginBottom="79dp"
-            android:fontFamily="@font/alatsi"
             android:text="@string/introducirsala"
             android:textAlignment="center"
             android:textSize="48sp"
-            app:layout_constraintBottom_toBottomOf="@+id/numSala2"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-        <EditText
-            android:id="@+id/numSala2"
-            android:layout_width="213dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="263dp"
-            android:layout_marginBottom="192dp"
-            android:ems="10"
-            android:inputType="number"
-            app:layout_constraintBottom_toTopOf="@+id/button"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="SpeakableTextPresentCheck" />
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/txtNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:hint="Inserte un numero"
+            android:inputType="number"
+            android:textAlignment="center"
+            android:textColorHint="#FBFAFA"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txtSala2"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
 
         <ImageView
             android:id="@+id/imagenUsuario"
@@ -189,7 +189,7 @@
             android:id="@+id/imagenOponente"
             android:layout_width="147dp"
             android:layout_height="137dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtOponente"
@@ -199,7 +199,7 @@
             android:id="@+id/txtUsuario"
             android:layout_width="147dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="24dp"
             android:text="TextView"
             android:textAlignment="center"
             android:textColor="#FFFFFF"
@@ -237,13 +237,22 @@
             android:id="@+id/button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="17dp"
             android:text="@string/jugar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/numSala2" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="150dp"
+            android:text="@string/Buscarjugador"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

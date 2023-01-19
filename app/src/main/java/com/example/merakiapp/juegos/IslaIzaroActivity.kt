@@ -24,21 +24,20 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         //Deshabilitar menu superior
         supportActionBar?.hide()
+        socket.connect()
 
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)
         setContentView(binding.root)
         binding.constraintLayout3.isInvisible=true
         binding.imageView7.isInvisible=true
-        binding.imagenUsuario.isInvisible=true
         binding.txtOponente.isInvisible=true
-        binding.txtUsuario.isInvisible=true
         val id = intent.getIntExtra("id",0)
         val name = intent.getStringExtra("name")
         val imagen = intent.getStringExtra("imagen").toString()
-        sala= binding.numSala.toString()
 
 
+        binding.button.visibility = View.GONE
 
         binding.constraintLayout3.visibility = View.GONE
         binding.barraOponente?.isEnabled  =false
@@ -60,18 +59,30 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                     }
                 }
         }
+        binding.button2?.setOnClickListener(){
+            if(binding.txtNumber!!.text!!.isNotBlank()) {
+                sala = Integer.parseInt(binding.txtNumber!!.getText().toString()).toString();
+                socket.emit("sala", sala.toInt(), name, binding.barraUsuario?.progress, imagen)
+                binding.button2!!.visibility = View.GONE
+                binding.txtNumber!!.visibility = View.GONE
+                binding.numSala?.visibility = View.GONE
+                binding.button.visibility = View.VISIBLE
 
-        binding.button.setOnClickListener(){
-            socket.connect()
-            socket.emit("sala" , sala.toInt(),name,binding.barraUsuario?.progress ,imagen)
-            binding.imageView7.isInvisible=false
-            binding.imagenUsuario.isInvisible=false
-            binding.txtOponente.isInvisible=false
-            binding.txtUsuario.isInvisible=false
+
+
+            }else {
+                    Toast.makeText(this, "Inserte un numero para la sala", Toast.LENGTH_SHORT).show()
+
+                }
+
+        }
+        binding.button.setOnClickListener() {
+
+
             binding.constraintLayout3.visibility = View.VISIBLE
             binding.constraintLayout2.visibility = View.GONE
 
-            binding.txtUser?.text =  name
+            binding.txtUser?.text = name
 
 
         }
@@ -82,6 +93,12 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         binding.botonMoverBarco?.setOnClickListener(){
             socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
+            val progreso = binding.barraUsuario?.getProgress()
+
+            if (progreso != null) {
+                binding.barraUsuario?.setProgress(progreso + 1)
+            }
+
         }
 
 
