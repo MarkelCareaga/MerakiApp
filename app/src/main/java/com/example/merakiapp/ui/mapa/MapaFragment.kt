@@ -63,7 +63,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
 
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
-
+        binding.btnJugar.isEnabled = false
         if((activity?.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false)) {
             /**
              * Manipulates the map once available.
@@ -321,6 +321,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback {
             }
 
         }
+        binding.btnJugar.isEnabled = true
     }
 
     override fun onCreateView(
