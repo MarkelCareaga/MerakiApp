@@ -1,11 +1,8 @@
 package com.example.merakiapp.juegos
 
-import android.R
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.net.Uri
 import android.os.Bundle
-import android.view.View
 import android.widget.MediaController
 import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
@@ -42,7 +39,7 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityVideoFeriaPescado = binding.activityVideoFeriaPescado
-        activityVideoFeriaPescado.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityVideoFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
 
         // VIDEO PLAYER
         reproducirVideo("videoarrainazoka")
@@ -54,11 +51,8 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
             val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
-            var pantallaSeleccionada = "feria_del_pescado"
-            var audioSeleccionado = com.example.merakiapp.R.raw.audioferiadelpescado
-            fondoSeleccionado = com.example.merakiapp.R.drawable.fondoferiapescado
-
-            var intent_feria_pescado = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent_feria_pescado = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
+                Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
             startActivity(intent_feria_pescado)
         }
     }

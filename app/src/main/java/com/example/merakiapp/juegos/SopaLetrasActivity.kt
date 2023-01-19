@@ -48,10 +48,6 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
 
     //Contador Audio
     var ContAudio = 0
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
     var estadoAudio = ""
     private var respuesta = 0
     
@@ -81,12 +77,12 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.buscalos7)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_SopaLetras)
         // -------------------------------------------------------------------------
 
         // FONDO
         var activityPuertaSanJuan = binding.activitySopaLetras
-        activityPuertaSanJuan.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -106,6 +102,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
 
         // Finalizar juego
         binding.btnFinalizarSopaLetras.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
@@ -137,7 +134,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
 
                     // Reproducir audio
                     estadoAudio = "play"
-                    iniciarServicioAudio(estadoAudio, audioSeleccionado)
+                    iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
                 }
             }
 

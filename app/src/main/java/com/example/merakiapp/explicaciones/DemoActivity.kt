@@ -27,6 +27,7 @@ class DemoActivity : AppCompatActivity(), Explicaciones {
 
         // CONTROL DE BOTONES
         // Introducción
+        /*
         binding.btnDemoIntroduccion.setOnClickListener {
             pantallaSeleccionada = "introduccion"
             audioSeleccionado = R.raw.audiointro
@@ -105,6 +106,8 @@ class DemoActivity : AppCompatActivity(), Explicaciones {
             var intent_gaztelugatxe = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
             startActivity(intent_gaztelugatxe)
         }
+
+         */
 
         // Final
         binding.btnAbrirFinal.setOnClickListener {

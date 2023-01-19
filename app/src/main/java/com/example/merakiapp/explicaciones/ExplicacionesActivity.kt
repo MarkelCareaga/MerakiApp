@@ -3,7 +3,6 @@ package com.example.merakiapp.explicaciones
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.ScrollingMovementMethod
-import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView

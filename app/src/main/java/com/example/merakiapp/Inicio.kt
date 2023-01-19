@@ -20,7 +20,7 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
-class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
+class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones {
     var libre :Boolean = false
     lateinit var mapa :GoogleMap
     private lateinit var binding: ActivityInicioBinding
@@ -136,19 +136,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos {
                         this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
                         this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
-                        val textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
-                                "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
-                                "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
-                                "las actividades.Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías de " +
-                                "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
-                                "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
-                        val intent = Intent(this, ExplicacionesActivity::class.java)
-                            // Añadir datos referentes a la ventana de Introducción
-                            .putExtra("pantallaSeleccionada", "introduccion")
-                            .putExtra("audioSeleccionado", R.raw.audiointro)
-                            .putExtra("fondoSeleccionado", R.drawable.fondoprincipiofinal)
-                            .putExtra("textoSeleccionado", textoSeleccionado)
-                        startActivity(intent)
+                        var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
+                            Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
+                        startActivity(intent_introduccion)
+
                     }
                 } else {
                     // Si no se reciben los permisos, muestra un mensaje de error

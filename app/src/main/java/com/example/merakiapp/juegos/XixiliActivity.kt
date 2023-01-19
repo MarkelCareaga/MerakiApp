@@ -24,13 +24,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityXixiliBinding
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos            // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondoxixili      // Fondo a mostrar
-    private var pantallaSeleccionada = "xixili"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
-
     private lateinit var Imagen : ImageView
 
 
@@ -66,12 +60,12 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.ahoraostoca)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Xixili)
         // -------------------------------------------------------------------------
 
         // FONDO
         var activityXixili = binding.activityXixili
-        activityXixili.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityXixili.background = resources.getDrawable(Recursos.fondo_Xixili, theme)
 
         // DRAG -> Imagenes a mover
         binding.imgTexto1.setOnLongClickListener(longClickListener)
@@ -111,13 +105,13 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audioxixili
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_Xixili, Recursos.audio_Xixili, Recursos.fondo_Xixili)
             startActivity(intent)
         }
 
         // Finalizar juego
         binding.btnFinalizarXixili.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", true).apply()
@@ -224,7 +218,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             mostrarGif()
 
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
             // Elementos a ocultar
             binding.btnComprobarXixili.visibility = Button.GONE

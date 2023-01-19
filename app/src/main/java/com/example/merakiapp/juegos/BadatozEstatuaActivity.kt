@@ -19,16 +19,11 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeBadatoz
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.servicios.ServicioAudios
 
 class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
-
     private lateinit var Imagen : ImageView
-    private var audioSeleccionado = 0                           // Audio a reproducir en la siguiente Activity
-    private var fondoSeleccionado = R.drawable.fondobadatoz     // Fondo a mostrar en la siguiente Activity
-    private var pantallaSeleccionada = "badatoz_estatua"        // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,7 +58,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.ahorateneisquecompletarelpuzzle)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
         // -------------------------------------------------------------------------
 
         // DRAG -> Imagenes a mover
@@ -117,13 +112,14 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiobadatoz
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
+                Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
             startActivity(intent)
         }
 
         // Finalizar juego
         binding.btnFinalizarBadatoz.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
@@ -235,11 +231,9 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
            mostrarGif()
 
-           audioSeleccionado = R.raw.gritoninos
            estadoAudio = "play"
-           iniciarServicioAudio(estadoAudio, audioSeleccionado)
+           iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
-           //binding.textViewStatus.text = getString(R.string.puzzleCompletado)
            // Elementos a ocultar
            binding.btnComprobarBadatoz.visibility = Button.GONE
            binding.btnVolverExplicacionBadatoz.visibility = Button.GONE
