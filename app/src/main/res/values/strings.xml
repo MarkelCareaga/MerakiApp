@@ -20,6 +20,7 @@
     <string name="puzzle">Haz el puzzle</string>
     <string name="siguiente">Siguiente</string>
     <string name="volver">Volver</string>
+    <string name="introducirsala">Introduzca un numero de sala</string>
     <string name="faltanpiezas">Te faltan piezas</string>
     <string name="puzzleCompletado">Puzzle Completado</string>
     <string name="piezamalcolocada">Pieza mal colocada</string>

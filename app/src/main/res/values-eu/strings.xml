@@ -56,4 +56,5 @@
     <string name="imagen">Txertatu irudi bat beheko irudian klik eginez. Galeria irekiko da.</string>
     <string name="nombreUsuarioError">" Sartu erabiltzaile-izena"</string>
     <string name="ayuda">Laguntza</string>
+    <string name="introducirsala">Sartu salaren zenbakia</string>
 </resources>

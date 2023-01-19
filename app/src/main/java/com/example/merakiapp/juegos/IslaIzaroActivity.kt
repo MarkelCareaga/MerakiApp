@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.core.net.toUri
+import androidx.core.view.isInvisible
 import com.example.merakiapp.Dialogos
 import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
@@ -27,13 +28,15 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
+        binding.constraintLayout3.isInvisible=true
+        binding.imageView7.isInvisible=true
+        binding.imagenUsuario.isInvisible=true
+        binding.txtOponente.isInvisible=true
+        binding.txtUsuario.isInvisible=true
         val id = intent.getIntExtra("id",0)
         val name = intent.getStringExtra("name")
         val imagen = intent.getStringExtra("imagen").toString()
-        socket.connect()
-        socket.emit("sala" , sala.toInt(),name,binding.barraUsuario?.progress ,imagen)
-
+        sala= binding.numSala.toString()
 
 
 
@@ -59,6 +62,12 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
 
         binding.button.setOnClickListener(){
+            socket.connect()
+            socket.emit("sala" , sala.toInt(),name,binding.barraUsuario?.progress ,imagen)
+            binding.imageView7.isInvisible=false
+            binding.imagenUsuario.isInvisible=false
+            binding.txtOponente.isInvisible=false
+            binding.txtUsuario.isInvisible=false
             binding.constraintLayout3.visibility = View.VISIBLE
             binding.constraintLayout2.visibility = View.GONE
 
