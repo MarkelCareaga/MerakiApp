@@ -923,7 +923,7 @@
                 android:layout_row="10"
                 android:layout_column="6"
                 android:gravity="center"
-                android:text="i" />
+                android:text="I" />
 
             <TextView
                 android:id="@+id/text107"
@@ -1217,12 +1217,12 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
-        android:id="@+id/btnVolverExplicacionSopaLetras"
+        android:id="@+id/btnVolverSopaLetras"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/estilo_botones_volver"
+        android:background="@drawable/estilo_botones_volver2"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -78,11 +78,6 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             }.start()
 
         }
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-           // binding.btnVolverGaztelugatxe.visibility = View.VISIBLE
-        }else{
-            //binding.btnVolverGaztelugatxe.visibility = View.GONE
-        }
         // TEMPORAL
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }

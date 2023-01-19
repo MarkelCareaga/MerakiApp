@@ -3,7 +3,7 @@
     <solid android:color="@color/fondoNavBar"/>
     <stroke
         android:color="@color/black"
-        android:width="1.5dp"
+        android:width="11dp"
         ></stroke>
     <corners android:radius="30dp"/>
     <padding

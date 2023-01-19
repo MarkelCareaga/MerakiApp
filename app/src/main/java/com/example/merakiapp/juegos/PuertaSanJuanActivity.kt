@@ -19,11 +19,6 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
-
-    // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.gritoninos                    // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondopuertasanjuan       // Fondo a mostrar
-    private var pantallaSeleccionada = "puerta_de_san_juan"             // Pantalla enlazada al boton Siguiente del próximo Activity
     var estadoAudio = ""
 
     private var respuesta = 0
@@ -38,22 +33,6 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         super.onCreate(savedInstanceState)
         binding = ActivityPuertaSanJuanBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        if(this.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false){
-            binding.btnVolverPuertaSanJuan.visibility = View.VISIBLE
-        }else{
-            binding.btnVolverPuertaSanJuan.visibility = View.GONE
-        }
-
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
-        binding.btnAyudaPuertaSanJuan.setOnClickListener {
-            val mensaje = mensajePuertaSanJuan
-            mostrar_dialog(this, tituloJuegos, mensaje)
-        }
-        binding.btnInfoPantallaPuertaSanJuan.setOnClickListener {
-            mostrar_info_pantalla(this, false)
-        }
-        // -------------------------------------------------------------------------
 
         // -------------------------------- DIALOGS --------------------------------
         // BOTONES AYUDA Y ROTACIÓN
@@ -74,7 +53,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FONDO
         var activityPuertaSanJuan = binding.activityPuertaSanJuan
-        activityPuertaSanJuan.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -97,13 +76,13 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
             finish()
             stopService(intent)
 
-            audioSeleccionado = R.raw.audiopuertadesanjuan
-            var intent = abrirExplicacion(this, pantallaSeleccionada, audioSeleccionado, fondoSeleccionado)
+            var intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
             startActivity(intent)
         }
 
         // Finalizar juego
         binding.btnSiguientePuertaSanJuan.setOnClickListener {
+            stopService(intent)
             startActivity(Intent(this, SopaLetrasActivity::class.java))
             finish()
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
@@ -138,7 +117,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, audioSeleccionado)
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
             // Cambiar color
             binding.txtRespuestaPuertaSanJuan.setBackgroundColor(Color.GREEN)
