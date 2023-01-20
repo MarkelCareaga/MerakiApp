@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -14,7 +13,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajePuertaSanJuan
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
-import com.example.merakiapp.explicaciones.DemoActivity
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {

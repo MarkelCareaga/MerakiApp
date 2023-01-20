@@ -11,6 +11,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeFeriaPescado
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {

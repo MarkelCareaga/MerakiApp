@@ -12,6 +12,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeGaztelugatxe
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityGastelugatxeBinding
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {

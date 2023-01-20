@@ -19,6 +19,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeBadatoz
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {

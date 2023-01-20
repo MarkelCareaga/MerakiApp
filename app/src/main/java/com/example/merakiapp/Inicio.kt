@@ -5,10 +5,8 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
-import android.graphics.*
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -17,7 +15,6 @@ import com.example.merakiapp.Dialogos.Companion.permisoDenegado
 import com.example.merakiapp.databinding.ActivityInicioBinding
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.example.merakiapp.explicaciones.DemoActivity
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
 class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones {
@@ -37,7 +34,6 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
 
         // se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
-
 
         // se establece un listener al boton btnExplorador
         binding.btnExplorador.setOnClickListener {

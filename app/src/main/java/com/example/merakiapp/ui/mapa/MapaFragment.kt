@@ -1,4 +1,5 @@
 package com.example.merakiapp.ui.mapa
+
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
@@ -11,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.FragmentMapaBinding
-import com.example.merakiapp.juegos.*
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.mapa.MapaModoSeguimiento
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory

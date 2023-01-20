@@ -14,6 +14,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeOlatua
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityOlatuaEstatuaBinding
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {

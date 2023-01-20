@@ -9,6 +9,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeVideoFeriaPescado
 import com.example.merakiapp.Dialogos.Companion.tituloVideo
 import com.example.merakiapp.databinding.ActivityVideoFeriaPescadoBinding
+import com.example.merakiapp.Explicaciones
 
 class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityVideoFeriaPescadoBinding

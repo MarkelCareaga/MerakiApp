@@ -19,7 +19,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeXixili
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityXixiliBinding
-import com.example.merakiapp.explicaciones.DemoActivity
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
