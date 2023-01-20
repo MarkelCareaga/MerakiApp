@@ -54,23 +54,6 @@
         app:layout_constraintTop_toBottomOf="@+id/imgLogoMeraki" />
 
     <Button
-        android:id="@+id/btnDemo"
-        android:layout_width="338dp"
-        android:layout_height="72dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bordesredondos"
-        android:backgroundTint="#EA6C45"
-        android:text="@string/demo"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        app:icon="@drawable/img_modo_demo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnAyudaInicio" />
-
-    <Button
         android:id="@+id/btnAyudaInicio"
         android:layout_width="338dp"
         android:layout_height="72dp"

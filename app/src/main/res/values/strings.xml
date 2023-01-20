@@ -20,6 +20,7 @@
     <string name="puzzle">Haz el puzzle</string>
     <string name="siguiente">Siguiente</string>
     <string name="volver">Volver</string>
+    <string name="introducirsala">Introduzca un numero de sala</string>
     <string name="faltanpiezas">Te faltan piezas</string>
     <string name="puzzleCompletado">Puzzle Completado</string>
     <string name="piezamalcolocada">Pieza mal colocada</string>
@@ -55,4 +56,5 @@
     <string name="imagen">Inserte una imagen haciendo click en la imagen de abajo. Se abrirá la galería.</string>
     <string name="nombreUsuarioError">Inserte el nombre de usuario</string>
     <string name="ayuda">Ayuda</string>
+    <string name="Buscarjugador">Buscar</string>
 </resources>

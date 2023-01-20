@@ -38,6 +38,7 @@ class NuevoUsuario : AppCompatActivity(){
     lateinit var imageUri: Uri
     lateinit var file: File
     lateinit var imagen:File
+    @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=ActivityNuevoUsuarioBinding.inflate(layoutInflater)
@@ -58,35 +59,38 @@ class NuevoUsuario : AppCompatActivity(){
         }
 
         binding.guardarbtn.setOnClickListener {
-            val nombre = binding.nombreEt.text.toString()
-            if (nombre != null || nombre != "") {
-                CoroutineScope(Dispatchers.IO).launch {
-                    val usuarios = conexion.listaTodos()
-                    if (usuarios.isNotEmpty()) {
-                        if (foto == false) {
-                            conexion.insertar_datos(usuarios.last().id + 1, nombre, 0, null)
-                        } else {
-                            conexion.insertar_datos(usuarios.last().id + 1,
-                                nombre,
-                                0,
-                                currentsPhotoPath)
-                            foto = false
-                        }
-                    } else {
-                        if (foto == false) {
-                            conexion.insertar_datos(0, nombre, 0, null)
-                        } else {
+            if (binding.nombreEt.text.isNotBlank()) {
 
-                            conexion.insertar_datos(0, nombre, 0, currentsPhotoPath)
-                            foto = false
-                        }
 
+                val nombre = binding.nombreEt.text.toString()
+                    CoroutineScope(Dispatchers.IO).launch {
+                        val usuarios = conexion.listaTodos()
+                        if (usuarios.isNotEmpty()) {
+                            if (foto == false) {
+                                conexion.insertar_datos(usuarios.last().id + 1, nombre, 0, null)
+                            } else {
+                                conexion.insertar_datos(usuarios.last().id + 1,
+                                    nombre,
+                                    0,
+                                    currentsPhotoPath)
+                                foto = false
+                            }
+                        } else {
+                            if (foto == false) {
+                                conexion.insertar_datos(0, nombre, 0, null)
+                            } else {
+
+                                conexion.insertar_datos(0, nombre, 0, currentsPhotoPath)
+                                foto = false
+                            }
+
+                        }
+                        startActivity(Intent(this@NuevoUsuario, SeleccionarUsuario::class.java))
+                        this@NuevoUsuario.finish()
                     }
-                    startActivity(Intent(this@NuevoUsuario, SeleccionarUsuario::class.java))
-                    this@NuevoUsuario.finish()
-                }
+
             }else{
-                Toast.makeText(this@NuevoUsuario,getString(R.string.nombreUsuarioError), Toast.LENGTH_SHORT).show()
+                Toast.makeText(this,getString(R.string.nombreUsuarioError),Toast.LENGTH_SHORT).show()
             }
         }
     }
