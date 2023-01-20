@@ -29,13 +29,16 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
 
         super.onCreate(savedInstanceState)
 
-        binding=ActivityInicioBinding.inflate(layoutInflater)
+        // Binding
+        binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // se obtiene un sharedPreferences llamado "Inico"
+        // -----> ???
+        // Se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
 
-        // se establece un listener al boton btnExplorador
+        // ------------------------------- CONTROL DE BOTONES -------------------------------
+        // MODO EXPLORADOR
         binding.btnExplorador.setOnClickListener {
 
             // Verifica si la aplicación tiene permisos para acceder a la ubicación del dispositivo
@@ -76,22 +79,30 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
             }
         }
 
+        // MODO LIBRE
         binding.btnLibre.setOnClickListener {
             // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
             libre = true
             val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
             val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
-            // Inicia un intent para ir a otra actividad
+            // Inicia otra Activity
             val intent = Intent(this, MenuNav::class.java)
             startActivity(intent)
         }
 
-        binding.btnAyudaInicio?.setOnClickListener {
+        // APARTADO DE AYUDA
+        binding.btnAyudaInicio.setOnClickListener {
+            // INFO: Muestra el Dialog asociado a dicho apartado, especificando los siguientes campos:
+            // Titulo de la parte superior del Dialog
+            val titulo = Dialogos.tituloExplicacion
+            // Contenido del Dialog
             val mensaje = Dialogos.mensajeInicio
-            mostrar_dialog(this, Dialogos.tituloExplicacion, mensaje)
+            // Ejecuta la función proveniente de la Interfaz "Dialogos"
+            mostrar_dialog(this, titulo, mensaje)
         }
     }
+
 
     override fun onRequestPermissionsResult(requestCode: Int,
                                             permissions: Array<String>, grantResults: IntArray) {
@@ -100,14 +111,16 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
             1 -> {
                 // Si se reciben los permisos, muestra el mensaje
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    // se guarda el valor false en el sharedPreferences "libre"
+
+                    // Se guarda el valor false en el sharedPreferences "libre"
                     val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
-                    // se guarda el valor 0 en el sharedPreferences "PlayPause"
+
+                    // Se guarda el valor 0 en el sharedPreferences "PlayPause"
                     val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
-                    // se comprueba si ya existe una partida guardada
+                    // Se comprueba si ya existe una partida guardada
                     if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
-                        // si existe se inicia pantalla de codigo
+                        // Si existe, se inicia pantalla de codigo
                         pantallacodigo()
                     }else{
                         this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
@@ -119,6 +132,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                         this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
                         this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
+                        // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
                         var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
                             Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
                         startActivity(intent_introduccion)
@@ -133,10 +147,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         }
     }
 
-
     override fun onMapReady(p0: GoogleMap) {
          TODO("Not yet implemented")
-     }
+    }
+
     private fun pantallacodigo() {
         val layout = LinearLayout(this)
         layout.setPadding(20,10,20,10)
@@ -154,6 +168,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                 DialogInterface.OnClickListener { dialog, which ->
                     // Guarda una preferencia en SharedPreferences y inicia un intent para ir a otra actividad
                     val partida = this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
+
                     this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
                     this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
                     this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
@@ -161,19 +176,11 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                     this.getSharedPreferences("validar5",0).edit().putBoolean("validar5",false).apply()
                     this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
                     this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
-                    val textoSeleccionado = "Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías " +
-                            "de esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos " +
-                            "quienes os darán todas las explicaciones necesarias para poder realizar correctamente " +
-                            "las actividades.Hola! Nosotros somos Patxi y Miren, los protagonistas y los guías de " +
-                            "esta aplicación. Pertenecemos a una familia de marineros de Bermeo y seremos quienes " +
-                            "os darán todas las explicaciones necesarias para poder realizar correctamente las actividades."
-                    val intent = Intent(this, ExplicacionesActivity::class.java)
-                        // Añadir datos referentes a la ventana de Introducción
-                        .putExtra("pantallaSeleccionada", "introduccion")
-                        .putExtra("audioSeleccionado", R.raw.audiointro)
-                        .putExtra("fondoSeleccionado", R.drawable.fondoprincipiofinal)
-                        .putExtra("textoSeleccionado", textoSeleccionado)
-                    startActivity(intent)
+
+                    // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
+                    var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
+                        Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
+                    startActivity(intent_introduccion)
                 })
             .setNegativeButton("Continuar",
                 DialogInterface.OnClickListener { dialog, which ->
@@ -187,7 +194,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
 
         val alertDialogPersonalizado: android.app.AlertDialog = builder.create()
         alertDialogPersonalizado.setView(layout);
-        // después mostrarla:
+        // Después mostrarla:
         alertDialogPersonalizado.show();
     }
 

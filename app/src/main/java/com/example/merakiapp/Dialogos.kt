@@ -5,6 +5,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 private lateinit var mensajeRotarPantalla: String
 
+// La Interfaz "Dialogos" se encarga de gestionar el contenido y los tipos de Dialogs
 interface Dialogos {
 
     companion object {
@@ -25,7 +26,8 @@ interface Dialogos {
                 "En el 'Modo Libre', puedes acceder a todos los juegos desde el principio y no necesitas " +
                 "activar el GPS."
         val mensajePermisos= "Por favor acepte los permises de ubicacion para acceder a la siguiente pantalla."
-        val mensajeExplicacion = "Lee y/o escucha atentamente la explicación. Te servirá de ayuda para completar correctamente el juego."
+        val mensajeExplicacion = "Lee y/o escucha atentamente la explicación. Te servirá de ayuda para " +
+                "completar correctamente el juego."
         val mensajeFeriaPescado = "Une las imágenes con sus nombres correspondientes.\n" +
                 "Para unir dichos elementos, pulsa los botones circulares."
         val mensajeBadatoz = "Rellena el puzzle con las piezas disponibles. \n" +
@@ -47,6 +49,7 @@ interface Dialogos {
 
     // Función para mostrar un mensaje relacionado con juegos o explicaciones
     fun mostrar_dialog(context: Context, titulo: String, mensaje: String) {
+        // Introduce el contenido especificado en el Dialog
         val dialog_info = MaterialAlertDialogBuilder(context)
             .setTitle(titulo)
             .setMessage(mensaje)
@@ -67,6 +70,7 @@ interface Dialogos {
             mensajeRotarPantalla = rotacionDesactivada
         }
 
+        // Introduce el contenido especificado en el Dialog
         val dialog_pantalla = MaterialAlertDialogBuilder(context)
             .setTitle(tituloRotarPantalla)
             .setMessage(mensajeRotarPantalla)
@@ -78,8 +82,9 @@ interface Dialogos {
             }
     }
 
-    // Función para mostrar un aviso de que el resultado del juego es incorrecto
+    // Función para mostrar que el resultado del juego es incorrecto
     fun mostrar_fallo_juego(context: Context) {
+        // Introduce el contenido especificado en el Dialog
         val dialog_game_over = MaterialAlertDialogBuilder(context)
             .setTitle(tituloDialogFallo)
             .setMessage(mensajeDialogFallo)
