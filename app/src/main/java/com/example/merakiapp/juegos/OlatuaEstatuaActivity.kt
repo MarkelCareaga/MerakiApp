@@ -166,10 +166,12 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la Activity anterior
         btnVolver.setOnClickListener {
-            finish()
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
+            finish()
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+            intent = abrirExplicacion(this,
+                Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
             startActivity(intent)
         }
 
@@ -425,5 +427,15 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosOlatua
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
+
+        intent = abrirExplicacion(this,
+            Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+        startActivity(intent)
     }
 }

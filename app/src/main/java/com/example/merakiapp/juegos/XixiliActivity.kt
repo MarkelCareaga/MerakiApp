@@ -102,10 +102,12 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la explicación
         binding.btnVolverExplicacionXixili.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             finish()
             stopService(intent)
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_Xixili, Recursos.audio_Xixili, Recursos.fondo_Xixili)
+            intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
+                Recursos.audio_Xixili, Recursos.fondo_Xixili)
             startActivity(intent)
         }
 
@@ -254,5 +256,15 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosXixili
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        finish()
+        stopService(intent)
+
+        intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
+            Recursos.audio_Xixili, Recursos.fondo_Xixili)
+        startActivity(intent)
     }
 }

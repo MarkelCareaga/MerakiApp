@@ -109,10 +109,11 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la explicación
         binding.btnVolverExplicacionBadatoz.setOnClickListener {
-            finish()
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
+            finish()
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
+            intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
                 Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
             startActivity(intent)
         }
@@ -267,5 +268,15 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosBadatoz
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
+
+        intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
+            Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
+        startActivity(intent)
     }
 }

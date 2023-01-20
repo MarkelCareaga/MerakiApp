@@ -3,21 +3,24 @@ package com.example.merakiapp
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.Dialogos.Companion.mensajeFinal
 import com.example.merakiapp.Dialogos.Companion.tituloFinal
 import com.example.merakiapp.databinding.ActivityFinalBinding
 import com.example.merakiapp.servicios.ServicioAudios
+import java.util.*
+import kotlin.concurrent.schedule
 
-class FinalActivity : AppCompatActivity(), Dialogos {
+
+class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
     private lateinit var binding: ActivityFinalBinding
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.felicidades            // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondo_final       // Fondo a mostrar
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -45,15 +48,19 @@ class FinalActivity : AppCompatActivity(), Dialogos {
         // ----------------------AUDIO AL INICIAR LA ACTIVITY--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, audioSeleccionado)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Miren)
         // ----------------------------------------------------------------------------
+
+        Timer().schedule(6000) {
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Patxi)
+        }
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
         // FONDO
         var activityFinal = binding.activityFinal
-        activityFinal.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityFinal.background = resources.getDrawable(Recursos.fondo_Introduccion, theme)
 
         // Mostrar el GIF de los aplausos
         mostrarGif()
@@ -84,5 +91,11 @@ class FinalActivity : AppCompatActivity(), Dialogos {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosFinal
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
     }
 }

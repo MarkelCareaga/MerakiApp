@@ -157,10 +157,11 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la Activity anterior
         btnVolver.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             finish()
             stopService(intent)
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
+            intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
                 Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
             startActivity(intent)
         }
@@ -387,5 +388,15 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosFeriaPescado
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        finish()
+        stopService(intent)
+
+        intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
+            Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
+        startActivity(intent)
     }
 }

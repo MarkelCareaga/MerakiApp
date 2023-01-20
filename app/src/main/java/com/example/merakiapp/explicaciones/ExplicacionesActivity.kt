@@ -336,11 +336,14 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         }
     }
 
-    override fun onPause() {
-        super.onPause()
-
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
+
         val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
         val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+
+        finish()
     }
+
 }

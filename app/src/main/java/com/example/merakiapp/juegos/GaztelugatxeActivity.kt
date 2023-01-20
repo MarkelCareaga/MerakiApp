@@ -74,10 +74,11 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la Activity anterior
         binding.btnVolverGaztelugatxe.setOnClickListener {
-            finish()
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
+            finish()
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
+            intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
                 Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
             startActivity(intent)
         }
@@ -204,11 +205,19 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         startService(intent)
     }
 
-
-
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausos
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
+
+        intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
+            Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
+        startActivity(intent)
     }
 }

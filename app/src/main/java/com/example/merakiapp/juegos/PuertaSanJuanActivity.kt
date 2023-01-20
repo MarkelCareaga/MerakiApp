@@ -73,10 +73,12 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Volver a la Activity anterior
         binding.btnVolverPuertaSanJuan.setOnClickListener {
-            finish()
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
+            finish()
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+            intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
+                Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
             startActivity(intent)
         }
 
@@ -150,5 +152,15 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosPuertaSanJuan
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
+
+        intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
+            Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+        startActivity(intent)
     }
 }

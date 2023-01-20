@@ -95,8 +95,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
 
         // Volver a la Activity anterior
         binding.btnVolverSopaLetras.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             finish()
             stopService(intent)
+
             startActivity(Intent(this, PuertaSanJuanActivity::class.java))
         }
 
@@ -482,5 +484,13 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosSopaLetras
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        finish()
+        stopService(intent)
+
+        startActivity(Intent(this, PuertaSanJuanActivity::class.java))
     }
 }
