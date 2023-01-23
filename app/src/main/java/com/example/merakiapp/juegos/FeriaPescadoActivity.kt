@@ -18,7 +18,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityFeriaPescadoBinding
     var estadoAudio = ""
 
-    // BOTONES A PULSAR DENTRO DEL JUEGO
+    // Botones a pulsar dentro del juego
     private lateinit var btn11: ImageButton
     private lateinit var btn12: ImageButton
     private lateinit var btn21: ImageButton
@@ -30,13 +30,13 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var btn51: ImageButton
     private lateinit var btn52: ImageButton
 
-    // BOTONES DE ACCIÓN Y GIF
+    // Botones de acción y Gif
     private lateinit var gifAplausos: ImageView
     private lateinit var btnVolver: ImageButton
     private lateinit var btnFinalizar: ImageButton
     private lateinit var btnVerResultado: ImageButton
 
-    // VALOR INICIAL ASOCIADO A CADA BOTÓN
+    // Valor inicial asociado a cada botón
     private var boton11 = 11
     private var boton12 = 12
     private var boton21 = 21
@@ -48,7 +48,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var boton51 = 51
     private var boton52 = 52
 
-    // CONTROLAR SI LOS BOTONES HAN SIDO PULSADOS
+    // Controlar si los botones han sido pulsados
     private var estado_btn11 = true
     private var estado_btn21 = true
     private var estado_btn31 = true
@@ -61,58 +61,62 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var estado_btn42 = true
     private var estado_btn52 = true
 
-    // TEST
+    // ???
     var screenSize: Boolean = false
 
-    // LISTA Y CONTADOR
     // Lista para asociar valores a cada botón
     private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5)
     private var contador = -1
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
         //Deshabilitar menu superior
         supportActionBar?.hide()
 
-        // TEST
+        // ???
         screenSize = getResources().getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
-        if(resultadoJuego == "mal") {
+        if (resultadoJuego == "mal") {
             mostrar_fallo_juego(this)
         }
 
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ---------------------- BOTONES AYUDA Y ROTACIÓN ----------------------
+        // AYUDA
         binding.btnAyudaFeriaPescado.setOnClickListener {
             val mensaje = mensajeFeriaPescado
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaFeriaPescado.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_FeriaPescado)
-        // -------------------------------------------------------------------------
 
+        // Conexión con el Servicio de Audios
+        var intent = Intent(this, ServicioAudios::class.java)
+
+
+        // ------------------------------------------------------------------------
         // FONDO
         var activityFeriaPescado = binding.activityFeriaPescado
         activityFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
-
-        // AUDIO
-        // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
 
         // BOTONES
         btn11 = binding.btn11
@@ -156,7 +160,9 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             comprobarRespuestas()
         }
 
-        // Volver a la Activity anterior
+
+        // ------------------- CONTROL DE BOTONES -------------------
+        // VOLVER A LA EXPLICACIÓN
         btnVolver.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             finish()
@@ -167,7 +173,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR
         btnFinalizar.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
@@ -175,9 +181,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()
         }
 
-        // -------------------------------------------------------------------------
-
-        // UNIR LINEAS
+        // ----------------------------- UNIR LINEAS -----------------------------
         /*
             Cuando se pulsa un botón:
             1.- El contador aumenta, asociando un valor de la lista a dicho botón.
@@ -267,6 +271,8 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para controlar que columna de botones ha sido seleccionada
     private fun controlBotones(btnValor: ImageButton) {
         if (btnValor == btn11 || btnValor == btn21 || btnValor == btn31
@@ -324,7 +330,8 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         layout.addView(fondo)
     }
 
-    // ACTIVAR Y DESACTIVAR BOTONES
+
+    // -------------------- ACTIVAR Y DESACTIVAR BOTONES --------------------
     // Si el botón ya se ha pulsado (desactivado), no se cambiará su estado
     private fun estadoBotonesIzquierda(estado: Boolean) {
         if (estado_btn11) btn11.setEnabled(estado)
@@ -391,11 +398,14 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
-        finish()
         stopService(intent)
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
             Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
         startActivity(intent)

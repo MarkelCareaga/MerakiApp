@@ -39,7 +39,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
 
 
-        // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
@@ -47,23 +46,26 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             mostrar_fallo_juego(this)
         }
 
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ---------------------- BOTONES AYUDA Y ROTACIÓN ----------------------
+        // AYUDA
         binding.btnAyudaBadatoz.setOnClickListener {
             val mensaje = mensajeBadatoz
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaBadatoz.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
 
-        // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
+
+        // ---------------------- AUDIO AL INICIAR EL JUEGO --------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
-        // -------------------------------------------------------------------------
 
-        // DRAG -> Imagenes a mover
+        // DRAG -> Imágenes a mover
         binding.imagen1drag.setOnLongClickListener(longClickListener)
         binding.imagen2drag.setOnLongClickListener(longClickListener)
         binding.imagen3drag.setOnLongClickListener(longClickListener)
@@ -74,7 +76,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8drag.setOnLongClickListener(longClickListener)
         binding.imagen9drag.setOnLongClickListener(longClickListener)
 
-        // TARGET -> Destino de las imagenes
+        // TARGET -> Destino de las imágenes
         binding.imagen1target.setOnDragListener(dragListener)
         binding.imagen2target.setOnDragListener(dragListener)
         binding.imagen3target.setOnDragListener(dragListener)
@@ -85,7 +87,9 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8target.setOnDragListener(dragListener)
         binding.imagen9target.setOnDragListener(dragListener)
 
-        // Por defecto, las imagenes del DRAG no se ven en el TARGET
+
+        // ---------------------- POR DEFECTO ----------------------
+        // Por defecto, las imágenes del DRAG no se ven en el TARGET
         binding.imagen1target.alpha = 0.toFloat()
         binding.imagen2target.alpha = 0.toFloat()
         binding.imagen3target.alpha = 0.toFloat()
@@ -96,20 +100,20 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8target.alpha = 0.toFloat()
         binding.imagen9target.alpha = 0.toFloat()
 
-        // Por defecto:
         // El GIF de los aplausos está oculto
         binding.gifAplausosBadatoz.visibility = ImageView.INVISIBLE
+
         // El botón Finalizar esta oculto
         binding.btnFinalizarBadatoz.visibility = Button.GONE
 
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+        // ---------------------- CONTROL DE BOTONES ----------------------
+        // COMPROBAR RESULTADO
         binding.btnComprobarBadatoz.setOnClickListener{
             comprobarpuzzle()
         }
 
-        // Volver a la explicación
+        // VOLVER A LA EXPLICACIÓN
         binding.btnVolverExplicacionBadatoz.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
@@ -120,15 +124,18 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR JUEGO
         binding.btnFinalizarBadatoz.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
         }
     }
 
+    // Generar imágen para arrastrar
     private class MyDragShadowBuilder(val v: View) : View.DragShadowBuilder(v) {
 
         override fun onProvideShadowMetrics(size: Point, touch: Point) {
@@ -142,6 +149,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+    // LongClickListener -> Mantener pulsado sobre una imagen
     private val longClickListener = View.OnLongClickListener { v ->
         // ClipData es un tipo complejo que contiene una o más instancias de elementos
         val item = ClipData.Item(v.tag as? CharSequence)
@@ -239,8 +247,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
-    // ---------------------- FUNCIONES ADICIONALES ----------------------
 
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para comprobar el resultado del juego
     private fun comprobarpuzzle(){
         // Resultado CORRECTO
