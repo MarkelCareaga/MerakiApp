@@ -34,6 +34,7 @@ class SplashScreen : AppCompatActivity() {
 
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
+        // la barra de progeso durara 2 segundos
         progressAnimator.duration = 2000
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
