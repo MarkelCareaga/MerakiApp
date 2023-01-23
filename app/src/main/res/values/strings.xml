@@ -30,7 +30,7 @@
     <string name="FQ">Preguntas Frecuentes</string>
     <string name="titulo_explicacion">Explicación</string>
     <string name="pescado_ahumado">Pescado ahumado</string>
-    <string name="pescado_congelado">Pescado congelado</string>
+    <string name="pescado_fresco">Pescado fresco</string>
     <string name="marisco">Marisco</string>
     <string name="pescado_precocinado">Pescado precocinado</string>
     <string name="pescado_conservas">Pescado en conservas</string>
@@ -48,7 +48,7 @@
     <string name="italiano">Italiano</string>
     <string name="pregunta_test_1">¿Cuántas escaleras hay que subir para llegar a la ermita?</string>
     <string name="pregunta_test_2">¿Cuántas veces hay que tocar la campana de la ermita para tener buena suerte?</string>
-    <string name="pregunta_test_3">¿En qué provincia se sitúa San Juan de Gaztelugatxe?</string>
+    <string name="pregunta_test_3">¿En qué provincia se sitúa el islote de San Juan de Gaztelugatxe?</string>
     <string name="pregunta_test_4">¿Que serie internacional se ha grabado en San Juan de Gaztelugatxe?</string>
     <string name="pregunta_puerta_san_juan">¿Cuántas puertas había en la muralla de Bermeo?</string>
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
