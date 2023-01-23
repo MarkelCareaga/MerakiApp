@@ -27,7 +27,6 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
     var estadoAudio = ""
     private lateinit var Imagen : ImageView
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -39,7 +38,6 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding = ActivityXixiliBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
@@ -47,22 +45,26 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             mostrar_fallo_juego(this)
         }
 
-        // BOTONES AYUDA Y ROTACIÓN
+        // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
+        // AYUDA
         binding.btnAyudaXixili.setOnClickListener {
             val mensaje = mensajeXixili
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaXixili.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Xixili)
-        // -------------------------------------------------------------------------
 
+
+        // -------------------------------------------------------------------------
         // FONDO
         var activityXixili = binding.activityXixili
         activityXixili.background = resources.getDrawable(Recursos.fondo_Xixili, theme)
@@ -87,20 +89,20 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imgTexto3original.alpha = 0.toFloat()
         binding.imgTexto4original.alpha = 0.toFloat()
 
-
-        // Por defecto:
         // El GIF de los aplausos está oculto
         binding.gifAplausosXixili.visibility = ImageView.INVISIBLE
+
         // El botón Finalizar esta oculto
         binding.btnFinalizarXixili.visibility = Button.GONE
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+
+        // -------------------------- CONTROL DE BOTONES --------------------------
+        // COMPROBAR
         binding.btnComprobarXixili.setOnClickListener{
             comprobarpuzzle()
         }
 
-        // Volver a la explicación
+        // VOLVER
         binding.btnVolverExplicacionXixili.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             finish()
@@ -111,16 +113,16 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR
         binding.btnFinalizarXixili.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
             this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", true).apply()
         }
-
     }
 
+    // ???
     private class MyDragShadowBuilder(val v: View) : View.DragShadowBuilder(v) {
 
         override fun onProvideShadowMetrics(size: Point, touch: Point) {
@@ -134,6 +136,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+    // ???
     private val longClickListener = View.OnLongClickListener { v ->
         // ClipData es un tipo complejo que contiene una o más instancias de elementos
         val item = ClipData.Item(v.tag as? CharSequence)
@@ -204,11 +207,12 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             DragEvent.ACTION_DRAG_ENDED -> {
                 true
             } else -> {
-            false
-        }
+                false
+            }
         }
     }
 
+    // Función para comprobar el resultado
     private fun comprobarpuzzle(){
         if (
             binding.imgTexto1original.getAlpha().toInt() == 255
@@ -217,8 +221,10 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             && binding.imgTexto4original.getAlpha().toInt() == 255) {
             binding.gifAplausosXixili.visibility = ImageView.VISIBLE
 
+            // Mostrar Gif de aplausos
             mostrarGif()
 
+            // Reproducir audio
             estadoAudio = "play"
             iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
@@ -238,7 +244,6 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
-
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
@@ -253,16 +258,20 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         startService(intent)
     }
 
+    // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosXixili
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
-        finish()
         stopService(intent)
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
             Recursos.audio_Xixili, Recursos.fondo_Xixili)
         startActivity(intent)
