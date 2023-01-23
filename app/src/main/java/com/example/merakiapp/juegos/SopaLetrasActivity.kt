@@ -60,37 +60,43 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         binding = ActivitySopaLetrasBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ---------------------------- BOTONES AYUDA Y ROTACIÓN ----------------------------
+        // AYUDA
         binding.btnAyudaSopaLetras.setOnClickListener {
             val mensaje = mensajeSopaLetras
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaSopaLetras.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_SopaLetras)
-        // -------------------------------------------------------------------------
-
-        // FONDO
-        var activityPuertaSanJuan = binding.activitySopaLetras
-        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
-        // POR DEFECTO:
+
+        // -------------------------------------------------------------------------
+        // FONDO
+        var activityPuertaSanJuan = binding.activitySopaLetras
+        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
+
         // Ocultar el GIF de los aplausos
         binding.gifAplausosSopaLetras.visibility = ImageView.INVISIBLE
+
         // Ocultar el botón de Finalizar
         binding.btnFinalizarSopaLetras.visibility = Button.GONE
 
-        // Volver a la Activity anterior
+
+        // -------------------------- CONTROL DE BOTONES --------------------------
+        // VOLVER
         binding.btnVolverSopaLetras.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             finish()
@@ -99,7 +105,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
             startActivity(Intent(this, PuertaSanJuanActivity::class.java))
         }
 
-        // Finalizar juego
+        // FINALIZAR
         binding.btnFinalizarSopaLetras.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
@@ -107,6 +113,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 
+        
         // Obtiene la vista del GridLayout
         val gridLayout = binding.gridLayout
 
@@ -444,8 +451,8 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
             // Devuelve verdadero para consumir el evento de touch y evitar que los TextViews se vuelvan a pintar
             true
         }
-
     }
+
     fun isPointInsideView(x: Float, y: Float, view: View): Boolean {
 
         //Punto específico que se toca
@@ -483,11 +490,14 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
-        finish()
         stopService(intent)
 
+        // Abre la activity anterior
+        finish()
         startActivity(Intent(this, PuertaSanJuanActivity::class.java))
     }
 }
