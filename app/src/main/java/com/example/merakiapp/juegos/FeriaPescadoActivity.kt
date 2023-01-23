@@ -178,6 +178,8 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()
         }
 

@@ -128,7 +128,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 }
             }.start()
         }
-        // TEMPORAL
+
+        // ??
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
 }

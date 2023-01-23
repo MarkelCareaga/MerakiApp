@@ -38,7 +38,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding = ActivityBadatozEstatuaBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()

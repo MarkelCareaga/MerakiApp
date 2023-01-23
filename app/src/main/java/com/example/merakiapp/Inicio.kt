@@ -33,9 +33,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -----> ???
+        // ???
         // Se obtiene un sharedPreferences llamado "Inico"
         val sharedPreferences = getSharedPreferences("Inico", 0)
+
 
         // ------------------------------- CONTROL DE BOTONES -------------------------------
         // MODO EXPLORADOR

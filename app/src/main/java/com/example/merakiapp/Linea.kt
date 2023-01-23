@@ -7,7 +7,7 @@ import android.view.View
 import android.widget.ImageButton
 
 class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton, numeroActivity: Int, esTablet: Boolean): View(context) {
-    // se guardan las posiciones x y y de los botones ImageButton pasados como argumento en variables
+    // Se guardan las posiciones X e Y de los botones ImageButton pasados como argumento en variables
     var x1 = btnIzquierda.x
     var y1 = btnIzquierda.y
     var x2 = btnDerecha.x
@@ -22,19 +22,21 @@ class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton
     var x2_actividad_2 = 0F
     var y_actividad_2 = 0F
 
-
-    //se guarda el numero de activity
+    // Se guarda el numero de activity
     var numActivity = numeroActivity
 
-    //se sobre escribe el metodo onDraw
+    // Se sobre escribe el metodo onDraw
     override fun onDraw(canvas: Canvas) {
-        //se crea un objeto Paint
+        // Se crea un objeto Paint
         val pincel = Paint()
-        // se configura el color del pincel
+
+        // Se configura el color del pincel
         pincel.setARGB(255,255,0,0)
-        // se establece el ancho de la línea
+
+        // Se establece el ancho de la línea
         pincel.strokeWidth = 10F
 
+        // Comprobar si el dispositivo es Tablet o Smartphone
         if (valor_esTablet) {
             x1_actividad_1 = 155F
             x2_actividad_1 = 120F
@@ -53,7 +55,7 @@ class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton
             y_actividad_2 = 70F
         }
 
-        // si el numero de actividad es 1, se dibuja una linea con los puntos x1, y1, x
+        // Si el numero de actividad es 1, se dibuja una linea con los puntos x1, y1, x
         if (numActivity == 1) {
             canvas.drawLine(x1 + x1_actividad_1, y1 - y_actividad_1, x2 + x2_actividad_1, y2 - y_actividad_1, pincel)
         } else {

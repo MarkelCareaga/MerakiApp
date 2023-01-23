@@ -115,8 +115,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Olatua)
-
+        
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
@@ -188,6 +187,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()
         }
 

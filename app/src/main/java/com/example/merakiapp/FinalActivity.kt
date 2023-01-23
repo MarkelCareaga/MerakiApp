@@ -34,30 +34,35 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
         // CAMBIAR COLOR DEL TEXTO
         binding.txtFelicidades.setTextColor(Color.WHITE)
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ------------------------ BOTONES AYUDA Y ROTACIÓN ------------------------
+        // AYUDA
         binding.btnAyudaFinal.setOnClickListener {
             val mensaje = mensajeFinal
             mostrar_dialog(this, tituloFinal, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaFinal.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR LA ACTIVITY--------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Miren)
-        // ----------------------------------------------------------------------------
-
-        Timer().schedule(6000) {
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Patxi)
-        }
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
+        // Después de 6 segundos, se reproduce el segundo audio
+        Timer().schedule(6000) {
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Patxi)
+        }
+
+
+        // ---------------------------------------------------------------------
         // FONDO
         var activityFinal = binding.activityFinal
         activityFinal.background = resources.getDrawable(Recursos.fondo_Introduccion, theme)
@@ -65,7 +70,9 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
         // Mostrar el GIF de los aplausos
         mostrarGif()
 
-        // CONTROL DE BOTONES
+
+        // ------------------------ CONTROL DE BOTONES ------------------------
+        // SIGUIENTE
         binding.btnSiguienteFinal.setOnClickListener {
             stopService(intent)
             finish()
@@ -73,6 +80,8 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
 
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
@@ -93,6 +102,7 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)

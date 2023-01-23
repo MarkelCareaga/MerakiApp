@@ -111,7 +111,6 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         }
 
         // ------------------- CONTROL DE BOTONES ADICIONALES -------------------
-
         // AYUDA
         binding.btnAyudaExplicacion.setOnClickListener {
             val mensaje = mensajeExplicacion
@@ -122,6 +121,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         binding.btnInfoPantallaExplicacion.setOnClickListener {
             mostrar_info_pantalla(this, true)
         }
+
 
         // Añadir funcionalidad de Scroll al "Texto explicativo"
         binding.txtExplicacionDemo.setMovementMethod(ScrollingMovementMethod())
@@ -140,7 +140,6 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
 
         // --------------- ACTIVAR / DESACTIVAR BOTÓN DEL VIDEO ---------------
-
         var botonVideo = binding.btnAccederVideo
 
         // El botón para Video SOLO es visible en "Feria del Pescado"
@@ -259,8 +258,10 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
             // Detener el audio
             stopService(intent)
+
             // Volver a la Activity anterior
             finish()
+            startActivity(Intent(this, MenuNav::class.java))
         }
 
         // SIGUIENTE

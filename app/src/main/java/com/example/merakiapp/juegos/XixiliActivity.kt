@@ -118,6 +118,8 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", true).apply()
         }
     }

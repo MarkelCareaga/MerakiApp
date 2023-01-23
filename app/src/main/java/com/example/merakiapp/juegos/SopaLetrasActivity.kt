@@ -110,6 +110,8 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 

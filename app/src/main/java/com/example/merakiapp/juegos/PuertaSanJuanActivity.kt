@@ -89,7 +89,6 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             startActivity(Intent(this, SopaLetrasActivity::class.java))
             finish()
-            this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
         }
 
     }

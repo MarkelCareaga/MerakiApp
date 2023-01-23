@@ -93,6 +93,8 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar7", 0).edit().putBoolean("validar7", true).apply()
         }
 
