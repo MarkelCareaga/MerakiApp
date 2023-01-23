@@ -30,7 +30,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        //Deshabilitar menu superior
+
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
@@ -38,7 +39,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
 
 
-        // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
@@ -46,23 +46,26 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             mostrar_fallo_juego(this)
         }
 
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ---------------------- BOTONES AYUDA Y ROTACIÓN ----------------------
+        // AYUDA
         binding.btnAyudaBadatoz.setOnClickListener {
             val mensaje = mensajeBadatoz
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaBadatoz.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
 
-        // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
+
+        // ---------------------- AUDIO AL INICIAR EL JUEGO --------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
-        // -------------------------------------------------------------------------
 
-        // DRAG -> Imagenes a mover
+        // DRAG -> Imágenes a mover
         binding.imagen1drag.setOnLongClickListener(longClickListener)
         binding.imagen2drag.setOnLongClickListener(longClickListener)
         binding.imagen3drag.setOnLongClickListener(longClickListener)
@@ -73,7 +76,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8drag.setOnLongClickListener(longClickListener)
         binding.imagen9drag.setOnLongClickListener(longClickListener)
 
-        // TARGET -> Destino de las imagenes
+        // TARGET -> Destino de las imágenes
         binding.imagen1target.setOnDragListener(dragListener)
         binding.imagen2target.setOnDragListener(dragListener)
         binding.imagen3target.setOnDragListener(dragListener)
@@ -84,7 +87,9 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8target.setOnDragListener(dragListener)
         binding.imagen9target.setOnDragListener(dragListener)
 
-        // Por defecto, las imagenes del DRAG no se ven en el TARGET
+
+        // ---------------------- POR DEFECTO ----------------------
+        // Por defecto, las imágenes del DRAG no se ven en el TARGET
         binding.imagen1target.alpha = 0.toFloat()
         binding.imagen2target.alpha = 0.toFloat()
         binding.imagen3target.alpha = 0.toFloat()
@@ -95,20 +100,20 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.imagen8target.alpha = 0.toFloat()
         binding.imagen9target.alpha = 0.toFloat()
 
-        // Por defecto:
         // El GIF de los aplausos está oculto
         binding.gifAplausosBadatoz.visibility = ImageView.INVISIBLE
+
         // El botón Finalizar esta oculto
         binding.btnFinalizarBadatoz.visibility = Button.GONE
 
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+        // ---------------------- CONTROL DE BOTONES ----------------------
+        // COMPROBAR RESULTADO
         binding.btnComprobarBadatoz.setOnClickListener{
             comprobarpuzzle()
         }
 
-        // Volver a la explicación
+        // VOLVER A LA EXPLICACIÓN
         binding.btnVolverExplicacionBadatoz.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
@@ -119,15 +124,18 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR JUEGO
         binding.btnFinalizarBadatoz.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            // ???
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
         }
     }
 
+    // Generar imágen para arrastrar
     private class MyDragShadowBuilder(val v: View) : View.DragShadowBuilder(v) {
 
         override fun onProvideShadowMetrics(size: Point, touch: Point) {
@@ -141,6 +149,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+    // LongClickListener -> Mantener pulsado sobre una imagen
     private val longClickListener = View.OnLongClickListener { v ->
         // ClipData es un tipo complejo que contiene una o más instancias de elementos
         val item = ClipData.Item(v.tag as? CharSequence)
@@ -165,50 +174,70 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     }
 
     @SuppressLint("Range")
+    // Declaración del listener para detectar eventos de arrastre (drag)
     private val dragListener = View.OnDragListener { v, event ->
+        // Se convierte la vista en un objeto ImageView
         val receiverView: ImageView = v as ImageView
 
+        // Se evalúa la acción detectada en el evento de arrastre
         when (event.action) {
+            // Acción detectada: Inicio del evento de arrastre
             DragEvent.ACTION_DRAG_STARTED -> {
+                // Se hace visible la imagen
                 Imagen.visibility = View.VISIBLE
                 true
             }
 
+            // Acción detectada: Objeto arrastrado entra a la vista
             DragEvent.ACTION_DRAG_ENTERED -> {
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se oculta la imagen
                     Imagen.visibility = View.GONE
                 } else {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
                 }
+                // Se invalida la vista
                 v.invalidate()
                 true
             }
 
+            // Acción detectada: Objeto arrastrado se mueve dentro de la vista
             DragEvent.ACTION_DRAG_LOCATION -> {
+                // Se hace visible la imagen
                 Imagen.visibility = View.VISIBLE
 
                 true
             }
 
+            // Acción detectada: Objeto arrastrado sale de la vista
             DragEvent.ACTION_DRAG_EXITED -> {
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
+                    // Se invalida la vista
                     v.invalidate()
                 }
                 true
             }
 
             DragEvent.ACTION_DROP -> {
-
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se establece la opacidad de la vista receptora en 255 (totalmente visible)
                     receiverView.alpha = 255.toFloat()
+                    // Se oculta la imagen
                     Imagen.visibility = View.GONE
                 } else {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
                 }
                 true
             }
 
+            // Acción detectada: Fin del evento de arrastre
             DragEvent.ACTION_DRAG_ENDED -> {
 
                 true
@@ -218,7 +247,11 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
+    // Función para comprobar el resultado del juego
     private fun comprobarpuzzle(){
+        // Resultado CORRECTO
        if (
             binding.imagen1target.getAlpha().toInt() == 255
             && binding.imagen2target.getAlpha().toInt() == 255
@@ -231,8 +264,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             && binding.imagen9target.getAlpha().toInt() == 255) {
                 binding.gifAplausosBadatoz.visibility = ImageView.VISIBLE
 
+           // Mostrar Gif de aplausos
            mostrarGif()
 
+           // Reproducir el audio de Gritos
            estadoAudio = "play"
            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
@@ -244,7 +279,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
            binding.btnFinalizarBadatoz.visibility = Button.VISIBLE
 
        } else {
-           // Resetear el juego
+           // Resultado INCORRECTO
+           // Resetear la Activity
            finish()
            startActivity(Intent(this, BadatozEstatuaActivity::class.java)
                .putExtra("resultadoJuego", "mal")
@@ -266,16 +302,20 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         startService(intent)
     }
 
+    // Función para mostrar el Gif de Aplausos
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosBadatoz
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
-        finish()
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
             Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
         startActivity(intent)

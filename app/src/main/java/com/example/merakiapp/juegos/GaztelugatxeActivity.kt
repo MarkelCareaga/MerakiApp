@@ -17,8 +17,8 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
     lateinit var binding: ActivityGastelugatxeBinding
-    var estadoAudio = ""
 
+    var estadoAudio = ""
     var correcto1: Boolean = false      // Resultado de la primera pregunta
     var correcto2: Boolean = false      // Resultado de la segunda pregunta
     var correcto3: Boolean = false      // Resultado de la tercera pregunta
@@ -36,44 +36,48 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         binding = ActivityGastelugatxeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ----------------------- BOTONES AYUDA Y ROTACIÓN -----------------------
+        // AYUDA
         binding.btnAyudaGaztelugatxe.setOnClickListener {
             val mensaje = mensajeGaztelugatxe
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaGaztelugatxe.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Gaztelugatxe_Preguntas)
+
+
         // -------------------------------------------------------------------------
+        // Conexión con el Servicio de Audios
+        var intent = Intent(this, ServicioAudios::class.java)
 
         // FONDO
         var activityGaztelugatxe = binding.activityGaztelugatxe
         activityGaztelugatxe.background = resources.getDrawable(Recursos.fondo_Gaztelugatxe, theme)
 
-        // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
-
-        // POR DEFECTO:
         // Ocultar el GIF de los aplausos
         binding.gifAplausos.visibility = ImageView.INVISIBLE
+
         // Ocultar el botón de Finalizar
         binding.btnFinalizarGaztelugatxe.visibility = Button.GONE
 
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+        // ------------------------ CONTROL DE BOTONES ------------------------
+        // COMPROBAR RESULTADO
         binding.btnComprobarGaztelugatxe.setOnClickListener {
             comprobarRespuestas()
         }
 
-        // Volver a la Activity anterior
+        // VOLVER
         binding.btnVolverGaztelugatxe.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
@@ -84,7 +88,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR
         binding.btnFinalizarGaztelugatxe.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
@@ -94,6 +98,8 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para comprobar el resultado de las respuestas
     private fun comprobarRespuestas() {
 
@@ -212,11 +218,14 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
-        finish()
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
             Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
         startActivity(intent)

@@ -15,7 +15,7 @@ class PreguntasAdapter(private val preguntas:List<Pregunta>) : RecyclerView.Adap
         val view=LayoutInflater
             .from(parent.context)
             .inflate(R.layout.item_pregunta,parent,false)
-        // devuelve una instancia de ViewHolder
+        // Devuelve una instancia de ViewHolder
         return ViewHolder(view)
     }
 
@@ -28,7 +28,7 @@ class PreguntasAdapter(private val preguntas:List<Pregunta>) : RecyclerView.Adap
     override fun getItemCount(): Int = preguntas.size
 
     class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
-        // variable de enlace del layout item_pregunta
+        // Variable de enlace del layout item_pregunta
         val binding=ItemPreguntaBinding.bind(view)
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(pregunta: Pregunta) {

@@ -139,6 +139,8 @@ class MapaModoSeguimiento: Service(), OnMapReadyCallback{
         map.addMarker(MarkerOptions().position(juego7).icon(
             BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
     }
+
+    //???
     fun circle(mMap:GoogleMap ,posicion:LatLng){
         val radio:Int = 50
         val circleOptions = CircleOptions()

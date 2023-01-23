@@ -85,7 +85,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         //Deshabilitar menu superior
         supportActionBar?.hide()
 
-        // TEST
+        // ???
         screenSize = getResources().getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
@@ -93,7 +93,6 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
         btnVolver = binding.btnVolverExplicacionOlatua
 
-        // -------------------------------- DIALOGS --------------------------------
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
@@ -101,23 +100,31 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             mostrar_fallo_juego(this)
         }
 
-        // BOTONES AYUDA Y ROTACIÓN
+        // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
+        // AYUDA
         binding.btnAyudaOlatua.setOnClickListener {
             val mensaje = mensajeOlatua
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaOlatua.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
 
+        // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
+        // Reproducir audio
+        estadoAudio = "play"
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Olatua)
+
+        // Conexión con el Servicio de Audios
+        var intent = Intent(this, ServicioAudios::class.java)
+
+
+        // -------------------------------------------------------------------------
         // FONDO
         var activityOlatua = binding.activityOlatua
         activityOlatua.background = resources.getDrawable(Recursos.fondo_Olatua, theme)
-
-        // AUDIO
-        // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
 
         // BOTONES
         btn11 = binding.btn11B
@@ -149,7 +156,6 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // OTROS BOTONES Y GIF
         gifAplausos = binding.gifAplausosOlatua
-
         btnFinalizar = binding.btnFinalizarOlatua
         btnVerResultado = binding.btnComprobarOlatua
 
@@ -159,13 +165,14 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Ocultar el botón de Finalizar
         btnFinalizar.visibility = Button.GONE
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+
+        // ------------------------ CONTROL DE BOTONES ------------------------
+        // COMPROBAR RESULTADO
         btnVerResultado.setOnClickListener {
             comprobarRespuestas()
         }
 
-        // Volver a la Activity anterior
+        // VOLVER
         btnVolver.setOnClickListener {
             var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
@@ -176,7 +183,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR
         btnFinalizar.setOnClickListener {
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
@@ -184,9 +191,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()
         }
 
-        // -------------------------------------------------------------------------
 
-        // UNIR LINEAS
+        // --------------------------- UNIR LINEAS ---------------------------
         /*
             Cuando se pulsa un botón:
             1.- El contador aumenta, asociando un valor de la lista a dicho botón.
@@ -292,6 +298,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para controlar que columna de botones ha sido seleccionada
     private fun controlBotones(btnValor: ImageButton) {
         if (btnValor == btn11 || btnValor == btn21 || btnValor == btn31
@@ -305,7 +313,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         btnValor.setImageResource(R.drawable.ic_baseline_boton_radio_activado)
     }
 
-    // ACTIVAR Y DESACTIVAR BOTONES
+
+    // ---------------- ACTIVAR Y DESACTIVAR BOTONES ----------------
     // Si el botón ya se ha pulsado (desactivado), no se cambiará su estado
     private fun estadoBotonesIzquierda(estado: Boolean) {
         if (estado_btn11) btn11.setEnabled(estado)
@@ -315,7 +324,6 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         if (estado_btn51) btn51.setEnabled(estado)
         if (estado_btn61) btn61.setEnabled(estado)
     }
-
     private fun estadoBotonesDerecha(estado: Boolean) {
         if (estado_btn12) btn12.setEnabled(estado)
         if (estado_btn22) btn22.setEnabled(estado)
@@ -430,11 +438,14 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
-        finish()
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this,
             Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
         startActivity(intent)

@@ -1,6 +1,6 @@
 package com.example.merakiapp
 
-// La Interfaz "Recursos" contiene todos los recursos necesarios para abrir la Activity Explicaciones
+// La Interfaz "Recursos" contiene los recursos pertenecientes a cada pantalla explicativa
 interface Recursos {
 
     companion object {
