@@ -30,7 +30,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
-        //Deshabilitar menu superior
+
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
@@ -218,7 +219,11 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
+
+    // Función para comprobar el resultado del juego
     private fun comprobarpuzzle(){
+        // Resultado CORRECTO
        if (
             binding.imagen1target.getAlpha().toInt() == 255
             && binding.imagen2target.getAlpha().toInt() == 255
@@ -231,8 +236,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             && binding.imagen9target.getAlpha().toInt() == 255) {
                 binding.gifAplausosBadatoz.visibility = ImageView.VISIBLE
 
+           // Mostrar Gif de aplausos
            mostrarGif()
 
+           // Reproducir el audio de Gritos
            estadoAudio = "play"
            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
 
@@ -244,7 +251,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
            binding.btnFinalizarBadatoz.visibility = Button.VISIBLE
 
        } else {
-           // Resetear el juego
+           // Resultado INCORRECTO
+           // Resetear la Activity
            finish()
            startActivity(Intent(this, BadatozEstatuaActivity::class.java)
                .putExtra("resultadoJuego", "mal")
@@ -266,16 +274,20 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         startService(intent)
     }
 
+    // Función para mostrar el Gif de Aplausos
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosBadatoz
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
     }
 
+    // Función que controla el botón Back del dispositivo móvil
     override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
-        finish()
 
+        // Abre la activity de Explicación
+        finish()
         intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
             Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
         startActivity(intent)

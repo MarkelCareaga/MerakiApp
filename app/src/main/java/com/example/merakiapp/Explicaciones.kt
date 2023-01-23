@@ -4,10 +4,14 @@ import android.content.Context
 import android.content.Intent
 import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
-// La Interfaz "Explicaciones" se encarga de
+// La Interfaz "Explicaciones" se encarga de recoger los recursos y abrir su
+// correspondiente pantalla explicativa.
 interface Explicaciones {
 
+    // Función para recoger los siguientes recursos: pantalla, audio y fondo.
     fun abrirExplicacion(context: Context, pantallaSeleccionada: String, audioSeleccionado: Int, fondoSeleccionado: Int): Intent {
+
+        // Selecciona el texto explicativo, dependiendo de la pantalla recogida.
         var textoSeleccionado = ""
         when(pantallaSeleccionada) {
             Recursos.pantalla_Introduccion -> textoSeleccionado = Recursos.texto_Introduccion
@@ -20,10 +24,10 @@ interface Explicaciones {
             Recursos.pantalla_Gaztelugatxe -> textoSeleccionado = Recursos.texto_Gaztelugatxe
         }
 
-        // Especificar el Activity a mostrar
+        // Intent para abrir la activity Explicaciones
         val intent = Intent(context, ExplicacionesActivity::class.java)
 
-        // Pasar las variables a dicha Activity
+        // Variables que se enviarán en el Intent
         intent.putExtra("pantallaSeleccionada", pantallaSeleccionada)
         intent.putExtra("audioSeleccionado", audioSeleccionado)
         intent.putExtra("fondoSeleccionado", fondoSeleccionado)
