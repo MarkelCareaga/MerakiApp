@@ -165,50 +165,70 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     }
 
     @SuppressLint("Range")
+    // Declaración del listener para detectar eventos de arrastre (drag)
     private val dragListener = View.OnDragListener { v, event ->
+        // Se convierte la vista en un objeto ImageView
         val receiverView: ImageView = v as ImageView
 
+        // Se evalúa la acción detectada en el evento de arrastre
         when (event.action) {
+            // Acción detectada: Inicio del evento de arrastre
             DragEvent.ACTION_DRAG_STARTED -> {
+                // Se hace visible la imagen
                 Imagen.visibility = View.VISIBLE
                 true
             }
 
+            // Acción detectada: Objeto arrastrado entra a la vista
             DragEvent.ACTION_DRAG_ENTERED -> {
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se oculta la imagen
                     Imagen.visibility = View.GONE
                 } else {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
                 }
+                // Se invalida la vista
                 v.invalidate()
                 true
             }
 
+            // Acción detectada: Objeto arrastrado se mueve dentro de la vista
             DragEvent.ACTION_DRAG_LOCATION -> {
+                // Se hace visible la imagen
                 Imagen.visibility = View.VISIBLE
 
                 true
             }
 
+            // Acción detectada: Objeto arrastrado sale de la vista
             DragEvent.ACTION_DRAG_EXITED -> {
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
+                    // Se invalida la vista
                     v.invalidate()
                 }
                 true
             }
 
             DragEvent.ACTION_DROP -> {
-
+                // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
+                    // Se establece la opacidad de la vista receptora en 255 (totalmente visible)
                     receiverView.alpha = 255.toFloat()
+                    // Se oculta la imagen
                     Imagen.visibility = View.GONE
                 } else {
+                    // Se hace visible la imagen
                     Imagen.visibility = View.VISIBLE
                 }
                 true
             }
 
+            // Acción detectada: Fin del evento de arrastre
             DragEvent.ACTION_DRAG_ENDED -> {
 
                 true

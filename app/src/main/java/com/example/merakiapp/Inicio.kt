@@ -151,11 +151,17 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
          TODO("Not yet implemented")
     }
 
+
     private fun pantallacodigo() {
+        // Crea un nuevo layout de tipo LinearLayout
         val layout = LinearLayout(this)
+        // Establece los márgenes del layout
         layout.setPadding(20,10,20,10)
+        // Establece la orientación del layout como vertical
         layout.orientation = LinearLayout.VERTICAL
+        // Crea un nuevo TextView
         val txtMensaje = TextView(this)
+        // Establece el texto del TextView
         txtMensaje.text= "¿Quieres empezar una nueva partida o continuar con la anterior?"
         layout.addView(txtMensaje)
 
