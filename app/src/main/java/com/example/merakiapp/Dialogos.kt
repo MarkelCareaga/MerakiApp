@@ -16,7 +16,7 @@ interface Dialogos {
         val tituloFinal = "BIEN HECHO"
         val tituloDialogFallo = "VUELVE A INTENTARLO"
         val tituloRotarPantalla = "INFO"
-        val permisoDenegado= "PERMISOS NO ACEPTADOS"
+        val permisoDenegado = "PERMISOS NO ACEPTADOS"
 
         // --------------- LISTA DE MENSAJES ---------------
         val mensajeInicio = "Meraki es una aplicación que te permite disfrutar de una serie de juegos, " +
@@ -43,6 +43,9 @@ interface Dialogos {
         val mensajeFinal = "Has completado correctamente todas las actividades."
         val mensajeDialogFallo = "El resultado del juego es incorrecto."
         val mensajeAceptar = "Aceptar"
+        val mensajeSeleccionarUsuario = "Selecciona un usuario, pulsando el botón 'Jugar'" +
+                " que se encuentra en la parte derecha. \n" +
+                "Si no hay ningún usuario o quieres añadir más, pulsa el botón inferior derecho."
         val rotacionActivada = "La rotación del dispositivo está activada."
         val rotacionDesactivada = "La rotación del dispositivo está desactivada."
     }
