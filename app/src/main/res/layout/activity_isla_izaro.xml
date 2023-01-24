@@ -20,6 +20,16 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:context=".juegos.IslaIzaroActivity">
 
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="656dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/meta"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <SeekBar
             android:id="@+id/barraUsuario"
             android:layout_width="143dp"
@@ -34,16 +44,6 @@
             android:thumb="@drawable/ic_baseline_directions_boat_24"
             app:layout_constraintBottom_toTopOf="@+id/botonMoverBarco"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <ImageView
-            android:id="@+id/imageView2"
-            android:layout_width="656dp"
-            android:layout_height="100dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/meta"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/txtUser"
@@ -169,6 +169,7 @@
             android:hint="Inserte un numero"
             android:inputType="number"
             android:textAlignment="center"
+            android:textColor="#F6F4F4"
             android:textColorHint="#FBFAFA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -183,7 +184,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/perfil1" />
+            app:srcCompat="@drawable/perfil1" />
 
         <ImageView
             android:id="@+id/imagenOponente"
@@ -193,7 +194,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtOponente"
-            tools:srcCompat="@drawable/perfil1" />
+            app:srcCompat="@drawable/perfil1" />
 
         <TextView
             android:id="@+id/txtUsuario"
@@ -208,21 +209,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imagenUsuario" />
 
-        <TextView
-            android:id="@+id/txtOponente"
-            android:layout_width="147dp"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="29dp"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textColor="#F4F0F0"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/imagenOponente"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/versus"
             android:layout_width="253dp"
             android:layout_height="184dp"
             android:layout_marginTop="30dp"
@@ -241,6 +229,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/txtOponente"
+            android:layout_width="147dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="29dp"
+            android:text="TextView"
+            android:textAlignment="center"
+            android:textColor="#F4F0F0"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/imagenOponente"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button

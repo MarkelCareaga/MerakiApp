@@ -9,13 +9,13 @@
 
     <EditText
         android:id="@+id/nombre_et"
-        android:layout_width="372dp"
-        android:layout_height="42dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="336dp"
+        android:layout_height="46dp"
         android:layout_marginTop="16dp"
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:ignore="TouchTargetSizeCheck" />
@@ -61,12 +61,13 @@
 
     <TextView
         android:id="@+id/textView9"
-        android:layout_width="383dp"
-        android:layout_height="48dp"
-        android:layout_marginStart="16dp"
+        android:layout_width="336dp"
+        android:layout_height="50dp"
         android:layout_marginTop="40dp"
         android:text="@string/imagen"
+        android:textAlignment="center"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/nombre_et" />
 
