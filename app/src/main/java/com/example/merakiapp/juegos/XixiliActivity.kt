@@ -115,6 +115,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FINALIZAR
         binding.btnFinalizarXixili.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
