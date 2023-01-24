@@ -49,7 +49,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.cuantaspuertashabia)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_PuertaSanJuan)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)

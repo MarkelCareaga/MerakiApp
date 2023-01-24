@@ -108,7 +108,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // ---------------------- CONTROL DE BOTONES ----------------------
         // COMPROBAR RESULTADO
-        binding.btnComprobarBadatoz.setOnClickListener{
+        binding.btnComprobarBadatoz.setOnClickListener {
             comprobarpuzzle()
         }
 
@@ -125,6 +125,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FINALIZAR JUEGO
         binding.btnFinalizarBadatoz.setOnClickListener {
+            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             startActivity(Intent(this, MenuNav::class.java))
             finish()
@@ -238,7 +239,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Acción detectada: Fin del evento de arrastre
             DragEvent.ACTION_DRAG_ENDED -> {
-
                 true
             } else -> {
                 false

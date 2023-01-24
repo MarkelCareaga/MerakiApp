@@ -53,13 +53,11 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Gaztelugatxe_Preguntas)
-
-
-        // -------------------------------------------------------------------------
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
+
+        // -------------------------------------------------------------------------
         // FONDO
         var activityGaztelugatxe = binding.activityGaztelugatxe
         activityGaztelugatxe.background = resources.getDrawable(Recursos.fondo_Gaztelugatxe, theme)

@@ -115,7 +115,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        
+
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
