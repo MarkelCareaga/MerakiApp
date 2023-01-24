@@ -137,13 +137,14 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
-    // Generar imágen para arrastrar
     private class MyDragShadowBuilder(val v: View) : View.DragShadowBuilder(v) {
 
+        // Este método establece el tamaño y la posición de la imagen que se va a arrastrar
         override fun onProvideShadowMetrics(size: Point, touch: Point) {
             size.set(view.width, view.height)
             touch.set(view.width / 3, view.height / 1)
         }
+        // Este método se encarga de dibujar la imagen en el canvas y ocultando la imagen original
         override fun onDrawShadow(canvas: Canvas) {
             v.draw(canvas)
             v.setVisibility(ImageView.INVISIBLE)
