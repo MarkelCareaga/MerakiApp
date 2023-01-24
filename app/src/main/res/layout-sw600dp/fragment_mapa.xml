@@ -20,10 +20,10 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaMapa"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginBottom="12dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginBottom="28dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="52dp"
@@ -35,8 +35,8 @@
 
     <ImageButton
         android:id="@+id/btnAyudaMapa"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="28dp"
         android:layout_marginBottom="28dp"
         android:layout_alignParentTop="true"
