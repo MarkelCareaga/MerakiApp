@@ -122,7 +122,7 @@
             android:layout_width="118dp"
             android:layout_height="70dp"
             android:layout_marginTop="48dp"
-            android:text="@string/pescado_congelado"
+            android:text="@string/pescado_fresco"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.244"

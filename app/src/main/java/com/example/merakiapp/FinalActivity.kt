@@ -3,21 +3,24 @@ package com.example.merakiapp
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
+import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.Dialogos.Companion.mensajeFinal
 import com.example.merakiapp.Dialogos.Companion.tituloFinal
 import com.example.merakiapp.databinding.ActivityFinalBinding
 import com.example.merakiapp.servicios.ServicioAudios
+import java.util.*
+import kotlin.concurrent.schedule
 
-class FinalActivity : AppCompatActivity(), Dialogos {
+
+class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
     private lateinit var binding: ActivityFinalBinding
 
     // AUDIO Y FONDO
-    private var audioSeleccionado = R.raw.felicidades            // Audio a reproducir
-    private var fondoSeleccionado = R.drawable.fondo_final       // Fondo a mostrar
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,34 +34,45 @@ class FinalActivity : AppCompatActivity(), Dialogos {
         // CAMBIAR COLOR DEL TEXTO
         binding.txtFelicidades.setTextColor(Color.WHITE)
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // ------------------------ BOTONES AYUDA Y ROTACIÓN ------------------------
+        // AYUDA
         binding.btnAyudaFinal.setOnClickListener {
             val mensaje = mensajeFinal
             mostrar_dialog(this, tituloFinal, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaFinal.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR LA ACTIVITY--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, audioSeleccionado)
-        // ----------------------------------------------------------------------------
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Miren)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
+        // Después de 6 segundos, se reproduce el segundo audio
+        Timer().schedule(6000) {
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Patxi)
+        }
+
+
+        // ---------------------------------------------------------------------
         // FONDO
         var activityFinal = binding.activityFinal
-        activityFinal.background = resources.getDrawable(fondoSeleccionado, theme)
+        activityFinal.background = resources.getDrawable(Recursos.fondo_Introduccion, theme)
 
         // Mostrar el GIF de los aplausos
         mostrarGif()
 
-        // CONTROL DE BOTONES
+
+        // ------------------------ CONTROL DE BOTONES ------------------------
+        // SIGUIENTE
         binding.btnSiguienteFinal.setOnClickListener {
             stopService(intent)
             finish()
@@ -66,6 +80,8 @@ class FinalActivity : AppCompatActivity(), Dialogos {
 
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
@@ -84,5 +100,12 @@ class FinalActivity : AppCompatActivity(), Dialogos {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosFinal
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    // Función que controla el botón Back del dispositivo móvil
+    override fun onBackPressed() {
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
     }
 }

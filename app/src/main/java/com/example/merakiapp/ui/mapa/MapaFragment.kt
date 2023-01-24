@@ -1,4 +1,5 @@
 package com.example.merakiapp.ui.mapa
+
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.location.Location
@@ -11,7 +12,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.FragmentMapaBinding
-import com.example.merakiapp.juegos.*
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.mapa.MapaModoSeguimiento
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -42,20 +43,21 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
     lateinit var ubica: LatLng
     val radio:Int = 50
 
-    //Puerta de San Juan
+    // Puerta de San Juan
     var juegos1 = LatLng(433.421301, -2.722980)
-    //Badatoz Estatua
+    // Badatoz Estatua
     var juegos2 = LatLng(433.420209, -2.721071)
-    //Feria de Pescado
+    // Feria de Pescado
     var juegos3 = LatLng(4333.419160, -2.722421)
-    //Olatua estatua
+    // Olatua estatua
     var juegos4 = LatLng(433.419639, -2.718932)
-    //Xixili
+    // Xixili
     var juegos5 = LatLng(433.42084538018336, -2.7127369295768204)
-    //isla izaro
+    // Isla de Izaro
     var juegos6 = LatLng(433.424959, -2.683557)
-    // san juan de gaztelugatxe
+    // San Juan de Gaztelugatxe
     var juegos7 = LatLng(423.447147, -2.785151)
+
     val locationa = Location("juego")
 
     @SuppressLint("MissingPermission")

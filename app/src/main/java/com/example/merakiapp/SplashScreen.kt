@@ -1,18 +1,13 @@
 package com.example.merakiapp
 
-import android.Manifest
 import android.animation.ObjectAnimator
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.view.animation.LinearInterpolator
 import android.widget.ProgressBar
 import android.widget.TextView
-import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import java.util.Timer
 import java.util.TimerTask
 
@@ -26,7 +21,7 @@ class SplashScreen : AppCompatActivity() {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
         setContentView(R.layout.activity_splash_screen)
 
-        //Ocultar toolbar
+        // Ocultar toolbar
         supportActionBar?.hide()
 
         // Obtiene una referencia al ProgressBar de la vista
@@ -34,6 +29,8 @@ class SplashScreen : AppCompatActivity() {
 
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
         val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
+
+        // La barra de progeso durara 2 segundos
         progressAnimator.duration = 2000
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
@@ -46,8 +43,7 @@ class SplashScreen : AppCompatActivity() {
             }
         }).start()
 
-
-        val intent=Intent(this,Inicio::class.java)
+        val intent = Intent(this,Inicio::class.java)
 
         // Crea un temporizador para cambiar a la siguiente actividad después del tiempo de pantalla de bienvenida
         Timer().schedule(object : TimerTask(){

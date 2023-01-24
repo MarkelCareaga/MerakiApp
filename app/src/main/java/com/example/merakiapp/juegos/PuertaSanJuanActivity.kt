@@ -5,7 +5,6 @@ import android.content.pm.ActivityInfo
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
@@ -14,13 +13,12 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajePuertaSanJuan
 import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
-import com.example.merakiapp.explicaciones.DemoActivity
+import com.example.merakiapp.Explicaciones
 import com.example.merakiapp.servicios.ServicioAudios
 
 class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
     var estadoAudio = ""
-
     private var respuesta = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,65 +32,70 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding = ActivityPuertaSanJuanBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+
+        // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
+        // AYUDA
         binding.btnAyudaPuertaSanJuan.setOnClickListener {
             val mensaje = mensajePuertaSanJuan
             mostrar_dialog(this, tituloJuegos, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaPuertaSanJuan.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
+
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.cuantaspuertashabia)
-        // -------------------------------------------------------------------------
-
-        // FONDO
-        var activityPuertaSanJuan = binding.activityPuertaSanJuan
-        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_PuertaSanJuan)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
 
-        // POR DEFECTO:
+
+        // -------------------------------------------------------------------------
+        // FONDO
+        var activityPuertaSanJuan = binding.activityPuertaSanJuan
+        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
+
         // Ocultar el GIF de los aplausos
         binding.gifAplausosPuertaSanJuan.visibility = ImageView.INVISIBLE
+
         // Ocultar el botón de Finalizar
         binding.btnSiguientePuertaSanJuan.visibility = Button.GONE
 
 
-        // CONTROL DE BOTONES
-        // Comprobar resultado
+        // ------------------------ CONTROL DE BOTONES ------------------------
+        // COMPROBAR RESULTADO
         binding.btnComprobarPuertaSanJuan.setOnClickListener {
             comprobarRespuestas()
         }
 
-        // Volver a la Activity anterior
+        // VOLVER
         binding.btnVolverPuertaSanJuan.setOnClickListener {
-            finish()
             stopService(intent)
+            finish()
 
-            var intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+            intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
+                Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
             startActivity(intent)
         }
 
-        // Finalizar juego
+        // FINALIZAR
         binding.btnSiguientePuertaSanJuan.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, SopaLetrasActivity::class.java))
             finish()
-            this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", true).apply()
+            startActivity(Intent(this, SopaLetrasActivity::class.java))
         }
 
     }
 
+
+    // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para comprobar el resultado de las respuestas
     private fun comprobarRespuestas() {
-
         // Recoger respuesta introducida
         var respuesta_texto = binding.txtRespuestaPuertaSanJuan.text.toString()
 
@@ -122,9 +125,6 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
             // Cambiar color
             binding.txtRespuestaPuertaSanJuan.setBackgroundColor(Color.GREEN)
 
-            // TEMPORAL
-            // SharedPreferences (validar juego)
-
         } else {
             // Cambiar color
             binding.txtRespuestaPuertaSanJuan.setBackgroundColor(Color.RED)
@@ -150,5 +150,18 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun mostrarGif() {
         val ImageView: ImageView = binding.gifAplausosPuertaSanJuan
         Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+    }
+
+    // Función que controla el botón Back del dispositivo móvil
+    override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+
+        // Abre la activity de Explicación
+        finish()
+        intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
+            Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+        startActivity(intent)
     }
 }

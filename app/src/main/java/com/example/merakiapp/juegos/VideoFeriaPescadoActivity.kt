@@ -9,6 +9,7 @@ import com.example.merakiapp.*
 import com.example.merakiapp.Dialogos.Companion.mensajeVideoFeriaPescado
 import com.example.merakiapp.Dialogos.Companion.tituloVideo
 import com.example.merakiapp.databinding.ActivityVideoFeriaPescadoBinding
+import com.example.merakiapp.Explicaciones
 
 class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityVideoFeriaPescadoBinding
@@ -17,7 +18,7 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
-        //Deshabilitar menu superior
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
@@ -25,17 +26,20 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         setContentView(binding.root)
 
 
-        // -------------------------------- DIALOGS --------------------------------
-        // BOTONES AYUDA Y ROTACIÓN
+        // -------------------------- BOTONES AYUDA Y ROTACIÓN --------------------------
+        // AYUDA
         binding.btnAyudaVideoFeriaPescado.setOnClickListener {
             val mensaje = mensajeVideoFeriaPescado
             mostrar_dialog(this, tituloVideo, mensaje)
         }
+
+        // INFO ROTACIÓN
         binding.btnInfoPantallaVideoFeriaPescado.setOnClickListener {
             mostrar_info_pantalla(this, false)
         }
-        // -------------------------------------------------------------------------
 
+
+        // -------------------------------------------------------------------------
         // FONDO
         var activityVideoFeriaPescado = binding.activityVideoFeriaPescado
         activityVideoFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
@@ -43,10 +47,12 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // VIDEO PLAYER
         reproducirVideo("videoarrainazoka")
 
-        // CONTROL DE BOTONES
+        // -------------------------- CONTROL DE BOTONES --------------------------
+        // VOLVER
         binding.btnVolverDesdeVideo.setOnClickListener {
             finish()
 
+            // ???
             val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
             val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
@@ -56,13 +62,13 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }
     }
 
+    // Función para reproducir video
     private fun reproducirVideo(videoSeleccionado: String) {
         val rawId = resources.getIdentifier(
             videoSeleccionado, "raw",
             packageName
         )
         val path = "android.resource://$packageName/$rawId"
-
         val videoView = binding.videoFeriaPescado
         val mediaController = MediaController(this)
         mediaController.setAnchorView(videoView)
