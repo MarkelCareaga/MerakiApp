@@ -77,7 +77,6 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
         // VOLVER
         binding.btnVolverGaztelugatxe.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             finish()
 
@@ -89,8 +88,9 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR
         binding.btnFinalizarGaztelugatxe.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar7", 0).edit().putBoolean("validar7", true).apply()

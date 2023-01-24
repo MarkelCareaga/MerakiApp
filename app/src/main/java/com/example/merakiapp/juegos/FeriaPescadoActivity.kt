@@ -164,9 +164,8 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ------------------- CONTROL DE BOTONES -------------------
         // VOLVER A LA EXPLICACIÓN
         btnVolver.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
-            finish()
             stopService(intent)
+            finish()
 
             intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
                 Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
@@ -176,8 +175,9 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR
         btnFinalizar.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()

@@ -173,7 +173,6 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // VOLVER
         btnVolver.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             finish()
 
@@ -185,8 +184,9 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR
         btnFinalizar.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", true).apply()

@@ -98,9 +98,8 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         // -------------------------- CONTROL DE BOTONES --------------------------
         // VOLVER
         binding.btnVolverSopaLetras.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
-            finish()
             stopService(intent)
+            finish()
 
             startActivity(Intent(this, PuertaSanJuanActivity::class.java))
         }

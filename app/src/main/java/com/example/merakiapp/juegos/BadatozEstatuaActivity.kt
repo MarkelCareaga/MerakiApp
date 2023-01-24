@@ -63,7 +63,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
+        var intent = Intent(this, ServicioAudios::class.java)
 
+
+        // ---------------------------------------------------------------------------
         // DRAG -> Imágenes a mover
         binding.imagen1drag.setOnLongClickListener(longClickListener)
         binding.imagen2drag.setOnLongClickListener(longClickListener)
@@ -114,7 +117,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // VOLVER A LA EXPLICACIÓN
         binding.btnVolverExplicacionBadatoz.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             finish()
 
@@ -125,10 +127,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FINALIZAR JUEGO
         binding.btnFinalizarBadatoz.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+            
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
