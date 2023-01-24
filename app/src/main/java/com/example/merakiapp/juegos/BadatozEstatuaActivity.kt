@@ -129,7 +129,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.btnFinalizarBadatoz.setOnClickListener {
             stopService(intent)
             finish()
-            
+
             startActivity(Intent(this, MenuNav::class.java))
 
             // ???
