@@ -20,8 +20,8 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaMapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="52dp"
@@ -33,8 +33,8 @@
 
     <ImageButton
         android:id="@+id/btnAyudaMapa"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_alignParentTop="true"
         android:background="@drawable/estilo_botones_superiores"
         android:layout_marginTop="-2dp"
