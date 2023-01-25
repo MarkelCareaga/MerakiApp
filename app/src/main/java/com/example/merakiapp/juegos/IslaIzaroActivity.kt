@@ -1,36 +1,51 @@
 package com.example.merakiapp.juegos
 
-import android.annotation.SuppressLint
+import android.R
+import android.app.ProgressDialog.show
+import android.content.DialogInterface
+import android.content.Intent
 import android.content.pm.ActivityInfo
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.example.merakiapp.Dialogos
 import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.Recursos
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
-import com.example.merakiapp.sqLite.Usuario
+import com.example.merakiapp.servicios.ServicioAudios
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.socket.client.IO
 import org.json.JSONArray
+import org.json.JSONObject
+import java.lang.Thread.sleep
+
 
 class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
     private lateinit var sala:String
+    private lateinit var esatdoAudio :String
     var socket = IO.socket("https://merakiapp-servicio-multijugador.glitch.me")
+    var boolean = false
+    private  var usuario1:Boolean = false
+    private  var usuario2:Boolean = false
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         //Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
         binding = ActivityIslaIzaroBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        socket.connect()
 
+        //prueba()
+        socket.connect()
+        binding.txtBuscaarJugador?.visibility  = View.GONE
+        binding.cargar?.visibility  = View.GONE
         binding.constraintLayout3.visibility = View.GONE
         binding.versus.visibility = View.GONE
         binding.txtOponente.visibility = View.GONE
@@ -65,43 +80,58 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             println ("Debug: ChatManager::setUpdateNicks () - Total users: " + chatUsers.size)
         }
         */
+
         socket.on("actualizarJuego"){usuarioString->
-             val usuarios = ArrayList<Usuario>()
+            runOnUiThread {
+                val jsonarray = usuarioString[0] as JSONArray
 
-            if (usuarioString != null) {
-                val jsonUsuarios = JSONArray(usuarioString)
-                (0 until jsonUsuarios.length()).forEach{
+                println(jsonarray)
 
-                        val jsonUsuario = jsonUsuarios.getJSONObject(it)
-                        val usuario = Usuario( jsonUsuario.get("id") as Int,jsonUsuario.get("nombre") as String,jsonUsuario.get("pasosUsuario") as Int,null)
-                        usuarios.add(usuario)
+                (0 until jsonarray.length()).forEach {
+                    val objeto: JSONObject = jsonarray.getJSONObject(it)
+                    if (objeto["idcode"] == socket.id()) {
+                        //El usuario
+                        binding.txtUsuario.text = ""+objeto["nombre"]
+                        binding.txtUser?.text = ""+objeto["nombre"]
+                        binding.barraUsuario?.progress = objeto.getInt("punto")
+                        usuario1 = objeto.getBoolean("audio")
 
-                        binding.txtUsuario.text = usuarios[0].nombreusuario
-                        binding.txtUser?.text = usuarios[0].nombreusuario
-                        binding.barraUsuario?.progress  = usuarios[0].pasosUsuario
+                    } else {
+                        if (!jsonarray.getJSONObject(1).isNull("nombre")){
+                            // Oponente
+                            binding.txtBuscaarJugador?.visibility  = View.GONE
+                            binding.cargar?.visibility  = View.GONE
 
 
+                            binding.imagenOponente.visibility = View.VISIBLE
+                            binding.txtOponente.visibility = View.VISIBLE
+                            binding.versus.visibility = View.VISIBLE
+                            binding.button.visibility = View.VISIBLE
+                            binding.txtOponente.text = ""+objeto["nombre"]
+                            binding.txtUserOponent?.text = ""+objeto["nombre"]
+                            binding.barraOponente?.progress = objeto.getInt("punto")
+                            usuario2 = objeto.getBoolean("audio")
 
-
-
+                        }
+                    }
                 }
             }
-
         }
-        binding.button2?.setOnClickListener(){
+
+
+
+        binding.button2?.setOnClickListener {
             if(binding.txtNumber!!.text!!.isNotBlank()) {
-                sala = Integer.parseInt(binding.txtNumber!!.getText().toString()).toString();
+                sala = Integer.parseInt(binding.txtNumber!!.text.toString()).toString()
                 socket.emit("sala", sala.toInt(), name, binding.barraUsuario?.progress, imagen)
                 binding.button2!!.visibility = View.GONE
                 binding.txtNumber!!.visibility = View.GONE
                 binding.txtSala2?.visibility = View.GONE
                 binding.txtSala2?.visibility = View.GONE
 
-                binding.button.visibility = View.VISIBLE
-                binding.imagenOponente.visibility = View.VISIBLE
-                binding.txtOponente.visibility = View.VISIBLE
-                binding.versus.visibility = View.VISIBLE
+                binding.txtBuscaarJugador?.visibility  = View.VISIBLE
 
+                binding.cargar?.visibility = View.VISIBLE
 
 
             }else {
@@ -110,33 +140,42 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 }
 
         }
-        binding.button.setOnClickListener() {
+        binding.button.setOnClickListener {
             binding.constraintLayout2.visibility = View.GONE
             binding.imagenOponente.visibility = View.GONE
             binding.imagenUsuario.visibility = View.GONE
 
             binding.constraintLayout3.visibility = View.VISIBLE
-
+            binding.botonMoverBarco?.visibility  = View.GONE
+            binding.btnSprint?.visibility  = View.GONE
+            boolean = true
+            socket.emit("audio", boolean)
+            esatdoAudio = "play"
+            iniciarServicioAudio(esatdoAudio, Recursos.audio_Juego_Izaro)
             binding.txtUser?.text = name
 
 
+
         }
+
+
         binding.barraUsuario?.max  =100
         binding.barraOponente?.max  =100
-        binding.barraUsuario?.setProgress(0)
-        binding.barraOponente?.setProgress(0)
+        binding.barraUsuario?.progress = 0
+        binding.barraOponente?.progress = 0
 
-        binding.botonMoverBarco?.setOnClickListener(){
+        binding.botonMoverBarco?.setOnClickListener {
             socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
-            val progreso = binding.barraUsuario?.getProgress()
 
-            if (progreso != null) {
-                binding.barraUsuario?.setProgress(progreso + 1)
-            }
             if( binding.barraUsuario?.progress ==100){
                 Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
+                binding.btnSprint?.isEnabled =false
+                binding.botonMoverBarco?.isEnabled =false
+
             }else if(binding.barraOponente?.progress ==100){
                 Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
+                binding.btnSprint?.isEnabled =false
+                binding.botonMoverBarco?.isEnabled =false
             }
         }
 
@@ -144,22 +183,20 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         val botonX2 = binding.btnSprint
         val animationView = binding.animationView
 
-        binding.btnSprint?.setOnClickListener() {
+        binding.btnSprint?.setOnClickListener {
             socket.emit("incrementation2", name, binding.barraUsuario?.progress, imagen)
 
-
             //binding.btnVolverGaztelugatxe.visibility = View.GONE
-            val progreso = binding.barraUsuario?.getProgress()
-
-            if (progreso != null) {
-                binding.barraUsuario?.setProgress(progreso + 2)
-            }
 
             if( binding.barraUsuario?.progress ==100){
                 Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
-            }else if(binding.barraOponente?.progress ==100){
-                    Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
+                binding.btnSprint?.isEnabled =false
+                binding.botonMoverBarco?.isEnabled =false
 
+            }else if(binding.barraOponente?.progress ==100){
+                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
+                binding.btnSprint?.isEnabled =false
+                binding.botonMoverBarco?.isEnabled =false
             }else {
 
                 botonX2!!.isEnabled = false
@@ -174,9 +211,56 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 }.start()
             }
         }
-        
+
+
         // TEMPORAL
         // ??
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
+    override fun onBackPressed() {
+        socket.disconnect()
+        super.onBackPressed()
+
+    }
+
+    private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int){
+        var intent = Intent(this,ServicioAudios::class.java)
+        intent.putExtra("estadoAudio",estadoAudio)
+        intent.putExtra("audioSeleccionado",audioSeleccionado)
+        startService(intent)
+        sleep(4100)
+
+            var dialog = AlertDialog.Builder(this).setMessage("Solo pulsar cuando el audio termine")
+                .setTitle("Ha terminado el Audio")
+                // Botón "aceptar"
+                .setPositiveButton("Aceptar", DialogInterface.OnClickListener
+                { dialog, id ->
+                    if(usuario1 == true && usuario2 == true){
+                        binding.botonMoverBarco?.visibility  = View.VISIBLE
+
+                        binding.btnSprint?.visibility = View.VISIBLE
+
+                    }else{
+                        Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
+                    }
+                })
+                // Obliga a elegir uno de los botones para cerrar el cuadro de diálogo
+                //.setCancelable (false)
+                .create()
+                .show()
+    }
+
+    /*
+
+    fun prueba () {
+        val jsonArrayString = "[{\"codigo\":\"OUkN-E570VF6qaqwAAAD\",\"nombre\":\"pepe\",\"punto\":0,\"imagen\":\"file:///data/user/0/com.example.merakiapp/files/IMG_0\",\"salaSeleccionada\":111}]"
+        val jsonArrayString2 = "[{\"nombre\": \"aaaa\"}, {\"nombre\": \"bbbb\"}]"
+
+        val jsonArray = JSONArray (jsonArrayString)
+
+        (0 until jsonArray.length()).forEach {
+            val jsonObject = jsonArray.getJSONObject(it)
+            println ("Debug: MainActivity::prueba() " + jsonObject)
+        }
+    }*/
 }
