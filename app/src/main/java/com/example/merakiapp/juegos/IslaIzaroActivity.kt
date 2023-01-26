@@ -278,8 +278,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         sleep(4100)
 
         if (conDialog) {
-            var dialog = AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
-                .setTitle("¿Preparados?")
+            var dialog = AlertDialog.Builder(this).setMessage("¡COMIENZA LA CARRERA!")
+                .setTitle("")
                 // Botón "aceptar"
                 .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
                 { dialog, id ->
