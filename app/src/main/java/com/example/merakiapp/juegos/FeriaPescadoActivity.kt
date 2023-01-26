@@ -62,7 +62,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var estado_btn52 = true
 
     // ???
-    var screenSize: Boolean = false
+    private var screenSize: Boolean = false
 
     // Lista para asociar valores a cada botón
     private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5)
@@ -71,13 +71,13 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //Deshabilitar menu superior
         supportActionBar?.hide()
 
         // ???
-        screenSize = getResources().getBoolean(R.bool.isTablet)
+        screenSize = resources.getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
         binding = ActivityFeriaPescadoBinding.inflate(layoutInflater)
@@ -85,7 +85,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
-        var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
+        val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
         if (resultadoJuego == "mal") {
             mostrar_fallo_juego(this)
         }
@@ -115,7 +115,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // ------------------------------------------------------------------------
         // FONDO
-        var activityFeriaPescado = binding.activityFeriaPescado
+        val activityFeriaPescado = binding.activityFeriaPescado
         activityFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
 
         // BOTONES
@@ -196,7 +196,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton11 = listaParejas[contador]
             controlBotones(btn11)
             controlLineas()
-            btn11.setEnabled(false)
+            btn11.isEnabled = false
             estado_btn11 = false
         }
         btn12.setOnClickListener {
@@ -204,7 +204,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton12 = listaParejas[contador]
             controlBotones(btn12)
             controlLineas()
-            btn12.setEnabled(false)
+            btn12.isEnabled = false
             estado_btn12 = false
         }
         btn21.setOnClickListener {
@@ -212,7 +212,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton21 = listaParejas[contador]
             controlBotones(btn21)
             controlLineas()
-            btn21.setEnabled(false)
+            btn21.isEnabled = false
             estado_btn21 = false
         }
         btn22.setOnClickListener {
@@ -220,7 +220,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton22 = listaParejas[contador]
             controlBotones(btn22)
             controlLineas()
-            btn22.setEnabled(false)
+            btn22.isEnabled = false
             estado_btn22 = false
         }
         btn31.setOnClickListener {
@@ -228,7 +228,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton31 = listaParejas[contador]
             controlBotones(btn31)
             controlLineas()
-            btn31.setEnabled(false)
+            btn31.isEnabled = false
             estado_btn31 = false
         }
         btn32.setOnClickListener {
@@ -236,7 +236,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton32 = listaParejas[contador]
             controlBotones(btn32)
             controlLineas()
-            btn32.setEnabled(false)
+            btn32.isEnabled = false
             estado_btn32 = false
         }
         btn41.setOnClickListener {
@@ -244,7 +244,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton41 = listaParejas[contador]
             controlBotones(btn41)
             controlLineas()
-            btn41.setEnabled(false)
+            btn41.isEnabled = false
             estado_btn41 = false
         }
         btn42.setOnClickListener {
@@ -252,7 +252,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton42 = listaParejas[contador]
             controlBotones(btn42)
             controlLineas()
-            btn42.setEnabled(false)
+            btn42.isEnabled = false
             estado_btn42 = false
         }
         btn51.setOnClickListener {
@@ -323,7 +323,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     // Función para dibujar la linea entre los botones especificados
     private fun dibujarLinea(btnIzquierda: ImageButton, btnDerecha: ImageButton) {
-        var layout: RelativeLayout = binding.layoutLineas
+        val layout: RelativeLayout = binding.layoutLineas
 
         var esTablet = false
         if (screenSize) esTablet = true
@@ -383,7 +383,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
@@ -401,6 +401,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
