@@ -10,9 +10,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/contenedorTransparenteB"
         style="@style/Theme.MerakiApp"
-        android:layout_width="match_parent"
-        android:layout_height="570dp"
-        android:background="#C8FFFBFB"
+        android:layout_width="389dp"
+        android:layout_height="576dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/constraintredondo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -294,9 +295,9 @@
             android:id="@+id/btnInfoPantallaOlatua"
             android:layout_width="35dp"
             android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="36dp"
             android:background="@drawable/estilo_botones_superiores"
-            android:layout_marginTop="3dp"
-            android:layout_marginEnd="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
@@ -306,9 +307,9 @@
             android:id="@+id/btnAyudaOlatua"
             android:layout_width="35dp"
             android:layout_height="35dp"
-            android:background="@drawable/estilo_botones_superiores"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="10dp"
+            android:background="@drawable/estilo_botones_superiores"
             app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaOlatua"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_baseline_ayuda"
@@ -320,10 +321,10 @@
             android:layout_height="524dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.4"
+            app:layout_constraintHorizontal_bias="0.424"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/txtObjetivoOlatua"
-            app:layout_constraintVertical_bias="0.956">
+            app:layout_constraintVertical_bias="1.0">
 
         </RelativeLayout>
 
