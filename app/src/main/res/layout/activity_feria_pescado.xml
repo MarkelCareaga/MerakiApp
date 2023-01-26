@@ -9,8 +9,8 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="1150dp"
-        android:layout_height="800dp"
+        android:layout_width="408dp"
+        android:layout_height="743dp"
         android:background="@drawable/fondoferiapescado"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -269,8 +269,8 @@
 
         <RelativeLayout
             android:id="@+id/layoutLineas"
-            android:layout_width="410dp"
-            android:layout_height="461dp"
+            android:layout_width="406dp"
+            android:layout_height="532dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
