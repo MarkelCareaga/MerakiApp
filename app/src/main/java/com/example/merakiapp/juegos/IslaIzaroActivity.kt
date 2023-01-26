@@ -300,6 +300,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
                                 binding.btnSprint?.visibility = View.VISIBLE
 
+
                             } else {
                                 Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
                             }
@@ -314,18 +315,4 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         }).start()
 
     }
-
-    /*
-
-    fun prueba () {
-        val jsonArrayString = "[{\"codigo\":\"OUkN-E570VF6qaqwAAAD\",\"nombre\":\"pepe\",\"punto\":0,\"imagen\":\"file:///data/user/0/com.example.merakiapp/files/IMG_0\",\"salaSeleccionada\":111}]"
-        val jsonArrayString2 = "[{\"nombre\": \"aaaa\"}, {\"nombre\": \"bbbb\"}]"
-
-        val jsonArray = JSONArray (jsonArrayString)
-
-        (0 until jsonArray.length()).forEach {
-            val jsonObject = jsonArray.getJSONObject(it)
-            println ("Debug: MainActivity::prueba() " + jsonObject)
-        }
-    }*/
 }
