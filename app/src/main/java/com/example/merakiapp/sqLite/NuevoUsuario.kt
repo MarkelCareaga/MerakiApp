@@ -207,12 +207,24 @@ class NuevoUsuario : AppCompatActivity(){
                 } else {
                     if (resultCode == Activity.RESULT_OK && data != null) {
                         imageUri = data.data!!
-                        val usuarios = conexion.listaTodos()
                         imageUri?.let {
-                            ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
-                            currentsPhotoPath =
-                                ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
-                                    .toString()
+                            val usuarios = conexion.listaTodos()
+                            if (usuarios.isNotEmpty()) {
+
+                                    ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
+                                    currentsPhotoPath =
+                                        ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
+                                            .toString()
+
+
+                            } else {
+
+                                    ImageController.saveImage(this@NuevoUsuario,0 ,it )
+                                    currentsPhotoPath =
+                                        ImageController.getImageUri(this@NuevoUsuario, 0 )
+                                            .toString()
+                                }
+
                         }
 
                         binding.imagen.setImageURI(imageUri)

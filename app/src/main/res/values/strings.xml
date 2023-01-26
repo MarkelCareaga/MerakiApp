@@ -58,4 +58,5 @@
     <string name="ayuda">Ayuda</string>
     <string name="Buscarjugador">Buscar</string>
     <string name="pescado_congelado">Pescado congelado</string>
+    <string name="buscar">Buscando jugador</string>
 </resources>

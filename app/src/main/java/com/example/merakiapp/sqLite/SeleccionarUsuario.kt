@@ -5,9 +5,10 @@ import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import com.example.merakiapp.Dialogos
 import com.example.merakiapp.databinding.ActivitySeleccionarUsuarioBinding
 
-class SeleccionarUsuario : AppCompatActivity(){
+class SeleccionarUsuario : AppCompatActivity(), Dialogos {
     lateinit var conexion: UsuarioDB
     private lateinit var UsuariosAdapter : ListaAdapter
     private lateinit var binding: ActivitySeleccionarUsuarioBinding
@@ -26,7 +27,7 @@ class SeleccionarUsuario : AppCompatActivity(){
         val arrayList = ArrayList<Usuario>()
         val cursor = conexion.listaTodos()
 
-        if (cursor.isNotEmpty()){
+        if (cursor.isNotEmpty()) {
             binding.lista.visibility= View.VISIBLE
             binding.txtInfo.visibility= View.GONE
             cursor.forEach {
@@ -34,16 +35,28 @@ class SeleccionarUsuario : AppCompatActivity(){
             }
             UsuariosAdapter= ListaAdapter(arrayList, this)
             binding.lista.adapter = UsuariosAdapter
-        }else{
+        } else {
             binding.lista.visibility= View.GONE
             binding.txtInfo.visibility= View.VISIBLE
         }
 
-
+        // ------------------ CONTROL DE BOTONES ------------------
+        // AÑADIR
         binding.floatingAdd.setOnClickListener {
             val intent = Intent(this, NuevoUsuario::class.java)
             startActivity(intent)
             this.finish()
+        }
+
+        // AYUDA
+        binding.btnAyudaSeleccionarUsuario.setOnClickListener {
+            val mensaje = Dialogos.mensajeSeleccionarUsuario
+            mostrar_dialog(this, Dialogos.tituloExplicacion, mensaje)
+        }
+
+        // INFO ROTACIÓN
+        binding.btnInfoPantallaSeleccionarUsuario.setOnClickListener {
+            mostrar_info_pantalla(this, false)
         }
 
     }

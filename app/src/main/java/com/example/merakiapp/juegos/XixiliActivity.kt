@@ -62,7 +62,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Xixili)
-
+        var intent = Intent(this, ServicioAudios::class.java)
 
         // -------------------------------------------------------------------------
         // FONDO
@@ -104,9 +104,8 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // VOLVER
         binding.btnVolverExplicacionXixili.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
-            finish()
             stopService(intent)
+            finish()
 
             intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
                 Recursos.audio_Xixili, Recursos.fondo_Xixili)
@@ -116,8 +115,8 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR
         binding.btnFinalizarXixili.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", true).apply()

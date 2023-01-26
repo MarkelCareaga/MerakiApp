@@ -26,11 +26,11 @@ interface Recursos {
         var audio_Gritos = R.raw.gritoninos
 
         // --------------- LISTA DE AUDIOS PARA LOS JUEGOS ---------------
+        var audio_Juego_PuertaSanJuan = R.raw.cuantaspuertashabia
         var audio_Juego_Badatoz = R.raw.ahorateneisquecompletarelpuzzle
         var audio_Juego_FeriaPescado = R.raw.unelasimagenes
         var audio_Juego_Xixili = R.raw.ahoraostoca
         var audio_Juego_Izaro = R.raw.carreraderegatas
-        var audio_Juego_Gaztelugatxe_Preguntas = R.raw.cuantaspuertashabia
         var audio_Juego_SopaLetras = R.raw.buscalos7
         var audio_Miren = R.raw.felicidades
         var audio_Patxi = R.raw.soisunosexcelentes

@@ -63,7 +63,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Reproducir audio
         estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
+        var intent = Intent(this, ServicioAudios::class.java)
 
+
+        // ---------------------------------------------------------------------------
         // DRAG -> Imágenes a mover
         binding.imagen1drag.setOnLongClickListener(longClickListener)
         binding.imagen2drag.setOnLongClickListener(longClickListener)
@@ -108,13 +111,12 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // ---------------------- CONTROL DE BOTONES ----------------------
         // COMPROBAR RESULTADO
-        binding.btnComprobarBadatoz.setOnClickListener{
+        binding.btnComprobarBadatoz.setOnClickListener {
             comprobarpuzzle()
         }
 
         // VOLVER A LA EXPLICACIÓN
         binding.btnVolverExplicacionBadatoz.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             finish()
 
@@ -126,21 +128,23 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR JUEGO
         binding.btnFinalizarBadatoz.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, MenuNav::class.java))
             finish()
+
+            startActivity(Intent(this, MenuNav::class.java))
 
             // ???
             this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", true).apply()
         }
     }
 
-    // Generar imágen para arrastrar
     private class MyDragShadowBuilder(val v: View) : View.DragShadowBuilder(v) {
 
+        // Este método establece el tamaño y la posición de la imagen que se va a arrastrar
         override fun onProvideShadowMetrics(size: Point, touch: Point) {
             size.set(view.width, view.height)
             touch.set(view.width / 3, view.height / 1)
         }
+        // Este método se encarga de dibujar la imagen en el canvas y ocultando la imagen original
         override fun onDrawShadow(canvas: Canvas) {
             v.draw(canvas)
             v.setVisibility(ImageView.INVISIBLE)
@@ -238,7 +242,6 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Acción detectada: Fin del evento de arrastre
             DragEvent.ACTION_DRAG_ENDED -> {
-
                 true
             } else -> {
                 false

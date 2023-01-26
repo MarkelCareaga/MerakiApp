@@ -49,7 +49,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, R.raw.cuantaspuertashabia)
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_PuertaSanJuan)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -75,7 +75,6 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // VOLVER
         binding.btnVolverPuertaSanJuan.setOnClickListener {
-            var intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             finish()
 
@@ -87,8 +86,8 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // FINALIZAR
         binding.btnSiguientePuertaSanJuan.setOnClickListener {
             stopService(intent)
-            startActivity(Intent(this, SopaLetrasActivity::class.java))
             finish()
+            startActivity(Intent(this, SopaLetrasActivity::class.java))
         }
 
     }
