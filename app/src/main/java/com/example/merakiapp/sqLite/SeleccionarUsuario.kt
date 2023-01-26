@@ -29,15 +29,20 @@ class SeleccionarUsuario : AppCompatActivity(), Dialogos, Explicaciones {
         val arrayList = ArrayList<Usuario>()
         val cursor = conexion.listaTodos()
 
+        //VERIFIACAR SI LA LISTA DE LA BASE DE DATOS NO ESTA VACIA
         if (cursor.isNotEmpty()) {
             binding.lista.visibility= View.VISIBLE
             binding.txtInfo.visibility= View.GONE
             cursor.forEach {
                 arrayList.add(it)
             }
+            //si no esta vacia
+            //llamamos al adapter y lo lanzamos
             UsuariosAdapter= ListaAdapter(arrayList, this)
             binding.lista.adapter = UsuariosAdapter
         } else {
+            //si esta vacia
+            //Mostramos un txt y ocultamos la lista
             binding.lista.visibility= View.GONE
             binding.txtInfo.visibility= View.VISIBLE
         }

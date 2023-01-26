@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+//noinspection SuspiciousImport
 import android.R
 import android.app.ProgressDialog.show
 import android.content.DialogInterface
@@ -131,6 +132,15 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
                         }
                     }
+
+                }
+                    if (usuario1 == true && usuario2 == true) {
+
+                        binding.botonMoverBarco?.visibility = View.VISIBLE
+
+                        binding.btnSprint?.visibility = View.VISIBLE
+
+
                 }
             }
         }
@@ -161,8 +171,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             binding.constraintLayout3.visibility = View.VISIBLE
             binding.botonMoverBarco?.visibility  = View.GONE
             binding.btnSprint?.visibility  = View.GONE
-            boolean = true
-            socket.emit("audio", boolean)
+
             estadoAudio = "play"
             iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Izaro, true)
             binding.txtUser?.text = name
@@ -216,6 +225,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // FINALIZAR
         binding.btnFinalizarCarrera?.setOnClickListener {
+            socket.disconnect()
+
             stopService(intent)
             finish()
 
@@ -228,9 +239,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     fun partidaGanada() {
         Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
         binding.btnSprint?.isEnabled = false
-        binding.btnSprint?.visibility = Button.INVISIBLE
         binding.botonMoverBarco?.isEnabled = false
-        binding.botonMoverBarco?.visibility = Button.INVISIBLE
+        binding.animationView?.visibility  = View.GONE
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
         binding.gifAplausosCarrera?.visibility = View.VISIBLE
 
@@ -247,9 +257,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     fun partidaPerdida() {
         Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
         binding.btnSprint?.isEnabled = false
-        binding.btnSprint?.visibility = Button.INVISIBLE
         binding.botonMoverBarco?.isEnabled = false
-        binding.botonMoverBarco?.visibility = Button.INVISIBLE
+        binding.animationView?.visibility  = View.GONE
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
 
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
@@ -275,28 +284,35 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         intent.putExtra("estadoAudio",estadoAudio)
         intent.putExtra("audioSeleccionado",audioSeleccionado)
         startService(intent)
-        sleep(4100)
+        Thread(Runnable {
+            Thread.sleep(4100)
+            runOnUiThread{
+                if (conDialog) {
+                    var dialog = AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
+                        .setTitle("¿Preparados?")
+                        // Botón "aceptar"
+                        .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
+                        { dialog, id ->
+                            boolean = true
+                            socket.emit("audio", boolean)
+                            if (usuario1 == true && usuario2 == true) {
+                                binding.botonMoverBarco?.visibility = View.VISIBLE
 
-        if (conDialog) {
-            var dialog = AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
-                .setTitle("¿Preparados?")
-                // Botón "aceptar"
-                .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
-                { dialog, id ->
-                    if (usuario1 == true && usuario2 == true) {
-                        binding.botonMoverBarco?.visibility = View.VISIBLE
+                                binding.btnSprint?.visibility = View.VISIBLE
 
-                        binding.btnSprint?.visibility = View.VISIBLE
+                            } else {
+                                Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
+                            }
 
-                    } else {
-                        Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
-                    }
-                })
-                // Obliga a elegir uno de los botones para cerrar el cuadro de diálogo
-                //.setCancelable (false)
-                .create()
-                .show()
-        }
+                        })
+                        // Obliga a elegir uno de los botones para cerrar el cuadro de diálogo
+                        //.setCancelable (false)
+                        .create()
+                        .show()
+                }
+            }
+        }).start()
+
     }
 
     /*

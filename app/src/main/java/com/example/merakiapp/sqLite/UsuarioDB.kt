@@ -47,9 +47,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         val datos = ContentValues()
         //añadimos a datos los valores que queremos pasar a la tabla
 
-        datos.put(CAMPO_ID, id)
-        datos.put(CAMPO_NAME, nombre)
-        datos.put(CAMPO_APELLIDO, apellido)
+
 
          */
         //FORMA 2 DE HACERLO

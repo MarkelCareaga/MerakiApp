@@ -9,12 +9,15 @@ import android.os.Environment
 import java.io.File
 
 object ImageController {
+
+    // Abrir la galeria del movil
     fun selectPhotoFromGallery(activity: Activity, code:Int){
         val intent = Intent(Intent.ACTION_PICK)
         intent.type = "image/*"
         activity.startActivityForResult(intent,code)
 
     }
+    // guardar la imagen seleccionada de la galeria
     fun saveImage(context: Context, id: Int, uri:Uri){
         val imgFilename = "IMG_$id"
         val file = File(context.filesDir,imgFilename)
@@ -22,6 +25,7 @@ object ImageController {
 
         file.writeBytes(bytes)
     }
+    //obtener la imagen seleccionada de la galeria
     fun getImageUri(context: Context, id: Int): Uri {
         val imgFilename = "IMG_$id"
         val file = File(context.filesDir,imgFilename)
