@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Canvas
 import android.graphics.Point
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.DragEvent
@@ -24,12 +23,12 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
-    private lateinit var Imagen : ImageView
+    private lateinit var imagen : ImageView
     var estadoAudio = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Deshabilitar menu superior
         supportActionBar?.hide()
@@ -40,7 +39,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
-        var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
+        val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
         if(resultadoJuego == "mal") {
             mostrar_fallo_juego(this)
         }
@@ -147,7 +146,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Este método se encarga de dibujar la imagen en el canvas y ocultando la imagen original
         override fun onDrawShadow(canvas: Canvas) {
             v.draw(canvas)
-            v.setVisibility(ImageView.INVISIBLE)
+            v.visibility = ImageView.INVISIBLE
             //v.setAlpha(0F)
         }
     }
@@ -165,14 +164,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             item
         )
 
-        Imagen = v as ImageView
+        imagen = v as ImageView
         val myShadow = MyDragShadowBuilder(v)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            v.startDragAndDrop(dragData, myShadow,null,0)
-        } else {
-            v.startDrag(dragData, myShadow,null,0)
-        }
+        v.startDragAndDrop(dragData, myShadow,null,0)
         true
     }
 
@@ -187,7 +182,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             // Acción detectada: Inicio del evento de arrastre
             DragEvent.ACTION_DRAG_STARTED -> {
                 // Se hace visible la imagen
-                Imagen.visibility = View.VISIBLE
+                imagen.visibility = View.VISIBLE
                 true
             }
 
@@ -196,10 +191,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
                     // Se oculta la imagen
-                    Imagen.visibility = View.GONE
+                    imagen.visibility = View.GONE
                 } else {
                     // Se hace visible la imagen
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                 }
                 // Se invalida la vista
                 v.invalidate()
@@ -209,7 +204,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             // Acción detectada: Objeto arrastrado se mueve dentro de la vista
             DragEvent.ACTION_DRAG_LOCATION -> {
                 // Se hace visible la imagen
-                Imagen.visibility = View.VISIBLE
+                imagen.visibility = View.VISIBLE
 
                 true
             }
@@ -219,7 +214,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 // Si la etiqueta (target) del objeto arrastrado es igual a la etiqueta (target) de la vista receptora
                 if (event.clipDescription.label == receiverView.tag as String) {
                     // Se hace visible la imagen
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                     // Se invalida la vista
                     v.invalidate()
                 }
@@ -232,10 +227,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
                     // Se establece la opacidad de la vista receptora en 255 (totalmente visible)
                     receiverView.alpha = 255.toFloat()
                     // Se oculta la imagen
-                    Imagen.visibility = View.GONE
+                    imagen.visibility = View.GONE
                 } else {
                     // Se hace visible la imagen
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                 }
                 true
             }
@@ -252,18 +247,18 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para comprobar el resultado del juego
-    private fun comprobarpuzzle(){
+    private fun comprobarpuzzle() {
         // Resultado CORRECTO
        if (
-            binding.imagen1target.getAlpha().toInt() == 255
-            && binding.imagen2target.getAlpha().toInt() == 255
-            && binding.imagen3target.getAlpha().toInt() == 255
-            && binding.imagen4target.getAlpha().toInt() == 255
-            && binding.imagen5target.getAlpha().toInt() == 255
-            && binding.imagen6target.getAlpha().toInt() == 255
-            && binding.imagen7target.getAlpha().toInt() == 255
-            && binding.imagen8target.getAlpha().toInt() == 255
-            && binding.imagen9target.getAlpha().toInt() == 255) {
+            binding.imagen1target.alpha.toInt() == 255
+            && binding.imagen2target.alpha.toInt() == 255
+            && binding.imagen3target.alpha.toInt() == 255
+            && binding.imagen4target.alpha.toInt() == 255
+            && binding.imagen5target.alpha.toInt() == 255
+            && binding.imagen6target.alpha.toInt() == 255
+            && binding.imagen7target.alpha.toInt() == 255
+            && binding.imagen8target.alpha.toInt() == 255
+            && binding.imagen9target.alpha.toInt() == 255) {
                 binding.gifAplausosBadatoz.visibility = ImageView.VISIBLE
 
            // Mostrar Gif de aplausos
@@ -293,7 +288,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
@@ -306,11 +301,12 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     // Función para mostrar el Gif de Aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosBadatoz
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosBadatoz
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)

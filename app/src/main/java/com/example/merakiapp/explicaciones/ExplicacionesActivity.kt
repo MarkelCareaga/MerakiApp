@@ -24,17 +24,20 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
     private var fondoSeleccionado = 0       // Fondo a mostrar
     private var textoSeleccionado = ""      // Texto a mostrar
     private var pantallaSeleccionada = ""   // Pantalla enlazada al botón Siguiente
+    private var contadorPlayPause: Int = 0
+    private var estadoAnimacion: Boolean = false
+    private var estadoAudio: String = ""
 
     // Valores de las pantallas a mostrar
     companion object {
-        private val intro = "introduccion"
-        private val san_juan = "puerta_de_san_juan"
-        private val badatoz = "badatoz_estatua"
-        private val feria_pescado = "feria_del_pescado"
-        private val olatua = "olatua_estatua"
-        private val xixili = "xixili"
-        private val izaro = "isla_de_izaro"
-        private val gaztelugatxe = "gaztelugatxe"
+        const val intro = "introduccion"
+        const val san_juan = "puerta_de_san_juan"
+        const val badatoz = "badatoz_estatua"
+        const val feria_pescado = "feria_del_pescado"
+        const val olatua = "olatua_estatua"
+        const val xixili = "xixili"
+        const val izaro = "isla_de_izaro"
+        const val gaztelugatxe = "gaztelugatxe"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +47,6 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
         // Deshabilitar el Menu superior
         supportActionBar?.hide()
-        var contadorPlayPause = 0
 
         // ---------------------- ANIMACIONES ----------------------
 
@@ -54,19 +56,18 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
         // Valores por defecto
         var animacionVisible = ""
-        var estadoAnimacion = false
 
         // Controlar que personajes aparecen en cada Activity
         // PATXI
         if (pantallaSeleccionada == san_juan || pantallaSeleccionada == feria_pescado
             || pantallaSeleccionada == xixili || pantallaSeleccionada == gaztelugatxe) {
-            binding.imgMiren.setVisibility(View.INVISIBLE)
+            binding.imgMiren.visibility = View.INVISIBLE
             animacionVisible = "Patxi"
         }
         // MIREN
         if (pantallaSeleccionada == badatoz || pantallaSeleccionada == olatua
             || pantallaSeleccionada == izaro) {
-            binding.imgPatxi.setVisibility(View.INVISIBLE)
+            binding.imgPatxi.visibility = View.INVISIBLE
             animacionVisible = "Miren"
         }
 
@@ -75,8 +76,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         if (this.getSharedPreferences("pref", 0)?.getBoolean("Stop", false) == true) {
             stopService(intent)
 
-            // ????
-            val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
             // Cambiar el icono del botón
             binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
@@ -124,7 +124,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
 
         // Añadir funcionalidad de Scroll al "Texto explicativo"
-        binding.txtExplicacionDemo.setMovementMethod(ScrollingMovementMethod())
+        binding.txtExplicacionDemo.movementMethod = ScrollingMovementMethod()
 
         // Recuperar datos enviados desde la anterior Activity
         audioSeleccionado = intent.getIntExtra("audioSeleccionado", 0)
@@ -136,22 +136,22 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         binding.fondoDemo.setBackgroundResource(fondoSeleccionado)
 
         // Establecer el texto explicativo del Activity
-        binding.txtExplicacionDemo.setText(textoSeleccionado)
+        binding.txtExplicacionDemo.text = textoSeleccionado
 
 
         // --------------- ACTIVAR / DESACTIVAR BOTÓN DEL VIDEO ---------------
-        var botonVideo = binding.btnAccederVideo
+        val botonVideo = binding.btnAccederVideo
 
         // El botón para Video SOLO es visible en "Feria del Pescado"
         if (pantallaSeleccionada == feria_pescado) {
-            botonVideo?.visibility = View.VISIBLE
+            botonVideo.visibility = View.VISIBLE
         } else {
-            botonVideo?.visibility = View.INVISIBLE
+            botonVideo.visibility = View.INVISIBLE
         }
 
-        botonVideo?.setOnClickListener {
+        botonVideo.setOnClickListener {
             finish()
-            var intent = Intent(this, ServicioAudios::class.java)
+            val intent = Intent(this, ServicioAudios::class.java)
             stopService(intent)
             startActivity(Intent(this, VideoFeriaPescadoActivity::class.java))
         }
@@ -159,8 +159,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         // ---------------------- MEDIA PLAYER ----------------------
 
         // AUDIO - Valores por defecto
-        var estadoAudio = ""
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
         // ---------------------- CONTROL DE BOTONES ----------------------
         // PLAY | PAUSE | RESUME
@@ -180,11 +179,8 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
                 // Cambiar el icono del botón
                 binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
 
-                // ???
-                val PlayPause = this.getSharedPreferences("pref",0)
-                    .edit().putInt("PlayPause",0).apply()
-                val Stop = this.getSharedPreferences("pref",0).edit()
-                    .putBoolean("Stop",false).apply()
+                this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+                this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
                 // Detener la animación
                 estadoAnimacion = false
@@ -196,11 +192,8 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
                 // Cambiar el icono del botón
                 binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_pause)
 
-                // ???
-                val PlayPause = this.getSharedPreferences("pref",0)
-                    .edit().putInt("PlayPause",1).apply()
-                val Stop = this.getSharedPreferences("pref",0)
-                    .edit().putBoolean("Stop",false).apply()
+                this.getSharedPreferences("pref",0).edit().putInt("PlayPause",1).apply()
+                this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
                 // Activar la animación
                 estadoAnimacion = true
@@ -217,8 +210,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
             // Detener el Servicio
             stopService(intent)
 
-            // ???
-            val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",true).apply()
+            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",true).apply()
 
             // Cambiar el icono del botón
             binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
@@ -252,9 +244,8 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
         // VOLVER
         binding.btnVolver.setOnClickListener {
-            // ???
-            val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
             // Detener el audio
             stopService(intent)
@@ -266,9 +257,8 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
         // SIGUIENTE
         binding.btnSiguiente.setOnClickListener {
-            // ???
-            val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
             // Detener el audio
             stopService(intent)
@@ -317,7 +307,7 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
 
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
@@ -331,11 +321,10 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
     // Función para ejecutar o detener las animaciones
     private fun animacionPatxiMiren(animacionVisible: String, estadoAnimacion: Boolean) {
-
         // Animación en movimiento
-        var animacion = AnimationUtils.loadAnimation(this, R.anim.animacion_patxi_miren)
+        val animacion = AnimationUtils.loadAnimation(this, R.anim.animacion_patxi_miren)
         // Animación detenida
-        var detenerAnimacion = AnimationUtils.loadAnimation(this, R.anim.detener_animacion)
+        val detenerAnimacion = AnimationUtils.loadAnimation(this, R.anim.detener_animacion)
 
         // Comprobar el estado de la animación recogida
         if (estadoAnimacion) {
@@ -388,14 +377,14 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
 
-        // ???
-        val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
-        val Stop = this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+        this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+        this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
         // Cierra la Activity actual
         finish()

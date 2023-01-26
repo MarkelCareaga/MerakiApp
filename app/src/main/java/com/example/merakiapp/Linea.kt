@@ -1,31 +1,34 @@
 package com.example.merakiapp
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.view.View
 import android.widget.ImageButton
 
+@SuppressLint("ViewConstructor")
 class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton, numeroActivity: Int, esTablet: Boolean): View(context) {
     // Se guardan las posiciones X e Y de los botones ImageButton pasados como argumento en variables
-    var x1 = btnIzquierda.x
-    var y1 = btnIzquierda.y
-    var x2 = btnDerecha.x
-    var y2 = btnDerecha.y
+    private var x1 = btnIzquierda.x
+    private var y1 = btnIzquierda.y
+    private var x2 = btnDerecha.x
+    private var y2 = btnDerecha.y
 
-    var valor_esTablet = esTablet
-    var x1_actividad_1 = 0F
-    var x2_actividad_1 = 0F
-    var y_actividad_1 = 0F
+    private var valor_esTablet = esTablet
+    private var x1_actividad_1 = 0F
+    private var x2_actividad_1 = 0F
+    private var y_actividad_1 = 0F
 
-    var x1_actividad_2 = 0F
-    var x2_actividad_2 = 0F
-    var y_actividad_2 = 0F
+    private var x1_actividad_2 = 0F
+    private var x2_actividad_2 = 0F
+    private var y_actividad_2 = 0F
 
     // Se guarda el numero de activity
-    var numActivity = numeroActivity
+    private var numActivity = numeroActivity
 
     // Se sobre escribe el metodo onDraw
+    @SuppressLint("DrawAllocation")
     override fun onDraw(canvas: Canvas) {
         // Se crea un objeto Paint
         val pincel = Paint()
