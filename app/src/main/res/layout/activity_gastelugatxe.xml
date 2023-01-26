@@ -20,31 +20,33 @@
         app:srcCompat="@drawable/aplausos" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="377dp"
-        android:layout_height="504dp"
+        android:id="@+id/constraintLayout5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="40dp"
-        android:background="#B2FFFBFB"
+        android:layout_marginRight="12dp"
+        android:background="@drawable/constraintredondo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.333">
 
         <RadioGroup
             android:id="@+id/gp3"
             android:layout_width="168dp"
             android:layout_height="211dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="44dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="250dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintHorizontal_bias="0.357"
             app:layout_constraintStart_toEndOf="@+id/gp1"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.421">
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/txtTest3"
@@ -59,6 +61,7 @@
                 android:id="@+id/rb7"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Gipuzkoa"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="33dp" />
@@ -67,6 +70,7 @@
                 android:id="@+id/rb8"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Bizkaia "
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="81dp" />
@@ -75,6 +79,7 @@
                 android:id="@+id/rb9"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Araba"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="129dp" />
@@ -85,9 +90,11 @@
             android:layout_width="154dp"
             android:layout_height="224dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/gp1">
 
             <TextView
                 android:id="@+id/txtTest2"
@@ -102,6 +109,7 @@
                 android:id="@+id/rb4"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="1"
                 tools:layout_editor_absoluteX="24dp"
                 tools:layout_editor_absoluteY="222dp" />
@@ -110,6 +118,7 @@
                 android:id="@+id/rb5"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="2"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -119,6 +128,7 @@
                 android:id="@+id/rb6"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="3"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -130,10 +140,12 @@
             android:layout_width="153dp"
             android:layout_height="211dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="44dp"
             android:layout_marginBottom="250dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0">
 
             <TextView
                 android:id="@+id/txtTest1"
@@ -148,12 +160,14 @@
                 android:id="@+id/rb1"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
-                android:text="241 " />
+                android:buttonTint="@color/radiobutton"
+                android:text="241" />
 
             <RadioButton
                 android:id="@+id/rb2"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="300 "
                 tools:layout_editor_absoluteX="24dp"
                 tools:layout_editor_absoluteY="81dp" />
@@ -162,6 +176,7 @@
                 android:id="@+id/rb3"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="157"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
@@ -173,7 +188,8 @@
             android:id="@+id/gp4"
             android:layout_width="169dp"
             android:layout_height="224dp"
-            android:layout_marginStart="22dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="22dp"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="30dp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -193,6 +209,7 @@
                 android:id="@+id/rb10"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Agente 007"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="222dp" />
@@ -201,6 +218,7 @@
                 android:id="@+id/rb11"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Juego de tronos"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="270dp" />
@@ -209,11 +227,36 @@
                 android:id="@+id/rb12"
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:buttonTint="@color/radiobutton"
                 android:text="Los pitufos"
                 tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="318dp" />
         </RadioGroup>
+
+        <ImageButton
+            android:id="@+id/btnAyudaGaztelugatxe"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="76dp"
+            android:background="@drawable/estilo_botones_superiores"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_ayuda"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+
+        <ImageButton
+            android:id="@+id/btnInfoPantallaGaztelugatxe"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="36dp"
+            android:background="@drawable/estilo_botones_superiores"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
+            tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageButton
@@ -252,28 +295,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
 
-    <ImageButton
-        android:id="@+id/btnInfoPantallaGaztelugatxe"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/estilo_botones_superiores"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="8dp"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="406dp"
+        android:layout_height="47dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/alatsi"
+        android:text="San Juan de Gaztelugatxe"
+        android:textAlignment="center"
+        android:textColor="#302C2C"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
-
-    <ImageButton
-        android:id="@+id/btnAyudaGaztelugatxe"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:background="@drawable/estilo_botones_superiores"
-        android:layout_marginTop="3dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaGaztelugatxe"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_baseline_ayuda"
-        tools:ignore="TouchTargetSizeCheck,SpeakableTextPresentCheck" />
+        app:layout_constraintHorizontal_bias="0.4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
