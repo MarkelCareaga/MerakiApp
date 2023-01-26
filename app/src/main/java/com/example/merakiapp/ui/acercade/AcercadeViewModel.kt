@@ -16,7 +16,8 @@ class AcercadeViewModel : ViewModel() {
 
     // Texto referente al equipo de desarrollo de la aplicación.
     private val _texto_grupo3 = MutableLiveData<String>().apply {
-        value = "Aplicación desarrollada por el GRUPO 3 del centro CIFP TXURDINAGA LHII. \n" +
+        value = "Aplicación desarrollada por el equipo GRUPO 3 de la empresa MIME, perteneciente " +
+                "al centro CIFP TXURDINAGA LHII. \n" +
                 "Integrantes del GRUPO 3: \n - Iker Martín \n - Mateo Vargas \n - Endika Villafruela \n - Markel Kareaga"
     }
 

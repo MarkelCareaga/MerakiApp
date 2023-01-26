@@ -37,18 +37,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="48dp"
         android:layout_marginEnd="8dp"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imgGrupo3" />
+        app:layout_constraintTop_toBottomOf="@+id/imgGrupo" />
 
     <ImageView
         android:id="@+id/imgUPV"
-        android:layout_width="285dp"
-        android:layout_height="244dp"
+        android:layout_width="274dp"
+        android:layout_height="232dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/logo_upv"
         app:layout_constraintEnd_toEndOf="parent"
@@ -57,11 +57,22 @@
 
     <ImageView
         android:id="@+id/imgGrupo3"
-        android:layout_width="285dp"
-        android:layout_height="244dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="312dp"
+        android:layout_height="247dp"
+        android:layout_marginTop="4dp"
+        android:src="@drawable/logo_grupo3"
+        app:layout_constraintEnd_toStartOf="@+id/imgGrupo"
+        app:layout_constraintHorizontal_bias="0.897"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_gallery_upv" />
+
+    <ImageView
+        android:id="@+id/imgGrupo"
+        android:layout_width="197dp"
+        android:layout_height="176dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="216dp"
         android:src="@drawable/logo_txurdinaga"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_gallery_upv" />
 </androidx.constraintlayout.widget.ConstraintLayout>
