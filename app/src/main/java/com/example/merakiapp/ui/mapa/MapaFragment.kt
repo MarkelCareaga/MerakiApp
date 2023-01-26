@@ -145,16 +145,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                             juego4 = activity?.getSharedPreferences("validar4", 0)?.getBoolean("validar4", false)!!
                             if (juego4) {
                                 juego5 = activity?.getSharedPreferences("validar5", 0)?.getBoolean("validar5", false)!!
-
                                 if (juego5) {
                                     juego6 = activity?.getSharedPreferences("validar6", 0)?.getBoolean("validar6", false)!!
-
                                     if (juego6) {
                                         juego7 = activity?.getSharedPreferences("validar7", 0)?.getBoolean("validar7", false)!!
-
                                         if (juego7) {
                                             MapaModoSeguimiento().mapTerminado(mapa)
-
                                         } else {
                                             //Puerta de San Juan
                                             juegos1 = LatLng(43.421301, -2.722980)

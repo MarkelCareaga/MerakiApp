@@ -7,12 +7,17 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
+import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
+import com.bumptech.glide.Glide
 import com.example.merakiapp.Dialogos
 import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.MenuNav
 import com.example.merakiapp.Recursos
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 import com.example.merakiapp.servicios.ServicioAudios
@@ -25,12 +30,12 @@ import java.lang.Thread.sleep
 
 class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
-    private lateinit var sala:String
-    private lateinit var esatdoAudio :String
+    private lateinit var sala: String
+    private lateinit var estadoAudio :String
     var socket = IO.socket("https://merakiapp-servicio-multijugador.glitch.me")
     var boolean = false
-    private  var usuario1:Boolean = false
-    private  var usuario2:Boolean = false
+    private  var usuario1: Boolean = false
+    private  var usuario2: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
@@ -55,12 +60,24 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         val imagen = intent.getStringExtra("imagen")
 
 
+        // ------------------------ NEW ------------------------
+        binding.btnFinalizarCarrera?.visibility = View.INVISIBLE
+        binding.gifAplausosCarrera?.visibility = View.INVISIBLE
+        // -----------------------------------------------------
+
+
         binding.button.visibility = View.GONE
 
         binding.constraintLayout3.visibility = View.GONE
-        binding.barraOponente?.isEnabled  =false
-        binding.barraUsuario?.isEnabled  =false
-        binding.txtUsuario.text= name
+        binding.barraOponente?.isEnabled = false
+        binding.barraUsuario?.isEnabled = false
+        binding.txtUsuario.text = name
+
+
+        // AUDIO
+        // Conexión con el Servicio de Audios
+        var intent = Intent(this, ServicioAudios::class.java)
+
 
         if (imagen != null) {
             binding.imagenUsuario.setImageURI(imagen.toUri())
@@ -121,7 +138,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
 
         binding.button2?.setOnClickListener {
-            if(binding.txtNumber!!.text!!.isNotBlank()) {
+            if (binding.txtNumber!!.text!!.isNotBlank()) {
                 sala = Integer.parseInt(binding.txtNumber!!.text.toString()).toString()
                 socket.emit("sala", sala.toInt(), name, binding.barraUsuario?.progress, imagen)
                 binding.button2!!.visibility = View.GONE
@@ -130,14 +147,10 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 binding.txtSala2?.visibility = View.GONE
 
                 binding.txtBuscaarJugador?.visibility  = View.VISIBLE
-
                 binding.cargar?.visibility = View.VISIBLE
-
-
-            }else {
-                    Toast.makeText(this, "Inserte un numero para la sala", Toast.LENGTH_SHORT).show()
-
-                }
+            } else {
+                Toast.makeText(this, "Inserte un numero para la sala", Toast.LENGTH_SHORT).show()
+            }
 
         }
         binding.button.setOnClickListener {
@@ -150,8 +163,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             binding.btnSprint?.visibility  = View.GONE
             boolean = true
             socket.emit("audio", boolean)
-            esatdoAudio = "play"
-            iniciarServicioAudio(esatdoAudio, Recursos.audio_Juego_Izaro)
+            estadoAudio = "play"
+            iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Izaro, true)
             binding.txtUser?.text = name
 
 
@@ -167,15 +180,10 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.botonMoverBarco?.setOnClickListener {
             socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
 
-            if( binding.barraUsuario?.progress ==100){
-                Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
-                binding.btnSprint?.isEnabled =false
-                binding.botonMoverBarco?.isEnabled =false
-
-            }else if(binding.barraOponente?.progress ==100){
-                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
-                binding.btnSprint?.isEnabled =false
-                binding.botonMoverBarco?.isEnabled =false
+            if (binding.barraUsuario?.progress == 100) {
+                partidaGanada()
+            } else if (binding.barraOponente?.progress == 100) {
+                partidaPerdida()
             }
         }
 
@@ -188,17 +196,11 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             //binding.btnVolverGaztelugatxe.visibility = View.GONE
 
-            if( binding.barraUsuario?.progress ==100){
-                Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
-                binding.btnSprint?.isEnabled =false
-                binding.botonMoverBarco?.isEnabled =false
-
-            }else if(binding.barraOponente?.progress ==100){
-                Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
-                binding.btnSprint?.isEnabled =false
-                binding.botonMoverBarco?.isEnabled =false
-            }else {
-
+            if (binding.barraUsuario?.progress == 100) {
+                partidaGanada()
+            } else if (binding.barraOponente?.progress == 100) {
+                partidaPerdida()
+            } else {
                 botonX2!!.isEnabled = false
                 animationView!!.speed = 0.3f
                 animationView.playAnimation()
@@ -212,35 +214,81 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             }
         }
 
+        // FINALIZAR
+        binding.btnFinalizarCarrera?.setOnClickListener {
+            stopService(intent)
+            finish()
 
-        // TEMPORAL
-        // ??
+            startActivity(Intent(this, MenuNav::class.java))
+        }
+    }
+
+
+    // ------------------------------- NEW -------------------------------
+    fun partidaGanada() {
+        Toast.makeText(this, "Has ganado", Toast.LENGTH_SHORT).show()
+        binding.btnSprint?.isEnabled = false
+        binding.btnSprint?.visibility = Button.INVISIBLE
+        binding.botonMoverBarco?.isEnabled = false
+        binding.botonMoverBarco?.visibility = Button.INVISIBLE
+        binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
+        binding.gifAplausosCarrera?.visibility = View.VISIBLE
+
+        // Mostrar el GIF de los aplausos
+        mostrarGif()
+
+        // Reproducir audio
+        var estadoAudio = "play"
+        iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos, false)
+
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
+
+    fun partidaPerdida() {
+        Toast.makeText(this, "Has perdido", Toast.LENGTH_SHORT).show()
+        binding.btnSprint?.isEnabled = false
+        binding.btnSprint?.visibility = Button.INVISIBLE
+        binding.botonMoverBarco?.isEnabled = false
+        binding.botonMoverBarco?.visibility = Button.INVISIBLE
+        binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
+
+        this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
+    }
+
+    // Función para mostrar el GIF de los aplausos
+    private fun mostrarGif() {
+        val ImageView: ImageView? = binding.gifAplausosCarrera
+        if (ImageView != null) {
+            Glide.with(this).load(com.example.merakiapp.R.drawable.aplausos).into(ImageView)
+        }
+    }
+    // -------------------------------------------------------------------
+
+
     override fun onBackPressed() {
         socket.disconnect()
         super.onBackPressed()
-
     }
 
-    private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int){
+    private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int, conDialog: Boolean) {
         var intent = Intent(this,ServicioAudios::class.java)
         intent.putExtra("estadoAudio",estadoAudio)
         intent.putExtra("audioSeleccionado",audioSeleccionado)
         startService(intent)
         sleep(4100)
 
-            var dialog = AlertDialog.Builder(this).setMessage("Solo pulsar cuando el audio termine")
-                .setTitle("Ha terminado el Audio")
+        if (conDialog) {
+            var dialog = AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
+                .setTitle("¿Preparados?")
                 // Botón "aceptar"
-                .setPositiveButton("Aceptar", DialogInterface.OnClickListener
+                .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
                 { dialog, id ->
-                    if(usuario1 == true && usuario2 == true){
-                        binding.botonMoverBarco?.visibility  = View.VISIBLE
+                    if (usuario1 == true && usuario2 == true) {
+                        binding.botonMoverBarco?.visibility = View.VISIBLE
 
                         binding.btnSprint?.visibility = View.VISIBLE
 
-                    }else{
+                    } else {
                         Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
                     }
                 })
@@ -248,6 +296,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 //.setCancelable (false)
                 .create()
                 .show()
+        }
     }
 
     /*

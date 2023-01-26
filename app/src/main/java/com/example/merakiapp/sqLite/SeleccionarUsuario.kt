@@ -6,9 +6,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import com.example.merakiapp.Dialogos
+import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.Recursos
 import com.example.merakiapp.databinding.ActivitySeleccionarUsuarioBinding
 
-class SeleccionarUsuario : AppCompatActivity(), Dialogos {
+class SeleccionarUsuario : AppCompatActivity(), Dialogos, Explicaciones {
     lateinit var conexion: UsuarioDB
     private lateinit var UsuariosAdapter : ListaAdapter
     private lateinit var binding: ActivitySeleccionarUsuarioBinding
@@ -57,6 +59,15 @@ class SeleccionarUsuario : AppCompatActivity(), Dialogos {
         // INFO ROTACIÓN
         binding.btnInfoPantallaSeleccionarUsuario.setOnClickListener {
             mostrar_info_pantalla(this, false)
+        }
+
+        // VOLVER
+        binding.btnVolverSeleccionarUsuario.setOnClickListener {
+            finish()
+
+            intent = abrirExplicacion(this, Recursos.pantalla_Izaro,
+                Recursos.audio_Izaro, Recursos.fondo_Izaro)
+            startActivity(intent)
         }
 
     }
