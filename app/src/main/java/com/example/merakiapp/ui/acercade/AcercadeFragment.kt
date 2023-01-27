@@ -30,19 +30,15 @@ class AcercadeFragment : Fragment() {
 
         // Obtiene una referencia al TextView textGalleryUpv del diseño
         val textView_upv: TextView = binding.textGalleryUpv
-        // Escucha cambios en la variable texto_upv del ViewModel
-            textView_upv.text = getString(R.string.texto_upv)
-
+        textView_upv.text = getString(R.string.texto_upv)
 
         // Obtiene una referencia al TextView textGalleryGrupo3 del diseño
         val textView_grupo3: TextView = binding.textGalleryGrupo3
-            textView_grupo3.text = getString(R.string.texto_grupo3)
-
+        textView_grupo3.text = getString(R.string.texto_grupo3)
 
         // Obtiene una referencia al TextView textView_copyright del diseño
         val textView_copyright: TextView = binding.textGalleryCopyright
-            textView_copyright.text = getString(R.string.texto_copyright)
-
+        textView_copyright.text = getString(R.string.texto_copyright)
 
         return root
     }
