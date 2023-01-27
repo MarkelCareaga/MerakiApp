@@ -90,4 +90,6 @@
     <string name="texto_upv">Kaixo! Somos un grupo de 3° de educación primaria trilingüe de la UPV/EHU y hemos diseñado esta unidad didáctica sobre una excursión a Bermeo. \n Para nosotros es muy importante sacar al alumnado del aula para que aprendan de una forma más lúdica y divertida.</string>
     <string name="texto_grupo3">Aplicación desarrollada por el equipo GRUPO 3 de la empresa MIME, perteneciente al centro CIFP TXURDINAGA LHII. \nIntegrantes del GRUPO 3: \n - Iker Martín \n - Mateo Vargas \n - Endika Villafruela \n - Markel Kareaga</string>
     <string name="texto_copyright">Copyright @ 2022 - 2023 Meraki App. - All Rights Reserved.</string>
+    <string name="foto">The photo has not been taken</string>
+    <string name="galeria">The photo has not been selected</string>
 </resources>

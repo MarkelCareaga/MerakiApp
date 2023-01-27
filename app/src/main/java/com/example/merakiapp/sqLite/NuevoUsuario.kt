@@ -301,31 +301,48 @@ class NuevoUsuario : AppCompatActivity(){
                 //comprobrobar si no se a cancelado
                 if (resultCode != Activity.RESULT_OK) {
                     // si cancela la accion
-                    Toast.makeText(this, "No se ha sacado la foto", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, getString(R.string.foto), Toast.LENGTH_SHORT).show()
                 } else {
+                    // si da el ok a la accion
                     binding.imagen.setImageURI(currentsPhotoPath.toUri())
                 }
             }
+            // Galeria
             REQUEST_CODE_GALERY -> {
+                //comprobrobar si no se a cancelado
                 if (resultCode != Activity.RESULT_OK) {
-                    Toast.makeText(this, "No se ha seleccionado la foto", Toast.LENGTH_SHORT).show()
+                    // si cancela la accion
+                    Toast.makeText(this, getString(R.string.galeria), Toast.LENGTH_SHORT).show()
                 } else {
+                    // si da el ok a la accion y no es nulo
                     if (resultCode == Activity.RESULT_OK && data != null) {
+                        // le damos el valor de la foto seleccionada  a imagenUri
                         imageUri = data.data!!
-                        imageUri?.let {
+                        imageUri.let {
+                            // llamamos a la base de datos para listar los usuarios
                             val usuarios = conexion.listaTodos()
+                            // verificar si la lista no esta vacia
                             if (usuarios.isNotEmpty()) {
+                                // si no esta vacia
+                                // llamamos al controlador de imagenes de galeria y llamamos para guardar la imagen
+                                //cogemos el valor id del ultimo usuario y le sumamos uno
                                 ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
+                                // llamamos a la funcion para recuperar la imagen
                                 currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
                                     .toString()
 
 
                             } else {
+                                // si esta vacia
+                                // llamamos al controlador de imagenes de galeria y llamamos para guardar la imagen
+                                // como esta vacia el valor id es 0
                                 ImageController.saveImage(this@NuevoUsuario,0 ,it )
+                                // llamamos a la funcion para recuperar la imagen
                                 currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, 0 )
                                     .toString()
-                                }
+                            }
                         }
+                        // insertamos la imagen guardada al ImageView
                         binding.imagen.setImageURI(imageUri)
                     }
                 }
