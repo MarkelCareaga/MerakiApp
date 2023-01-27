@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentAcercaDeBinding
 
 class AcercadeFragment : Fragment() {
@@ -22,8 +23,6 @@ class AcercadeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         // Crea una instancia de la clase ViewModel
-        val galleryViewModel =
-            ViewModelProvider(this).get(AcercadeViewModel::class.java)
 
         // Infla el diseño y enlaza con la variable _binding
         _binding = FragmentAcercaDeBinding.inflate(inflater, container, false)
@@ -32,21 +31,18 @@ class AcercadeFragment : Fragment() {
         // Obtiene una referencia al TextView textGalleryUpv del diseño
         val textView_upv: TextView = binding.textGalleryUpv
         // Escucha cambios en la variable texto_upv del ViewModel
-        galleryViewModel.texto_upv.observe(viewLifecycleOwner) {
-            textView_upv.text = it
-        }
+            textView_upv.text = getString(R.string.texto_upv)
+
 
         // Obtiene una referencia al TextView textGalleryGrupo3 del diseño
         val textView_grupo3: TextView = binding.textGalleryGrupo3
-        galleryViewModel.texto_grupo3.observe(viewLifecycleOwner) {
-            textView_grupo3.text = it
-        }
+            textView_grupo3.text = getString(R.string.texto_grupo3)
+
 
         // Obtiene una referencia al TextView textView_copyright del diseño
         val textView_copyright: TextView = binding.textGalleryCopyright
-        galleryViewModel.texto_copyright.observe(viewLifecycleOwner) {
-            textView_copyright.text = it
-        }
+            textView_copyright.text = getString(R.string.texto_copyright)
+
 
         return root
     }
