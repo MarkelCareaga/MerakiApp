@@ -5,10 +5,10 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ListaDialogos {
 
-    lateinit var mensajeRotarPantalla: String
+    var mensajeRotarPantalla: Int = 0
 
     // Función para mostrar un mensaje relacionado con juegos o explicaciones
-    fun mostrar_dialog(context: Context, titulo: Int, mensaje: String) {
+    fun mostrar_dialog(context: Context, titulo: Int, mensaje: Int) {
         // Introduce el contenido especificado en el Dialog
         val dialog_info = MaterialAlertDialogBuilder(context)
             .setTitle(titulo)

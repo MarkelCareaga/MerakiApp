@@ -26,38 +26,24 @@ class ListaRecursos {
         const val pantalla_Gaztelugatxe = "gaztelugatxe"
 
         // --------------- LISTA DE MENSAJES ---------------
-        const val mensajeInicio = "Meraki es una aplicación que te permite disfrutar de una serie de juegos, " +
-                "mientrás exploras el pueblo de Bermeo.\n\n" +
-                "En el 'Modo Explorador', puedes completar los juegos solo cuando estás en cada una de " +
-                "las ubicaciones que aparecen en el mapa.\n(Uso obligatorio del GPS)\n\n" +
-                "En el 'Modo Libre', puedes acceder a todos los juegos desde el principio y no necesitas " +
-                "activar el GPS."
-        const val mensajePermisos= "Por favor, acepte los permisos de ubicación para acceder a la siguiente pantalla."
-        const val mensajeExplicacion = "Lee y/o escucha atentamente la explicación. Te servirá de ayuda para " +
-                "completar correctamente el juego."
-        const val mensajeFeriaPescado = "Une las imágenes con sus nombres correspondientes.\n" +
-                "Para unir dichos elementos, pulsa los botones circulares."
-        const val mensajeBadatoz = "Rellena el puzzle con las piezas disponibles. \n" +
-                "Para arrastrar una pieza, manten pulsado unos segundos sobre ella."
-        const val mensajeGaztelugatxe = "Selecciona las respuestas correctas."
-        const val mensajeOlatua = "Une los idiomas con sus palabras correspondientes.\n" +
-                "Para unir dichos elementos, pulsa los botones circulares."
-        const val mensajePuertaSanJuan = "Introduce la respuesta correcta."
-        const val mensajeSopaLetras = "Busca las 7 palabras en la sopa de letras."
-        const val mensajeVideoFeriaPescado = "Video sobre la Feria del Pescado."
-        const val mensajeXixili = "Rellena los huecos del párrafo con las frases correctas. \n" +
-                "Para arrastrar una frase, mantén pulsado unos segundos sobre ella."
-        const val mensajeFinal = "Has completado correctamente todas las actividades."
-        const val mensajeDialogFallo = "El resultado del juego es incorrecto."
-        const val mensajeAceptar = "Aceptar"
-        const val mensajeSeleccionarUsuario = "Selecciona un usuario, pulsando el botón 'Jugar'" +
-                " que se encuentra en la parte derecha. \n" +
-                "Si no hay ningún usuario o quieres añadir más, pulsa el botón inferior derecho."
-        const val rotacionActivada = "La rotación del dispositivo está activada."
-        const val rotacionDesactivada = "La rotación del dispositivo está desactivada."
-        const val mensajeMapa = "Modo Explorador: Para acceder a un juego, acercate lo máximo posible " +
-                "a dicha ubicación y pulsa el botón JUGAR. \n \n"+
-                "Modo Libre: Pulsa únicamente las ubicaciones para acceder a sus respectivos juegos."
+        const val mensajeInicio = R.string.mensajeInicio
+        const val mensajePermisos = R.string.mensajePermisos
+        const val mensajeExplicacion = R.string.mensajeExplicacion
+        const val mensajeFeriaPescado = R.string.mensajeFeriaPescado
+        const val mensajeBadatoz = R.string.mensajeBadatoz
+        const val mensajeGaztelugatxe = R.string.mensajeGaztelugatxe
+        const val mensajeOlatua = R.string.mensajeOlatua
+        const val mensajePuertaSanJuan = R.string.mensajePuertaSanJuan
+        const val mensajeSopaLetras = R.string.mensajeSopaLetras
+        const val mensajeVideoFeriaPescado = R.string.mensajeVideoFeriaPescado
+        const val mensajeXixili = R.string.mensajeXixili
+        const val mensajeFinal = R.string.mensajeFinal
+        const val mensajeDialogFallo = R.string.mensajeDialogFallo
+        const val mensajeAceptar = R.string.mensajeAceptar
+        const val mensajeSeleccionarUsuario = R.string.mensajeSeleccionarUsuario
+        const val rotacionActivada = R.string.rotacionActivada
+        const val rotacionDesactivada = R.string.rotacionDesactivada
+        const val mensajeMapa = R.string.mensajeMapa
 
         // --------------- LISTA DE AUDIOS PARA LAS EXPLICACIONES ---------------
         const val audio_Introduccion = R.raw.audiointro
