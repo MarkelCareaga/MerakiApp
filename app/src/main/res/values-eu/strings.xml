@@ -73,7 +73,7 @@
     <string name="mensajePermisos">Por favor, acepte los permisos de ubicación para acceder a la siguiente pantalla.</string>
     <string name="mensajeExplicacion">Lee y/o escucha atentamente la explicación. Te servirá de ayuda para completar correctamente el juego.</string>
     <string name="mensajeFeriaPescado">Une las imágenes con sus nombres correspondientes.\nPara unir dichos elementos, pulsa los botones circulares.</string>
-    <string name="mensajeBadatoz">Rellena el puzzle con las piezas disponibles. \nPara arrastrar una pieza, manten pulsado unos segundos sobre ella.</string>
+    <string name="mensajeBadatoz">Rellena el puzzle con las piezas disponibles. \nPara arrastrar una pieza, mantén pulsado unos segundos sobre ella.</string>
     <string name="mensajeGaztelugatxe">Selecciona las respuestas correctas.</string>
     <string name="mensajeOlatua">Une los idiomas con sus palabras correspondientes.\nPara unir dichos elementos, pulsa los botones circulares.</string>
     <string name="mensajePuertaSanJuan">Introduce la respuesta correcta.</string>
@@ -87,7 +87,7 @@
     <string name="rotacionActivada">La rotación del dispositivo está activada.</string>
     <string name="rotacionDesactivada">La rotación del dispositivo está desactivada.</string>
     <string name="mensajeMapa">Modo Explorador: Para acceder a un juego, acércate lo máximo posible a dicha ubicación y pulsa el botón JUGAR. \n \nModo Libre: Pulsa únicamente las ubicaciones para acceder a sus respectivos juegos.</string>
-    <string name="texto_upv">Kaixo! Somos un grupo de 3° de educación primaria trilingüe de la UPV/EHU y hemos diseñado esta unidad didáctica sobre una excursión a Bermeo. \n Para nosotros es muy importante sacar al alumnado del aula para que aprendan de una forma más lúdica y divertida.</string>
+    <string name="texto_upv">Kaixo! Somos un grupo de 3° de educación primaria trilingüe de la UPV/EHU y hemos diseñado esta unidad didáctica sobre una excursión a Bermeo. \nPara nosotros es muy importante sacar al alumnado del aula para que aprendan de una forma más lúdica y divertida.</string>
     <string name="texto_grupo3">Aplicación desarrollada por el equipo GRUPO 3 de la empresa MIME, perteneciente al centro CIFP TXURDINAGA LHII. \nIntegrantes del GRUPO 3: \n - Iker Martín \n - Mateo Vargas \n - Endika Villafruela \n - Markel Kareaga</string>
     <string name="texto_copyright">Copyright @ 2022 - 2023 Meraki App. - All Rights Reserved.</string>
 </resources>

@@ -152,7 +152,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                 binding.txtBuscaarJugador?.visibility  = View.VISIBLE
                 binding.cargar?.visibility = View.VISIBLE
             } else {
-                Toast.makeText(this, "Inserte un numero para la sala", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Inserte un número para la sala", Toast.LENGTH_SHORT).show()
             }
 
         }
