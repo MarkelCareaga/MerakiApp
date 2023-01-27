@@ -41,21 +41,25 @@ class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton
 
         // Comprobar si el dispositivo es Tablet o Smartphone
         if (valor_esTablet) {
+            // Feria del Pescado
             x1_actividad_1 = 155F
             x2_actividad_1 = 120F
             y_actividad_1 = 40F
 
+            // Olatua Estatua
             x1_actividad_2 = 130F
             x2_actividad_2 = 80F
             y_actividad_2 = 75F
         } else {
+            // Feria del Pescado
             x1_actividad_1 = 105F
             x2_actividad_1 = 40F
-            y_actividad_1 = 45F
+            y_actividad_1 = 5F
 
+            // Olatua Estatua
             x1_actividad_2 = 90F
             x2_actividad_2 = 25F
-            y_actividad_2 = 70F
+            y_actividad_2 = 80F
         }
 
         // Si el numero de actividad es 1, se dibuja una linea con los puntos x1, y1, x

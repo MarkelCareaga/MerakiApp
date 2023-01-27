@@ -30,7 +30,6 @@ class NuevoUsuario : AppCompatActivity(){
     private val REQUEST_CODE_TAKE_FOTO = 300
     private val REQUEST_CODE_GALERY = 400
 
-    private var mFotoSeleccionadaURI: Uri? = null
     lateinit var conexion: UsuarioDB
     var foto = false
 
@@ -38,20 +37,22 @@ class NuevoUsuario : AppCompatActivity(){
     lateinit var imageUri: Uri
     lateinit var file: File
     lateinit var imagen:File
+
+
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding=ActivityNuevoUsuarioBinding.inflate(layoutInflater)
+        binding = ActivityNuevoUsuarioBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
 
         conexion = UsuarioDB(this)
 
-
         binding.imagen.setOnClickListener() {
-
             checkPermissionStorage()
-            // seleccionarGaleria();
+            // SeleccionarGaleria()
         }
 
         binding.btnFoto.setOnClickListener(){
@@ -60,8 +61,6 @@ class NuevoUsuario : AppCompatActivity(){
 
         binding.guardarbtn.setOnClickListener {
             if (binding.nombreEt.text.isNotBlank()) {
-
-
                 val nombre = binding.nombreEt.text.toString()
                     CoroutineScope(Dispatchers.IO).launch {
                         val usuarios = conexion.listaTodos()
@@ -96,10 +95,10 @@ class NuevoUsuario : AppCompatActivity(){
     }
 
     private fun checkPermissionCamera() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
-            if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            if (ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED) {
                 sacaFoto();
-            }else{
+            } else {
                 ActivityCompat.requestPermissions(
                     this,
                     arrayOf(Manifest.permission.CAMERA),
@@ -133,16 +132,16 @@ class NuevoUsuario : AppCompatActivity(){
     private fun sacaFoto() {
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         if (intent.resolveActivity(packageManager)!= null){
-
             var photoFile : File? = null
 
-            try{
+            try {
                 photoFile= createFile()
-            }catch(e:IOException){
+            } catch(e:IOException) {
                 e.printStackTrace()
             }
+
             if (photoFile!= null){
-                var photoUri = FileProvider.getUriForFile(
+                val photoUri = FileProvider.getUriForFile(
                     this,
                     "com.example.merakiapp",
                     photoFile
@@ -150,12 +149,8 @@ class NuevoUsuario : AppCompatActivity(){
                 intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri)
                 foto = true
                 startActivityForResult(intent, REQUEST_CODE_TAKE_FOTO)
-
-
             }
-
         }
-
     }
 
     private fun createFile(): File  {
@@ -184,13 +179,14 @@ class NuevoUsuario : AppCompatActivity(){
             }
         }
         else if(requestCode == REQUEST_CODE_GALERY){
-            if(permissions.size >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (permissions.size >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
                 //seleccionarGaleria()
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 
     }
+
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         when (requestCode) {
@@ -210,29 +206,21 @@ class NuevoUsuario : AppCompatActivity(){
                         imageUri?.let {
                             val usuarios = conexion.listaTodos()
                             if (usuarios.isNotEmpty()) {
-
-                                    ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
-                                    currentsPhotoPath =
-                                        ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
-                                            .toString()
+                                ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
+                                currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
+                                    .toString()
 
 
                             } else {
-
-                                    ImageController.saveImage(this@NuevoUsuario,0 ,it )
-                                    currentsPhotoPath =
-                                        ImageController.getImageUri(this@NuevoUsuario, 0 )
-                                            .toString()
+                                ImageController.saveImage(this@NuevoUsuario,0 ,it )
+                                currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, 0 )
+                                    .toString()
                                 }
-
                         }
-
                         binding.imagen.setImageURI(imageUri)
                     }
                 }
-
                 super.onActivityResult(requestCode, resultCode, data)
-
             }
         }
     }

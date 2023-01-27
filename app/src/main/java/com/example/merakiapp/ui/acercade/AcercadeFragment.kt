@@ -1,7 +1,6 @@
 package com.example.merakiapp.ui.acercade
 
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup

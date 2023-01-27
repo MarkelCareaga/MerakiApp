@@ -18,6 +18,7 @@ object ImageController {
 
     }
     // guardar la imagen seleccionada de la galeria
+    @SuppressLint("Recycle")
     fun saveImage(context: Context, id: Int, uri:Uri){
         val imgFilename = "IMG_$id"
         val file = File(context.filesDir,imgFilename)

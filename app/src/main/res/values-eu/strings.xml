@@ -60,4 +60,12 @@
     <string name="Buscarjugador">Bilatu</string>
     <string name="pescado_fresco">Pescado fresco</string>
     <string name="buscar">Jokalaria bilatzen</string>
+    <string name="tituloExplicacion">INFO</string>
+    <string name="tituloJuegos">OBJETIVO DEL JUEGO</string>
+    <string name="tituloVideo">VIDEO</string>
+    <string name="tituloFinal">BIEN HECHO</string>
+    <string name="tituloDialogFallo">VUELVE A INTENTARLO</string>
+    <string name="tituloRotarPantalla">INFO</string>
+    <string name="permisoDenegado">PERMISOS NO ACEPTADOS</string>
+    <string name="tituloMapa">MAPA INTERACTIVO</string>
 </resources>

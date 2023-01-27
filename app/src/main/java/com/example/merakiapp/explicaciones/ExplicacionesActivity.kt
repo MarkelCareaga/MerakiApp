@@ -8,17 +8,19 @@ import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeExplicacion
-import com.example.merakiapp.Dialogos.Companion.tituloExplicacion
 import com.example.merakiapp.databinding.ActivityExplicacionesBinding
 import com.example.merakiapp.juegos.*
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.sqLite.SeleccionarUsuario
 import com.example.merakiapp.servicios.ServicioAudios
 
 // ACTIVITY DE DEMOSTRACIÓN: APARTADO PARA EXPLICAR LA UBICACIÓN SELECCIONADA
 
-class ExplicacionesActivity : AppCompatActivity(), Dialogos {
+class ExplicacionesActivity : AppCompatActivity() {
     private lateinit var binding: ActivityExplicacionesBinding
+
+    private var listaDialogos = ListaDialogos()
 
     private var audioSeleccionado = 0       // Audio a reproducir
     private var fondoSeleccionado = 0       // Fondo a mostrar
@@ -113,13 +115,13 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
         // ------------------- CONTROL DE BOTONES ADICIONALES -------------------
         // AYUDA
         binding.btnAyudaExplicacion.setOnClickListener {
-            val mensaje = mensajeExplicacion
-            mostrar_dialog(this, tituloExplicacion, mensaje)
+            val mensaje = ListaRecursos.mensajeExplicacion
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloExplicacion, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaExplicacion.setOnClickListener {
-            mostrar_info_pantalla(this, true)
+            listaDialogos.mostrar_info_pantalla(this, true)
         }
 
 
@@ -305,15 +307,12 @@ class ExplicacionesActivity : AppCompatActivity(), Dialogos {
 
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
-
         // Indicar el Servico a iniciar
         val intent = Intent(this, ServicioAudios::class.java)
-
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }

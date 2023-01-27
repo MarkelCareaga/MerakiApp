@@ -7,7 +7,6 @@ import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Canvas
 import android.graphics.Point
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.DragEvent
@@ -16,22 +15,25 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeXixili
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityXixiliBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class XixiliActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityXixiliBinding
-    var estadoAudio = ""
-    private lateinit var Imagen : ImageView
+    private lateinit var imagen : ImageView
+    private var estadoAudio = ""
 
+    private var listaDialogos = ListaDialogos()
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Deshabilitar menu superior
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
@@ -40,34 +42,34 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
-        var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
+        val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
         if(resultadoJuego == "mal") {
-            mostrar_fallo_juego(this)
+            listaDialogos.mostrar_fallo_juego(this)
         }
 
         // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
         // AYUDA
         binding.btnAyudaXixili.setOnClickListener {
-            val mensaje = mensajeXixili
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeXixili
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaXixili.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Xixili)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_Xixili)
         var intent = Intent(this, ServicioAudios::class.java)
 
         // -------------------------------------------------------------------------
         // FONDO
-        var activityXixili = binding.activityXixili
-        activityXixili.background = resources.getDrawable(Recursos.fondo_Xixili, theme)
+        val activityXixili = binding.activityXixili
+        activityXixili.background = resources.getDrawable(ListaRecursos.fondo_Xixili, theme)
 
         // DRAG -> Imagenes a mover
         binding.imgTexto1.setOnLongClickListener(longClickListener)
@@ -107,8 +109,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
-                Recursos.audio_Xixili, Recursos.fondo_Xixili)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_Xixili)
             startActivity(intent)
         }
 
@@ -150,14 +151,10 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
             item
         )
 
-        Imagen = v as ImageView
+        imagen = v as ImageView
         val myShadow = MyDragShadowBuilder(v)
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            v.startDragAndDrop(dragData, myShadow,null,0)
-        } else {
-            v.startDrag(dragData, myShadow,null,0)
-        }
+        v.startDragAndDrop(dragData, myShadow,null,0)
         true
     }
 
@@ -167,28 +164,28 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         when (event.action) {
             DragEvent.ACTION_DRAG_STARTED -> {
-                Imagen.visibility = View.VISIBLE
+                imagen.visibility = View.VISIBLE
                 true
             }
 
             DragEvent.ACTION_DRAG_ENTERED -> {
                 if (event.clipDescription.label == receiverView.tag as String) {
-                    Imagen.visibility = View.GONE
+                    imagen.visibility = View.GONE
                 } else {
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                 }
                 v.invalidate()
                 true
             }
 
             DragEvent.ACTION_DRAG_LOCATION -> {
-                Imagen.visibility = View.VISIBLE
+                imagen.visibility = View.VISIBLE
                 true
             }
 
             DragEvent.ACTION_DRAG_EXITED -> {
                 if (event.clipDescription.label == receiverView.tag as String) {
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                     v.invalidate()
                 }
                 true
@@ -198,9 +195,9 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
                 if (event.clipDescription.label == receiverView.tag as String) {
                     receiverView.alpha = 255.toFloat()
-                    Imagen.visibility = View.GONE
+                    imagen.visibility = View.GONE
                 } else {
-                    Imagen.visibility = View.VISIBLE
+                    imagen.visibility = View.VISIBLE
                 }
                 true
             }
@@ -227,7 +224,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
             // Elementos a ocultar
             binding.btnComprobarXixili.visibility = Button.GONE
@@ -248,24 +245,23 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosXixili
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosXixili
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
@@ -273,8 +269,7 @@ class XixiliActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this, Recursos.pantalla_Xixili,
-            Recursos.audio_Xixili, Recursos.fondo_Xixili)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_Xixili)
         startActivity(intent)
     }
 }

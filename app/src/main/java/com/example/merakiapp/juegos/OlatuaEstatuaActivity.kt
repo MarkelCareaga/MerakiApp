@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -11,15 +12,17 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeOlatua
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityOlatuaEstatuaBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityOlatuaEstatuaBinding
     var estadoAudio = ""
+
+    private var listaDialogos = ListaDialogos()
 
     // BOTONES A PULSAR DENTRO DEL JUEGO
     private lateinit var btn11: ImageButton
@@ -55,7 +58,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var boton61 = 61
     private var boton62 = 62
 
-    // CONTROLAR SI LOS BOTONES HAN SIDO PULSADOS
+    // ESTADO INICIAL DE LOS BOTONES
     private var estado_btn11 = true
     private var estado_btn21 = true
     private var estado_btn31 = true
@@ -70,23 +73,22 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var estado_btn52 = true
     private var estado_btn62 = true
 
-    // TEST
-    var screenSize: Boolean = false
+    private var screenSize: Boolean = false
 
     // LISTA Y CONTADOR
     // Lista para asociar valores a cada botón
     private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5,6,6)
     private var contador = -1
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //Deshabilitar menu superior
         supportActionBar?.hide()
 
-        // ???
-        screenSize = getResources().getBoolean(R.bool.isTablet)
+        screenSize = resources.getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
         binding = ActivityOlatuaEstatuaBinding.inflate(layoutInflater)
@@ -95,21 +97,21 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
-        var resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
+        val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
         if(resultadoJuego == "mal") {
-            mostrar_fallo_juego(this)
+            listaDialogos.mostrar_fallo_juego(this)
         }
 
         // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
         // AYUDA
         binding.btnAyudaOlatua.setOnClickListener {
-            val mensaje = mensajeOlatua
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeOlatua
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaOlatua.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
@@ -122,8 +124,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // -------------------------------------------------------------------------
         // FONDO
-        var activityOlatua = binding.activityOlatua
-        activityOlatua.background = resources.getDrawable(Recursos.fondo_Olatua, theme)
+        val activityOlatua = binding.activityOlatua
+        activityOlatua.background = resources.getDrawable(ListaRecursos.fondo_Olatua, theme)
 
         // BOTONES
         btn11 = binding.btn11B
@@ -176,8 +178,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this,
-                Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_Olatua)
             startActivity(intent)
         }
 
@@ -206,7 +207,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton11 = listaParejas[contador]
             controlBotones(btn11)
             controlLineas()
-            btn11.setEnabled(false)
+            btn11.isEnabled = false
             estado_btn11 = false
         }
         btn12.setOnClickListener {
@@ -214,7 +215,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton12 = listaParejas[contador]
             controlBotones(btn12)
             controlLineas()
-            btn12.setEnabled(false)
+            btn12.isEnabled = false
             estado_btn12 = false
         }
         btn21.setOnClickListener {
@@ -222,7 +223,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton21 = listaParejas[contador]
             controlBotones(btn21)
             controlLineas()
-            btn21.setEnabled(false)
+            btn21.isEnabled = false
             estado_btn21 = false
         }
         btn22.setOnClickListener {
@@ -230,7 +231,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton22 = listaParejas[contador]
             controlBotones(btn22)
             controlLineas()
-            btn22.setEnabled(false)
+            btn22.isEnabled = false
             estado_btn22 = false
         }
         btn31.setOnClickListener {
@@ -238,7 +239,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton31 = listaParejas[contador]
             controlBotones(btn31)
             controlLineas()
-            btn31.setEnabled(false)
+            btn31.isEnabled = false
             estado_btn31 = false
         }
         btn32.setOnClickListener {
@@ -246,7 +247,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton32 = listaParejas[contador]
             controlBotones(btn32)
             controlLineas()
-            btn32.setEnabled(false)
+            btn32.isEnabled = false
             estado_btn32 = false
         }
         btn41.setOnClickListener {
@@ -254,7 +255,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton41 = listaParejas[contador]
             controlBotones(btn41)
             controlLineas()
-            btn41.setEnabled(false)
+            btn41.isEnabled = false
             estado_btn41 = false
         }
         btn42.setOnClickListener {
@@ -262,7 +263,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton42 = listaParejas[contador]
             controlBotones(btn42)
             controlLineas()
-            btn42.setEnabled(false)
+            btn42.isEnabled = false
             estado_btn42 = false
         }
         btn51.setOnClickListener {
@@ -270,7 +271,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton51 = listaParejas[contador]
             controlBotones(btn51)
             controlLineas()
-            btn51.setEnabled(false)
+            btn51.isEnabled = false
             estado_btn51 = false
         }
         btn52.setOnClickListener {
@@ -278,7 +279,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton52 = listaParejas[contador]
             controlBotones(btn52)
             controlLineas()
-            btn52.setEnabled(false)
+            btn52.isEnabled = false
             estado_btn52 = false
         }
         btn61.setOnClickListener {
@@ -286,7 +287,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton61 = listaParejas[contador]
             controlBotones(btn61)
             controlLineas()
-            btn61.setEnabled(false)
+            btn61.isEnabled = false
             estado_btn61 = false
         }
         btn62.setOnClickListener {
@@ -294,7 +295,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton62 = listaParejas[contador]
             controlBotones(btn62)
             controlLineas()
-            btn62.setEnabled(false)
+            btn62.isEnabled = false
             estado_btn62 = false
         }
     }
@@ -318,20 +319,20 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // ---------------- ACTIVAR Y DESACTIVAR BOTONES ----------------
     // Si el botón ya se ha pulsado (desactivado), no se cambiará su estado
     private fun estadoBotonesIzquierda(estado: Boolean) {
-        if (estado_btn11) btn11.setEnabled(estado)
-        if (estado_btn21) btn21.setEnabled(estado)
-        if (estado_btn31) btn31.setEnabled(estado)
-        if (estado_btn41) btn41.setEnabled(estado)
-        if (estado_btn51) btn51.setEnabled(estado)
-        if (estado_btn61) btn61.setEnabled(estado)
+        if (estado_btn11) btn11.isEnabled = estado
+        if (estado_btn21) btn21.isEnabled = estado
+        if (estado_btn31) btn31.isEnabled = estado
+        if (estado_btn41) btn41.isEnabled = estado
+        if (estado_btn51) btn51.isEnabled = estado
+        if (estado_btn61) btn61.isEnabled = estado
     }
     private fun estadoBotonesDerecha(estado: Boolean) {
-        if (estado_btn12) btn12.setEnabled(estado)
-        if (estado_btn22) btn22.setEnabled(estado)
-        if (estado_btn32) btn32.setEnabled(estado)
-        if (estado_btn42) btn42.setEnabled(estado)
-        if (estado_btn52) btn52.setEnabled(estado)
-        if (estado_btn62) btn62.setEnabled(estado)
+        if (estado_btn12) btn12.isEnabled = estado
+        if (estado_btn22) btn22.isEnabled = estado
+        if (estado_btn32) btn32.isEnabled = estado
+        if (estado_btn42) btn42.isEnabled = estado
+        if (estado_btn52) btn52.isEnabled = estado
+        if (estado_btn62) btn62.isEnabled = estado
     }
 
     // Función para mostrar las líneas asociadas a cada pareja de botones
@@ -381,7 +382,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     // Función para dibujar la linea entre los botones especificados
     private fun dibujarLinea(btnIzquierda: ImageButton, btnDerecha: ImageButton) {
-        var layout: RelativeLayout = binding.layoutLineasB
+        val layout: RelativeLayout = binding.layoutLineasB
 
         var esTablet = false
         if (screenSize) esTablet = true
@@ -408,7 +409,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
         } else {
             // Resetear el juego
@@ -422,24 +423,23 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosOlatua
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosOlatua
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
@@ -447,8 +447,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this,
-            Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_Olatua)
         startActivity(intent)
     }
 }

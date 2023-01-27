@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -9,21 +10,23 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.R
-import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajePuertaSanJuan
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityPuertaSanJuanBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class PuertaSanJuanActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityPuertaSanJuanBinding
     var estadoAudio = ""
     private var respuesta = 0
 
+    private var listaDialogos = ListaDialogos()
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         //Deshabilitar menu superior
         supportActionBar?.hide()
@@ -36,20 +39,20 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // --------------------- BOTONES AYUDA Y ROTACIÓN ---------------------
         // AYUDA
         binding.btnAyudaPuertaSanJuan.setOnClickListener {
-            val mensaje = mensajePuertaSanJuan
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajePuertaSanJuan
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaPuertaSanJuan.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_PuertaSanJuan)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_PuertaSanJuan)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -57,8 +60,8 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // -------------------------------------------------------------------------
         // FONDO
-        var activityPuertaSanJuan = binding.activityPuertaSanJuan
-        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
+        val activityPuertaSanJuan = binding.activityPuertaSanJuan
+        activityPuertaSanJuan.background = resources.getDrawable(ListaRecursos.fondo_PuertaSanJuan, theme)
 
         // Ocultar el GIF de los aplausos
         binding.gifAplausosPuertaSanJuan.visibility = ImageView.INVISIBLE
@@ -78,8 +81,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
-                Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_PuertaSanJuan)
             startActivity(intent)
         }
 
@@ -97,9 +99,9 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para comprobar el resultado de las respuestas
     private fun comprobarRespuestas() {
         // Recoger respuesta introducida
-        var respuesta_texto = binding.txtRespuestaPuertaSanJuan.text.toString()
+        val respuesta_texto = binding.txtRespuestaPuertaSanJuan.text.toString()
 
-        if (respuesta_texto.isNullOrEmpty()) {
+        if (respuesta_texto.isEmpty()) {
             respuesta = 0
         } else {
             respuesta = respuesta_texto.toInt()
@@ -120,7 +122,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
             // Cambiar color
             binding.txtRespuestaPuertaSanJuan.setBackgroundColor(Color.GREEN)
@@ -135,24 +137,23 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosPuertaSanJuan
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosPuertaSanJuan
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
@@ -160,8 +161,7 @@ class PuertaSanJuanActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this, Recursos.pantalla_PuertaSanJuan,
-            Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_PuertaSanJuan)
         startActivity(intent)
     }
 }

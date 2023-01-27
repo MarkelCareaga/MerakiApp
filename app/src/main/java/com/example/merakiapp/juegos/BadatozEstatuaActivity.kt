@@ -15,16 +15,18 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeBadatoz
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityBadatozEstatuaBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
     private lateinit var imagen : ImageView
     var estadoAudio = ""
+
+    private var listaDialogos = ListaDialogos()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
@@ -40,28 +42,28 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
-        if(resultadoJuego == "mal") {
-            mostrar_fallo_juego(this)
+        if (resultadoJuego == "mal") {
+            listaDialogos.mostrar_fallo_juego(this)
         }
 
 
         // ---------------------- BOTONES AYUDA Y ROTACIÓN ----------------------
         // AYUDA
         binding.btnAyudaBadatoz.setOnClickListener {
-            val mensaje = mensajeBadatoz
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeBadatoz
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaBadatoz.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ---------------------- AUDIO AL INICIAR EL JUEGO --------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Badatoz)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_Badatoz)
         var intent = Intent(this, ServicioAudios::class.java)
 
 
@@ -119,8 +121,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
-                Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_Badatoz)
             startActivity(intent)
         }
 
@@ -266,7 +267,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
            // Reproducir el audio de Gritos
            estadoAudio = "play"
-           iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+           iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
            // Elementos a ocultar
            binding.btnComprobarBadatoz.visibility = Button.GONE
@@ -289,12 +290,10 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
         val intent = Intent(this, ServicioAudios::class.java)
-
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
@@ -314,8 +313,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this, Recursos.pantalla_Badatoz,
-            Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_Badatoz)
         startActivity(intent)
     }
 }

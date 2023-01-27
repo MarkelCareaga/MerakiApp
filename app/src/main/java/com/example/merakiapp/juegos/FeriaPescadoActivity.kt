@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -8,15 +9,17 @@ import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeFeriaPescado
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityFeriaPescadoBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityFeriaPescadoBinding
     var estadoAudio = ""
+
+    private var listaDialogos = ListaDialogos()
 
     // Botones a pulsar dentro del juego
     private lateinit var btn11: ImageButton
@@ -69,14 +72,14 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private var contador = -1
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-        //Deshabilitar menu superior
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
-        // ???
         screenSize = resources.getBoolean(R.bool.isTablet)
 
         super.onCreate(savedInstanceState)
@@ -87,27 +90,27 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
         if (resultadoJuego == "mal") {
-            mostrar_fallo_juego(this)
+            listaDialogos.mostrar_fallo_juego(this)
         }
 
 
         // ---------------------- BOTONES AYUDA Y ROTACIÓN ----------------------
         // AYUDA
         binding.btnAyudaFeriaPescado.setOnClickListener {
-            val mensaje = mensajeFeriaPescado
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeFeriaPescado
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaFeriaPescado.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_FeriaPescado)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_FeriaPescado)
 
         // Conexión con el Servicio de Audios
         var intent = Intent(this, ServicioAudios::class.java)
@@ -116,7 +119,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
         // ------------------------------------------------------------------------
         // FONDO
         val activityFeriaPescado = binding.activityFeriaPescado
-        activityFeriaPescado.background = resources.getDrawable(Recursos.fondo_FeriaPescado, theme)
+        activityFeriaPescado.background = resources.getDrawable(ListaRecursos.fondo_FeriaPescado, theme)
 
         // BOTONES
         btn11 = binding.btn11
@@ -167,8 +170,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
-                Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_FeriaPescado)
             startActivity(intent)
         }
 
@@ -179,7 +181,6 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             startActivity(Intent(this, MenuNav::class.java))
 
-            // ???
             this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", true).apply()
         }
 
@@ -260,7 +261,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton51 = listaParejas[contador]
             controlBotones(btn51)
             controlLineas()
-            btn51.setEnabled(false)
+            btn51.isEnabled = false
             estado_btn51 = false
         }
         btn52.setOnClickListener {
@@ -268,7 +269,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
             boton52 = listaParejas[contador]
             controlBotones(btn52)
             controlLineas()
-            btn52.setEnabled(false)
+            btn52.isEnabled = false
             estado_btn52 = false
         }
     }
@@ -369,7 +370,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
         } else {
             // Resetear el juego
@@ -384,12 +385,10 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
         val intent = Intent(this, ServicioAudios::class.java)
-
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
@@ -409,8 +408,7 @@ class FeriaPescadoActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this, Recursos.pantalla_FeriaPescado,
-            Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_FeriaPescado)
         startActivity(intent)
     }
 }

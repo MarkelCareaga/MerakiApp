@@ -1,6 +1,7 @@
 package com.example.merakiapp
 
 import android.animation.ObjectAnimator
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -11,6 +12,7 @@ import android.widget.TextView
 import java.util.Timer
 import java.util.TimerTask
 
+@SuppressLint("CustomSplashScreen")
 class SplashScreen : AppCompatActivity() {
 
     // Tiempo en milisegundos que se mostrará la pantalla de bienvenida
@@ -18,7 +20,9 @@ class SplashScreen : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+
+        // Deshabilitar rotación de pantalla (Landscape)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setContentView(R.layout.activity_splash_screen)
 
         // Ocultar toolbar
@@ -35,11 +39,11 @@ class SplashScreen : AppCompatActivity() {
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
 
-        var progreso= findViewById<TextView>(R.id.txtPorcentaje)
+        val progreso= findViewById<TextView>(R.id.txtPorcentaje)
         Thread(Runnable {
             for (i in 0 .. 100) {
                 Thread.sleep(duracion_splash.tiempo_hilo())
-                runOnUiThread {progreso.text="$i%" }
+                runOnUiThread {progreso.text = "$i%" }
             }
         }).start()
 
@@ -55,11 +59,11 @@ class SplashScreen : AppCompatActivity() {
     }
 
     // Funciones de extensión
-    fun Int.milisegundos(): Long {
+    private fun Int.milisegundos(): Long {
         return (this * 1000).toLong()
     }
 
-    fun Int.tiempo_hilo(): Long {
+    private fun Int.tiempo_hilo(): Long {
         return (this * 10).toLong()
     }
 

@@ -12,7 +12,9 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import com.example.merakiapp.*
 import com.example.merakiapp.databinding.FragmentMapaBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.mapa.MapaModoSeguimiento
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -26,37 +28,31 @@ import kotlin.Int
 import kotlin.arrayOf
 import kotlin.let
 
-class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, Recursos {
+class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
 
     private lateinit var binding: FragmentMapaBinding
-    private lateinit var mapa:GoogleMap
+    private lateinit var mapa: GoogleMap
 
-    var juego1 : Boolean = false
-    var juego2 : Boolean = false
-    var juego3 : Boolean = false
-    var juego4 : Boolean = false
-    var juego5 : Boolean = false
-    var juego6 : Boolean = false
-    var juego7 : Boolean = false
-    var idJuego :Int = 0
-    var juego:Boolean= false
-    lateinit var ubica: LatLng
-    val radio:Int = 50
+    private var listaDialogos = ListaDialogos()
 
-    // Puerta de San Juan
-    var juegos1 = LatLng(433.421301, -2.722980)
-    // Badatoz Estatua
-    var juegos2 = LatLng(433.420209, -2.721071)
-    // Feria de Pescado
-    var juegos3 = LatLng(4333.419160, -2.722421)
-    // Olatua estatua
-    var juegos4 = LatLng(433.419639, -2.718932)
-    // Xixili
-    var juegos5 = LatLng(433.42084538018336, -2.7127369295768204)
-    // Isla de Izaro
-    var juegos6 = LatLng(433.424959, -2.683557)
-    // San Juan de Gaztelugatxe
-    var juegos7 = LatLng(423.447147, -2.785151)
+    private var juego1: Boolean = false
+    private var juego2: Boolean = false
+    private var juego3: Boolean = false
+    private var juego4: Boolean = false
+    private var juego5: Boolean = false
+    private var juego6: Boolean = false
+    private var juego7: Boolean = false
+    private var idJuego: Int = 0
+    private lateinit var ubica: LatLng
+    private val radio: Int = 50
+
+    private var juegos1 = LatLng(433.421301, -2.722980)
+    private var juegos2 = LatLng(433.420209, -2.721071)
+    private var juegos3 = LatLng(4333.419160, -2.722421)
+    private var juegos4 = LatLng(433.419639, -2.718932)
+    private var juegos5 = LatLng(433.42084538018336, -2.7127369295768204)
+    private var juegos6 = LatLng(433.424959, -2.683557)
+    private var juegos7 = LatLng(423.447147, -2.785151)
 
     val locationa = Location("juego")
 
@@ -85,10 +81,6 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
              *
              */
 
-
-
-
-
             // Verifica si la preferencia "libre" es igual a false
             juego1 = requireActivity().getSharedPreferences("juego1", 0).getBoolean("1", false)
             juego2 = requireActivity().getSharedPreferences("juego2", 0).getBoolean("2", false)
@@ -106,13 +98,12 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                     it
                 ) { location ->
                     if (location != null) {
-                        val lt = String.valueOf(location.getLatitude())
-                        val ln = String.valueOf(location.getLongitude())
+                        val lt = String.valueOf(location.latitude)
+                        val ln = String.valueOf(location.longitude)
                         ubica = LatLng(lt.toFloat().toDouble(), ln.toFloat().toDouble())
                     }
                 }
             }
-
 
             // Habilitar la localización del usuario y varios controles en el mapa
             mapa.isMyLocationEnabled = true
@@ -259,7 +250,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
              */
             mapa = googleMap
 
-            val location = LocationServices.getFusedLocationProviderClient(this.requireContext())
+            LocationServices.getFusedLocationProviderClient(this.requireContext())
 
             mapa.uiSettings.isCompassEnabled = true
             mapa.uiSettings.isZoomControlsEnabled = true
@@ -311,41 +302,34 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                 BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN)))
 
             mapa.setOnMarkerClickListener{ marker ->
-                val juego = marker.position
+                marker.position
 
-                if(juego1 == marker.position){
-                    var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+                if (juego1 == marker.position) {
+                    val intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_PuertaSanJuan)
                     startActivity(intent_puerta_san_juan)
                 }
-                if(juego2 == marker.position){
-                    var intent_badatoz = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_Badatoz, Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
+                if (juego2 == marker.position) {
+                    val intent_badatoz = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
                     startActivity(intent_badatoz)
                 }
-                if(juego3 == marker.position){
-                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_FeriaPescado, Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
+                if (juego3 == marker.position) {
+                    val intent_feria_pescado = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_FeriaPescado)
                     startActivity(intent_feria_pescado)
                 }
-                if(juego4 == marker.position){
-                    var intent_olatua = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+                if (juego4 == marker.position) {
+                    val intent_olatua = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
                     startActivity(intent_olatua)
                 }
-                if(juego5 == marker.position){
-                    var intent_xixili = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_Xixili, Recursos.audio_Xixili, Recursos.fondo_Xixili)
+                if (juego5 == marker.position) {
+                    val intent_xixili = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Xixili)
                     startActivity(intent_xixili)
                 }
-                if(juego6 == marker.position){
-                    var intent_isla_izaro = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_Izaro, Recursos.audio_Izaro, Recursos.fondo_Izaro)
+                if (juego6 == marker.position) {
+                    val intent_isla_izaro = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Izaro)
                     startActivity(intent_isla_izaro)
                 }
-                if(juego7 == marker.position){
-                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_Gaztelugatxe, Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
+                if (juego7 == marker.position) {
+                    val intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Gaztelugatxe)
                     startActivity(intent_gaztelugatxe)
                 }
 
@@ -361,17 +345,15 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentMapaBinding.inflate(inflater, container, false)
 
         // BOTONES AYUDA Y ROTACIÓN
         binding.btnAyudaMapa.setOnClickListener {
-            val mensaje = "Modo Explorador: Para acceder a un juego, acercate lo máximo posible a dicha ubicación y pulsa el botón JUGAR. \n \n"+
-                    "Modo Libre: Pulsa únicamente las ubicaciones para acceder a sus respectivos juegos."
-            mostrar_dialog(requireActivity(), "MAPA INTERACTIVO", mensaje)
+            listaDialogos.mostrar_dialog(requireActivity(), ListaRecursos.tituloMapa, ListaRecursos.mensajeMapa)
         }
         binding.btnInfoPantallaMapa.setOnClickListener {
-            mostrar_info_pantalla(requireActivity(), false)
+            listaDialogos.mostrar_info_pantalla(requireActivity(), false)
         }
 
         return binding.root
@@ -388,45 +370,45 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
         binding.btnJugar.setOnClickListener {
             if (idJuego == 1) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
 
             }
             if (idJuego == 2) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 3) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 4) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 5) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 6) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
             if (idJuego == 7) {
 
-                locationa.latitude = ubica?.latitude!!
-                locationa.longitude = ubica?.longitude!!
+                locationa.latitude = ubica.latitude
+                locationa.longitude = ubica.longitude
                 distancia_a_puntoA(locationa)
             }
         }
@@ -461,6 +443,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
 
         mapa.isMyLocationEnabled=true
     }
+
     private fun distancia_a_puntoA(localitation: Location) {
         val location1 = Location("Juego")
         location1.latitude = juegos1.latitude
@@ -469,11 +452,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
         if (localitation.distanceTo(location1) <= radio.toDouble()) {
             activity?.finish()
 
-            var intent_puerta_san_juan = abrirExplicacion(this.requireActivity(),
-                Recursos.pantalla_PuertaSanJuan, Recursos.audio_PuertaSanJuan, Recursos.fondo_PuertaSanJuan)
+            val intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_PuertaSanJuan)
             startActivity(intent_puerta_san_juan)
 
-        }else{
+        } else {
             val location2 = Location("Juego")
             location2.latitude = juegos2.latitude
             location2.longitude = juegos2.longitude
@@ -481,11 +463,9 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
             if (localitation.distanceTo(location2) <= radio.toDouble()) {
                 activity?.finish()
 
-                var intent_badatoz = abrirExplicacion(this.requireActivity(),
-                    Recursos.pantalla_Badatoz, Recursos.audio_Badatoz, Recursos.fondo_Badatoz)
+                val intent_badatoz = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
                 startActivity(intent_badatoz)
-
-            }else {
+            } else {
                 val location3 = Location("Juego")
                 location3.latitude = juegos3.latitude
                 location3.longitude = juegos3.longitude
@@ -493,10 +473,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                 if (localitation.distanceTo(location3) <= radio.toDouble()) {
                     activity?.finish()
 
-                    var intent_feria_pescado = abrirExplicacion(this.requireActivity(),
-                        Recursos.pantalla_FeriaPescado, Recursos.audio_FeriaPescado, Recursos.fondo_FeriaPescado)
+                    val intent_feria_pescado = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_FeriaPescado)
                     startActivity(intent_feria_pescado)
-
                 } else {
                     val location4 = Location("Juego")
                     location4.latitude = juegos4.latitude
@@ -505,10 +483,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                     if (localitation.distanceTo(location4) <= radio.toDouble()) {
                         activity?.finish()
 
-                        var intent_olatua = abrirExplicacion(this.requireActivity(),
-                            Recursos.pantalla_Olatua, Recursos.audio_Olatua, Recursos.fondo_Olatua)
+                        val intent_olatua = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
                         startActivity(intent_olatua)
-
                     } else {
                         val location5 = Location("Juego")
                         location5.latitude = juegos5.latitude
@@ -517,8 +493,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                         if (localitation.distanceTo(location5) <= radio.toDouble()) {
                             activity?.finish()
 
-                            var intent_xixili = abrirExplicacion(this.requireActivity(),
-                                Recursos.pantalla_Xixili, Recursos.audio_Xixili, Recursos.fondo_Xixili)
+                            val intent_xixili = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Xixili)
                             startActivity(intent_xixili)
 
                         } else {
@@ -529,10 +504,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                             if (localitation.distanceTo(location6) <= radio.toDouble()) {
                                 activity?.finish()
 
-                                var intent_isla_izaro = abrirExplicacion(this.requireActivity(),
-                                    Recursos.pantalla_Izaro, Recursos.audio_Izaro, Recursos.fondo_Izaro)
+                                val intent_isla_izaro = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Izaro)
                                 startActivity(intent_isla_izaro)
-
                             } else {
                                 val location7 = Location("Juego")
                                 location7.latitude = juegos7.latitude
@@ -541,11 +514,9 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Dialogos, Explicaciones, 
                                 if (localitation.distanceTo(location7) <= radio.toDouble()) {
                                     activity?.finish()
 
-                                    var intent_gaztelugatxe = abrirExplicacion(this.requireActivity(),
-                                        Recursos.pantalla_Gaztelugatxe, Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
+                                    val intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Gaztelugatxe)
                                     startActivity(intent_gaztelugatxe)
-
-                                }else{
+                                } else {
                                     Toast.makeText(this.requireContext(),getString(R.string.distancia), Toast.LENGTH_LONG).show()
                                 }
                             }

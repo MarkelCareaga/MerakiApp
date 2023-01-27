@@ -1,16 +1,9 @@
 package com.example.merakiapp.servicios
 
 import android.app.*
-import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.media.MediaPlayer
-import android.os.Build
 import android.os.IBinder
-import androidx.annotation.RequiresApi
-import androidx.core.app.NotificationCompat
-import androidx.core.app.NotificationManagerCompat
-import com.example.merakiapp.R
 
 // Servicio encargado de gestionar las acciones realizadas sobre un audio
 class ServicioAudios : Service() {
@@ -53,7 +46,7 @@ class ServicioAudios : Service() {
             if (this::mp.isInitialized) {
 
                 // Comprobar si existe un audio pausado con anterioridad
-                if (mp.getCurrentPosition() > 0) {
+                if (mp.currentPosition > 0) {
 
                     // Detener el audio
                     mp.stop()

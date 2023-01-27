@@ -1,5 +1,6 @@
 package com.example.merakiapp.juegos
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
@@ -9,14 +10,16 @@ import android.widget.Button
 import android.widget.ImageView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeGaztelugatxe
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivityGastelugatxeBinding
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
+class GaztelugatxeActivity() : AppCompatActivity(), Explicaciones {
     lateinit var binding: ActivityGastelugatxeBinding
+
+    private var listaDialogos = ListaDialogos()
 
     var estadoAudio = ""
     var correcto1: Boolean = false      // Resultado de la primera pregunta
@@ -25,6 +28,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
     var correcto4: Boolean = false      // Resultado de la cuarta pregunta
 
 
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
@@ -40,13 +44,13 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         // ----------------------- BOTONES AYUDA Y ROTACIÓN -----------------------
         // AYUDA
         binding.btnAyudaGaztelugatxe.setOnClickListener {
-            val mensaje = mensajeGaztelugatxe
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeGaztelugatxe
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaGaztelugatxe.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
@@ -59,8 +63,8 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
         // -------------------------------------------------------------------------
         // FONDO
-        var activityGaztelugatxe = binding.activityGaztelugatxe
-        activityGaztelugatxe.background = resources.getDrawable(Recursos.fondo_Gaztelugatxe, theme)
+        val activityGaztelugatxe = binding.activityGaztelugatxe
+        activityGaztelugatxe.background = resources.getDrawable(ListaRecursos.fondo_Gaztelugatxe, theme)
 
         // Ocultar el GIF de los aplausos
         binding.gifAplausos.visibility = ImageView.INVISIBLE
@@ -80,8 +84,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
             stopService(intent)
             finish()
 
-            intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
-                Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
+            intent = abrirExplicacion(this, ListaRecursos.pantalla_Gaztelugatxe)
             startActivity(intent)
         }
 
@@ -180,7 +183,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
         }
 
         // Comprobar si todas las respuestas son correctas
-        if (correcto1 == true && correcto2 == true && correcto3 == true && correcto4 == true) {
+        if (correcto1 && correcto2 && correcto3 && correcto4) {
             // Elementos a ocultar
             binding.btnComprobarGaztelugatxe.visibility = Button.GONE
             binding.btnVolverGaztelugatxe.visibility = Button.GONE
@@ -194,31 +197,30 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
             // Reproducir audio
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
         }
     }
 
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausos
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausos
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)
@@ -226,8 +228,7 @@ class GaztelugatxeActivity() : AppCompatActivity(), Dialogos, Explicaciones {
 
         // Abre la activity de Explicación
         finish()
-        intent = abrirExplicacion(this, Recursos.pantalla_Gaztelugatxe,
-            Recursos.audio_Gaztelugatxe, Recursos.fondo_Gaztelugatxe)
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_Gaztelugatxe)
         startActivity(intent)
     }
 }

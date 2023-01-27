@@ -6,5 +6,4 @@ data class Usuario(
     var nombreusuario:String,
     var pasosUsuario: Int,
     var imagen: String?,
-
     )

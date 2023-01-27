@@ -1,14 +1,12 @@
 package com.example.merakiapp.juegos
 
 //noinspection SuspiciousImport
-import android.R
-import android.app.ProgressDialog.show
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.Toast
@@ -16,28 +14,27 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.net.toUri
 import com.bumptech.glide.Glide
-import com.example.merakiapp.Dialogos
-import com.example.merakiapp.Explicaciones
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.MenuNav
-import com.example.merakiapp.Recursos
 import com.example.merakiapp.databinding.ActivityIslaIzaroBinding
 import com.example.merakiapp.servicios.ServicioAudios
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.socket.client.IO
 import org.json.JSONArray
 import org.json.JSONObject
-import java.lang.Thread.sleep
 
-
-class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
+class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
     private lateinit var sala: String
     private lateinit var estadoAudio :String
     var socket = IO.socket("https://merakiapp-servicio-multijugador.glitch.me")
     var boolean = false
-    private  var usuario1: Boolean = false
-    private  var usuario2: Boolean = false
+    private var usuario1: Boolean = false
+    private var usuario2: Boolean = false
+    private var listaDialogos = ListaDialogos()
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
@@ -56,7 +53,6 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         binding.versus.visibility = View.GONE
         binding.txtOponente.visibility = View.GONE
         binding.imagenOponente.visibility= View.GONE
-        val id = intent.getIntExtra("id",0)
         val name = intent.getStringExtra("name")
         val imagen = intent.getStringExtra("imagen")
 
@@ -77,14 +73,11 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
         // AUDIO
         // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
 
         if (imagen != null) {
             binding.imagenUsuario.setImageURI(imagen.toUri())
         }
-
-
 
         /*
         private fun setUpdateNicks (jsonUsersList: JSONArray) {
@@ -134,7 +127,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                     }
 
                 }
-                    if (usuario1 == true && usuario2 == true) {
+                    if (usuario1 && usuario2) {
 
                         binding.botonMoverBarco?.visibility = View.VISIBLE
 
@@ -173,7 +166,7 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
             binding.btnSprint?.visibility  = View.GONE
 
             estadoAudio = "play"
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_Izaro, true)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_Izaro, true)
             binding.txtUser?.text = name
 
 
@@ -248,8 +241,8 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
         mostrarGif()
 
         // Reproducir audio
-        var estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos, false)
+        val estadoAudio = "play"
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos, false)
 
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
@@ -266,45 +259,41 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView? = binding.gifAplausosCarrera
-        if (ImageView != null) {
-            Glide.with(this).load(com.example.merakiapp.R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView? = binding.gifAplausosCarrera
+        if (imageView != null) {
+            Glide.with(this).load(com.example.merakiapp.R.drawable.aplausos).into(imageView)
         }
     }
     // -------------------------------------------------------------------
 
 
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         socket.disconnect()
-        super.onBackPressed()
     }
 
     private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int, conDialog: Boolean) {
-        var intent = Intent(this,ServicioAudios::class.java)
+        val intent = Intent(this,ServicioAudios::class.java)
         intent.putExtra("estadoAudio",estadoAudio)
         intent.putExtra("audioSeleccionado",audioSeleccionado)
         startService(intent)
         Thread(Runnable {
             Thread.sleep(4100)
-            runOnUiThread{
+            runOnUiThread {
                 if (conDialog) {
-                    var dialog = AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
+                   AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
                         .setTitle("¿Preparados?")
                         // Botón "aceptar"
                         .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
                         { dialog, id ->
                             boolean = true
                             socket.emit("audio", boolean)
-                            if (usuario1 == true && usuario2 == true) {
+                            if (usuario1 && usuario2) {
                                 binding.botonMoverBarco?.visibility = View.VISIBLE
-
                                 binding.btnSprint?.visibility = View.VISIBLE
-
-
                             } else {
                                 Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
                             }
-
                         })
                         // Obliga a elegir uno de los botones para cerrar el cuadro de diálogo
                         //.setCancelable (false)
@@ -313,6 +302,5 @@ class IslaIzaroActivity : AppCompatActivity(), Dialogos, Explicaciones {
                 }
             }
         }).start()
-
     }
 }

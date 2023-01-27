@@ -2,7 +2,6 @@ package com.example.merakiapp
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.os.Process
@@ -14,17 +13,15 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.merakiapp.databinding.ActivityMainBinding
-import com.example.merakiapp.explicaciones.ExplicacionesActivity
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.material.navigation.NavigationView
 
-
 class MenuNav : AppCompatActivity(), OnMapReadyCallback {
-    var borrar = false
+    private var borrar = false
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityMainBinding
-    val context:Context = this
+    val context: Context = this
 
     @SuppressLint("ResourceType", "CommitPrefEdits")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -110,12 +107,11 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
     }
 
     // Sobreescribe el metodo onBackPressed para salir de la aplicación sin cerrarla completamente
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-
-            borrar = false
-
-            finish()
-            return
+        borrar = false
+        finish()
+        return
     }
 
     // Implementa el metodo onMapReady pero no hace nada ya que el TODO("Not yet implemented") indica que todavia no esta implementado

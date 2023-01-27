@@ -14,44 +14,45 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.example.merakiapp.*
-import com.example.merakiapp.Dialogos.Companion.mensajeSopaLetras
-import com.example.merakiapp.Dialogos.Companion.tituloJuegos
 import com.example.merakiapp.databinding.ActivitySopaLetrasBinding
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class SopaLetrasActivity : AppCompatActivity(), Dialogos {
+class SopaLetrasActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySopaLetrasBinding
 
+    private var listaDialogos = ListaDialogos()
+
     // Booleanos correctos
-    var SANFRANTZISKO : Boolean = false
-    var SANTABARBARA : Boolean = false
-    var SANMIGEL : Boolean = false
-    var ERRENTERIA : Boolean = false
-    var ERREMEDIO : Boolean = false
-    var SANJUAN : Boolean = false
-    var BEI : Boolean = false
+    var sanfrantzisko : Boolean = false
+    var santabarbara : Boolean = false
+    var sanmigel : Boolean = false
+    var errenteria : Boolean = false
+    var erremedio : Boolean = false
+    var sanjuan : Boolean = false
+    var bei : Boolean = false
 
     // Contador general
-    var Cont = 0
+    var cont = 0
 
     // Contador palabras
-    var ContSanfrantzisko = 0
-    var ContSantabarbara = 0
-    var ContSanmigel = 0
-    var ContErrenteria = 0
-    var ContErremedio = 0
-    var ContSanjuan= 0
-    var ContBei = 0
+    var contSanfrantzisko = 0
+    var contSantabarbara = 0
+    var contSanmigel = 0
+    var contErrenteria = 0
+    var contErremedio = 0
+    var contSanjuan= 0
+    var contBei = 0
 
     // Contador Audio
-    var ContAudio = 0
+    var contAudio = 0
     var estadoAudio = ""
-    private var respuesta = 0
     
-    @SuppressLint("ClickableViewAccessibility")
+    @SuppressLint("ClickableViewAccessibility", "UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         // Deshabilitar menu superior
         supportActionBar?.hide()
@@ -64,29 +65,29 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         // ---------------------------- BOTONES AYUDA Y ROTACIÓN ----------------------------
         // AYUDA
         binding.btnAyudaSopaLetras.setOnClickListener {
-            val mensaje = mensajeSopaLetras
-            mostrar_dialog(this, tituloJuegos, mensaje)
+            val mensaje = ListaRecursos.mensajeSopaLetras
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloJuegos, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaSopaLetras.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ----------------------AUDIO AL INICIAR EL JUEGO--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Juego_SopaLetras)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_SopaLetras)
 
         // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
 
         // -------------------------------------------------------------------------
         // FONDO
-        var activityPuertaSanJuan = binding.activitySopaLetras
-        activityPuertaSanJuan.background = resources.getDrawable(Recursos.fondo_PuertaSanJuan, theme)
+        val activityPuertaSanJuan = binding.activitySopaLetras
+        activityPuertaSanJuan.background = resources.getDrawable(ListaRecursos.fondo_PuertaSanJuan, theme)
 
         // Ocultar el GIF de los aplausos
         binding.gifAplausosSopaLetras.visibility = ImageView.INVISIBLE
@@ -119,15 +120,15 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
         val gridLayout = binding.gridLayout
 
         // Comprobar si todas las palabras son correctas
-        fun Comprobarpalabras(){
+        fun comprobarPalabras(){
             // Si todos los booleanos de las palabras estan en TRUE:
-            if(SANFRANTZISKO && SANTABARBARA && SANMIGEL && ERRENTERIA && ERREMEDIO && SANJUAN && BEI){
+            if(sanfrantzisko && santabarbara && sanmigel && errenteria && erremedio && sanjuan && bei){
 
                 // Suma 1 al contador del audio
-                ContAudio++
+                contAudio++
 
                 // Si el ContAudio es igual a 7 haz:
-                if (ContAudio == 7){
+                if (contAudio == 7){
 
                     // Elementos a ocultar
                     binding.btnVolverSopaLetras.visibility = Button.GONE
@@ -141,14 +142,14 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
 
                     // Reproducir audio
                     estadoAudio = "play"
-                    iniciarServicioAudio(estadoAudio, Recursos.audio_Gritos)
+                    iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
                 }
             }
         }
 
-        fun CambiarColor(){
+        fun CambiarColor() {
             // Si SANFRANTZISKO es TRUE
-            if(SANFRANTZISKO){
+            if (sanfrantzisko) {
                 // Pon el color verde
                 binding.Sanfrantzisko.setBackgroundColor(Color.GREEN)
                 binding.sAnfrantzisko.setBackgroundColor(Color.GREEN)
@@ -168,11 +169,11 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfSanfrantzisko.setTypeface(binding.textInfSanfrantzisko.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
 
             // Si SANTABARBARA es TRUE
-            if(SANTABARBARA){
+            if (santabarbara) {
                 // Pon el color verde
                 binding.Santabarbara.setBackgroundColor(Color.GREEN)
                 binding.sAntabarbara.setBackgroundColor(Color.GREEN)
@@ -191,10 +192,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfSantabarbara.setTypeface(binding.textInfSantabarbara.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
             // Si SANMIGEL es TRUE
-            if(SANMIGEL){
+            if (sanmigel) {
                 binding.Sanmigel.setBackgroundColor(Color.GREEN)
                 binding.sAnmigel.setBackgroundColor(Color.GREEN)
                 binding.saNmigel.setBackgroundColor(Color.GREEN)
@@ -208,10 +209,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfSanmigel.setTypeface(binding.textInfSanmigel.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
             // Si ERRENTERIA es TRUE
-            if(ERRENTERIA){
+            if (errenteria) {
                 // Pon el color verde
                 binding.Errenteria.setBackgroundColor(Color.GREEN)
                 binding.eRrenteria.setBackgroundColor(Color.GREEN)
@@ -228,11 +229,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfErrenteria.setTypeface(binding.textInfErrenteria.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
             // Si ERREMEDIO es TRUE
-            if(ERREMEDIO){
-
+            if (erremedio) {
                 // Pon el color verde
                 binding.Erremedio.setBackgroundColor(Color.GREEN)
                 binding.eRremedio.setBackgroundColor(Color.GREEN)
@@ -248,10 +248,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfErremedio.setTypeface(binding.textInfErremedio.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
             // Si SANJUAN es TRUE
-            if(SANJUAN){
+            if (sanjuan) {
                 // Pon el color verde
                 binding.Sanjuan.setBackgroundColor(Color.GREEN)
                 binding.sAnjuan.setBackgroundColor(Color.GREEN)
@@ -265,10 +265,10 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfSanjuan.setTypeface(binding.textInfSanjuan.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
+                comprobarPalabras()
             }
             // Si BEI es TRUE
-            if(BEI){
+            if (bei) {
                 // Pon el color verde
                 binding.Bei.setBackgroundColor(Color.GREEN)
                 binding.bEi.setBackgroundColor(Color.GREEN)
@@ -277,8 +277,7 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                 binding.textInfBei.setTypeface(binding.textInfBei.typeface, Typeface.BOLD)
 
                 // Llama a la funcion para comprobrobar todas las palabras
-                Comprobarpalabras()
-
+                comprobarPalabras()
             }
         }
 
@@ -295,58 +294,58 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                             // Se comprueba que el background de los textviews que estamos seleccionando no estes ya pintados de otro color
                             if (backgroundDrawable !is ColorDrawable || (backgroundDrawable.color != Color.GREEN && backgroundDrawable.color != Color.CYAN)) {
                                 // Si Cont es menor que 13
-                                if(Cont < 13){
+                                if(cont < 13){
                                     // Pinta el background de color CYAN
                                     textView.setBackgroundColor(Color.CYAN)
                                     // Suma 1 a Cont
-                                    Cont++
+                                    cont++
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANFRANTSIKO
                                     when (textView) {
                                         binding.Sanfrantzisko, binding.sAnfrantzisko, binding.saNfrantzisko, binding.sanFrantzisko, binding.sanfRantzisko, binding.sanfrAntzisko, binding.sanfraNtzisko, binding.sanfranTzisko, binding.sanfrantZisko, binding.sanfrantzIsko, binding.sanfrantziSko, binding.sanfrantzisKo, binding.sanfrantziskO -> {
                                             // Suma 1 al contador de SANFRANTSIKO
-                                            ContSanfrantzisko++
+                                            contSanfrantzisko++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANTABARBARA
                                     when (textView) {
                                         binding.Santabarbara, binding.sAntabarbara, binding.saNtabarbara, binding.sanTabarbara, binding.santAbarbara, binding.santaBarbara, binding.santabArbara, binding.santabaRbara, binding.santabarBara, binding.santabarbAra, binding.santabarbaRa, binding.santabarbarA -> {
                                             // Suma 1 al contador de SANTABARBARA
-                                            ContSantabarbara++
+                                            contSantabarbara++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANMIGEL
                                     when (textView) {
                                         binding.Sanmigel, binding.sAnmigel, binding.saNmigel, binding.sanMigel, binding.sanmIgel, binding.sanmiGel, binding.sanmigEl, binding.sanmigeL -> {
                                             // Suma 1 al contador de SANMIGEL
-                                            ContSanmigel++
+                                            contSanmigel++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a ERRENTERIA
                                     when (textView) {
                                         binding.Errenteria, binding.eRrenteria, binding.erRenteria, binding.errEnteria, binding.erreNteria, binding.errenTeria, binding.errentEria, binding.errenteRia, binding.errenterIa, binding.errenteriA -> {
                                             // Suma 1 al contador de ERRENTERIA
-                                            ContErrenteria++
+                                            contErrenteria++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a ERREMEDIO
                                     when (textView) {
                                         binding.Erremedio, binding.eRremedio, binding.erRemedio, binding.errEmedio, binding.erreMedio, binding.erremEdio, binding.erremeDio, binding.erremedIo, binding.erremediO -> {
                                             // Suma 1 al contador de ERREMEDIO
-                                            ContErremedio++
+                                            contErremedio++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a SANJUAN
                                     when (textView) {
                                         binding.Sanjuan, binding.sAnjuan, binding.saNjuan, binding.sanJuan, binding.sanjUan, binding.sanjuAn, binding.sanjuaN -> {
                                             // Suma 1 al contador de SANJUAN
-                                            ContSanjuan++
+                                            contSanjuan++
                                         }
                                     }
                                     // Cuando el usuario presiona cualquier TextView del gridlyout perteneciente a BEI
                                     when (textView) {
                                         binding.Bei, binding.bEi, binding.beI -> {
                                             // Suma 1 al contador de BEI
-                                            ContBei ++
+                                            contBei ++
                                         }
                                     }
                                 }
@@ -366,66 +365,64 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
                             // Quita el color de background de los textviews
                             textView.setBackground(null)
                             // SI el contador de SANFRANTZISKO y el CONT general es igual a 13
-                            if (ContSanfrantzisko == 13 && Cont == 13) {
+                            if (contSanfrantzisko == 13 && cont == 13) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                SANFRANTZISKO = true
+                                sanfrantzisko = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de SANTABARBARA y el CONT general es igual a 12
-                            if (ContSantabarbara == 12 && Cont == 12) {
+                            if (contSantabarbara == 12 && cont == 12) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                SANTABARBARA = true
+                                santabarbara = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de SANMIGEL y el CONT general es igual a 8
-                            if (ContSanmigel == 8 && Cont == 8) {
+                            if (contSanmigel == 8 && cont == 8) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                SANMIGEL = true
+                                sanmigel = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de ERRENTERIA y el CONT general es igual a 10
-                            if (ContErrenteria == 10 && Cont == 10) {
+                            if (contErrenteria == 10 && cont == 10) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                ERRENTERIA = true
+                                errenteria = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de ERREMEDIO y el CONT general es igual a 9
-                            if (ContErremedio == 9 && Cont == 9) {
+                            if (contErremedio == 9 && cont == 9) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                ERREMEDIO = true
+                                erremedio = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de SANJUAN y el CONT general es igual a 7
-                            if (ContSanjuan == 7 && Cont == 7) {
+                            if (contSanjuan == 7 && cont == 7) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                SANJUAN = true
+                                sanjuan = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
                             // SI el contador de BEI y el CONT general es igual a 3
-                            if (ContBei == 3 && Cont == 3) {
+                            if (contBei == 3 && cont == 3) {
                                 // SANFRANTZISKO se pone a valor TRUE
-                                BEI = true
+                                bei = true
                                 // Se llama a la funcion CambiarColor para cambiar a verde el color de los textviews seleccionados
                                 CambiarColor()
                             }
 
                             // Se resetea todos los contadores a 0
-                            Cont = 0
-
-                            ContSanfrantzisko = 0
-                            ContSantabarbara = 0
-                            ContSanmigel = 0
-                            ContErrenteria = 0
-                            ContErremedio = 0
-                            ContSanjuan= 0
-                            ContBei = 0
-
+                            cont = 0
+                            contSanfrantzisko = 0
+                            contSantabarbara = 0
+                            contSanmigel = 0
+                            contErrenteria = 0
+                            contErremedio = 0
+                            contSanjuan= 0
+                            contBei = 0
                         }
                     }
                 }
@@ -456,27 +453,26 @@ class SopaLetrasActivity : AppCompatActivity(), Dialogos {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosSopaLetras
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosSopaLetras
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
 
         // Abre la activity anterior

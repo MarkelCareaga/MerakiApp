@@ -13,7 +13,7 @@ class AyudaFragment : Fragment() {
     // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
     lateinit private var preguntas: List<Pregunta>
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
-    private lateinit var PreguntasAdapter :PreguntasAdapter
+    private lateinit var preguntasAdapter :PreguntasAdapter
 
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
@@ -34,16 +34,14 @@ class AyudaFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         cargarPreguntas()
-        PreguntasAdapter = PreguntasAdapter(preguntas)
-        _binding?.RecyclerPreguntasReespuestas?.adapter = PreguntasAdapter
-
+        preguntasAdapter = PreguntasAdapter(preguntas)
+        _binding?.RecyclerPreguntasReespuestas?.adapter = preguntasAdapter
     }
 
     //este método se llama cuando la vista del fragmento ya no es necesaria
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-
     }
 
     // este método se utiliza para cargar preguntas

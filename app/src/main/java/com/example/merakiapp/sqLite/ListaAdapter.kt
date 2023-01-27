@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.merakiapp.R
@@ -27,34 +26,29 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>,val contexta:Context) : Rec
 
     }
 
-
     class ViewHolder(view: View): RecyclerView.ViewHolder(view){
         val binding = ItemProductoUsuarioBinding.bind(view)
 
         fun bind(usuario: Usuario, contexta: Context) {
             with(binding) {
-
-                nombreUsuario.setText(usuario.nombreusuario)
+                nombreUsuario.text = usuario.nombreusuario
                 val imagen = usuario.imagen?.toUri()
-                if(usuario.imagen != null){
+
+                if (usuario.imagen != null) {
                     imagenUsuario.setImageURI(imagen)
                 }
+
                 buttonPlay.setOnClickListener {
                     val intent = Intent(contexta,IslaIzaroActivity::class.java)
                         .putExtra("id", usuario.id)
                         .putExtra("name", usuario.nombreusuario)
                         .putExtra("pasos", usuario.pasosUsuario)
                         .putExtra("imagen", usuario.imagen)
-                    contexta.startActivity(intent);
+                    contexta.startActivity(intent)
                     Toast.makeText(contexta,"${usuario.id}, ${usuario.nombreusuario}, ${usuario.pasosUsuario}, ${usuario.imagen}", Toast.LENGTH_LONG).show()
                 }
             }
-
         }
-    }
-    interface OnItemClickListener {
-        fun onItemJugar(item: Usuario)
-
     }
 
     override fun getItemCount(): Int = arrayList.size

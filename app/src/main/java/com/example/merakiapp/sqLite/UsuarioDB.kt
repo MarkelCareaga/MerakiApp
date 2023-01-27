@@ -19,9 +19,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         const val CAMPO_PASOS_USUARIOS = "pasosUsuarios"
         //Pasos usuarios de la tabla
         const val CAMPO_IMAGEN = "imageUsuario"
-
     }
-
 
     override fun onCreate(db: SQLiteDatabase?) {
         // creamos la tabla con las referencias del companion object
@@ -38,6 +36,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         //llamamos al oncreate para volver a crear la tablas
         onCreate(db)
     }
+
     fun insertar_datos(id:Int, nombreUsuario:String, pasosUsuario:Int, imagen: String?){
         //decimos que la tabla es modificable y de lectura
         val db = this.writableDatabase
@@ -64,6 +63,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         //insertamos los datos recogidos a la tabla
         db.insert(NOMBRE_TABLA, null, datos)
     }
+
     fun listaTodos(): MutableList<Usuario>{
         // creamos una lista tipo Alumnos
         val listaAlumnos: MutableList<Usuario> = arrayListOf()
@@ -87,6 +87,8 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         return listaAlumnos
 
     }
+
+    /*
     fun borrarDatos(id: Long): Int {
         //decimos que la tabla es modificable y de lectura
         val db = this.writableDatabase
@@ -94,8 +96,6 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         return db.delete(NOMBRE_TABLA, "$CAMPO_ID=?", arrayOf(id.toString()))
         //db.close()
     }
-
-
 
     fun actualizarDatos(id:Int, nombreUsuario:String, pasosUsuario:Int, imagen: String?){
         //decimos que la tabla es modificable y de lectura
@@ -108,4 +108,5 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         }
         db.update("NOMBRE_TABLA",datos, "$CAMPO_ID=?", arrayOf(id.toString()))
     }
+     */
 }

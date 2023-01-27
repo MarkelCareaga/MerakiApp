@@ -26,7 +26,7 @@
     <string name="piezamalcolocada">Pieza mal colocada</string>
     <string name="comprobar">Comprobar</string>
     <string name="volveraescuchar">Volver a escuchar</string>
-    <string name="distancia">Estas lejos, acercate almenos unos 50 metros del punto</string>
+    <string name="distancia">Estás lejos, acercate almenos unos 50 metros del punto</string>
     <string name="FQ">Preguntas Frecuentes</string>
     <string name="titulo_explicacion">Explicación</string>
     <string name="pescado_ahumado">Pescado ahumado</string>
@@ -49,7 +49,7 @@
     <string name="pregunta_test_1">¿Cuántas escaleras hay que subir para llegar a la ermita?</string>
     <string name="pregunta_test_2">¿Cuántas veces hay que tocar la campana de la ermita para tener buena suerte?</string>
     <string name="pregunta_test_3">¿En qué provincia se sitúa el islote de San Juan de Gaztelugatxe?</string>
-    <string name="pregunta_test_4">¿Que serie internacional se ha grabado en San Juan de Gaztelugatxe?</string>
+    <string name="pregunta_test_4">¿Qué serie internacional se ha grabado en San Juan de Gaztelugatxe?</string>
     <string name="pregunta_puerta_san_juan">¿Cuántas puertas había en la muralla de Bermeo?</string>
     <string name="introduce_respuesta_puerta_san_juan">Introduce aquí tu respuesta</string>
     <string name="seleccionUsuario">Agregue un usuario para poder jugar haciendo click en el botón de la esquina</string>
@@ -59,4 +59,12 @@
     <string name="Buscarjugador">Buscar</string>
     <string name="pescado_congelado">Pescado congelado</string>
     <string name="buscar">Buscando jugador</string>
+    <string name="tituloExplicacion">INFO</string>
+    <string name="tituloJuegos">OBJETIVO DEL JUEGO</string>
+    <string name="tituloVideo">VIDEO</string>
+    <string name="tituloFinal">BIEN HECHO</string>
+    <string name="tituloDialogFallo">VUELVE A INTENTARLO</string>
+    <string name="tituloRotarPantalla">INFO</string>
+    <string name="permisoDenegado">PERMISOS NO ACEPTADOS</string>
+    <string name="tituloMapa">MAPA INTERACTIVO</string>
 </resources>

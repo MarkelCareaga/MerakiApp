@@ -31,13 +31,6 @@
         android:theme="@style/Theme.MerakiApp"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
-        <activity
             android:name=".sqLite.NuevoUsuario"
             android:exported="false">
             <meta-data
@@ -167,13 +160,6 @@
         </activity>
         <activity
             android:name=".juegos.XixiliActivity"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity> <!-- EXPLICACIONES -->
-        <activity
-            android:name=".explicaciones.DemoActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

@@ -1,31 +1,32 @@
 package com.example.merakiapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import android.graphics.Color
-import android.media.MediaMetadataRetriever
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.example.merakiapp.Dialogos.Companion.mensajeFinal
-import com.example.merakiapp.Dialogos.Companion.tituloFinal
 import com.example.merakiapp.databinding.ActivityFinalBinding
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 import java.util.*
 import kotlin.concurrent.schedule
 
-
-class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
+class FinalActivity : AppCompatActivity() {
     private lateinit var binding: ActivityFinalBinding
 
     // AUDIO Y FONDO
     var estadoAudio = ""
 
+    private var listaDialogos = ListaDialogos()
+
+    @SuppressLint("UseCompatLoadingForDrawables")
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         super.onCreate(savedInstanceState)
         binding=ActivityFinalBinding.inflate(layoutInflater)
@@ -38,34 +39,34 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
         // ------------------------ BOTONES AYUDA Y ROTACIÓN ------------------------
         // AYUDA
         binding.btnAyudaFinal.setOnClickListener {
-            val mensaje = mensajeFinal
-            mostrar_dialog(this, tituloFinal, mensaje)
+            val mensaje = ListaRecursos.mensajeFinal
+            listaDialogos.mostrar_dialog(this, ListaRecursos.tituloFinal, mensaje)
         }
 
         // INFO ROTACIÓN
         binding.btnInfoPantallaFinal.setOnClickListener {
-            mostrar_info_pantalla(this, false)
+            listaDialogos.mostrar_info_pantalla(this, false)
         }
 
 
         // ----------------------AUDIO AL INICIAR LA ACTIVITY--------------------------
         // Reproducir audio
         estadoAudio = "play"
-        iniciarServicioAudio(estadoAudio, Recursos.audio_Miren)
+        iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Miren)
 
         // Conexión con el Servicio de Audios
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
 
         // Después de 6 segundos, se reproduce el segundo audio
         Timer().schedule(6000) {
-            iniciarServicioAudio(estadoAudio, Recursos.audio_Patxi)
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Patxi)
         }
 
 
         // ---------------------------------------------------------------------
         // FONDO
-        var activityFinal = binding.activityFinal
-        activityFinal.background = resources.getDrawable(Recursos.fondo_Introduccion, theme)
+        val activityFinal = binding.activityFinal
+        activityFinal.background = resources.getDrawable(ListaRecursos.fondo_Introduccion, theme)
 
         // Mostrar el GIF de los aplausos
         mostrarGif()
@@ -85,26 +86,25 @@ class FinalActivity : AppCompatActivity(), Dialogos, Recursos {
     // Función para gestionar los audios (Media Player)
     private fun iniciarServicioAudio(estadoAudio: String, audioSeleccionado: Int) {
         // Indicar el Servico a iniciar
-        var intent = Intent(this, ServicioAudios::class.java)
-
+        val intent = Intent(this, ServicioAudios::class.java)
         // Pasar el estado del audio a reproducir
         intent.putExtra("estadoAudio", estadoAudio)
         // Pasar el audio a reproducir
         intent.putExtra("audioSeleccionado", audioSeleccionado)
-
         // Iniciar el Servicio
         startService(intent)
     }
 
     // Función para mostrar el GIF de los aplausos
     private fun mostrarGif() {
-        val ImageView: ImageView = binding.gifAplausosFinal
-        Glide.with(this).load(R.drawable.aplausos).into(ImageView)
+        val imageView: ImageView = binding.gifAplausosFinal
+        Glide.with(this).load(R.drawable.aplausos).into(imageView)
     }
 
     // Función que controla el botón Back del dispositivo móvil
+    @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
-        var intent = Intent(this, ServicioAudios::class.java)
+        val intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
         finish()
     }

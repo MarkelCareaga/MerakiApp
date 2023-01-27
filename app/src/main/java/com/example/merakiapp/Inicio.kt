@@ -10,33 +10,31 @@ import android.os.Bundle
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
-import com.example.merakiapp.Dialogos.Companion.mensajePermisos
-import com.example.merakiapp.Dialogos.Companion.permisoDenegado
 import com.example.merakiapp.databinding.ActivityInicioBinding
+import com.example.merakiapp.explicaciones.Explicaciones
+import com.example.merakiapp.listas.ListaDialogos
+import com.example.merakiapp.listas.ListaRecursos
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
-import com.example.merakiapp.explicaciones.ExplicacionesActivity
 
-class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones {
+class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
     var libre :Boolean = false
     lateinit var mapa :GoogleMap
     private lateinit var binding: ActivityInicioBinding
+
+    private var listaDialogos = ListaDialogos()
+
     @SuppressLint("CommitPrefEdits", "SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
-
         // Deshabilitar rotación de pantalla (Landscape)
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT)
+        requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         super.onCreate(savedInstanceState)
-
-        // Binding
         binding = ActivityInicioBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // ???
         // Se obtiene un sharedPreferences llamado "Inico"
-        val sharedPreferences = getSharedPreferences("Inico", 0)
-
+        this.getSharedPreferences("Inico", 0)
 
         // ------------------------------- CONTROL DE BOTONES -------------------------------
         // MODO EXPLORADOR
@@ -84,8 +82,8 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         binding.btnLibre.setOnClickListener {
             // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
             libre = true
-            val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
-            val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
+            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
             // Inicia otra Activity
             val intent = Intent(this, MenuNav::class.java)
@@ -96,11 +94,11 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         binding.btnAyudaInicio.setOnClickListener {
             // INFO: Muestra el Dialog asociado a dicho apartado, especificando los siguientes campos:
             // Titulo de la parte superior del Dialog
-            val titulo = Dialogos.tituloExplicacion
+            val titulo = ListaRecursos.tituloExplicacion
             // Contenido del Dialog
-            val mensaje = Dialogos.mensajeInicio
+            val mensaje = ListaRecursos.mensajeInicio
             // Ejecuta la función proveniente de la Interfaz "Dialogos"
-            mostrar_dialog(this, titulo, mensaje)
+            listaDialogos.mostrar_dialog(this, titulo, mensaje)
         }
     }
 
@@ -114,10 +112,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // Se guarda el valor false en el sharedPreferences "libre"
-                    val libre = this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+                    this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
 
                     // Se guarda el valor 0 en el sharedPreferences "PlayPause"
-                    val PlayPause = this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+                    this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
 
                     // Se comprueba si ya existe una partida guardada
                     if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
@@ -134,14 +132,13 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                         this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
                         // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
-                        var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
-                            Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
+                        val intent_introduccion = abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
                         startActivity(intent_introduccion)
 
                     }
                 } else {
                     // Si no se reciben los permisos, muestra un mensaje de error
-                    mostrar_dialog(this, permisoDenegado, mensajePermisos)
+                    listaDialogos.mostrar_dialog(this, ListaRecursos.permisoDenegado, ListaRecursos.mensajePermisos)
                 }
                 return
             }
@@ -151,7 +148,6 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
     override fun onMapReady(p0: GoogleMap) {
          TODO("Not yet implemented")
     }
-
 
     private fun pantallacodigo() {
         // Crea un nuevo layout de tipo LinearLayout
@@ -163,7 +159,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
         // Crea un nuevo TextView
         val txtMensaje = TextView(this)
         // Establece el texto del TextView
-        txtMensaje.text= "¿Quieres empezar una nueva partida o continuar con la anterior?"
+        txtMensaje.text = "¿Quieres empezar una nueva partida o continuar con la anterior?"
         layout.addView(txtMensaje)
 
 
@@ -174,8 +170,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
             .setPositiveButton("Nueva partida",
                 DialogInterface.OnClickListener { dialog, which ->
                     // Guarda una preferencia en SharedPreferences y inicia un intent para ir a otra actividad
-                    val partida = this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
-
+                    this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
                     this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
                     this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
                     this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
@@ -185,8 +180,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Dialogos, Explicaciones 
                     this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
 
                     // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
-                    var intent_introduccion = abrirExplicacion(this, Recursos.pantalla_Introduccion,
-                        Recursos.audio_Introduccion, Recursos.fondo_Introduccion)
+                    var intent_introduccion = abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
                     startActivity(intent_introduccion)
                 })
             .setNegativeButton("Continuar",
