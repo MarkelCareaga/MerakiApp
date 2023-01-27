@@ -87,26 +87,4 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         return listaAlumnos
 
     }
-
-    /*
-    fun borrarDatos(id: Long): Int {
-        //decimos que la tabla es modificable y de lectura
-        val db = this.writableDatabase
-        // devuelve  numeros de borrados
-        return db.delete(NOMBRE_TABLA, "$CAMPO_ID=?", arrayOf(id.toString()))
-        //db.close()
-    }
-
-    fun actualizarDatos(id:Int, nombreUsuario:String, pasosUsuario:Int, imagen: String?){
-        //decimos que la tabla es modificable y de lectura
-        val db = this.writableDatabase
-        val datos = ContentValues().apply {
-            put(CAMPO_ID, id)
-            put(CAMPO_NAME_USUARIO, nombreUsuario)
-            put(CAMPO_PASOS_USUARIOS, pasosUsuario)
-            put(CAMPO_IMAGEN, imagen)
-        }
-        db.update("NOMBRE_TABLA",datos, "$CAMPO_ID=?", arrayOf(id.toString()))
-    }
-     */
 }

@@ -67,4 +67,6 @@
     <string name="tituloRotarPantalla">INFO</string>
     <string name="permisoDenegado">PERMISOS NO ACEPTADOS</string>
     <string name="tituloMapa">MAPA INTERACTIVO</string>
+    <string name="errorUbicacion">Activa la ubicación</string>
+    <string name="test1">Hola que ase \n jdhbahbfdhbf</string>
 </resources>
