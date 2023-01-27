@@ -96,19 +96,32 @@ class NuevoUsuario : AppCompatActivity(){
     }
 
     private fun checkPermissionCamera() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
             if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
                 sacaFoto();
+                }else{
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.CAMERA),
+                        REQUEST_CODE_TAKE_FOTO
+                    )
+                }
             }else{
-                ActivityCompat.requestPermissions(
-                    this,
-                    arrayOf(Manifest.permission.CAMERA),
-                    REQUEST_CODE_TAKE_FOTO
-                )
+                if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
+                    sacaFoto();
+                }else{
+                    ActivityCompat.requestPermissions(
+                        this,
+                        arrayOf(Manifest.permission.CAMERA),
+                        REQUEST_CODE_TAKE_FOTO
+                    )
+                }
             }
         }
     }
     private fun checkPermissionStorage() {
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             if (ActivityCompat.checkSelfPermission(this,
                     Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_GRANTED
@@ -121,6 +134,10 @@ class NuevoUsuario : AppCompatActivity(){
                     REQUEST_CODE_GALERY
 
                 )
+            }
+        }else{
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+                galeria();
             }
         }
     }
@@ -185,7 +202,7 @@ class NuevoUsuario : AppCompatActivity(){
         }
         else if(requestCode == REQUEST_CODE_GALERY){
             if(permissions.size >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                //seleccionarGaleria()
+                galeria()
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
