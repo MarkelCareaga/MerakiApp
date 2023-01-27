@@ -45,7 +45,6 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>,val contexta:Context) : Rec
                         .putExtra("pasos", usuario.pasosUsuario)
                         .putExtra("imagen", usuario.imagen)
                     contexta.startActivity(intent)
-                    Toast.makeText(contexta,"${usuario.id}, ${usuario.nombreusuario}, ${usuario.pasosUsuario}, ${usuario.imagen}", Toast.LENGTH_LONG).show()
                 }
             }
         }
