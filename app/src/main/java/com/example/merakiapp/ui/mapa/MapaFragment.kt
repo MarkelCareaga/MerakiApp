@@ -98,9 +98,14 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                     it
                 ) { location ->
                     if (location != null) {
-                        val lt = String.valueOf(location.latitude)
-                        val ln = String.valueOf(location.longitude)
+
+
+
+                        val lt = String.valueOf(location.getLatitude())
+                        val ln = String.valueOf(location.getLongitude())
                         ubica = LatLng(lt.toFloat().toDouble(), ln.toFloat().toDouble())
+
+
                     }
                 }
             }
