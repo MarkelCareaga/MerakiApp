@@ -56,6 +56,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
 
     val locationa = Location("juego")
 
+
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         binding.btnJugar.isEnabled = false
@@ -98,14 +99,11 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                     it
                 ) { location ->
                     if (location != null) {
-
-
-
                         val lt = String.valueOf(location.getLatitude())
                         val ln = String.valueOf(location.getLongitude())
                         ubica = LatLng(lt.toFloat().toDouble(), ln.toFloat().toDouble())
-
-
+                    }else{
+                        ubica = LatLng(0.toFloat().toDouble(),0.toFloat().toDouble())
                     }
                 }
             }
@@ -373,48 +371,45 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
         }
 
         binding.btnJugar.setOnClickListener {
-            if (idJuego == 1) {
 
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-
-            }
-            if (idJuego == 2) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-            }
-            if (idJuego == 3) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-            }
-            if (idJuego == 4) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-            }
-            if (idJuego == 5) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-            }
-            if (idJuego == 6) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
-            }
-            if (idJuego == 7) {
-
-                locationa.latitude = ubica.latitude
-                locationa.longitude = ubica.longitude
-                distancia_a_puntoA(locationa)
+            if (ubica.latitude != 0.toFloat().toDouble() && ubica.longitude != 0.toFloat().toDouble()) {
+                if (idJuego == 1) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 2) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 3) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 4) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 5) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 6) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+                if (idJuego == 7) {
+                    locationa.latitude = ubica.latitude
+                    locationa.longitude = ubica.longitude
+                    distancia_a_puntoA(locationa)
+                }
+            } else {
+                Toast.makeText(this.requireActivity(), R.string.errorUbicacion, Toast.LENGTH_SHORT).show()
             }
         }
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
