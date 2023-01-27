@@ -141,7 +141,7 @@ class NuevoUsuario : AppCompatActivity(){
             }
         }
     }
-
+    //abrir galeria
     private fun galeria() {
         ImageController.selectPhotoFromGallery(this,REQUEST_CODE_GALERY)
         foto = true
