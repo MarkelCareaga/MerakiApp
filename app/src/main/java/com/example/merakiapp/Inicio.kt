@@ -7,6 +7,7 @@ import android.content.pm.ActivityInfo
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Process
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.app.ActivityCompat
@@ -197,6 +198,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
         alertDialogPersonalizado.setView(layout);
         // Después mostrarla:
         alertDialogPersonalizado.show();
+    }
+    override fun onBackPressed() {
+        System.exit(0)
+        Process.killProcess(Process.myPid())
     }
 
 }

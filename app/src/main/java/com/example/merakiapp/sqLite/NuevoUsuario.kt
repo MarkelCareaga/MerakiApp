@@ -19,6 +19,8 @@ import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ActivityNuevoUsuarioBinding
+import com.example.merakiapp.listas.ListaRecursos
+import com.example.merakiapp.servicios.ServicioAudios
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -349,5 +351,13 @@ class NuevoUsuario : AppCompatActivity(){
                 super.onActivityResult(requestCode, resultCode, data)
             }
         }
+    }
+
+    override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
+        finish()
+
+        var intent = Intent(this, SeleccionarUsuario::class.java)
+        startActivity(intent)
     }
 }

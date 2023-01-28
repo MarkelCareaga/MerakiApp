@@ -306,7 +306,11 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         socket.disconnect()
-        val intent = Intent(this,SeleccionarUsuario::class.java)
+        // Detiene el audio que se está reproduciendo
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+
+        intent = Intent(this,SeleccionarUsuario::class.java)
         startActivity(intent)
         super.onBackPressed()
     }

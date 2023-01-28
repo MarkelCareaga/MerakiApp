@@ -12,7 +12,7 @@ import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ItemProductoUsuarioBinding
 import com.example.merakiapp.juegos.IslaIzaroActivity
 
-class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val activity: Activity) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
+class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val activity: Activity?) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +27,9 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val
         //le decimos que valores se va a componer la vista
         // creamos un metodo para dar los valores a cada a item
         // le pasamos un arraylist y la recorremos por posicion y tambien se le pasa un contexto
-        holder.bind(arrayList[position], contexta,activity)
+        if (activity != null) {
+            holder.bind(arrayList[position], contexta,activity)
+        }
 
     }
 

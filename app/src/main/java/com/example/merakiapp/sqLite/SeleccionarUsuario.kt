@@ -10,6 +10,7 @@ import com.example.merakiapp.explicaciones.Explicaciones
 import com.example.merakiapp.databinding.ActivitySeleccionarUsuarioBinding
 import com.example.merakiapp.listas.ListaDialogos
 import com.example.merakiapp.listas.ListaRecursos
+import com.example.merakiapp.servicios.ServicioAudios
 import com.google.android.material.internal.ContextUtils.getActivity
 
 class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
@@ -77,5 +78,14 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
 
 
 
+    }
+    override fun onBackPressed() {
+        // Detiene el audio que se está reproduciendo
+        var intent = Intent(this, ServicioAudios::class.java)
+        stopService(intent)
+        finish()
+
+        intent = abrirExplicacion(this, ListaRecursos.pantalla_Izaro)
+        startActivity(intent)
     }
 }
