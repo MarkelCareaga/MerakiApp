@@ -1,5 +1,6 @@
 package com.example.merakiapp.sqLite
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.content.pm.ActivityInfo
 import androidx.appcompat.app.AppCompatActivity
@@ -9,6 +10,7 @@ import com.example.merakiapp.explicaciones.Explicaciones
 import com.example.merakiapp.databinding.ActivitySeleccionarUsuarioBinding
 import com.example.merakiapp.listas.ListaDialogos
 import com.example.merakiapp.listas.ListaRecursos
+import com.google.android.material.internal.ContextUtils.getActivity
 
 class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
     private lateinit var conexion: UsuarioDB
@@ -17,6 +19,7 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
 
     private var listaDialogos = ListaDialogos()
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySeleccionarUsuarioBinding.inflate(layoutInflater)
@@ -37,7 +40,7 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
                 arrayList.add(it)
             }
             // Si no esta vacía, llamamos al adapter y lo lanzamos
-            usuariosAdapter= ListaAdapter(arrayList, this)
+            usuariosAdapter= ListaAdapter(arrayList, this, getActivity(this))
             binding.lista.adapter = usuariosAdapter
         } else {
             // Si esta vacia, mostramos un txt y ocultamos la lista
@@ -71,6 +74,8 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
             intent = abrirExplicacion(this, ListaRecursos.pantalla_Izaro)
             startActivity(intent)
         }
+
+
 
     }
 }

@@ -87,9 +87,12 @@
     <string name="rotacionActivada">La rotación del dispositivo está activada.</string>
     <string name="rotacionDesactivada">La rotación del dispositivo está desactivada.</string>
     <string name="mensajeMapa">Modo Explorador: Para acceder a un juego, acércate lo máximo posible a dicha ubicación y pulsa el botón JUGAR. \n \nModo Libre: Pulsa únicamente las ubicaciones para acceder a sus respectivos juegos.</string>
-    <string name="texto_upv">Kaixo! Somos un grupo de 3° de educación primaria trilingüe de la UPV/EHU y hemos diseñado esta unidad didáctica sobre una excursión a Bermeo. \n Para nosotros es muy importante sacar al alumnado del aula para que aprendan de una forma más lúdica y divertida.</string>
-    <string name="texto_grupo3">Aplicación desarrollada por el equipo GRUPO 3 de la empresa MIME, perteneciente al centro CIFP TXURDINAGA LHII. \nIntegrantes del GRUPO 3: \n - Iker Martín \n - Mateo Vargas \n - Endika Villafruela \n - Markel Kareaga</string>
-    <string name="texto_copyright">Copyright @ 2022 - 2023 Meraki App. - All Rights Reserved.</string>
-    <string name="foto">Argazkia ez da atera</string>
-    <string name="galeria">Argazkia ez da hautatu</string>
+    <string name="texto_upv">CIFP TXURDINAGA LHII zentroko MIME enpresako 3. TALDE taldeak garatutako aplikazioa.</string>
+    <string name="texto_grupo3">"Aplicación desarrollada por el equipo GRUPO 3 de la empresa MIME, perteneciente al centro CIFP TXURDINAGA LHII. "</string>
+    <string name="texto_copyright">"Integrantes del GRUPO 3: "</string>
+    <string name="foto">" - Iker Martín "</string>
+    <string name="galeria">" - Mateo Vargas "</string>
+    <string name="numerosala">" - Endika Villafruela "</string>
+    <string name="ganar">" - Markel Kareaga"</string>
+    <string name="perder">Galdu duzu</string>
 </resources>

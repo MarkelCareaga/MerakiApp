@@ -138,7 +138,7 @@
             app:srcCompat="@drawable/versus" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/btnJugar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/jugar"
@@ -161,7 +161,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/btnBuscar"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="150dp"

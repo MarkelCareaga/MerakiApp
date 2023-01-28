@@ -301,7 +301,9 @@ class ExplicacionesActivity : AppCompatActivity() {
                 }
             }
         }
+
     }
+
 
     // ---------------------- FUNCIONES ADICIONALES ----------------------
 
@@ -385,8 +387,11 @@ class ExplicacionesActivity : AppCompatActivity() {
         this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
         this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
 
-        // Cierra la Activity actual
+        // Volver a la Activity anterior
         finish()
+        startActivity(Intent(this, MenuNav::class.java))
+
     }
+
 
 }

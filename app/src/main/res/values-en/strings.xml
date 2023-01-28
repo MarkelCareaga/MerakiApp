@@ -92,4 +92,7 @@
     <string name="texto_copyright">Copyright @ 2022 - 2023 Meraki App. - All Rights Reserved.</string>
     <string name="foto">The photo has not been taken</string>
     <string name="galeria">The photo has not been selected</string>
+    <string name="numerosala">Enter a number for the room</string>
+    <string name="ganar">You\'ve won</string>
+    <string name="perder">You have lost</string>
 </resources>
