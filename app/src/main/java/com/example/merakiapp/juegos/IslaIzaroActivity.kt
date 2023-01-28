@@ -160,6 +160,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
             } else {
                 //si no a insertado un numero
                 Toast.makeText(this, getString(R.string.numerosala), Toast.LENGTH_SHORT).show()
+
             }
 
         }

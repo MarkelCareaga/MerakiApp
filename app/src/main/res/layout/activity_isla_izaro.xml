@@ -82,7 +82,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:ems="10"
-            android:hint="Inserte un numero"
+            android:hint="Inserte un número"
             android:inputType="number"
             android:textAlignment="center"
             android:textColor="#F6F4F4"

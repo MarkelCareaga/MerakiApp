@@ -73,7 +73,7 @@
     <string name="mensajePermisos">Por favor, acepte los permisos de ubicación para acceder a la siguiente pantalla.</string>
     <string name="mensajeExplicacion">Lee y/o escucha atentamente la explicación. Te servirá de ayuda para completar correctamente el juego.</string>
     <string name="mensajeFeriaPescado">Une las imágenes con sus nombres correspondientes.\nPara unir dichos elementos, pulsa los botones circulares.</string>
-    <string name="mensajeBadatoz">Rellena el puzzle con las piezas disponibles. \nPara arrastrar una pieza, manten pulsado unos segundos sobre ella.</string>
+    <string name="mensajeBadatoz">Rellena el puzzle con las piezas disponibles. \nPara arrastrar una pieza, mantén pulsado unos segundos sobre ella.</string>
     <string name="mensajeGaztelugatxe">Selecciona las respuestas correctas.</string>
     <string name="mensajeOlatua">Une los idiomas con sus palabras correspondientes.\nPara unir dichos elementos, pulsa los botones circulares.</string>
     <string name="mensajePuertaSanJuan">Introduce la respuesta correcta.</string>
@@ -95,4 +95,5 @@
     <string name="numerosala">" - Endika Villafruela "</string>
     <string name="ganar">" - Markel Kareaga"</string>
     <string name="perder">Galdu duzu</string>
+
 </resources>
