@@ -24,6 +24,54 @@ class ServicioAudios : Service() {
         audioSeleccionado = intent!!.getIntExtra("audioSeleccionado", 0)
 
         // Acciones a ejecutar, dependiendo del estado recogido.
+        when (estadoAudio) {
+            "pause" -> {
+                // Se ha pulsado el botón PAUSE
+                pausePulsado = true
+
+                // Comprobar si se ha inicializado el Media Player
+                if (this::mp.isInitialized) {
+                    // Pausar el audio
+                    mp.pause()
+
+                    // Recoger la posición actual del audio
+                    length = mp.currentPosition
+                }
+            }
+            "restart" -> {
+                // Comprobar si se ha inicializado el Media Player
+                if (this::mp.isInitialized) {
+
+                    // Comprobar si existe un audio pausado con anterioridad
+                    if (mp.currentPosition > 0) {
+
+                        // Detener el audio
+                        mp.stop()
+                    }
+                }
+                iniciarAudio()
+            }
+            "play" -> {
+                // Comprobar si se ha pulsado el botón PAUSE
+                if (pausePulsado) {
+
+                    // Comprobar si se ha inicializado el Media Player
+                    if (this::mp.isInitialized) {
+                        // Retomar el audio desde su última posición
+                        mp.seekTo(length)
+                        mp.start()
+                    }
+
+                    // Se ha pulsado el botón PAUSE
+                    pausePulsado = false
+
+                } else {
+                    iniciarAudio()
+                }
+            }
+        }
+        // BORRAR EN CASO DE QUE FUNCIONE
+        /*
         if (estadoAudio == "pause") {
 
             // Se ha pulsado el botón PAUSE
@@ -72,6 +120,8 @@ class ServicioAudios : Service() {
                 iniciarAudio()
             }
         }
+
+         */
 
         // Se reinicia el Servicio
         return START_NOT_STICKY

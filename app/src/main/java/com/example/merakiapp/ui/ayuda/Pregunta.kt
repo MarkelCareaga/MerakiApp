@@ -7,4 +7,4 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 // Declara una propiedad "Pregunta" de tipo String?
 // Declara una propiedad "Respuesta" de tipo String?
-data class Pregunta(val Pregunta: String?, val Respuesta: String?):Parcelable
+data class Pregunta(val Pregunta: Int?, val Respuesta: Int?):Parcelable

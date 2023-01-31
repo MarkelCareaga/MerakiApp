@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentAyudaBinding
 
 class AyudaFragment : Fragment() {
@@ -48,14 +49,9 @@ class AyudaFragment : Fragment() {
     private fun cargarPreguntas (){
         // las preguntas se definen predefinidos aquí
         preguntas= listOf(
-            Pregunta("¿Qué es Meraki?","Meraki es una aplicación que te permite " +
-                    "disfrutar de una serie de juegos, mientrás exploras el pueblo de Bermeo."),
-            Pregunta("¿Qué es el 'Modo Explorador'?","En el 'Modo Explorador' puedes" +
-                    " acceder a cada juego solo si estás posicionado en su correspondiente ubicación, " +
-                    "la cual se indica en el mapa."),
-            Pregunta("¿Qué es el 'Modo Libre'?","En el 'Modo Libre', puedes acceder " +
-                    "a todos los juegos desde el principio, sin necesidad de estar posicionado en cada " +
-                    "una de sus correspondientes ubicaciones.")
+            Pregunta(R.string.pregunta1, R.string.respuesta1),
+            Pregunta(R.string.pregunta2, R.string.respuesta2),
+            Pregunta(R.string.pregunta3, R.string.respuesta3)
         )
     }
 }
