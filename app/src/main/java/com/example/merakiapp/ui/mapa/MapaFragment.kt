@@ -1,6 +1,7 @@
 package com.example.merakiapp.ui.mapa
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
@@ -160,6 +161,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                                         juego7 = activity?.getSharedPreferences("validar7", 0)?.getBoolean("validar7", false)!!
                                         if (juego7) {
                                             MapaModoSeguimiento().mapa(mapa, 8)
+                                            val intent = Intent(this.requireContext(), FinalActivity::class.java)
+                                            startActivity(intent)
                                         } else {
                                             // si juego7 es false
                                             //Puerta de San Juan
