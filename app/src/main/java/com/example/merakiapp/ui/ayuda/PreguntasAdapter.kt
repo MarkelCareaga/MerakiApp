@@ -32,8 +32,8 @@ class PreguntasAdapter(private val preguntas:List<Pregunta>) : RecyclerView.Adap
         val binding=ItemPreguntaBinding.bind(view)
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(pregunta: Pregunta) {
-                binding.Pregunta.text=pregunta.Pregunta
-                binding.Respuesta.text=pregunta.Respuesta
+                binding.Pregunta.text = pregunta.Pregunta.toString()
+                binding.Respuesta.text = pregunta.Respuesta.toString()
         }
     }
 
