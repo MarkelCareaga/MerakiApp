@@ -40,7 +40,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
     override fun onCreate(savedInstanceState: Bundle?) {
         // Deshabilitar rotación de pantalla (Landscape)
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
-        //Deshabilitar menu superior
+        // Deshabilitar menu superior
         supportActionBar?.hide()
 
         super.onCreate(savedInstanceState)
@@ -49,7 +49,8 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
 
         // Conectamos con el servidor de socket io
         socket.connect()
-        // definimos que no se ven al princpio de la actividad
+
+        // Definimos que no se ven al princpio de la actividad
         binding.txtBuscaarJugador?.visibility  = View.GONE
         binding.cargar?.visibility  = View.GONE
         binding.constraintLayout3.visibility = View.GONE
@@ -64,74 +65,77 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         // Los seekbars no se puden desplazar con los dedos 
         binding.barraOponente?.isEnabled = false
         binding.barraUsuario?.isEnabled = false
-        //cogemos los valores de los usuarios que necesitamos
+
+        // Cogemos los valores de los usuarios que necesitamos
         val name = intent.getStringExtra("name")
         val imagen = intent.getStringExtra("imagen")
-        // le damos txtusuario el nombre del usuario elegido
+
+        // Le damos txtusuario el nombre del usuario elegido
         binding.txtUsuario.text = name
+
 
         // AUDIO
         // Conexión con el Servicio de Audios
         val intent = Intent(this, ServicioAudios::class.java)
-        //comprobamos que la imagen del usuaria se nula
+        // Comprobamos que la imagen del usuaria se nula
         if (imagen != null) {
-            // si no es nula le insertamos la imagen en un Imageview
+            // Si no es nula, le insertamos la imagen en un Imageview
             binding.imagenUsuario.setImageURI(imagen.toUri())
         }
 
        
-        // llamamos al metodo del socket para actualizar los valores de los usuarios
+        // Llamamos al metodo del socket para actualizar los valores de los usuarios
         socket.on("actualizarJuego"){usuarioString->
-            // hacemos un runOnUiThread para que no se salte niguns salto y carge bien los datos 
+            // Hacemos un runOnUiThread para que no se salte niguns salto y carge bien los datos
             runOnUiThread {
-                // pasamos a un JSONarray todos los usuarios
+                // Pasamos a un JSONarray todos los usuarios
                 val jsonarray = usuarioString[0] as JSONArray
-                //nos recorremos el JSONarray
+                // Nos recorremos el JSONarray
                 (0 until jsonarray.length()).forEach {
-                    // creamos la variable objeto que recivira la fila de cada usuario
+                    // Creamos la variable objeto que recivira la fila de cada usuario
                     val objeto: JSONObject = jsonarray.getJSONObject(it)
-                    // comprobamos si uno de los usuario tiene la misma id que la nuestra
+                    // Comprobamos si uno de los usuario tiene la misma id que la nuestra
                     if (objeto["idcode"] == socket.id()) {
-                        // si tiene la misma id es el jugador 1 (propietario del dispositivo)
-                        //le damos los valores del nombre al usuario con los datos que recibimpos del socket
+                        // Si tiene la misma id, es el jugador 1 (propietario del dispositivo)
+                        // Le damos los valores del nombre al usuario con los datos que recibimpos del socket
                         binding.txtUsuario.text = ""+objeto["nombre"]
                         binding.txtUser?.text = ""+objeto["nombre"]
-                        //le damos los valores de los puntos al usuario con los datos que recibimpos del socket
+                        // Le damos los valores de los puntos al usuario con los datos que recibimpos del socket
                         binding.barraUsuario?.progress = objeto.getInt("punto")
-                        // le damos el valor del audio que recogemos del socket
+                        // Le damos el valor del audio que recogemos del socket
                         usuario1 = objeto.getBoolean("audio")
 
                     } else {
-                        // si es el oponente
+                        // Si es el oponente...
                         if (!jsonarray.getJSONObject(1).isNull("nombre")){
-                            // escondemos el txtBuscaarJugador y el progresBar
+                            // Escondemos el txtBuscaarJugador y el progresBar
                             binding.txtBuscaarJugador?.visibility  = View.GONE
                             binding.cargar?.visibility  = View.GONE
 
-                            // hacemos visible las siguientes cosas
+                            // Hacemos visible las siguientes cosas
                             binding.imagenOponente.visibility = View.VISIBLE
                             binding.txtOponente.visibility = View.VISIBLE
                             binding.versus.visibility = View.VISIBLE
                             binding.btnJugar.visibility = View.VISIBLE
 
-                            //le damos los valores del nombre al usuario con los datos que recibimpos del socket
+                            // Le damos los valores del nombre al usuario con los datos que recibimpos del socket
                             binding.txtOponente.text = ""+objeto["nombre"]
                             binding.txtUserOponent?.text = ""+objeto["nombre"]
-                            //le damos los valores de los puntos al usuario con los datos que recibimpos del socket
+                            // Le damos los valores de los puntos al usuario con los datos que recibimpos del socket
                             binding.barraOponente?.progress = objeto.getInt("punto")
-                            // le damos el valor del audio que recogemos del socket
+                            // Le damos el valor del audio que recogemos del socket
                             usuario2 = objeto.getBoolean("audio")
 
                         }
                     }
 
                 }
-                // comprobamos si los dos usuario han escuchado el audio
-                    if (usuario1 && usuario2) {
-                        // si lo han escuchado 
-                        // hacemos visble los botones para la carrera
-                        binding.botonMoverBarco?.visibility = View.VISIBLE
 
+                // Comprobamos si los dos usuario han escuchado el audio
+                    if (usuario1 && usuario2) {
+                        // Si lo han escuchado...
+                        // Hacemos visble los botones para la carrera
+                        binding.botonMoverBarco?.visibility = View.VISIBLE
                         binding.btnSprint?.visibility = View.VISIBLE
                         
                 }
@@ -139,94 +143,88 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         }
 
 
-//------------------------------------ Boton buscar ----------------------------------------------//
+//------------------------------------ BOTÓN BUSCAR ----------------------------------------------//
         binding.btnBuscar?.setOnClickListener {
-            //co probar si a insertado un numero
+            // Comprobar si a insertado un número
             if (binding.txtNumber!!.text!!.isNotBlank()) {
-                // si a insertado un numero
-                // recogemos en sala el valor del numero
+                // Si a insertado un número..
+                // Recogemos en sala el valor del numero
                 sala = Integer.parseInt(binding.txtNumber!!.text.toString()).toString()
-                //llamamos al spcket para que le conecte a esa sala y le pasamos unos argumentos
+                // Llamamos al spcket para que le conecte a esa sala y le pasamos unos argumentos
                 socket.emit("sala", sala.toInt(), name, binding.barraUsuario?.progress, imagen)
-
-                // se ocultan las siguientes cosas
+                // Se ocultan las siguientes cosas
                 binding.btnBuscar!!.visibility = View.GONE
                 binding.txtNumber!!.visibility = View.GONE
                 binding.txtSala2?.visibility = View.GONE
                 binding.txtSala2?.visibility = View.GONE
-                // se hacen visibles las siguientes cosas
+                // Se hacen visibles las siguientes cosas
                 binding.txtBuscaarJugador?.visibility  = View.VISIBLE
                 binding.cargar?.visibility = View.VISIBLE
             } else {
-                //si no a insertado un numero
+                // Si no a insertado un número...
                 Toast.makeText(this, getString(R.string.numerosala), Toast.LENGTH_SHORT).show()
-
             }
-
         }
-        
-//------------------------------------ Boton jugar ----------------------------------------------//
+
+
+//------------------------------------ BOTÓN JUGAR ----------------------------------------------//
         binding.btnJugar.setOnClickListener {
-            // se ocultan las siguientes cosas
+            // Se ocultan las siguientes cosas
             binding.constraintLayout2.visibility = View.GONE
             binding.imagenOponente.visibility = View.GONE
             binding.imagenUsuario.visibility = View.GONE
             binding.botonMoverBarco?.visibility  = View.GONE
             binding.btnSprint?.visibility  = View.GONE
 
-            // se hacen visibles las siguientes cosas
+            // Se hacen visibles las siguientes cosas
             binding.constraintLayout3.visibility = View.VISIBLE
 
-            // esatdo y servicio del audio
+            // Estado y servicio del audio
             estadoAudio = "play"
             iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Juego_Izaro, true)
-
-
-
         }
 
-        // le damos valores a los seekbars
+        // Le damos valores a los seekbars
         binding.barraUsuario?.max  =100
         binding.barraOponente?.max  =100
         binding.barraUsuario?.progress = 0
         binding.barraOponente?.progress = 0
-        
-//------------------------------------ Boton Mover Barco  ----------------------------------------//
 
+
+//------------------------------------ BOTÓN MOVER BARCO ----------------------------------------//
         binding.botonMoverBarco?.setOnClickListener {
-            // llamamos al socket io a la funcion incrementation y le pasamos unos argumentos
+            // Llamamos al socket io a la funcion incrementation y le pasamos unos argumentos
             socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
-            // comprobar si alguien ya ha ganado
+            // Comprobar si alguien ya ha ganado
             if (binding.barraUsuario?.progress == 100) {
-                // si ha gando el usuario 1
+                // Si ha gando el usuario 1
                 partidaGanada()
             } else if (binding.barraOponente?.progress == 100) {
-                // si ha pierde el usuario 1
+                // Si ha pierde el usuario 1
                 partidaPerdida()
             }
         }
 
-
         val botonX2 = binding.btnSprint
         val animationView = binding.animationView
-        
-//------------------------------------ Boton sprint ----------------------------------------------//
 
+
+//------------------------------------ BOTÓN SPRINT ----------------------------------------------//
         binding.btnSprint?.setOnClickListener {
-            // llamamos al socket io a la funcion incrementation y le pasamos unos argumentos
+            // Llamamos al socket io a la funcion incrementation y le pasamos unos argumentos
             socket.emit("incrementation2", name, binding.barraUsuario?.progress, imagen)
 
             //binding.btnVolverGaztelugatxe.visibility = View.GONE
-            // comprobar si alguien ya ha ganado
+            // Comprobar si alguien ya ha ganado
             if (binding.barraUsuario?.progress == 100) {
-                // si ha gando el usuario 1
+                // Si ha gando el usuario 1
                 partidaGanada()
             } else if (binding.barraOponente?.progress == 100) {
-                // si ha pierde el usuario 1
+                // Si ha pierde el usuario 1
                 partidaPerdida()
             } else {
-                // si no se comple ninguna
-                //el boton se queda deshabilitado durante 5s
+                // Si no se comple ninguna
+                // El botón se queda deshabilitado durante 5s
                 botonX2!!.isEnabled = false
                 animationView!!.speed = 0.3f
                 animationView.playAnimation()
@@ -253,16 +251,16 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
 
     // ------------------------------- NEW -------------------------------
     fun partidaGanada() {
-        // se desconecta del socket io
+        // Se desconecta del socket io
         socket.disconnect()
-        //muestra mensaje de victoria
+        // Muestra mensaje de victoria
         Toast.makeText(this, getString(R.string.ganar), Toast.LENGTH_SHORT).show()
-        // deshabilitar los botones sprint y moverBarco
+        // Deshabilitar los botones sprint y moverBarco
         binding.btnSprint?.isEnabled = false
         binding.botonMoverBarco?.isEnabled = false
-        // ocultar la animacion
+        // Ocultar la animacion
         binding.animationView?.visibility  = View.GONE
-        //hacer visibles los siguientes botones
+        // Hacer visibles los siguientes botones
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
         binding.gifAplausosCarrera?.visibility = View.VISIBLE
 
@@ -272,24 +270,24 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         // Reproducir audio
         val estadoAudio = "play"
         iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos, false)
-        //dar el valor true a validar6
+        // Dar el valor true a validar6
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
 
     fun partidaPerdida() {
-        // se desconecta del socket io
+        // Se desconecta del socket io
         socket.disconnect()
-        //muestra mensaje de derrota
+        // Muestra mensaje de derrota
         Toast.makeText(this, getString(R.string.perder), Toast.LENGTH_SHORT).show()
-        // deshabilitar los botones sprint y moverBarco
+        // Deshabilitar los botones sprint y moverBarco
         binding.btnSprint?.isEnabled = false
         binding.botonMoverBarco?.isEnabled = false
-        // ocultar la animacion
+        // Ocultar la animacion
         binding.animationView?.visibility  = View.GONE
-        //hacer visible el siguiente botones
+        // Hacer visible el siguiente botones
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
 
-        //dar el valor true a validar6
+        // Dar el valor true a validar6
         this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", true).apply()
     }
 
@@ -302,7 +300,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
     }
     // -------------------------------------------------------------------
 
-    //volver atras
+    // Volver atrás
     @Deprecated("Deprecated in Java")
     override fun onBackPressed() {
         socket.disconnect()
@@ -315,18 +313,18 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         super.onBackPressed()
     }
 
-    // iniciar audio del juego
+    // Iniciar audio del juego
     private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int, conDialog: Boolean) {
-        //llamar al servicio del audio
+        // Llamar al servicio del audio
         val intent = Intent(this,ServicioAudios::class.java)
         intent.putExtra("estadoAudio",estadoAudio)
         intent.putExtra("audioSeleccionado",audioSeleccionado)
         startService(intent)
         Thread(Runnable {
-            //dar 40 segundos para que se reproduzca el audio
+            // Dar 40 segundos para que se reproduzca el audio
             Thread.sleep(4100)
             runOnUiThread {
-                // lanzar un dialog cuando se acaben los segundos
+                // Lanzar un dialog cuando se acaben los segundos
                 if (conDialog) {
                    AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
                         .setTitle("¿Preparados?")

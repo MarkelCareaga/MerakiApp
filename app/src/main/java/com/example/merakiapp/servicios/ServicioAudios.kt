@@ -25,7 +25,6 @@ class ServicioAudios : Service() {
 
         // Acciones a ejecutar, dependiendo del estado recogido.
         if (estadoAudio == "pause") {
-            // PAUSE
 
             // Se ha pulsado el botón PAUSE
             pausePulsado = true
@@ -40,7 +39,6 @@ class ServicioAudios : Service() {
             }
 
         } else if (estadoAudio == "restart") {
-            // RESTART
 
             // Comprobar si se ha inicializado el Media Player
             if (this::mp.isInitialized) {
@@ -60,7 +58,6 @@ class ServicioAudios : Service() {
             // Comprobar si se ha pulsado el botón PAUSE
             if (pausePulsado) {
 
-                // RESUME
                 // Comprobar si se ha inicializado el Media Player
                 if (this::mp.isInitialized) {
                     // Retomar el audio desde su última posición
@@ -72,7 +69,6 @@ class ServicioAudios : Service() {
                 pausePulsado = false
 
             } else {
-                // PLAY
                 iniciarAudio()
             }
         }
