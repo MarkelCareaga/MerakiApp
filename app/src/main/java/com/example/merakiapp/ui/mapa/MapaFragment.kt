@@ -82,7 +82,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
              *
              *
              */
-
+            binding.btnVerFinal.visibility = View.GONE
             // Recoger lps valores de los juegos para saber si son True o False
             juego1 = requireActivity().getSharedPreferences("juego1", 0).getBoolean("1", false)
             juego2 = requireActivity().getSharedPreferences("juego2", 0).getBoolean("2", false)
@@ -161,8 +161,13 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                                         juego7 = activity?.getSharedPreferences("validar7", 0)?.getBoolean("validar7", false)!!
                                         if (juego7) {
                                             MapaModoSeguimiento().mapa(mapa, 8)
-                                                val intent = Intent(this.requireContext(), FinalActivity::class.java)
-                                                startActivity(intent)
+
+                                            binding.btnVerFinal.visibility = View.VISIBLE
+
+                                            binding.btnVerFinal.setOnClickListener {
+                                                startActivity(Intent(this.requireContext(), FinalActivity::class.java))
+                                            }
+
                                         } else {
                                             // si juego7 es false
                                             //Puerta de San Juan
