@@ -167,7 +167,20 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                                             binding.btnVerFinal.setOnClickListener {
                                                 startActivity(Intent(this.requireContext(), FinalActivity::class.java))
                                             }
-
+                                            //Puerta de San Juan
+                                            juegos1 = LatLng(43.421301, -2.722980)
+                                            //Badatoz Estatua
+                                            juegos2 = LatLng(43.420209, -2.721071)
+                                            //Feria de Pescado
+                                            juegos3 = LatLng(43.419160, -2.722421)
+                                            //Olatua estatua
+                                            juegos4 = LatLng(43.419639, -2.718932)
+                                            //Xixili
+                                            juegos5 = LatLng(43.42084538018336, -2.7127369295768204)
+                                            //isla izaro
+                                            juegos6 = LatLng(43.424959, -2.683557)
+                                            // san juan de gaztelugatxe
+                                            juegos7 = LatLng(43.447147, -2.785151)
                                         } else {
                                             // si juego7 es false
                                             //Puerta de San Juan

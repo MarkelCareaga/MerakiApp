@@ -296,38 +296,41 @@
 
     <ImageButton
         android:id="@+id/btnVolverExplicacionFeriaPescado"
-        android:layout_width="245dp"
-        android:layout_height="197dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginStart="168dp"
         android:layout_marginBottom="240dp"
         android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparente"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btnComprobarFeriaPescado"
-        android:layout_width="245dp"
-        android:layout_height="197dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="248dp"
         android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparente"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
         android:id="@+id/btnFinalizarFeriaPescado"
-        android:layout_width="245dp"
-        android:layout_height="197dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="152dp"
         android:layout_marginBottom="248dp"
         android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparente"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
@@ -338,6 +341,7 @@
         android:layout_marginBottom="248dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparente"
         app:srcCompat="@drawable/aplausos" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

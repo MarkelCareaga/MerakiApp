@@ -63,6 +63,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="Gipuzkoa"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="33dp" />
 
@@ -72,6 +73,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="Bizkaia "
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="81dp" />
 
@@ -81,6 +83,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="Araba"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="129dp" />
         </RadioGroup>
@@ -111,6 +114,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="1"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="24dp"
                 tools:layout_editor_absoluteY="222dp" />
 
@@ -161,7 +165,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
-                android:text="241" />
+                android:text="241"
+                tools:ignore="TouchTargetSizeCheck" />
 
             <RadioButton
                 android:id="@+id/rb2"
@@ -209,6 +214,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="Agente 007"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="222dp" />
 
@@ -218,6 +224,7 @@
                 android:layout_height="38dp"
                 android:buttonTint="@color/radiobutton"
                 android:text="Juego de tronos"
+                tools:ignore="TouchTargetSizeCheck"
                 tools:layout_editor_absoluteX="221dp"
                 tools:layout_editor_absoluteY="270dp" />
 
