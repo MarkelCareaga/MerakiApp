@@ -11,10 +11,10 @@
 
     <ImageView
         android:id="@+id/gifAplausos"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="245dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:srcCompat="@drawable/aplausos" />
@@ -266,10 +266,10 @@
 
     <ImageButton
         android:id="@+id/btnVolverGaztelugatxe"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -278,10 +278,10 @@
 
     <ImageButton
         android:id="@+id/btnComprobarGaztelugatxe"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -290,31 +290,14 @@
 
     <ImageButton
         android:id="@+id/btnFinalizarGaztelugatxe"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         tools:ignore="SpeakableTextPresentCheck" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="406dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="@font/alatsi"
-        android:text="San Juan de Gaztelugatxe"
-        android:textAlignment="center"
-        android:textColor="#302C2C"
-        android:textSize="32sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.4"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

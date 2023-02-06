@@ -7,12 +7,12 @@ import android.graphics.Paint
 import android.view.View
 import android.widget.ImageButton
 
-const val tabletFeriaX1 = 155F
-const val tabletFeriaX2 = 120F
-const val tabletFeriaY = 40F
-const val tabletOlatuaX1 = 130F
-const val tabletOlatuaX2 = 80F
-const val tabletOlatuaY = 75F
+const val tabletFeriaX1 = 350F
+const val tabletFeriaX2 = 320F
+const val tabletFeriaY = 70F
+const val tabletOlatuaX1 = 160F
+const val tabletOlatuaX2 = 110F
+const val tabletOlatuaY = 70F
 const val movilFeriaX1 = 105F
 const val movilFeriaX2 = 40F
 const val movilFeriaY = 5F

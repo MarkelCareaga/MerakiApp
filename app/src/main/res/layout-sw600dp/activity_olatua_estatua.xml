@@ -327,61 +327,54 @@
         android:id="@+id/btnVolverExplicacionOlatua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_volver"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
-        app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageButton
         android:id="@+id/btnComprobarOlatua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_resultado"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
-        app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck,DuplicateClickableBoundsCheck" />
 
     <ImageButton
         android:id="@+id/btnFinalizarOlatua"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="28dp"
-        android:layout_marginBottom="36dp"
+        android:layout_marginEnd="120dp"
+        android:layout_marginBottom="16dp"
         android:background="@drawable/estilo_botones_finalizar"
         android:scaleType="fitXY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
-        app:layout_constraintVertical_bias="1.0"
         tools:ignore="SpeakableTextPresentCheck" />
 
     <ImageView
         android:id="@+id/gifAplausosOlatua"
-        android:layout_width="150dp"
-        android:layout_height="145dp"
-        android:layout_marginStart="36dp"
+        android:layout_width="245dp"
+        android:layout_height="197dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/contenedorTransparenteB"
-        app:layout_constraintVertical_bias="0.924"
         app:srcCompat="@drawable/aplausos" />
 
     <ImageButton
         android:id="@+id/btnAyudaOlatua"
-        android:layout_width="50dp"
-        android:layout_height="47dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="8dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/estilo_botones_superiores"
         app:layout_constraintEnd_toStartOf="@+id/btnInfoPantallaOlatua"
         app:layout_constraintTop_toTopOf="parent"
@@ -390,29 +383,14 @@
 
     <ImageButton
         android:id="@+id/btnInfoPantallaOlatua"
-        android:layout_width="51dp"
-        android:layout_height="48dp"
-        android:layout_marginTop="104dp"
-        android:layout_marginEnd="84dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginTop="170dp"
+        android:layout_marginEnd="120dp"
         android:background="@drawable/estilo_botones_superiores"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_baseline_rotacion_bloqueada"
         tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck" />
-
-    <TextView
-        android:id="@+id/textView3"
-        android:layout_width="533dp"
-        android:layout_height="105dp"
-        android:layout_marginTop="28dp"
-        android:fontFamily="@font/alatsi"
-        android:text="Olatua"
-        android:textAlignment="center"
-        android:textAllCaps="false"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
