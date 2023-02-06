@@ -269,7 +269,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
             }
 
 
-        }else {
+        } else {
 
 
             /**
@@ -282,6 +282,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
              *
              *
              */
+            binding.btnVerFinal.visibility = View.GONE
+
             // le damos a mapa el valor de googleMap
             mapa = googleMap
             // recogemos nuestra posicion actual
