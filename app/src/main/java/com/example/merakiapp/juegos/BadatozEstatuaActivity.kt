@@ -27,7 +27,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
     var estadoAudio = ""
 
 
-    
+
     private var listaDialogos = ListaDialogos()
 
     override fun onCreate(savedInstanceState: Bundle?) {
