@@ -26,6 +26,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
     private lateinit var imagen : ImageView
     var estadoAudio = ""
 
+
+    
     private var listaDialogos = ListaDialogos()
 
     override fun onCreate(savedInstanceState: Bundle?) {
