@@ -16,7 +16,7 @@
             android:layout_width="361dp"
             android:layout_height="101dp"
             android:layout_marginTop="108dp"
-            android:hint="Introduce tu nombre"
+            android:hint="@string/intoduce_nombre"
             android:textSize="30sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="120dp"
             android:paddingTop="16dp"
-            android:text="Selecciona tu perfil:"
+            android:text="@string/selecciona_perfil"
             android:textSize="30dp"
             app:layout_constraintBottom_toTopOf="@+id/rg_GrupoPerfil"
             app:layout_constraintEnd_toEndOf="parent"
@@ -50,14 +50,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginRight="30dp"
-                android:text="Alumno"
+                android:text="@string/alumno"
                 android:textSize="30dp" />
 
             <RadioButton
                 android:id="@+id/rb_profesor"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Profesor"
+                android:text="@string/profesor"
                 android:textSize="30dp" />
         </RadioGroup>
 
@@ -67,7 +67,7 @@
             android:layout_height="0dp"
             android:layout_marginBottom="544dp"
             android:padding="16dp"
-            android:text="Aceptar"
+            android:text="@string/btn_aceptar"
             android:textSize="30sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
