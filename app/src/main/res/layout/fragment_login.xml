@@ -13,76 +13,66 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/input_name"
+            android:id="@+id/text_Nombre"
             android:layout_width="254dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="64dp"
+            android:layout_marginTop="90dp"
+            android:layout_marginBottom="69dp"
             android:hint="Introduce tu nombre"
-            app:layout_constraintBottom_toTopOf="@+id/textView3"
+            app:layout_constraintBottom_toTopOf="@+id/text_Perfil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_group" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/text_Perfil"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="26dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginBottom="45dp"
             android:paddingTop="16dp"
             android:text="Selecciona tu perfil:"
             android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/professor_radio"
-            app:layout_constraintEnd_toEndOf="@+id/student_radio"
-            app:layout_constraintTop_toBottomOf="@+id/input_name" />
+            app:layout_constraintBottom_toTopOf="@+id/rg_GrupoPerfil"
+            app:layout_constraintStart_toStartOf="@+id/rg_GrupoPerfil"
+            app:layout_constraintTop_toBottomOf="@+id/text_Nombre" />
 
         <RadioGroup
-            android:id="@+id/profile_group"
-            android:layout_width="0dp"
+            android:id="@+id/rg_GrupoPerfil"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="87dp"
+            android:layout_marginBottom="98dp"
             android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/input_name"
+            app:layout_constraintBottom_toTopOf="@+id/btn_aceptar"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/text_Perfil">
 
+            <RadioButton
+                android:id="@+id/rb_estudiante"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:text="Alumno" />
+
+            <RadioButton
+                android:id="@+id/rb_profesor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profesor" />
         </RadioGroup>
 
         <Button
-            android:id="@+id/accept_button"
+            android:id="@+id/btn_aceptar"
             android:layout_width="240dp"
             android:layout_height="0dp"
-            android:layout_marginBottom="105dp"
+            android:layout_marginBottom="107dp"
             android:padding="16dp"
             android:text="Aceptar"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/professor_radio" />
-
-        <RadioButton
-            android:id="@+id/professor_radio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="18dp"
-            android:layout_marginBottom="112dp"
-            android:text="Profesor"
-            app:layout_constraintBottom_toTopOf="@+id/accept_button"
-            app:layout_constraintEnd_toStartOf="@+id/student_radio"
-            app:layout_constraintHorizontal_chainStyle="packed"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
-        <RadioButton
-            android:id="@+id/student_radio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="11dp"
-            android:text="Alumno"
-            app:layout_constraintBaseline_toBaselineOf="@+id/professor_radio"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/professor_radio" />
+            app:layout_constraintTop_toBottomOf="@+id/rg_GrupoPerfil" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
