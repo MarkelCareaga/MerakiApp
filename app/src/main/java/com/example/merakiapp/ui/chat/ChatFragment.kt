@@ -7,9 +7,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.example.merakiapp.R
+import com.example.merakiapp.databinding.FragmentChatBinding
 
 class ChatFragment : Fragment() {
+     private var _binding: FragmentChatBinding? = null
+    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
 
+
+    // Esta propiedad solo es válida entre onCreateView y onDestroyView.
+    private val binding get() = _binding!!
     companion object {
         fun newInstance() = ChatFragment()
     }

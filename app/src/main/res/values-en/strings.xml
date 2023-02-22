@@ -102,4 +102,5 @@
     <string name="respuesta2">En el Modo Explorador, puedes acceder a cada juego solo si estás posicionado en su correspondiente ubicación, la cual se indica en el mapa.</string>
     <string name="respuesta3">En el Modo Libre, puedes acceder a todos los juegos desde el principio, sin necesidad de estar posicionado en cada una de sus correspondientes ubicaciones.</string>
     <string name="verFinal">See end</string>
+    <string name="chat">Chat</string>
 </resources>

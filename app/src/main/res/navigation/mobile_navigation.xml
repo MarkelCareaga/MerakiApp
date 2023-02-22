@@ -23,16 +23,12 @@
     <fragment
         android:id="@+id/nav_chat"
         android:name="com.example.merakiapp.ui.chat.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" >
-        <action
-            android:id="@+id/chat"
-            app:destination="@id/chatFragment" />
-    </fragment>
+        android:label="Login"
+        tools:layout="@layout/fragment_login" />
     <fragment
         android:id="@+id/chatFragment"
         android:name="com.example.merakiapp.ui.chat.ChatFragment"
-        android:label="fragment_chat"
+        android:label="@string/chat"
         tools:layout="@layout/fragment_chat" />
 
 
