@@ -6,9 +6,61 @@
     android:layout_height="match_parent"
     tools:context=".ui.chat.LoginFragment">
 
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Hello" />
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/input_name"
+            android:layout_width="254dp"
+            android:layout_height="46dp"
+            android:hint="Introduce tu nombre"
+            tools:layout_editor_absoluteX="78dp"
+            tools:layout_editor_absoluteY="87dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="16dp"
+            android:text="Selecciona tu perfil:"
+            android:textSize="16sp"
+            tools:layout_editor_absoluteX="136dp"
+            tools:layout_editor_absoluteY="197dp" />
+
+        <RadioGroup
+            android:id="@+id/profile_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/accept_button"
+            android:layout_width="240dp"
+            android:layout_height="77dp"
+            android:padding="16dp"
+            android:text="Aceptar"
+            tools:layout_editor_absoluteX="85dp"
+            tools:layout_editor_absoluteY="421dp" />
+
+        <RadioButton
+            android:id="@+id/professor_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Profesor"
+            tools:layout_editor_absoluteX="108dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+        <RadioButton
+            android:id="@+id/student_radio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Alumno"
+            tools:layout_editor_absoluteX="212dp"
+            tools:layout_editor_absoluteY="261dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
