@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.chat.Login.LoginFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/text_Nombre"
+            android:layout_width="361dp"
+            android:layout_height="101dp"
+            android:layout_marginTop="108dp"
+            android:hint="Introduce tu nombre"
+            android:textSize="30sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/text_Perfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="120dp"
+            android:paddingTop="16dp"
+            android:text="Selecciona tu perfil:"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toTopOf="@+id/rg_GrupoPerfil"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/text_Nombre" />
+
+        <RadioGroup
+            android:id="@+id/rg_GrupoPerfil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="88dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btn_aceptar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <RadioButton
+                android:id="@+id/rb_estudiante"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginRight="30dp"
+                android:text="Alumno"
+                android:textSize="30dp" />
+
+            <RadioButton
+                android:id="@+id/rb_profesor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Profesor"
+                android:textSize="30dp" />
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btn_aceptar"
+            android:layout_width="416dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="544dp"
+            android:padding="16dp"
+            android:text="Aceptar"
+            android:textSize="30sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
