@@ -61,7 +61,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
         // Se establecen las opciones de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_map, R.id.nav_acerca, R.id.nav_inicio, R.id.nav_help, R.id.nav_salida
+                R.id.nav_map, R.id.nav_acerca, R.id.nav_inicio, R.id.nav_help, R.id.nav_salida,R.id.nav_chat, R.id.chatFragment
             ), drawerLayout
         )
         // Se configura la barra de herramientas con el controlador de navegación

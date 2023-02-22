@@ -1,4 +1,4 @@
-package com.example.merakiapp.ui.chat
+package com.example.merakiapp.ui.chat.Login
 
 import androidx.lifecycle.ViewModel
 
