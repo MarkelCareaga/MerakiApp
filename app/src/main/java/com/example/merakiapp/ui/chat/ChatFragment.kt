@@ -16,23 +16,24 @@ class ChatFragment : Fragment() {
 
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
-    companion object {
-        fun newInstance() = ChatFragment()
-    }
 
     private lateinit var viewModel: ChatViewModel
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+     override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_chat, container, false)
+        // Carga el archivo de diseño y establece la variable _binding con la instancia de FragmentAyudaBinding
+        _binding = FragmentChatBinding.inflate(inflater, container, false)
+
+        return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-        // TODO: Use the ViewModel
+         
     }
-
 }
