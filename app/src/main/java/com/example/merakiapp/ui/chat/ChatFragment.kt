@@ -67,11 +67,9 @@ class ChatFragment : Fragment() {
 
         _binding!!.btnEnviar.setOnClickListener() {
             if (_binding?.textMensaje?.text!!.isNotBlank()) {
-                Toast.makeText(
-                    this.requireContext(),
-                    "Mensaje enviado: ${_binding!!.textMensaje.text}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                /*
+                manda el mesnaje por el servicio
+                 */
             } else {
                 Toast.makeText(
                     this.requireContext(),
@@ -85,9 +83,11 @@ class ChatFragment : Fragment() {
     }
     private fun cargarMensajes() {
        val array = ServicioChat().recuperarchat()
-        
-        mensajes= listOf(
-
+            /*
+             recoger los valores dels ARRAYJSOM
+             y pasrlos a la lista mensaje verificar si  no esta vacia
+             */
+        mensajes= mutableListOf(
         )
     }
 
