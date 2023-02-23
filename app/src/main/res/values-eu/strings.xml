@@ -108,4 +108,7 @@
     <string name="alumno">Alumno</string>
     <string name="profesor">Profesor</string>
     <string name="btn_aceptar">Aceptar</string>
+    <string name="cancelar">Utzi</string>
+    <string name="errorSala">Gela bat sartu.</string>
+    <string name="sala">Gela</string>
 </resources>

@@ -107,4 +107,7 @@
     <string name="alumno">Alumno</string>
     <string name="profesor">Profesor</string>
     <string name="btn_aceptar">Aceptar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="errorSala">Inserte una sala.</string>
+    <string name="sala">Sala</string>
 </resources>
