@@ -13,66 +13,26 @@
         android:layout_height="match_parent">
 
         <EditText
-            android:id="@+id/text_Nombre"
+            android:id="@+id/textNombre"
             android:layout_width="254dp"
             android:layout_height="0dp"
             android:layout_marginTop="90dp"
-            android:layout_marginBottom="69dp"
             android:hint="@string/intoduce_nombre"
-            app:layout_constraintBottom_toTopOf="@+id/text_Perfil"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/text_Perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="29dp"
-            android:layout_marginBottom="45dp"
-            android:paddingTop="16dp"
-            android:text="@string/selecciona_perfil"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toTopOf="@+id/rg_GrupoPerfil"
-            app:layout_constraintStart_toStartOf="@+id/rg_GrupoPerfil"
-            app:layout_constraintTop_toBottomOf="@+id/text_Nombre" />
-
-        <RadioGroup
-            android:id="@+id/rg_GrupoPerfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="98dp"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toTopOf="@+id/btn_aceptar"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/text_Perfil">
-
-            <RadioButton
-                android:id="@+id/rb_estudiante"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginRight="30dp"
-                android:text="@string/alumno" />
-
-            <RadioButton
-                android:id="@+id/rb_profesor"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/profesor" />
-        </RadioGroup>
-
         <Button
-            android:id="@+id/btn_aceptar"
-            android:layout_width="240dp"
-            android:layout_height="0dp"
-            android:layout_marginBottom="107dp"
+            android:id="@+id/btnAceptar"
+            android:layout_width="202dp"
+            android:layout_height="68dp"
+            android:layout_marginTop="44dp"
             android:padding="16dp"
             android:text="@string/btn_aceptar"
-            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rg_GrupoPerfil" />
+            app:layout_constraintTop_toBottomOf="@+id/textNombre" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
