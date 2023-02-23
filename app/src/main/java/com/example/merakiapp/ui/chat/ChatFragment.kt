@@ -18,7 +18,6 @@ import java.util.*
 
 class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
-    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
 
     // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
     lateinit private var mensajes: List<Mensajes>
