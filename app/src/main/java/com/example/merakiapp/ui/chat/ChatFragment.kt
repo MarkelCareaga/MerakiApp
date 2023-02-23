@@ -1,6 +1,7 @@
 package com.example.merakiapp.ui.chat
 
 import android.app.AlertDialog
+import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -12,6 +13,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
+import com.example.merakiapp.servicios.ServicioAudios
 import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
@@ -53,7 +55,6 @@ class ChatFragment : Fragment() {
 
         _binding!!.btnSala.setOnClickListener() {
             dialogoSala()
-
         }
 
         _binding!!.btnCerrar.setOnClickListener() {
@@ -61,15 +62,26 @@ class ChatFragment : Fragment() {
                 .apply()
             activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "").apply()
             findNavController().navigate(R.id.nav_chat)
-
-
         }
 
         _binding!!.btnEnviar.setOnClickListener() {
             if (_binding?.textMensaje?.text!!.isNotBlank()) {
                 /*
-                manda el mesnaje por el servicio
+                Manda el mensaje por el servicio
                  */
+                // ------------------- TEST -------------------
+                val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
+
+                val nombre = datosUsuario?.getString("nombre", "")
+                val sala = datosUsuario?.getString("sala", "")
+                val mensaje = binding.textMensaje.text.toString()
+                val fecha = ""
+
+                if (nombre != null && sala != null) {
+                    ServicioChat().enviarmensaje(nombre, sala, mensaje, fecha)
+                }
+                // --------------------------------------------
+
             } else {
                 Toast.makeText(
                     this.requireContext(),
@@ -111,10 +123,14 @@ class ChatFragment : Fragment() {
                     val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                     _binding!!.chatTitulo.text = codigo
                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
-                    /*
-                    conectar con el servidor
-                     */
 
+                /*
+                    conectar con el servidor
+                */
+                // ------------------- TEST -------------------
+                    val intent = Intent(this.requireContext(), ServicioChat::class.java)
+                    this.requireContext().startService(intent)
+                // --------------------------------------------
 
                 }
             }
