@@ -103,7 +103,8 @@ class ChatFragment : Fragment() {
             }else{
                 val codigo = inputEditTextField.text.toString().quitarEspacios(inputEditTextField.text.toString().uppercase())
                 _binding!!.chatTitulo.text =codigo
-            /*
+                activity?.getSharedPreferences("datosUsuario", 0)!!.edit()!!.putString("sala", codigo)!!.apply()
+                /*
                 conectar con el servidor
                  */
 
