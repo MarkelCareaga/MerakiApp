@@ -10,8 +10,10 @@
         android:id="@+id/chat_titulo"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:padding="10dp"
         android:text="Nombre del Chat"
+        android:textAlignment="center"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/mensajes_recycler_view"
@@ -54,6 +56,27 @@
             android:layout_height="wrap_content"
             android:text="Enviar" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="51dp"
+        android:layout_height="54dp"
+        android:layout_marginEnd="16dp"
+        android:background="@android:color/transparent"
+        app:icon="@drawable/cerrar"
+        app:iconSize="25dp"
+        app:iconTint="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnSala"
+        android:layout_width="75dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Sala"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

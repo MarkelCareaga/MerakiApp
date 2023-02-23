@@ -36,7 +36,7 @@ class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter
                 binding.const1!!.visibility = View.GONE
                 binding.const2!!.visibility = View.VISIBLE
 
-                binding.mensajeU!!.text = mensaje.Mensaje
+                binding.mensajeU!!.text = mensaje.mensaje
                 binding.nombreU!!.text = mensaje.nombreUusuario
 
 
@@ -44,7 +44,7 @@ class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter
                 binding.const1!!.visibility = View.VISIBLE
                 binding.const2!!.visibility = View.GONE
 
-                binding.mensaje.text = mensaje.Mensaje
+                binding.mensaje.text = mensaje.mensaje
                 binding.nombreUsuario.text = mensaje.nombreUusuario
             }
         }
