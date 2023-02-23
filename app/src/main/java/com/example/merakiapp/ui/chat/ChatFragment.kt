@@ -18,19 +18,20 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 class ChatFragment : Fragment() {
-     private var _binding: FragmentChatBinding? = null
-    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
+    private var _binding: FragmentChatBinding? = null
 
- // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
+    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
     lateinit private var mensajes: List<Mensajes>
+
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
-    private lateinit var mensajesAdapter :MensajeAdapter
+    private lateinit var mensajesAdapter: MensajeAdapter
+
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
     private lateinit var viewModel: ChatViewModel
 
-     override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -41,47 +42,48 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
-     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-         cargarMensajes()
-         mensajesAdapter = MensajeAdapter(mensajes)
+        cargarMensajes()
+        mensajesAdapter = MensajeAdapter(mensajes)
         _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
-         _binding!!.btnSala.setOnClickListener() {
+        _binding!!.btnSala.setOnClickListener() {
             dialogoSala()
 
-         }
-         _binding!!.btnCerrar.setOnClickListener() {
-             activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("nombre","").apply()
-             activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("sala","").apply()
-             findNavController().navigate(R.id.nav_chat)
+        }
+
+        _binding!!.btnCerrar.setOnClickListener() {
+            activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "")
+                .apply()
+            activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "").apply()
+            findNavController().navigate(R.id.nav_chat)
 
 
+        }
 
-         }
+        _binding!!.btnEnviar.setOnClickListener() {
+            if (_binding?.textMensaje?.text!!.isNotBlank()) {
+                Toast.makeText(
+                    this.requireContext(),
+                    "Mensaje enviado: ${_binding!!.textMensaje.text}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                Toast.makeText(
+                    this.requireContext(),
+                    "Rellena el campo para poder enviar",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
 
-         _binding!!.btnEnviar.setOnClickListener(){
-             if (_binding?.textMensaje?.text!!.isNotBlank()) {
-                 Toast.makeText(
-                     this.requireContext(),
-                     "Mensaje enviado: ${_binding!!.textMensaje.text}",
-                     Toast.LENGTH_SHORT
-                 ).show()
-             }else {
-                 Toast.makeText(
-                     this.requireContext(),
-                     "Rellena el campo para poder enviar",
-                     Toast.LENGTH_SHORT
-                 ).show()
-             }
-
-         }
+        }
 
     }
 
-     private fun cargarMensajes(){
+    private fun cargarMensajes() {
         // las preguntas se definen predefinidos aquí
          val timestamp = SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(Date())
 
@@ -90,33 +92,40 @@ class ChatFragment : Fragment() {
             Mensajes("1","Markel","123","Hola", timestamp),
         )
     }
+
     private fun dialogoSala() {
         val title = getString(R.string.sala)
         val message = getString(R.string.errorSala)
-         val inputEditTextField = EditText(requireActivity())
+        val inputEditTextField = EditText(requireActivity())
         val dialog = AlertDialog.Builder(requireContext())
-        .setTitle(title)
-        .setMessage(message)
-        .setView(inputEditTextField)
-        .setPositiveButton(getString(R.string.btn_aceptar)) { _, _ ->
-            if (inputEditTextField.text.isBlank()){
-                Toast.makeText(this.requireContext(),getString(R.string.errorSala),Toast.LENGTH_SHORT).show()
+            .setTitle(title)
+            .setMessage(message)
+            .setView(inputEditTextField)
+            .setPositiveButton(getString(R.string.btn_aceptar)) { _, _ ->
+                if (inputEditTextField.text.isBlank()) {
+                    Toast.makeText(
+                        this.requireContext(),
+                        getString(R.string.errorSala),
+                        Toast.LENGTH_SHORT
+                    ).show()
 
-            }else{
-                val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
-                _binding!!.chatTitulo.text =codigo
-                activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
-                /*
-                conectar con el servidor
-                 */
+                } else {
+                    val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
+                    _binding!!.chatTitulo.text = codigo
+                    activity?.getSharedPreferences("datosUsuario", 0)!!.edit()
+                        .putString("sala", codigo).apply()
+                    /*
+                    conectar con el servidor
+                     */
 
+                }
             }
-        }
-        .setNegativeButton(getString(R.string.cancelar), null)
-        .create()
-    dialog.show()
+            .setNegativeButton(getString(R.string.cancelar), null)
+            .create()
+        dialog.show()
     }
-     private fun String.quitarEspacios(): String {
+
+    private fun String.quitarEspacios(): String {
         return this.replace(" ", "")
     }
 }

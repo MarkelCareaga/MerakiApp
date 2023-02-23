@@ -17,38 +17,41 @@ class LoginFragment : Fragment() {
     private lateinit var viewModel: LoginViewModel
 
     private val binding get() = _binding!!
-      override fun onCreateView(
+    override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Carga el archivo de diseño y establece la variable _binding con la instancia de FragmentAyudaBinding
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-        if (activity?.getSharedPreferences("datosUsuario", 0)?.getString("nombre", "") != "" ){
+        if (activity?.getSharedPreferences("datosUsuario", 0)?.getString("nombre", "") != "") {
             findNavController().navigate(R.id.chatFragment)
         }
         return binding.root
     }
 
-     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
-         super.onViewCreated(view, savedInstanceState)
-         // Aqui se llama a la funcion cargarPreguntas
-         viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Aqui se llama a la funcion cargarPreguntas
+        viewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
 
-         binding.btnAceptar.setOnClickListener {
-             // Almacenar datos para el Login
-             val nombreUsuario = binding.textNombre.text
+        binding.btnAceptar.setOnClickListener {
+            // Almacenar datos para el Login
+            val nombreUsuario = binding.textNombre.text
 
-             // Comprobar si los datos se han introducido
-             if (nombreUsuario.isNullOrEmpty()) {
-                 Toast.makeText(this.requireContext(), "Error. Introduzca todos los datos necesarios.",
-                     Toast.LENGTH_SHORT).show()
-             } else {
-                 activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("nombre", nombreUsuario.toString()).apply()
-                 findNavController().navigate(R.id.chatFragment)
-             }
+            // Comprobar si los datos se han introducido
+            if (nombreUsuario.isNullOrEmpty()) {
+                Toast.makeText(
+                    this.requireContext(), "Error. Introduzca todos los datos necesarios.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                activity?.getSharedPreferences("datosUsuario", 0)!!.edit()
+                    .putString("nombre", nombreUsuario.toString()).apply()
+                findNavController().navigate(R.id.chatFragment)
+            }
 
-         }
+        }
     }
 
 }

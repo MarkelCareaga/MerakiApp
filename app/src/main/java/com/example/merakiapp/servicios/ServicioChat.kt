@@ -3,13 +3,28 @@ package com.example.merakiapp.servicios
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
-import com.example.merakiapp.databinding.FragmentChatBinding
 import io.socket.client.IO
 
-var socketChat = IO.socket("https://chatglobalmeraki.glitch.me")
+class ServicioChat : Service() {
 
-class ChatService : Service() {
+    var socketChat = IO.socket("https://")
 
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        socketChat.connect()
+
+        return super.onStartCommand(intent, flags, startId)
+    }
+
+    override fun onDestroy() {
+        socketChat.disconnect()
+        super.onDestroy()
+    }
+
+    override fun onBind(intent: Intent): IBinder {
+        TODO("Return the communication channel to the service.")
+    }
+
+    /*
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         socketChat.connect()
 
@@ -18,19 +33,7 @@ class ChatService : Service() {
 
         socketChat.emit("userConnection",name,sala)
 
-
         return super.onStartCommand(intent, flags, startId)
     }
-
-
-    override fun onDestroy() {
-        socketChat.emit("userDisconnect")
-        super.onDestroy()
-    }
-
-
-
-    override fun onBind(intent: Intent): IBinder {
-        TODO("Return the communication channel to the service.")
-    }
+     */
 }
