@@ -1,8 +1,6 @@
 package com.example.merakiapp.ui.chat
 
-import android.app.Activity
 import android.app.AlertDialog
-import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -16,6 +14,7 @@ import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
+import java.text.SimpleDateFormat
 import java.util.*
 
 class ChatFragment : Fragment() {
@@ -84,9 +83,11 @@ class ChatFragment : Fragment() {
 
      private fun cargarMensajes(){
         // las preguntas se definen predefinidos aquí
+         val timestamp = SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(Date())
+
         mensajes= listOf(
-            Mensajes("0","Endika","123","Hola bjkgbj hoihlb hoihlkn lkhoihlk khoihkl ffefewf efewf ewfwe few few few few fewf", Date()),
-            Mensajes("1","Markel","123","Hola", Date()),
+            Mensajes("0","Endika","123","Hola bjkgbj hoihlb hoihlkn lkhoihlk khoihkl ffefewf efewf ewfwe few few few few fewf", timestamp),
+            Mensajes("1","Markel","123","Hola", timestamp),
         )
     }
     private fun dialogoSala() {
