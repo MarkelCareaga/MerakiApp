@@ -12,6 +12,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
+import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
 import java.text.SimpleDateFormat
@@ -82,14 +83,11 @@ class ChatFragment : Fragment() {
         }
 
     }
-
     private fun cargarMensajes() {
-        // las preguntas se definen predefinidos aquí
-         val timestamp = SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(Date())
-
+       val array = ServicioChat().recuperarchat()
+        
         mensajes= listOf(
-            Mensajes("0","Endika","123","Hola bjkgbj hoihlb hoihlkn lkhoihlk khoihkl ffefewf efewf ewfwe few few few few fewf", timestamp),
-            Mensajes("1","Markel","123","Hola", timestamp),
+
         )
     }
 
@@ -112,11 +110,11 @@ class ChatFragment : Fragment() {
                 } else {
                     val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                     _binding!!.chatTitulo.text = codigo
-                    activity?.getSharedPreferences("datosUsuario", 0)!!.edit()
-                        .putString("sala", codigo).apply()
+                    activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
                     /*
                     conectar con el servidor
                      */
+
 
                 }
             }

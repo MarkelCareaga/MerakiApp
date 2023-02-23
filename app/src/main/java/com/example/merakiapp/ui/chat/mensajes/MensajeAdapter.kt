@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ChatItemBinding
+import com.example.merakiapp.servicios.ServicioChat
 
 class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter<MensajeAdapter.ViewHolder>() {
 
@@ -32,7 +33,7 @@ class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter
         val binding =  ChatItemBinding.bind(view)
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(mensaje: Mensajes) {
-            if(mensaje.id == "1") {
+            if(mensaje.id == ServicioChat().socketId) {
                 binding.const1!!.visibility = View.GONE
                 binding.const2!!.visibility = View.VISIBLE
 
