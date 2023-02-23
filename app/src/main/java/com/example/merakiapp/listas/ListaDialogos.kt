@@ -1,6 +1,11 @@
 package com.example.merakiapp.listas
 
+import android.app.Activity
 import android.content.Context
+import android.provider.Settings.Global.getString
+import android.widget.EditText
+import androidx.appcompat.app.AlertDialog
+import com.example.merakiapp.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 class ListaDialogos {
@@ -55,5 +60,4 @@ class ListaDialogos {
                 show()
             }
     }
-
 }
