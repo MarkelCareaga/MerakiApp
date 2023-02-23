@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentLoginBinding
@@ -41,6 +42,7 @@ class LoginFragment : Fragment() {
                  Toast.makeText(this.requireContext(), "Error. Introduzca todos los datos necesarios.",
                      Toast.LENGTH_SHORT).show()
              } else {
+                 activity?.getSharedPreferences("datosUsuario",0)!!.edit()!!.putString("nombre", nombreUsuario.toString())!!.apply()
                  findNavController().navigate(R.id.chatFragment)
              }
 
