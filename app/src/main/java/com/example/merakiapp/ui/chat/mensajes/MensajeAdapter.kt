@@ -33,18 +33,18 @@ class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(mensaje: Mensajes) {
             if(mensaje.id == "1") {
-                binding.cardView.visibility = View.GONE
-                binding.cardView1!!.visibility = View.VISIBLE
+                binding.const1!!.visibility = View.GONE
+                binding.const2!!.visibility = View.VISIBLE
 
-                binding.mensajeU!!.text = mensaje.Mensaje
+                binding.mensajeU!!.text = mensaje.mensaje
                 binding.nombreU!!.text = mensaje.nombreUusuario
 
 
             } else{
-                binding.cardView.visibility = View.VISIBLE
-                binding.cardView1!!.visibility = View.GONE
+                binding.const1!!.visibility = View.VISIBLE
+                binding.const2!!.visibility = View.GONE
 
-                binding.mensaje.text = mensaje.Mensaje
+                binding.mensaje.text = mensaje.mensaje
                 binding.nombreUsuario.text = mensaje.nombreUusuario
             }
         }

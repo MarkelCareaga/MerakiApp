@@ -5,7 +5,7 @@ import java.util.Date
 data class Mensajes(
     var id: String,
     var nombreUusuario: String,
-    var Sala:String,
-    var Mensaje: String,
-    var Fecha:Date
+    var sala:String,
+    var mensaje: String,
+    var fecha:Date?
     )
