@@ -24,7 +24,9 @@ class LoginFragment : Fragment() {
     ): View? {
         // Carga el archivo de diseño y establece la variable _binding con la instancia de FragmentAyudaBinding
         _binding = FragmentLoginBinding.inflate(inflater, container, false)
-
+        if (activity?.getSharedPreferences("datosUsuario", 0)?.getString("nombre", "") != "" ){
+            findNavController().navigate(R.id.chatFragment)
+        }
         return binding.root
     }
 
@@ -42,7 +44,7 @@ class LoginFragment : Fragment() {
                  Toast.makeText(this.requireContext(), "Error. Introduzca todos los datos necesarios.",
                      Toast.LENGTH_SHORT).show()
              } else {
-                 activity?.getSharedPreferences("datosUsuario",0)!!.edit()!!.putString("nombre", nombreUsuario.toString())!!.apply()
+                 activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("nombre", nombreUsuario.toString()).apply()
                  findNavController().navigate(R.id.chatFragment)
              }
 

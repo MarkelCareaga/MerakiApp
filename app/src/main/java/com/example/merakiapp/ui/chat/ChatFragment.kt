@@ -38,27 +38,36 @@ class ChatFragment : Fragment() {
     ): View? {
         // Carga el archivo de diseño y establece la variable _binding con la instancia de FragmentAyudaBinding
         _binding = FragmentChatBinding.inflate(inflater, container, false)
+
+        return binding.root
+    }
+
+     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        // Aqui se llama a la funcion cargarPreguntas
+        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
          cargarMensajes()
          mensajesAdapter = MensajeAdapter(mensajes)
-        _binding?.mensajesRecyclerView?.adapter = mensajesAdapter
+        _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
-         _binding?.btnSala?.setOnClickListener() {
+         _binding!!.btnSala.setOnClickListener() {
             dialogoSala()
 
          }
-         _binding?.btnCerrar?.setOnClickListener() {
-             /*
-             Vaciar el sharedpreferences del usuario
-              */
+         _binding!!.btnCerrar.setOnClickListener() {
+             activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("nombre","").apply()
+             activity?.getSharedPreferences("datosUsuario",0)!!.edit().putString("sala","").apply()
              findNavController().navigate(R.id.nav_chat)
+
+
 
          }
 
-         _binding?.btnEnviar?.setOnClickListener(){
+         _binding!!.btnEnviar.setOnClickListener(){
              if (_binding?.textMensaje?.text!!.isNotBlank()) {
                  Toast.makeText(
                      this.requireContext(),
-                     "Mensaje enviado: ${_binding?.textMensaje?.text}",
+                     "Mensaje enviado: ${_binding!!.textMensaje.text}",
                      Toast.LENGTH_SHORT
                  ).show()
              }else {
@@ -70,14 +79,6 @@ class ChatFragment : Fragment() {
              }
 
          }
-
-        return binding.root
-    }
-
-     override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        // Aqui se llama a la funcion cargarPreguntas
-        viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
     }
 
@@ -101,9 +102,9 @@ class ChatFragment : Fragment() {
                 Toast.makeText(this.requireContext(),getString(R.string.errorSala),Toast.LENGTH_SHORT).show()
 
             }else{
-                val codigo = inputEditTextField.text.toString().quitarEspacios(inputEditTextField.text.toString().uppercase())
+                val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                 _binding!!.chatTitulo.text =codigo
-                activity?.getSharedPreferences("datosUsuario", 0)!!.edit()!!.putString("sala", codigo)!!.apply()
+                activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
                 /*
                 conectar con el servidor
                  */
@@ -114,7 +115,7 @@ class ChatFragment : Fragment() {
         .create()
     dialog.show()
     }
-     private fun String.quitarEspacios(cadena: String): String {
+     private fun String.quitarEspacios(): String {
         return this.replace(" ", "")
     }
 }
