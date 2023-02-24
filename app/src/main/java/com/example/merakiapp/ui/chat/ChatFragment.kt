@@ -17,6 +17,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
+import io.socket.client.IO
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
@@ -25,7 +26,7 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
 
     // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
-    private lateinit var mensajes: MutableList<Mensajes>
+    private  var mensajes: MutableList<Mensajes> = mutableListOf()
 
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var mensajesAdapter: MensajeAdapter
@@ -60,10 +61,7 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         cargarMensajes()
-        if (mensajes.isNotEmpty()) {
-              mensajesAdapter = MensajeAdapter(mensajes)
-            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
-        }
+
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -91,7 +89,7 @@ class ChatFragment : Fragment() {
 
                 ServicioChat().enviarmensaje(nombre, sala, mensaje, fecha)
                 // --------------------------------------------
-
+                cargarMensajes()
             } else {
                 Toast.makeText(
                     this.requireContext(),
@@ -115,7 +113,13 @@ class ChatFragment : Fragment() {
                     mensajes.add(Mensajes(objeto["id"].toString(),objeto["nombreUsuario"].toString(),objeto["sala"].toString(),objeto["mensaje"].toString(),objeto["fecha"].toString()))
                 }
              }
+             if (mensajes.isNotEmpty()) {
+              mensajesAdapter = MensajeAdapter(mensajes)
+            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
         }
+        }
+
+
         // --------------------------------------------
     }
 

@@ -9,14 +9,18 @@ import org.json.JSONObject
 
 class ServicioChat : Service() {
 
-    var socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
-    lateinit var socketId: String
-    lateinit var jsonarray: JSONArray
-    lateinit var objeto: JSONObject
+    val socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
+    var socketId: String = ""
+    private var jsonarray: JSONArray? = null
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         socketChat.connect()
-        socketId = socketChat.id()
+        if (socketChat.connected()){
+            socketId = socketChat.id()
+        }
+        else {
+            println("ERROR: Socket")
+        }
         return super.onStartCommand(intent, flags, startId)
     }
 
@@ -28,15 +32,11 @@ class ServicioChat : Service() {
         socketChat.emit("EnviarMensaje", socketId, nombreUsuario, sala, mensaje, fecha)
     }
 
-    fun recuperarchat(): JSONArray {
+    fun recuperarchat(): JSONArray? {
         socketChat.on("actualizarMensaje") { usuarioString ->
             // Pasamos a un JSONarray todos los usuarios
             jsonarray = usuarioString[0] as JSONArray
-            // Recorrer toda la Array
-            (0 until jsonarray.length()).forEach {
-                // Recogemos el objeto en cada vuelta
-                objeto = jsonarray.getJSONObject(it)
-            }
+
         }
         return jsonarray
     }

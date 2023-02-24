@@ -31,12 +31,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MerakiApp"
         tools:targetApi="31">
+
         <service
-            android:name=".ServicioChat"
-            android:enabled="true"
-            android:exported="true"></service>
-        <service
-            android:name=".servicios.ChatService"
+            android:name=".servicios.ServicioChat"
             android:enabled="true"
             android:exported="false"
             android:permission="TODO" />
