@@ -24,7 +24,7 @@ class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
 
     // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
-    lateinit private var mensajes: List<Mensajes>
+    private lateinit var mensajes: MutableList<Mensajes>
 
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var mensajesAdapter: MensajeAdapter
@@ -102,12 +102,18 @@ class ChatFragment : Fragment() {
     }
     private fun cargarMensajes() {
        val array = ServicioChat().recuperarchat()
-            /*
+        /*
              recoger los valores dels ARRAYJSOM
              y pasrlos a la lista mensaje verificar si  no esta vacia
-             */
-        mensajes = mutableListOf(
-        )
+        */
+
+        // ------------------- TEST -------------------
+        // Recorrer el Array
+        (0 until array.length()).forEach {
+            // Insertar datos en la lista
+            mensajes.add(array.)
+        }
+        // --------------------------------------------
     }
 
     private fun dialogoSala() {

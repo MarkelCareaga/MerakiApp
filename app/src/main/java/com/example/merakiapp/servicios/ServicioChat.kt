@@ -5,12 +5,14 @@ import android.content.Intent
 import android.os.IBinder
 import io.socket.client.IO
 import org.json.JSONArray
+import org.json.JSONObject
 
 class ServicioChat : Service() {
 
     var socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
     lateinit var socketId: String
     lateinit var jsonarray: JSONArray
+    lateinit var objeto: JSONObject
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         socketChat.connect()
@@ -27,10 +29,14 @@ class ServicioChat : Service() {
     }
 
     fun recuperarchat(): JSONArray {
-        socketChat.on("actualizarJuego") { usuarioString ->
+        socketChat.on("actualizarMensaje") { usuarioString ->
             // Pasamos a un JSONarray todos los usuarios
             jsonarray = usuarioString[0] as JSONArray
-
+            // Recorrer toda la Array
+            (0 until jsonarray.length()).forEach {
+                // Recogemos el objeto en cada vuelta
+                objeto = jsonarray.getJSONObject(it)
+            }
         }
         return jsonarray
     }
