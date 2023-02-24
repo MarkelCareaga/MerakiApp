@@ -11,6 +11,7 @@ import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentLoginBinding
+import com.example.merakiapp.servicios.ServicioChat
 
 class LoginFragment : Fragment() {
     private var _binding: FragmentLoginBinding? = null
@@ -48,6 +49,8 @@ class LoginFragment : Fragment() {
             } else {
                 activity?.getSharedPreferences("datosUsuario", 0)!!.edit()
                     .putString("nombre", nombreUsuario.toString()).apply()
+
+                ServicioChat.usuario(nombreUsuario.toString())
                 findNavController().navigate(R.id.chatFragment)
             }
 

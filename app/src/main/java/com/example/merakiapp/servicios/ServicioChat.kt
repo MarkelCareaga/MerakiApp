@@ -1,8 +1,11 @@
 package com.example.merakiapp.servicios
 
+import android.annotation.SuppressLint
 import android.app.Service
 import android.content.Intent
 import android.os.IBinder
+import com.example.merakiapp.ui.chat.ChatFragment
+import com.example.merakiapp.ui.chat.mensajes.Mensajes
 import io.socket.client.IO
 import org.json.JSONArray
 import org.json.JSONObject
@@ -10,36 +13,55 @@ import org.json.JSONObject
 class ServicioChat : Service() {
     companion object{
         val socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
-        private var jsonarray: JSONArray? = null
+            private var jsonarray: JSONArray? = null
+
+      var mensajes: MutableList<Mensajes> = mutableListOf()
 
         var socketId: String = ""
-
+        fun usuario(nombreUsuario:String){
+             socketChat.emit("usuario", nombreUsuario)
+        }
         fun sala(nombreUsuario: String, sala: String) {
+
             socketChat.emit("sala", sala, nombreUsuario)
         }
 
         fun enviarmensaje(nombreUsuario: String, sala: String, mensaje: String, fecha: String) {
-            socketChat.emit("EnviarMensaje", socketId, nombreUsuario, sala, mensaje, fecha)
+            socketChat.emit("EnviarMensaje", nombreUsuario, sala, mensaje, fecha)
         }
 
-        fun recuperarchat(): JSONArray? {
-            socketChat.on("actualizarMensaje") { usuarioString ->
-                // Pasamos a un JSONarray todos los usuarios
-                jsonarray = usuarioString[0] as JSONArray
 
-            }
-            return jsonarray
-        }
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         socketChat.connect()
-        if (socketChat.connected()){
-            socketId = socketChat.id()
-        }
-        else {
-            println("ERROR: Socket")
-        }
+        socketChat.on("actualizarMensaje") { usuarioString ->
+                    mensajes.removeAll(mensajes)
+                // Pasamos a un JSONarray todos los usuarios
+                jsonarray = usuarioString[0] as JSONArray
+                if (jsonarray != null) {
+                    (0 until jsonarray!!.length()).forEach {
+                        // Insertar datos en la lista
+                        val objeto: JSONObject = jsonarray!!.getJSONObject(it)
+                            if (objeto["sala"] == ChatFragment.sala) {
+                                mensajes.add(
+                                    Mensajes(
+                                        objeto["id"].toString(),
+                                        objeto["nombreUsuario"].toString(),
+                                        objeto["sala"].toString(),
+                                        objeto["mensaje"].toString(),
+                                        objeto["fecha"].toString()
+                                    )
+                                )
+                            }
+                    }
+
+                }
+                socketId = usuarioString[1] as String
+
+            }
+
         return super.onStartCommand(intent, flags, startId)
     }
 

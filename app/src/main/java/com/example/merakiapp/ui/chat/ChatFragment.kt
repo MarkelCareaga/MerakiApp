@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
@@ -18,15 +19,20 @@ import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
 import io.socket.client.IO
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Thread.sleep
 import java.text.SimpleDateFormat
 import java.util.*
 
 class ChatFragment : Fragment() {
+    companion object{
+          lateinit var  sala: String
+    }
     private var _binding: FragmentChatBinding? = null
-
-    // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
-    private  var mensajes: MutableList<Mensajes> = mutableListOf()
 
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var mensajesAdapter: MensajeAdapter
@@ -36,7 +42,7 @@ class ChatFragment : Fragment() {
 
     // Datos del usuario
     private lateinit var nombre: String
-    private lateinit var sala: String
+
     private lateinit var mensaje: String
 
     private lateinit var viewModel: ChatViewModel
@@ -58,11 +64,9 @@ class ChatFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
         val intent = Intent(this.requireContext(), ServicioChat::class.java)
         this.requireContext().startService(intent)
-        dialogoSala()
 
         dialogoSala()
 
-        cargarMensajes()
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -88,10 +92,16 @@ class ChatFragment : Fragment() {
                 mensaje = binding.textMensaje.text.toString()
                 val fecha = ""
 
-                ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
+                    ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
+                sleep(3000)
+                     mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
+                      _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+
+
+
                 // --------------------------------------------
-                cargarMensajes()
-                mensajes.clear()
+
+
             } else {
                 Toast.makeText(
                     this.requireContext(),
@@ -104,27 +114,6 @@ class ChatFragment : Fragment() {
 
         }
 
-    }
-    private fun cargarMensajes() {
-       val array = ServicioChat.recuperarchat()
-        // ------------------- TEST -------------------
-        // Recorrer el Array
-        if (array != null) {
-             (0 until array.length()).forEach {
-                // Insertar datos en la lista
-                val objeto: JSONObject = array.getJSONObject(it)
-                if (objeto["sala"].toString() ==  sala){
-                    mensajes.add(Mensajes(objeto["id"].toString(),objeto["nombreUsuario"].toString(),objeto["sala"].toString(),objeto["mensaje"].toString(),objeto["fecha"].toString()))
-                }
-             }
-             if (mensajes.isNotEmpty()) {
-              mensajesAdapter = MensajeAdapter(mensajes)
-                 _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
-         }
-        }
-
-
-        // --------------------------------------------
     }
 
     private fun dialogoSala() {
@@ -146,16 +135,19 @@ class ChatFragment : Fragment() {
                 } else {
                     val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                     _binding!!.chatTitulo.text = codigo
-                    activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
+                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
+                    sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "").toString()
                 // ------------------- TEST -------------------
-                    ServicioChat.sala(nombre, sala)
-                    mensajes.clear()
-                    cargarMensajes()
-                    mensajes.clear()
+                         ServicioChat.sala(nombre, sala)
+                            sleep(3000)
+                               mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
+                            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+
+                }
 
 
                 // --------------------------------------------
-                }
+
             }
             .setNegativeButton(getString(R.string.cancelar), null)
             .create()
