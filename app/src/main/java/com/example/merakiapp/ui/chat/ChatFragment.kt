@@ -32,6 +32,9 @@ class ChatFragment : Fragment() {
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
+    private lateinit var nombre: String
+    private lateinit var sala: String
+
     private lateinit var viewModel: ChatViewModel
 
     override fun onCreateView(
@@ -49,9 +52,17 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+
+        val intent = Intent(this.requireContext(), ServicioChat::class.java)
+        this.requireContext().startService(intent)
+
         cargarMensajes()
         mensajesAdapter = MensajeAdapter(mensajes)
         _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+
+        val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
+        nombre = datosUsuario.getString("nombre", "").toString()
+        sala = datosUsuario.getString("sala", "").toString()
 
         _binding!!.btnSala.setOnClickListener() {
             dialogoSala()
@@ -70,10 +81,6 @@ class ChatFragment : Fragment() {
                 Manda el mensaje por el servicio
                  */
                 // ------------------- TEST -------------------
-                val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
-
-                val nombre = datosUsuario?.getString("nombre", "")
-                val sala = datosUsuario?.getString("sala", "")
                 val mensaje = binding.textMensaje.text.toString()
                 val fecha = ""
 
@@ -99,7 +106,7 @@ class ChatFragment : Fragment() {
              recoger los valores dels ARRAYJSOM
              y pasrlos a la lista mensaje verificar si  no esta vacia
              */
-        mensajes= mutableListOf(
+        mensajes = mutableListOf(
         )
     }
 
@@ -125,13 +132,17 @@ class ChatFragment : Fragment() {
                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
 
                 /*
-                    conectar con el servidor
+                    conectar con la sala
                 */
                 // ------------------- TEST -------------------
-                    val intent = Intent(this.requireContext(), ServicioChat::class.java)
-                    this.requireContext().startService(intent)
+                    ServicioChat().sala(nombre, sala)
                 // --------------------------------------------
 
+                    /*
+                        fun sala(nombreUsuario: String, sala: String) {
+        socketChat.emit("sala", sala, nombreUsuario)
+    }
+                     */
                 }
             }
             .setNegativeButton(getString(R.string.cancelar), null)
