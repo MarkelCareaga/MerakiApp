@@ -17,6 +17,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
+import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -59,8 +60,10 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         cargarMensajes()
-        mensajesAdapter = MensajeAdapter(mensajes)
-        _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+        if (mensajes.isNotEmpty()) {
+              mensajesAdapter = MensajeAdapter(mensajes)
+            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+        }
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -102,16 +105,16 @@ class ChatFragment : Fragment() {
     }
     private fun cargarMensajes() {
        val array = ServicioChat().recuperarchat()
-        /*
-             recoger los valores dels ARRAYJSOM
-             y pasrlos a la lista mensaje verificar si  no esta vacia
-        */
-
         // ------------------- TEST -------------------
         // Recorrer el Array
-        (0 until array.length()).forEach {
-            // Insertar datos en la lista
-            //mensajes.add(array.)
+        if (array != null) {
+             (0 until array.length()).forEach {
+                // Insertar datos en la lista
+                val objeto: JSONObject = array.getJSONObject(it)
+                if (objeto["sala"].toString() ==  sala){
+                    mensajes.add(Mensajes(objeto["id"].toString(),objeto["nombreUsuario"].toString(),objeto["sala"].toString(),objeto["mensaje"].toString(),objeto["fecha"].toString()))
+                }
+             }
         }
         // --------------------------------------------
     }
@@ -136,14 +139,9 @@ class ChatFragment : Fragment() {
                     val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                     _binding!!.chatTitulo.text = codigo
                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
-
-                /*
-                    conectar con la sala
-                */
                 // ------------------- TEST -------------------
                     ServicioChat().sala(nombre, sala)
                 // --------------------------------------------
-
                 }
             }
             .setNegativeButton(getString(R.string.cancelar), null)
