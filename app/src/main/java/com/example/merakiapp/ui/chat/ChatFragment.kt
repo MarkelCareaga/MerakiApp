@@ -60,8 +60,9 @@ class ChatFragment : Fragment() {
         val intent = Intent(this.requireContext(), ServicioChat::class.java)
         this.requireContext().startService(intent)
 
-        cargarMensajes()
+        dialogoSala()
 
+        cargarMensajes()
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -97,6 +98,8 @@ class ChatFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
+
+            binding.textMensaje.setText("")
 
         }
 
