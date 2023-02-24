@@ -111,7 +111,7 @@ class ChatFragment : Fragment() {
         // Recorrer el Array
         (0 until array.length()).forEach {
             // Insertar datos en la lista
-            mensajes.add(array.)
+            //mensajes.add(array.)
         }
         // --------------------------------------------
     }
