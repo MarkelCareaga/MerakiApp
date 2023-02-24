@@ -8,10 +8,29 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class ServicioChat : Service() {
+    companion object{
+        val socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
+        private var jsonarray: JSONArray? = null
 
-    val socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
-    var socketId: String = ""
-    private var jsonarray: JSONArray? = null
+        var socketId: String = ""
+
+        fun sala(nombreUsuario: String, sala: String) {
+            socketChat.emit("sala", sala, nombreUsuario)
+        }
+
+        fun enviarmensaje(nombreUsuario: String, sala: String, mensaje: String, fecha: String) {
+            socketChat.emit("EnviarMensaje", socketId, nombreUsuario, sala, mensaje, fecha)
+        }
+
+        fun recuperarchat(): JSONArray? {
+            socketChat.on("actualizarMensaje") { usuarioString ->
+                // Pasamos a un JSONarray todos los usuarios
+                jsonarray = usuarioString[0] as JSONArray
+
+            }
+            return jsonarray
+        }
+    }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         socketChat.connect()
@@ -24,22 +43,6 @@ class ServicioChat : Service() {
         return super.onStartCommand(intent, flags, startId)
     }
 
-    fun sala(nombreUsuario: String, sala: String) {
-        socketChat.emit("sala", sala, nombreUsuario)
-    }
-
-    fun enviarmensaje(nombreUsuario: String, sala: String, mensaje: String, fecha: String) {
-        socketChat.emit("EnviarMensaje", socketId, nombreUsuario, sala, mensaje, fecha)
-    }
-
-    fun recuperarchat(): JSONArray? {
-        socketChat.on("actualizarMensaje") { usuarioString ->
-            // Pasamos a un JSONarray todos los usuarios
-            jsonarray = usuarioString[0] as JSONArray
-
-        }
-        return jsonarray
-    }
 
     override fun onDestroy() {
         socketChat.disconnect()

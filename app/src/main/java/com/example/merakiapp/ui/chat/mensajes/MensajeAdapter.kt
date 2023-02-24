@@ -33,7 +33,7 @@ class MensajeAdapter(private val mensajes:List<Mensajes>) : RecyclerView.Adapter
         val binding =  ChatItemBinding.bind(view)
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(mensaje: Mensajes) {
-            if(mensaje.id == ServicioChat().socketId) {
+            if(mensaje.id == ServicioChat.socketId) {
                 binding.const1!!.visibility = View.GONE
                 binding.const2!!.visibility = View.VISIBLE
 

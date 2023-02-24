@@ -56,9 +56,9 @@ class ChatFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
-
         val intent = Intent(this.requireContext(), ServicioChat::class.java)
         this.requireContext().startService(intent)
+        dialogoSala()
 
         cargarMensajes()
 
@@ -87,9 +87,10 @@ class ChatFragment : Fragment() {
                 mensaje = binding.textMensaje.text.toString()
                 val fecha = ""
 
-                ServicioChat().enviarmensaje(nombre, sala, mensaje, fecha)
+                ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
                 // --------------------------------------------
                 cargarMensajes()
+                mensajes.clear()
             } else {
                 Toast.makeText(
                     this.requireContext(),
@@ -97,12 +98,12 @@ class ChatFragment : Fragment() {
                     Toast.LENGTH_SHORT
                 ).show()
             }
-
+        binding.textMensaje.setText("")
         }
 
     }
     private fun cargarMensajes() {
-       val array = ServicioChat().recuperarchat()
+       val array = ServicioChat.recuperarchat()
         // ------------------- TEST -------------------
         // Recorrer el Array
         if (array != null) {
@@ -115,8 +116,8 @@ class ChatFragment : Fragment() {
              }
              if (mensajes.isNotEmpty()) {
               mensajesAdapter = MensajeAdapter(mensajes)
-            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
-        }
+                 _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+         }
         }
 
 
@@ -144,7 +145,12 @@ class ChatFragment : Fragment() {
                     _binding!!.chatTitulo.text = codigo
                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
                 // ------------------- TEST -------------------
-                    ServicioChat().sala(nombre, sala)
+                    ServicioChat.sala(nombre, sala)
+                    mensajes.clear()
+                    cargarMensajes()
+                    mensajes.clear()
+
+
                 // --------------------------------------------
                 }
             }
