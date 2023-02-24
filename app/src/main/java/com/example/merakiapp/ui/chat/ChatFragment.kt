@@ -32,8 +32,10 @@ class ChatFragment : Fragment() {
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
+    // Datos del usuario
     private lateinit var nombre: String
     private lateinit var sala: String
+    private lateinit var mensaje: String
 
     private lateinit var viewModel: ChatViewModel
 
@@ -61,7 +63,7 @@ class ChatFragment : Fragment() {
         _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
-        nombre = datosUsuario.getString("nombre", "").toString()
+        nombre = datosUsuario!!.getString("nombre", "").toString()
         sala = datosUsuario.getString("sala", "").toString()
 
         _binding!!.btnSala.setOnClickListener() {
@@ -81,12 +83,10 @@ class ChatFragment : Fragment() {
                 Manda el mensaje por el servicio
                  */
                 // ------------------- TEST -------------------
-                val mensaje = binding.textMensaje.text.toString()
+                mensaje = binding.textMensaje.text.toString()
                 val fecha = ""
 
-                if (nombre != null && sala != null) {
-                    ServicioChat().enviarmensaje(nombre, sala, mensaje, fecha)
-                }
+                ServicioChat().enviarmensaje(nombre, sala, mensaje, fecha)
                 // --------------------------------------------
 
             } else {
@@ -138,11 +138,6 @@ class ChatFragment : Fragment() {
                     ServicioChat().sala(nombre, sala)
                 // --------------------------------------------
 
-                    /*
-                        fun sala(nombreUsuario: String, sala: String) {
-        socketChat.emit("sala", sala, nombreUsuario)
-    }
-                     */
                 }
             }
             .setNegativeButton(getString(R.string.cancelar), null)
