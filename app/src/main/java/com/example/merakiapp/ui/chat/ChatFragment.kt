@@ -1,5 +1,6 @@
 package com.example.merakiapp.ui.chat
 
+import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
 import androidx.lifecycle.ViewModelProvider
@@ -58,10 +59,13 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
+    @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
+
+
         val intent = Intent(this.requireContext(), ServicioChat::class.java)
         this.requireContext().startService(intent)
 
@@ -80,6 +84,7 @@ class ChatFragment : Fragment() {
             activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "")
                 .apply()
             activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "").apply()
+           this.requireContext().stopService(intent)
             findNavController().navigate(R.id.nav_chat)
         }
 
