@@ -59,8 +59,9 @@ class ServicioChat : Service() {
                     }
 
                 }
-                socketId = usuarioString[1] as String
             }
+            socketId = socketChat.id()
+
         }else{
              socketChat.connect()
             socketChat.on("actualizarMensaje") { usuarioString ->
@@ -85,8 +86,9 @@ class ServicioChat : Service() {
                     }
 
                 }
-                socketId = usuarioString[1] as String
             }
+            socketId = socketChat.id()
+
         }
 
 
