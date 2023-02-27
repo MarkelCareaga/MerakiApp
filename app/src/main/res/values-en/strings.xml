@@ -111,4 +111,7 @@
     <string name="cancelar">Cancel</string>
     <string name="errorSala">Insert a room.</string>
     <string name="sala">Room</string>
+    <string name="errorEnviarMensaje">Fill in the field to be able to send a message.</string>
+    <string name="infoBorrarMensajes">NOTICE: All messages are deleted every 24 hours.</string>
+    <string name="errorLoginChat">ERROR: Enter all the necessary data.</string>
 </resources>

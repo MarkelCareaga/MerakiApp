@@ -43,7 +43,7 @@ class LoginFragment : Fragment() {
             // Comprobar si los datos se han introducido
             if (nombreUsuario.isNullOrEmpty()) {
                 Toast.makeText(
-                    this.requireContext(), "Error. Introduzca todos los datos necesarios.",
+                    this.requireContext(),  getString(R.string.errorLoginChat),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
