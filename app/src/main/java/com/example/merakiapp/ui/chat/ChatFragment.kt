@@ -2,7 +2,10 @@ package com.example.merakiapp.ui.chat
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
@@ -14,6 +17,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
@@ -78,6 +82,7 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         dialogoSala()
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
 
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
@@ -159,5 +164,14 @@ class ChatFragment : Fragment() {
 
     private fun String.quitarEspacios(): String {
         return this.replace(" ", "")
+    }
+    private val mMessageReceiver:BroadcastReceiver = object : BroadcastReceiver() {
+        @SuppressLint("RestrictedApi")
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            sleep(2000)
+            mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
+            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+            println(ServicioChat.mensajes)
+        }
     }
 }
