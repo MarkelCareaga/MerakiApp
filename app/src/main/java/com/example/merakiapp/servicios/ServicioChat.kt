@@ -5,6 +5,7 @@ import android.app.Service
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.IBinder
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.example.merakiapp.ui.chat.ChatFragment
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
@@ -12,6 +13,7 @@ import com.google.android.material.internal.ViewUtils.hideKeyboard
 import io.socket.client.IO
 import org.json.JSONArray
 import org.json.JSONObject
+import java.lang.Thread.sleep
 
 class ServicioChat : Service() {
     companion object{
@@ -61,8 +63,10 @@ class ServicioChat : Service() {
                     }
                 }
                 socketId = usuarioString[1] as String
+                 sleep(2000)
 
-                
+                val intent = Intent("mensajes")
+                LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
             }
 
         }else{
@@ -89,9 +93,12 @@ class ServicioChat : Service() {
                     }
 
                 }
-
+            sleep(2000)
+            val intent = Intent("mensajes")
+                LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
                 socketId = usuarioString[1] as String
             }
+
         }
 
 
