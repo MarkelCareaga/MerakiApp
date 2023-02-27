@@ -6,7 +6,9 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.IBinder
 import com.example.merakiapp.ui.chat.ChatFragment
+import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import io.socket.client.IO
 import org.json.JSONArray
 import org.json.JSONObject
@@ -57,10 +59,12 @@ class ServicioChat : Service() {
                                 )
                             }
                     }
-
                 }
                 socketId = usuarioString[1] as String
+
+                
             }
+
         }else{
              socketChat.connect()
             socketChat.on("actualizarMensaje") { usuarioString ->
@@ -85,6 +89,7 @@ class ServicioChat : Service() {
                     }
 
                 }
+
                 socketId = usuarioString[1] as String
             }
         }
