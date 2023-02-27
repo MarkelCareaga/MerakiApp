@@ -16,39 +16,30 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
 import androidx.annotation.RequiresApi
-import androidx.lifecycle.lifecycleScope
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentChatBinding
-import com.example.merakiapp.servicios.ServicioAudios
 import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
-import com.example.merakiapp.ui.chat.mensajes.Mensajes
 import com.google.android.material.internal.ViewUtils.hideKeyboard
-import io.socket.client.IO
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import org.json.JSONArray
-import org.json.JSONObject
 import java.lang.Thread.sleep
-import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
-import java.util.*
 
 class ChatFragment : Fragment() {
-    companion object{
-          lateinit var  sala: String
+    companion object {
+        lateinit var sala: String
     }
+
     private var _binding: FragmentChatBinding? = null
 
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var mensajesAdapter: MensajeAdapter
+
     @RequiresApi(Build.VERSION_CODES.O)
     private var formatoData = DateTimeFormatter.ofPattern("yyyy/MM/dd")
+
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
@@ -82,7 +73,8 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         dialogoSala()
-        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
+        LocalBroadcastManager.getInstance(requireContext())
+            .registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
 
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
@@ -94,7 +86,7 @@ class ChatFragment : Fragment() {
         }
 
         _binding!!.btnCerrar.setOnClickListener() {
-           this.requireContext().stopService(intent)
+            this.requireContext().stopService(intent)
             findNavController().navigate(R.id.nav_chat)
         }
 
@@ -106,10 +98,10 @@ class ChatFragment : Fragment() {
                 mensaje = binding.textMensaje.text.toString()
                 val fecha = LocalDateTime.now().format(formatoData)
                 println(fecha)
-                    ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
+                ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
                 sleep(1000)
-                     mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
-                      _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+                mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
+                _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
                 _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
                 hideKeyboard(requireView())
             } else {
@@ -146,12 +138,15 @@ class ChatFragment : Fragment() {
                 } else {
                     val codigo = inputEditTextField.text.toString().quitarEspacios().uppercase()
                     _binding!!.chatTitulo.text = codigo
-                     activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
-                    sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "").toString()
-                         ServicioChat.sala(nombre, sala)
-                            sleep(2000)
-                               mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
-                            _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+                    activity?.getSharedPreferences("datosUsuario", 0)!!.edit()
+                        .putString("sala", codigo).apply()
+                    sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "")
+                        .toString()
+                    ServicioChat.sala(nombre, sala)
+                    sleep(2000)
+                    mensajesAdapter =
+                        MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
+                    _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
                 }
 
@@ -165,7 +160,8 @@ class ChatFragment : Fragment() {
     private fun String.quitarEspacios(): String {
         return this.replace(" ", "")
     }
-    private val mMessageReceiver:BroadcastReceiver = object : BroadcastReceiver() {
+
+    private val mMessageReceiver: BroadcastReceiver = object : BroadcastReceiver() {
         @SuppressLint("RestrictedApi")
         override fun onReceive(p0: Context?, p1: Intent?) {
             sleep(2000)

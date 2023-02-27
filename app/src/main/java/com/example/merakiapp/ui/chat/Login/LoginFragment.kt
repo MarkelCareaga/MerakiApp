@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.os.bundleOf
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.FragmentLoginBinding
@@ -43,7 +42,7 @@ class LoginFragment : Fragment() {
             // Comprobar si los datos se han introducido
             if (nombreUsuario.isNullOrEmpty()) {
                 Toast.makeText(
-                    this.requireContext(),  getString(R.string.errorLoginChat),
+                    this.requireContext(), getString(R.string.errorLoginChat),
                     Toast.LENGTH_SHORT
                 ).show()
             } else {
