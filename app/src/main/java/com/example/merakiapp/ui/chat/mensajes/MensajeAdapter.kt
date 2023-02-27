@@ -39,7 +39,6 @@ class MensajeAdapter(private val mensajes:List<Mensajes>, val socketid:String, v
                     binding.const2!!.visibility = View.VISIBLE
 
                     binding.mensajeU!!.text = mensaje.mensaje
-                    binding.nombreU!!.text = mensaje.nombreUusuario
 
 
                 } else {

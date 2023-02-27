@@ -70,8 +70,7 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         dialogoSala()
-        LocalBroadcastManager.getInstance(requireContext())
-            .registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
+        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -139,7 +138,7 @@ class ChatFragment : Fragment() {
                     sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "")
                         .toString()
                     ServicioChat.sala(nombre, sala)
-                    sleep(2000)
+                    sleep(1000)
                     mensajesAdapter =
                         MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                     _binding!!.mensajesRecyclerView.adapter = mensajesAdapter

@@ -57,8 +57,6 @@ class ServicioChat : Service() {
                         }
                     }
                 }
-                socketId = usuarioString[1] as String
-                sleep(2000)
 
                 val intent = Intent("mensajes")
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
@@ -88,12 +86,11 @@ class ServicioChat : Service() {
                             )
                         }
                     }
+                    socketId = socketChat.id()
 
                 }
-                sleep(2000)
                 val intent = Intent("mensajes")
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
-                socketId = usuarioString[1] as String
             }
         }
         return super.onStartCommand(intent, flags, startId)
