@@ -110,4 +110,7 @@
     <string name="cancelar">Cancelar</string>
     <string name="errorSala">Inserte una sala.</string>
     <string name="sala">Sala</string>
+    <string name="errorEnviarMensaje">Rellena el campo para poder enviar un mensaje.</string>
+    <string name="infoBorrarMensajes">AVISO: Todos los mensajes se borran cada 24 horas.</string>
+    <string name="errorLoginChat">ERROR: Introduzca todos los datos necesarios.</string>
 </resources>

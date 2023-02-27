@@ -111,4 +111,7 @@
     <string name="cancelar">Utzi</string>
     <string name="errorSala">Gela bat sartu.</string>
     <string name="sala">Gela</string>
+    <string name="errorEnviarMensaje">Bete eremua mezu bat bidali ahal izateko.</string>
+    <string name="infoBorrarMensajes">OHARRA: mezu guztiak 24 orduz behin ezabatzen dira.</string>
+    <string name="errorLoginChat">ERROREA: Sartu beharrezko datu guztiak.</string>
 </resources>

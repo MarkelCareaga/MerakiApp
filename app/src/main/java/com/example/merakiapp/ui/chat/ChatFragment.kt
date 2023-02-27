@@ -107,28 +107,24 @@ class ChatFragment : Fragment() {
                       _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
                 _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
                 hideKeyboard(requireView())
-
-
             } else {
                 Toast.makeText(
                     this.requireContext(),
-                    "Rellena el campo para poder enviar",
+                    getString(R.string.errorEnviarMensaje),
                     Toast.LENGTH_SHORT
                 ).show()
             }
 
             binding.textMensaje.setText("")
-
         }
-
     }
 
     @SuppressLint("SuspiciousIndentation")
     private fun dialogoSala() {
         val title = getString(R.string.sala)
-        val mensajeServer = "Todos los mensajes se borran cada 24 horas"
+        val mensajeServer = getString(R.string.infoBorrarMensajes)
 
-        val message = " ${getString(R.string.errorSala)} \n ${mensajeServer}"
+        val message = "${getString(R.string.errorSala)} \n${mensajeServer}"
         val inputEditTextField = EditText(requireActivity())
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle(title)
@@ -147,7 +143,6 @@ class ChatFragment : Fragment() {
                     _binding!!.chatTitulo.text = codigo
                      activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", codigo).apply()
                     sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "").toString()
-                // ------------------- TEST -------------------
                          ServicioChat.sala(nombre, sala)
                             sleep(2000)
                                mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
@@ -155,8 +150,6 @@ class ChatFragment : Fragment() {
 
                 }
 
-
-                // --------------------------------------------
 
             }
             .setNegativeButton(getString(R.string.cancelar), null)
