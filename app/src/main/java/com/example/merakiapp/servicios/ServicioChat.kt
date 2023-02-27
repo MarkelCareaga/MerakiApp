@@ -13,27 +13,24 @@ import org.json.JSONObject
 import java.lang.Thread.sleep
 
 class ServicioChat : Service() {
+
     companion object {
         val socketChat = IO.socket("https://merakiapp-chatglobal.glitch.me")
         private var jsonarray: JSONArray? = null
-
         var mensajes: MutableList<Mensajes> = mutableListOf()
-
         var socketId: String = ""
+
         fun usuario(nombreUsuario: String) {
             socketChat.emit("usuario", nombreUsuario)
         }
 
         fun sala(nombreUsuario: String, sala: String) {
-
             socketChat.emit("sala", sala, nombreUsuario)
         }
 
         fun enviarmensaje(nombreUsuario: String, sala: String, mensaje: String, fecha: String) {
             socketChat.emit("EnviarMensaje", nombreUsuario, sala, mensaje, fecha)
         }
-
-
     }
 
     @SuppressLint("SuspiciousIndentation")
@@ -98,16 +95,11 @@ class ServicioChat : Service() {
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
                 socketId = usuarioString[1] as String
             }
-
         }
-
-
         return super.onStartCommand(intent, flags, startId)
     }
 
-
     override fun onDestroy() {
-
         socketChat.disconnect()
         applicationContext?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "")
             .apply()
@@ -119,5 +111,4 @@ class ServicioChat : Service() {
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
     }
-
 }

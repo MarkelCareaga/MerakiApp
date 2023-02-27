@@ -45,9 +45,7 @@ class ChatFragment : Fragment() {
 
     // Datos del usuario
     private lateinit var nombre: String
-
     private lateinit var mensaje: String
-
     private lateinit var viewModel: ChatViewModel
 
     override fun onCreateView(
@@ -68,14 +66,12 @@ class ChatFragment : Fragment() {
         // Aqui se llama a la funcion cargarPreguntas
         viewModel = ViewModelProvider(this).get(ChatViewModel::class.java)
 
-
         val intent = Intent(this.requireContext(), ServicioChat::class.java)
         this.requireContext().startService(intent)
 
         dialogoSala()
         LocalBroadcastManager.getInstance(requireContext())
             .registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
-
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()
@@ -147,10 +143,7 @@ class ChatFragment : Fragment() {
                     mensajesAdapter =
                         MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                     _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
-
                 }
-
-
             }
             .setNegativeButton(getString(R.string.cancelar), null)
             .create()
