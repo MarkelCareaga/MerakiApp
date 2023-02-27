@@ -97,11 +97,12 @@ class ServicioChat : Service() {
     override fun onDestroy() {
 
         socketChat.disconnect()
-        applicationContext?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "").apply()
-        applicationContext?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "").apply()
+        applicationContext?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "")
+            .apply()
+        applicationContext?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "")
+            .apply()
         super.onDestroy()
     }
-
     override fun onBind(intent: Intent): IBinder {
         TODO("Return the communication channel to the service.")
     }

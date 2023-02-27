@@ -3,6 +3,7 @@ package com.example.merakiapp.ui.chat
 import android.annotation.SuppressLint
 import android.app.AlertDialog
 import android.content.Intent
+import android.os.Build
 import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -11,6 +12,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.merakiapp.R
@@ -26,7 +28,10 @@ import kotlinx.coroutines.withContext
 import org.json.JSONArray
 import org.json.JSONObject
 import java.lang.Thread.sleep
+import java.text.DateFormat
 import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 import java.util.*
 
 class ChatFragment : Fragment() {
@@ -37,7 +42,8 @@ class ChatFragment : Fragment() {
 
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
     private lateinit var mensajesAdapter: MensajeAdapter
-
+    @RequiresApi(Build.VERSION_CODES.O)
+    private var formatoData = DateTimeFormatter.ofPattern("yyyy/MM/dd")
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
 
@@ -59,6 +65,7 @@ class ChatFragment : Fragment() {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     @SuppressLint("SuspiciousIndentation")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -81,9 +88,6 @@ class ChatFragment : Fragment() {
         }
 
         _binding!!.btnCerrar.setOnClickListener() {
-            activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("nombre", "")
-                .apply()
-            activity?.getSharedPreferences("datosUsuario", 0)!!.edit().putString("sala", "").apply()
            this.requireContext().stopService(intent)
             findNavController().navigate(R.id.nav_chat)
         }
@@ -95,10 +99,10 @@ class ChatFragment : Fragment() {
                  */
                 // ------------------- TEST -------------------
                 mensaje = binding.textMensaje.text.toString()
-                val fecha = ""
-
+                val fecha = LocalDateTime.now().format(formatoData)
+                println(fecha)
                     ServicioChat.enviarmensaje(nombre, sala, mensaje, fecha)
-                sleep(3000)
+                sleep(1000)
                      mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                       _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
@@ -121,9 +125,12 @@ class ChatFragment : Fragment() {
 
     }
 
+    @SuppressLint("SuspiciousIndentation")
     private fun dialogoSala() {
         val title = getString(R.string.sala)
-        val message = getString(R.string.errorSala)
+        val mensajeServer = "Todos los mensajes se borran cada 24 horas"
+
+        val message = " ${getString(R.string.errorSala)} \n ${mensajeServer}"
         val inputEditTextField = EditText(requireActivity())
         val dialog = AlertDialog.Builder(requireContext())
             .setTitle(title)
@@ -144,7 +151,7 @@ class ChatFragment : Fragment() {
                     sala = activity?.getSharedPreferences("datosUsuario", 0)?.getString("sala", "").toString()
                 // ------------------- TEST -------------------
                          ServicioChat.sala(nombre, sala)
-                            sleep(3000)
+                            sleep(2000)
                                mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                             _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
 
