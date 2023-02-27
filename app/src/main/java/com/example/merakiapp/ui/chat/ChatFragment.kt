@@ -21,6 +21,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 import com.example.merakiapp.servicios.ServicioChat
 import com.example.merakiapp.ui.chat.mensajes.MensajeAdapter
 import com.example.merakiapp.ui.chat.mensajes.Mensajes
+import com.google.android.material.internal.ViewUtils.hideKeyboard
 import io.socket.client.IO
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,7 +67,7 @@ class ChatFragment : Fragment() {
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
-    @SuppressLint("SuspiciousIndentation")
+    @SuppressLint("SuspiciousIndentation", "RestrictedApi")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
@@ -97,7 +98,6 @@ class ChatFragment : Fragment() {
                 /*
                 Manda el mensaje por el servicio
                  */
-                // ------------------- TEST -------------------
                 mensaje = binding.textMensaje.text.toString()
                 val fecha = LocalDateTime.now().format(formatoData)
                 println(fecha)
@@ -105,10 +105,8 @@ class ChatFragment : Fragment() {
                 sleep(1000)
                      mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                       _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
-
-
-
-                // --------------------------------------------
+                _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
+                hideKeyboard(requireView())
 
 
             } else {
