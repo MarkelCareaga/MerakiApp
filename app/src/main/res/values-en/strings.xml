@@ -103,11 +103,11 @@
     <string name="respuesta3">En el Modo Libre, puedes acceder a todos los juegos desde el principio, sin necesidad de estar posicionado en cada una de sus correspondientes ubicaciones.</string>
     <string name="verFinal">See end</string>
     <string name="chat">Chat</string>
-    <string name="intoduce_nombre">Introduce tu nombre</string>
-    <string name="selecciona_perfil">Selecciona tu perfil</string>
+    <string name="intoduce_nombre">"Introduce your name "</string>
+    <string name="selecciona_perfil">Select your profile</string>
     <string name="alumno">Alumno</string>
     <string name="profesor">Profesor</string>
-    <string name="btn_aceptar">Aceptar</string>
+    <string name="btn_aceptar">Accept</string>
     <string name="cancelar">Cancel</string>
     <string name="errorSala">Insert a room.</string>
     <string name="sala">Room</string>
