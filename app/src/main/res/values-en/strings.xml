@@ -107,7 +107,7 @@
     <string name="selecciona_perfil">Selecciona tu perfil</string>
     <string name="alumno">Alumno</string>
     <string name="profesor">Profesor</string>
-    <string name="btn_aceptar">Aceptar</string>
+    <string name="btn_aceptar">Accept</string>
     <string name="cancelar">Cancel</string>
     <string name="errorSala">Insert a room.</string>
     <string name="sala">Room</string>
