@@ -29,7 +29,7 @@ class FinalActivity : AppCompatActivity() {
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
         super.onCreate(savedInstanceState)
-        binding=ActivityFinalBinding.inflate(layoutInflater)
+        binding = ActivityFinalBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         // CAMBIAR COLOR DEL TEXTO

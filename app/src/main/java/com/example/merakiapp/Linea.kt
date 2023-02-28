@@ -22,7 +22,13 @@ const val movilOlatuaY = 80F
 const val anchuraLinea = 10F
 
 @SuppressLint("ViewConstructor")
-class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton, numeroActivity: Int, esTablet: Boolean): View(context) {
+class Linea(
+    context: Context,
+    btnIzquierda: ImageButton,
+    btnDerecha: ImageButton,
+    numeroActivity: Int,
+    esTablet: Boolean
+) : View(context) {
     // Se guardan las posiciones X e Y de los botones ImageButton pasados como argumento en variables
     private var x1 = btnIzquierda.x
     private var y1 = btnIzquierda.y
@@ -48,7 +54,7 @@ class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton
         val pincel = Paint()
 
         // Se configura el color del pincel
-        pincel.setARGB(255,255,0,0)
+        pincel.setARGB(255, 255, 0, 0)
 
         // Se establece el ancho de la línea
         pincel.strokeWidth = anchuraLinea
@@ -78,9 +84,21 @@ class Linea(context: Context, btnIzquierda: ImageButton, btnDerecha: ImageButton
 
         // Si el numero de actividad es 1, se dibuja una linea con los puntos x1, y1, x
         if (numActivity == 1) {
-            canvas.drawLine(x1 + x1_actividad_1, y1 - y_actividad_1, x2 + x2_actividad_1, y2 - y_actividad_1, pincel)
+            canvas.drawLine(
+                x1 + x1_actividad_1,
+                y1 - y_actividad_1,
+                x2 + x2_actividad_1,
+                y2 - y_actividad_1,
+                pincel
+            )
         } else {
-            canvas.drawLine(x1 + x1_actividad_2, y1 - y_actividad_2, x2 + x2_actividad_2, y2 - y_actividad_2, pincel)
+            canvas.drawLine(
+                x1 + x1_actividad_2,
+                y1 - y_actividad_2,
+                x2 + x2_actividad_2,
+                y2 - y_actividad_2,
+                pincel
+            )
         }
     }
 }

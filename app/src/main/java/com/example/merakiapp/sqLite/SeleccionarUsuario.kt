@@ -15,7 +15,7 @@ import com.google.android.material.internal.ContextUtils.getActivity
 
 class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
     private lateinit var conexion: UsuarioDB
-    private lateinit var usuariosAdapter : ListaAdapter
+    private lateinit var usuariosAdapter: ListaAdapter
     private lateinit var binding: ActivitySeleccionarUsuarioBinding
 
     private var listaDialogos = ListaDialogos()
@@ -35,18 +35,18 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
 
         // VERIFIACAR SI LA LISTA DE LA BASE DE DATOS NO ESTA VACIA
         if (cursor.isNotEmpty()) {
-            binding.lista.visibility= View.VISIBLE
-            binding.txtInfo.visibility= View.GONE
+            binding.lista.visibility = View.VISIBLE
+            binding.txtInfo.visibility = View.GONE
             cursor.forEach {
                 arrayList.add(it)
             }
             // Si no esta vacía, llamamos al adapter y lo lanzamos
-            usuariosAdapter= ListaAdapter(arrayList, this, getActivity(this))
+            usuariosAdapter = ListaAdapter(arrayList, this, getActivity(this))
             binding.lista.adapter = usuariosAdapter
         } else {
             // Si esta vacia, mostramos un txt y ocultamos la lista
-            binding.lista.visibility= View.GONE
-            binding.txtInfo.visibility= View.VISIBLE
+            binding.lista.visibility = View.GONE
+            binding.txtInfo.visibility = View.VISIBLE
         }
 
         // ------------------ CONTROL DE BOTONES ------------------
@@ -77,8 +77,8 @@ class SeleccionarUsuario : AppCompatActivity(), Explicaciones {
         }
 
 
-
     }
+
     override fun onBackPressed() {
         // Detiene el audio que se está reproduciendo
         var intent = Intent(this, ServicioAudios::class.java)

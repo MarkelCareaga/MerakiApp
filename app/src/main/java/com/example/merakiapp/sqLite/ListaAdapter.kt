@@ -12,7 +12,11 @@ import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ItemProductoUsuarioBinding
 import com.example.merakiapp.juegos.IslaIzaroActivity
 
-class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val activity: Activity?) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
+class ListaAdapter(
+    val arrayList: ArrayList<Usuario>,
+    val contexta: Context,
+    val activity: Activity?
+) : RecyclerView.Adapter<ListaAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -28,16 +32,17 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val
         // creamos un metodo para dar los valores a cada a item
         // le pasamos un arraylist y la recorremos por posicion y tambien se le pasa un contexto
         if (activity != null) {
-            holder.bind(arrayList[position], contexta,activity)
+            holder.bind(arrayList[position], contexta, activity)
         }
 
     }
 
-    class ViewHolder(view: View): RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // definimos el binding del los items
         val binding = ItemProductoUsuarioBinding.bind(view)
+
         //metodo  para dar valores a los items
-        fun bind(usuario: Usuario, contexta: Context,activity: Activity) {
+        fun bind(usuario: Usuario, contexta: Context, activity: Activity) {
             // llamamos a los valores dentro del binding
             with(binding) {
                 // le da damos el valor del txt nombreUsuario el nombre del usaurio
@@ -53,7 +58,7 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val
                 buttonPlay.setOnClickListener {
                     // al dar el boton play se le lleva al juego IslaIzaroActivity y cierra este activity
 
-                    val intent = Intent(contexta,IslaIzaroActivity::class.java)
+                    val intent = Intent(contexta, IslaIzaroActivity::class.java)
                         // le mandamos al activity todos los valores del usuario elegido
                         .putExtra("id", usuario.id)
                         .putExtra("name", usuario.nombreusuario)
@@ -66,6 +71,7 @@ class ListaAdapter(val arrayList: ArrayList<Usuario>, val contexta: Context, val
             }
         }
     }
+
     // devuelve el tamaño del array
     override fun getItemCount(): Int = arrayList.size
 }

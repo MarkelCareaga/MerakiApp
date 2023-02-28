@@ -8,14 +8,15 @@ import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ChatItemBinding
 import com.example.merakiapp.servicios.ServicioChat
 
-class MensajeAdapter(private val mensajes:List<Mensajes>, val socketid:String, val sala:String) : RecyclerView.Adapter<MensajeAdapter.ViewHolder>() {
+class MensajeAdapter(private val mensajes: List<Mensajes>, val socketid: String, val sala: String) :
+    RecyclerView.Adapter<MensajeAdapter.ViewHolder>() {
 
     // Encargado de crear el viewholder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Infla el archivo de diseño item_pregunta
-        val view=LayoutInflater
+        val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.chat_item,parent,false)
+            .inflate(R.layout.chat_item, parent, false)
         // Devuelve una instancia de ViewHolder
         return ViewHolder(view)
     }
@@ -25,15 +26,17 @@ class MensajeAdapter(private val mensajes:List<Mensajes>, val socketid:String, v
         // llama al metodo bind del viewholder
         holder.bind(mensajes[position], socketid, sala)
     }
+
     // Devuelve el número de elementos en la lista de preguntas
     override fun getItemCount(): Int = mensajes.size
 
-    class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Variable de enlace del layout item_pregunta
-        val binding =  ChatItemBinding.bind(view)
+        val binding = ChatItemBinding.bind(view)
+
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
-        fun bind(mensaje: Mensajes,  socketid:String, sala:String) {
-            if (mensaje.sala == sala ) {
+        fun bind(mensaje: Mensajes, socketid: String, sala: String) {
+            if (mensaje.sala == sala) {
                 if (mensaje.id == socketid) {
                     binding.const1!!.visibility = View.GONE
                     binding.const2!!.visibility = View.VISIBLE
@@ -48,7 +51,7 @@ class MensajeAdapter(private val mensajes:List<Mensajes>, val socketid:String, v
                     binding.mensaje.text = mensaje.mensaje
                     binding.nombreUsuario.text = mensaje.nombreUusuario
                 }
-            }else{
+            } else {
                 binding.const1!!.visibility = View.GONE
                 binding.const2!!.visibility = View.GONE
 

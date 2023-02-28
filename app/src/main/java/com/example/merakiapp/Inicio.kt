@@ -19,8 +19,8 @@ import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 
 class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
-    var libre :Boolean = false
-    lateinit var mapa :GoogleMap
+    var libre: Boolean = false
+    lateinit var mapa: GoogleMap
     private lateinit var binding: ActivityInicioBinding
 
     private var listaDialogos = ListaDialogos()
@@ -83,8 +83,8 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
         binding.btnLibre.setOnClickListener {
             // Si ha otorgado los permisos, activa la variable libre y guarda una preferencia en SharedPreferences
             libre = true
-            this.getSharedPreferences("pref",0).edit().putBoolean("libre",true).apply()
-            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("libre", true).apply()
+            this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
 
             // Inicia otra Activity
             val intent = Intent(this, MenuNav::class.java)
@@ -104,8 +104,10 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
     }
 
 
-    override fun onRequestPermissionsResult(requestCode: Int,
-                                            permissions: Array<String>, grantResults: IntArray) {
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<String>, grantResults: IntArray
+    ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when (requestCode) {
             1 -> {
@@ -113,33 +115,48 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
                 if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
 
                     // Se guarda el valor false en el sharedPreferences "libre"
-                    this.getSharedPreferences("pref",0).edit().putBoolean("libre",false).apply()
+                    this.getSharedPreferences("pref", 0).edit().putBoolean("libre", false).apply()
 
                     // Se guarda el valor 0 en el sharedPreferences "PlayPause"
-                    this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+                    this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
 
                     // Se comprueba si ya existe una partida guardada
-                    if ((this.getSharedPreferences("partida", 0)?.getBoolean("partida", false) == true)){
+                    if ((this.getSharedPreferences("partida", 0)
+                            ?.getBoolean("partida", false) == true)
+                    ) {
                         // Si existe, se inicia pantalla de codigo
                         pantallacodigo()
-                    }else{
-                        this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
-                        this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
-                        this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
-                        this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
-                        this.getSharedPreferences("validar4",0).edit().putBoolean("validar4",false).apply()
-                        this.getSharedPreferences("validar5",0).edit().putBoolean("validar5",false).apply()
-                        this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
-                        this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
+                    } else {
+                        this.getSharedPreferences("partida", 0).edit().putBoolean("partida", true)
+                            .apply()
+                        this.getSharedPreferences("validar1", 0).edit()
+                            .putBoolean("validar1", false).apply()
+                        this.getSharedPreferences("validar2", 0).edit()
+                            .putBoolean("validar2", false).apply()
+                        this.getSharedPreferences("validar3", 0).edit()
+                            .putBoolean("validar3", false).apply()
+                        this.getSharedPreferences("validar4", 0).edit()
+                            .putBoolean("validar4", false).apply()
+                        this.getSharedPreferences("validar5", 0).edit()
+                            .putBoolean("validar5", false).apply()
+                        this.getSharedPreferences("validar6", 0).edit()
+                            .putBoolean("validar6", false).apply()
+                        this.getSharedPreferences("validar7", 0).edit()
+                            .putBoolean("validar7", false).apply()
 
                         // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
-                        val intent_introduccion = abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
+                        val intent_introduccion =
+                            abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
                         startActivity(intent_introduccion)
 
                     }
                 } else {
                     // Si no se reciben los permisos, muestra un mensaje de error
-                    listaDialogos.mostrar_dialog(this, ListaRecursos.permisoDenegado, ListaRecursos.mensajePermisos)
+                    listaDialogos.mostrar_dialog(
+                        this,
+                        ListaRecursos.permisoDenegado,
+                        ListaRecursos.mensajePermisos
+                    )
                 }
                 return
             }
@@ -147,14 +164,14 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
     }
 
     override fun onMapReady(p0: GoogleMap) {
-         TODO("Not yet implemented")
+        TODO("Not yet implemented")
     }
 
     private fun pantallacodigo() {
         // Crea un nuevo layout de tipo LinearLayout
         val layout = LinearLayout(this)
         // Establece los márgenes del layout
-        layout.setPadding(20,10,20,10)
+        layout.setPadding(20, 10, 20, 10)
         // Establece la orientación del layout como vertical
         layout.orientation = LinearLayout.VERTICAL
         // Crea un nuevo TextView
@@ -171,17 +188,26 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
             .setPositiveButton("Nueva partida",
                 DialogInterface.OnClickListener { dialog, which ->
                     // Guarda una preferencia en SharedPreferences y inicia un intent para ir a otra actividad
-                    this.getSharedPreferences("partida",0).edit().putBoolean("partida",true).apply()
-                    this.getSharedPreferences("validar1",0).edit().putBoolean("validar1",false).apply()
-                    this.getSharedPreferences("validar2",0).edit().putBoolean("validar2",false).apply()
-                    this.getSharedPreferences("validar3",0).edit().putBoolean("validar3",false).apply()
-                    this.getSharedPreferences("validar4",0).edit().putBoolean("validar4",false).apply()
-                    this.getSharedPreferences("validar5",0).edit().putBoolean("validar5",false).apply()
-                    this.getSharedPreferences("validar6",0).edit().putBoolean("validar6",false).apply()
-                    this.getSharedPreferences("validar7",0).edit().putBoolean("validar7",false).apply()
+                    this.getSharedPreferences("partida", 0).edit().putBoolean("partida", true)
+                        .apply()
+                    this.getSharedPreferences("validar1", 0).edit().putBoolean("validar1", false)
+                        .apply()
+                    this.getSharedPreferences("validar2", 0).edit().putBoolean("validar2", false)
+                        .apply()
+                    this.getSharedPreferences("validar3", 0).edit().putBoolean("validar3", false)
+                        .apply()
+                    this.getSharedPreferences("validar4", 0).edit().putBoolean("validar4", false)
+                        .apply()
+                    this.getSharedPreferences("validar5", 0).edit().putBoolean("validar5", false)
+                        .apply()
+                    this.getSharedPreferences("validar6", 0).edit().putBoolean("validar6", false)
+                        .apply()
+                    this.getSharedPreferences("validar7", 0).edit().putBoolean("validar7", false)
+                        .apply()
 
                     // Inicia la Activity de Explicaciones, especificando los recursos de dicho apartado
-                    var intent_introduccion = abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
+                    var intent_introduccion =
+                        abrirExplicacion(this, ListaRecursos.pantalla_Introduccion)
                     startActivity(intent_introduccion)
                 })
             .setNegativeButton("Continuar",
@@ -189,7 +215,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
                     val intent = Intent(this, MenuNav::class.java)
                     startActivity(intent)
                 })
-            .setOnDismissListener(){
+            .setOnDismissListener() {
 
             }
 
@@ -199,6 +225,7 @@ class Inicio : AppCompatActivity(), OnMapReadyCallback, Explicaciones {
         // Después mostrarla:
         alertDialogPersonalizado.show();
     }
+
     override fun onBackPressed() {
         System.exit(0)
         Process.killProcess(Process.myPid())

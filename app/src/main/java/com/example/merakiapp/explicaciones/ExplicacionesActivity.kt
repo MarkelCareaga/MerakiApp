@@ -62,13 +62,15 @@ class ExplicacionesActivity : AppCompatActivity() {
         // Controlar que personajes aparecen en cada Activity
         // PATXI
         if (pantallaSeleccionada == san_juan || pantallaSeleccionada == feria_pescado
-            || pantallaSeleccionada == xixili || pantallaSeleccionada == gaztelugatxe) {
+            || pantallaSeleccionada == xixili || pantallaSeleccionada == gaztelugatxe
+        ) {
             binding.imgMiren.visibility = View.INVISIBLE
             animacionVisible = "Patxi"
         }
         // MIREN
         if (pantallaSeleccionada == badatoz || pantallaSeleccionada == olatua
-            || pantallaSeleccionada == izaro) {
+            || pantallaSeleccionada == izaro
+        ) {
             binding.imgPatxi.visibility = View.INVISIBLE
             animacionVisible = "Miren"
         }
@@ -78,7 +80,7 @@ class ExplicacionesActivity : AppCompatActivity() {
         if (this.getSharedPreferences("pref", 0)?.getBoolean("Stop", false) == true) {
             stopService(intent)
 
-            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
 
             // Cambiar el icono del botón
             binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
@@ -171,7 +173,7 @@ class ExplicacionesActivity : AppCompatActivity() {
             contadorPlayPause++
 
             // Comprobar si el número total de pulsaciones es par
-            if (contadorPlayPause %2 == 0) {
+            if (contadorPlayPause % 2 == 0) {
                 // ACCIÓN: PAUSE
                 estadoAudio = "pause"
 
@@ -181,8 +183,8 @@ class ExplicacionesActivity : AppCompatActivity() {
                 // Cambiar el icono del botón
                 binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
 
-                this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
-                this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+                this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
+                this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
 
                 // Detener la animación
                 estadoAnimacion = false
@@ -194,8 +196,8 @@ class ExplicacionesActivity : AppCompatActivity() {
                 // Cambiar el icono del botón
                 binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_pause)
 
-                this.getSharedPreferences("pref",0).edit().putInt("PlayPause",1).apply()
-                this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+                this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 1).apply()
+                this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
 
                 // Activar la animación
                 estadoAnimacion = true
@@ -212,7 +214,7 @@ class ExplicacionesActivity : AppCompatActivity() {
             // Detener el Servicio
             stopService(intent)
 
-            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",true).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", true).apply()
 
             // Cambiar el icono del botón
             binding.btnPlayPause.setImageResource(R.drawable.ic_baseline_audio_play)
@@ -246,8 +248,8 @@ class ExplicacionesActivity : AppCompatActivity() {
 
         // VOLVER
         binding.btnVolver.setOnClickListener {
-            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
-            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
+            this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
 
             // Detener el audio
             stopService(intent)
@@ -259,8 +261,8 @@ class ExplicacionesActivity : AppCompatActivity() {
 
         // SIGUIENTE
         binding.btnSiguiente.setOnClickListener {
-            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
-            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
+            this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
 
             // Detener el audio
             stopService(intent)
@@ -269,7 +271,7 @@ class ExplicacionesActivity : AppCompatActivity() {
             when (pantallaSeleccionada) {
                 intro -> {
                     finish()
-                    startActivity(Intent(this, MenuNav::class.java).putExtra("explicacion",true))
+                    startActivity(Intent(this, MenuNav::class.java).putExtra("explicacion", true))
                 }
                 san_juan -> {
                     finish()
@@ -341,7 +343,8 @@ class ExplicacionesActivity : AppCompatActivity() {
                     binding.imgMiren.visibility = ImageView.INVISIBLE
                     binding.imgMirenBoca.visibility = ImageView.VISIBLE
                     binding.imgMirenBoca.startAnimation(animacion)
-                } else -> {
+                }
+                else -> {
                     binding.imgPatxi.visibility = ImageView.INVISIBLE
                     binding.imgPatxiBoca.visibility = ImageView.VISIBLE
                     binding.imgPatxiBoca.startAnimation(animacion)
@@ -364,7 +367,8 @@ class ExplicacionesActivity : AppCompatActivity() {
                     binding.imgMirenBoca.startAnimation(detenerAnimacion)
                     binding.imgMirenBoca.visibility = ImageView.INVISIBLE
                     binding.imgMiren.visibility = ImageView.VISIBLE
-                } else -> {
+                }
+                else -> {
                     binding.imgPatxiBoca.startAnimation(detenerAnimacion)
                     binding.imgPatxiBoca.visibility = ImageView.INVISIBLE
                     binding.imgPatxi.visibility = ImageView.VISIBLE
@@ -384,8 +388,8 @@ class ExplicacionesActivity : AppCompatActivity() {
         val intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
 
-        this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
-        this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+        this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
+        this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
 
         // Volver a la Activity anterior
         finish()

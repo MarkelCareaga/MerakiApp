@@ -27,8 +27,8 @@ import kotlinx.coroutines.launch
 import java.io.*
 import java.util.*
 
-class NuevoUsuario : AppCompatActivity(){
-    private lateinit var binding : ActivityNuevoUsuarioBinding
+class NuevoUsuario : AppCompatActivity() {
+    private lateinit var binding: ActivityNuevoUsuarioBinding
     private val REQUEST_CODE_TAKE_FOTO = 300
     private val REQUEST_CODE_GALERY = 400
 
@@ -38,7 +38,7 @@ class NuevoUsuario : AppCompatActivity(){
     lateinit var currentsPhotoPath: String
     lateinit var imageUri: Uri
     lateinit var file: File
-    lateinit var imagen:File
+    lateinit var imagen: File
 
 
     @SuppressLint("SuspiciousIndentation")
@@ -58,7 +58,7 @@ class NuevoUsuario : AppCompatActivity(){
             checkPermissionStorage()
         }
 
-        binding.btnFoto.setOnClickListener(){
+        binding.btnFoto.setOnClickListener() {
             // pedir y revisar permisos de camara
             checkPermissionCamera()
         }
@@ -69,97 +69,109 @@ class NuevoUsuario : AppCompatActivity(){
                 // Si el txt no esta vacio
                 // Cogemos el valor del txt
                 val nombre = binding.nombreEt.text.toString()
-                    // Iniciamos una corutina para que no se salte ningun paso y siga el orden
-                    CoroutineScope(Dispatchers.IO).launch {
-                        // llamamos a la funcion para listar todos los usuario de SQLITE
-                        val usuarios = conexion.listaTodos()
-                        // Comprobar si el resultado de la lista tiene o no usuarios
-                        if (usuarios.isNotEmpty()) {
-                            // si tiene usuarios
-                            // comprobar si tenemos foto de camara o seleccionada
-                            if (foto == false) {
-                                /* si no tenemos foto
-                                 *
-                                 *  añadimos usuario con la foto en null a la base de datos
-                                 *  cogemos el valor id del ultimo usuario y le sumamos uno
-                                 *
-                                  */
-                                conexion.insertar_datos(usuarios.last().id + 1, nombre, 0, null)
-                            } else {
-                                /* si tenemos foto
-                                *
-                                *  añadimos usuario con la foto a la base de datos
-                                *  cogemos el valor id del ultimo usuario y le sumamos uno
-                                *
-                                * */
-                                conexion.insertar_datos(usuarios.last().id + 1,
-                                    nombre,
-                                    0,
-                                    currentsPhotoPath)
-                                //volvemos a dar el valor false a foto
-                                foto = false
-                            }
+                // Iniciamos una corutina para que no se salte ningun paso y siga el orden
+                CoroutineScope(Dispatchers.IO).launch {
+                    // llamamos a la funcion para listar todos los usuario de SQLITE
+                    val usuarios = conexion.listaTodos()
+                    // Comprobar si el resultado de la lista tiene o no usuarios
+                    if (usuarios.isNotEmpty()) {
+                        // si tiene usuarios
+                        // comprobar si tenemos foto de camara o seleccionada
+                        if (foto == false) {
+                            /* si no tenemos foto
+                             *
+                             *  añadimos usuario con la foto en null a la base de datos
+                             *  cogemos el valor id del ultimo usuario y le sumamos uno
+                             *
+                              */
+                            conexion.insertar_datos(usuarios.last().id + 1, nombre, 0, null)
                         } else {
-                            // si la lista de ususarios esta vacia
-                            // comprobar si tenemos foto de camara o seleccionada
-
-                            if (foto == false) {
-                                // si no tenemos foto
-                                // añadimos usuario pero sin foto puede ser null -> añadir a la base de datos
-                                // como esta vacia el valor id es 0
-                                conexion.insertar_datos(0, nombre, 0, null)
-                            } else {
-                                // si tenemos foto
-                                // añadimos usuario pero con foto a la base de datos
-                                // como esta vacia el valor id es 0
-                                conexion.insertar_datos(0, nombre, 0, currentsPhotoPath)
-                                //volvemos a dar el valor false a foto
-                                foto = false
-                            }
-
+                            /* si tenemos foto
+                            *
+                            *  añadimos usuario con la foto a la base de datos
+                            *  cogemos el valor id del ultimo usuario y le sumamos uno
+                            *
+                            * */
+                            conexion.insertar_datos(
+                                usuarios.last().id + 1,
+                                nombre,
+                                0,
+                                currentsPhotoPath
+                            )
+                            //volvemos a dar el valor false a foto
+                            foto = false
                         }
-                        /*
-                            al finalzar la corutina nos vamos al activity de seleccionar el
-                            jugador y veremos el nuevo usuario
-                        */
-                        startActivity(Intent(this@NuevoUsuario, SeleccionarUsuario::class.java))
-                        // finaalizamos este activity para que no quede abierta
-                        this@NuevoUsuario.finish()
-                    }
+                    } else {
+                        // si la lista de ususarios esta vacia
+                        // comprobar si tenemos foto de camara o seleccionada
 
-            }else{
+                        if (foto == false) {
+                            // si no tenemos foto
+                            // añadimos usuario pero sin foto puede ser null -> añadir a la base de datos
+                            // como esta vacia el valor id es 0
+                            conexion.insertar_datos(0, nombre, 0, null)
+                        } else {
+                            // si tenemos foto
+                            // añadimos usuario pero con foto a la base de datos
+                            // como esta vacia el valor id es 0
+                            conexion.insertar_datos(0, nombre, 0, currentsPhotoPath)
+                            //volvemos a dar el valor false a foto
+                            foto = false
+                        }
+
+                    }
+                    /*
+                        al finalzar la corutina nos vamos al activity de seleccionar el
+                        jugador y veremos el nuevo usuario
+                    */
+                    startActivity(Intent(this@NuevoUsuario, SeleccionarUsuario::class.java))
+                    // finaalizamos este activity para que no quede abierta
+                    this@NuevoUsuario.finish()
+                }
+
+            } else {
                 // mensaje de para que introduzas un nombre al usuario
-                Toast.makeText(this,getString(R.string.nombreUsuarioError),Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.nombreUsuarioError), Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
+
     //Revisar permisos de camara
     private fun checkPermissionCamera() {
         // revisar si la version de movil es igual o mayor al andorid 9
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             // revisar si la version de movil es igual o mayor al andorid 10
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 // Revisar si los permisos estan concedidos
-            if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
-                // si los permisos están concedidos
-                // se llama a la funcio de camara
-                sacaFoto();
-                }else{
-                // si los permisos no están concedidos
-                // se pìden los permisos
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
+                    // si los permisos están concedidos
+                    // se llama a la funcio de camara
+                    sacaFoto();
+                } else {
+                    // si los permisos no están concedidos
+                    // se pìden los permisos
                     ActivityCompat.requestPermissions(
                         this,
                         arrayOf(Manifest.permission.CAMERA),
                         REQUEST_CODE_TAKE_FOTO
                     )
                 }
-            }else{
+            } else {
                 // Revisar si los permisos estan concedidos
-                if(ActivityCompat.checkSelfPermission(this,Manifest.permission.CAMERA)== PackageManager.PERMISSION_GRANTED){
+                if (ActivityCompat.checkSelfPermission(
+                        this,
+                        Manifest.permission.CAMERA
+                    ) == PackageManager.PERMISSION_GRANTED
+                ) {
                     // si los permisos están concedidos
                     // se llama a la funcio de camara
                     sacaFoto();
-                }else{
+                } else {
                     // si los permisos no están concedidos
                     // se pìden los permisos
                     ActivityCompat.requestPermissions(
@@ -171,14 +183,17 @@ class NuevoUsuario : AppCompatActivity(){
             }
         }
     }
+
     //Revisar permisos de galeria
     private fun checkPermissionStorage() {
         // revisar si la version de movil es igual o mayor al andorid 10
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
             // Revisar si los permisos estan concedidos
 
-            if (ActivityCompat.checkSelfPermission(this,
-                    Manifest.permission.ACCESS_MEDIA_LOCATION) == PackageManager.PERMISSION_GRANTED
+            if (ActivityCompat.checkSelfPermission(
+                    this,
+                    Manifest.permission.ACCESS_MEDIA_LOCATION
+                ) == PackageManager.PERMISSION_GRANTED
             ) {
                 // si los permisos están concedidos
                 // se llama a la galeria
@@ -193,41 +208,43 @@ class NuevoUsuario : AppCompatActivity(){
 
                 )
             }
-        // revisar si la version de movil no es igual o mayor al andorid 10
-        }else{
+            // revisar si la version de movil no es igual o mayor al andorid 10
+        } else {
             // revisar si la version de movil es igual o mayor al andorid 9
             // en andorid 9 no hace falta pedir permisos de galeria
-            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                 // se llama a la galeria
                 galeria();
             }
         }
     }
+
     //abrir galeria
     private fun galeria() {
         //llamamos al controlador donde esta el metodo de abrir galeria
-        ImageController.selectPhotoFromGallery(this,REQUEST_CODE_GALERY)
+        ImageController.selectPhotoFromGallery(this, REQUEST_CODE_GALERY)
         // dar valor a foto de true
         foto = true
     }
+
     // Abrir camara y guardar foto en el movil
     private fun sacaFoto() {
         // llamamos a la camara
         val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
         // comprobamos el valor de la accion no sea null
-        if (intent.resolveActivity(packageManager)!= null){
+        if (intent.resolveActivity(packageManager) != null) {
             // creamos un file
-            var photoFile : File? = null
+            var photoFile: File? = null
 
             try {
                 //llamamos a la funcion de crear archivo
-                photoFile= createFile()
-            } catch(e:IOException) {
+                photoFile = createFile()
+            } catch (e: IOException) {
                 // por si da error al crear el archivo
                 e.printStackTrace()
             }
             // comprobar si el archivo no es nulo
-            if (photoFile!= null){
+            if (photoFile != null) {
                 // si no es nulo
                 // decimos los permisos de proveedor y donde vamos a guardar el FILE
                 val photoUri = FileProvider.getUriForFile(
@@ -236,7 +253,7 @@ class NuevoUsuario : AppCompatActivity(){
                     photoFile
                 )
                 // Seleccioanr imagen guardada
-                intent.putExtra(MediaStore.EXTRA_OUTPUT,photoUri)
+                intent.putExtra(MediaStore.EXTRA_OUTPUT, photoUri)
                 // dar valor a foto de true
                 foto = true
                 // llamar a la funcion para obtener el resultado de la accion
@@ -244,8 +261,9 @@ class NuevoUsuario : AppCompatActivity(){
             }
         }
     }
+
     // funcion para crear la imagen de la Camara
-    private fun createFile(): File  {
+    private fun createFile(): File {
 
         // Tiempo del sistema de cuando se saca la foto
         val timestamp = SimpleDateFormat("yyyyMMdd_HH-mm-ss", Locale.getDefault()).format(Date())
@@ -254,11 +272,11 @@ class NuevoUsuario : AppCompatActivity(){
         // donde se va a ubicar
         val storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         // crear el archivo con el nombre, la direccion y de que tipo va a ser el archivo
-         imagen = File.createTempFile(
-                imgFilename,
-                ".jpg",
-                storageDir
-            )
+        imagen = File.createTempFile(
+            imgFilename,
+            ".jpg",
+            storageDir
+        )
         // recoger la ruta de la imagen
         currentsPhotoPath = imagen.absolutePath
         //devolver la imagen
@@ -273,17 +291,17 @@ class NuevoUsuario : AppCompatActivity(){
         grantResults: IntArray,
     ) {
         // comprobar si la variable de respuesta es la misma a la definida y enviada al ejecutar la camara
-        if (requestCode == REQUEST_CODE_TAKE_FOTO){
+        if (requestCode == REQUEST_CODE_TAKE_FOTO) {
             // verificar si tiene los permisos de la camara
-            if(permissions.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED ) {
+            if (permissions.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // llamar a la funcion de foto
                 sacaFoto()
             }
         }
         // comprobar si la variable de respuesta es la misma a la definida y enviada al ejecutar la galeria
-        else if(requestCode == REQUEST_CODE_GALERY){
+        else if (requestCode == REQUEST_CODE_GALERY) {
             // verificar si tiene los permisos de la galeria
-            if(permissions.size >0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+            if (permissions.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // llamar a la funcion de galeria
                 galeria()
             }
@@ -328,9 +346,16 @@ class NuevoUsuario : AppCompatActivity(){
                                 // si no esta vacia
                                 // llamamos al controlador de imagenes de galeria y llamamos para guardar la imagen
                                 //cogemos el valor id del ultimo usuario y le sumamos uno
-                                ImageController.saveImage(this@NuevoUsuario,usuarios.last().id + 1,it )
+                                ImageController.saveImage(
+                                    this@NuevoUsuario,
+                                    usuarios.last().id + 1,
+                                    it
+                                )
                                 // llamamos a la funcion para recuperar la imagen
-                                currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, usuarios.last().id + 1)
+                                currentsPhotoPath = ImageController.getImageUri(
+                                    this@NuevoUsuario,
+                                    usuarios.last().id + 1
+                                )
                                     .toString()
 
 
@@ -338,10 +363,11 @@ class NuevoUsuario : AppCompatActivity(){
                                 // si esta vacia
                                 // llamamos al controlador de imagenes de galeria y llamamos para guardar la imagen
                                 // como esta vacia el valor id es 0
-                                ImageController.saveImage(this@NuevoUsuario,0 ,it )
+                                ImageController.saveImage(this@NuevoUsuario, 0, it)
                                 // llamamos a la funcion para recuperar la imagen
-                                currentsPhotoPath = ImageController.getImageUri(this@NuevoUsuario, 0 )
-                                    .toString()
+                                currentsPhotoPath =
+                                    ImageController.getImageUri(this@NuevoUsuario, 0)
+                                        .toString()
                             }
                         }
                         // insertamos la imagen guardada al ImageView

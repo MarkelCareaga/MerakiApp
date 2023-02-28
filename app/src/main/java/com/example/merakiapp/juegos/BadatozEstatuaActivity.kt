@@ -23,9 +23,8 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityBadatozEstatuaBinding
-    private lateinit var imagen : ImageView
+    private lateinit var imagen: ImageView
     var estadoAudio = ""
-
 
 
     private var listaDialogos = ListaDialogos()
@@ -146,6 +145,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
             size.set(view.width, view.height)
             touch.set(view.width / 3, view.height / 1)
         }
+
         // Este método se encarga de dibujar la imagen en el canvas y ocultando la imagen original
         override fun onDrawShadow(canvas: Canvas) {
             v.draw(canvas)
@@ -170,7 +170,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
         imagen = v as ImageView
         val myShadow = MyDragShadowBuilder(v)
 
-        v.startDragAndDrop(dragData, myShadow,null,0)
+        v.startDragAndDrop(dragData, myShadow, null, 0)
         true
     }
 
@@ -241,7 +241,8 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
             // Acción detectada: Fin del evento de arrastre
             DragEvent.ACTION_DRAG_ENDED -> {
                 true
-            } else -> {
+            }
+            else -> {
                 false
             }
         }
@@ -252,7 +253,7 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
     // Función para comprobar el resultado del juego
     private fun comprobarpuzzle() {
         // Resultado CORRECTO
-       if (
+        if (
             binding.imagen1target.alpha.toInt() == 255
             && binding.imagen2target.alpha.toInt() == 255
             && binding.imagen3target.alpha.toInt() == 255
@@ -261,30 +262,32 @@ class BadatozEstatuaActivity : AppCompatActivity(), Explicaciones {
             && binding.imagen6target.alpha.toInt() == 255
             && binding.imagen7target.alpha.toInt() == 255
             && binding.imagen8target.alpha.toInt() == 255
-            && binding.imagen9target.alpha.toInt() == 255) {
-                binding.gifAplausosBadatoz.visibility = ImageView.VISIBLE
+            && binding.imagen9target.alpha.toInt() == 255
+        ) {
+            binding.gifAplausosBadatoz.visibility = ImageView.VISIBLE
 
-           // Mostrar Gif de aplausos
-           mostrarGif()
+            // Mostrar Gif de aplausos
+            mostrarGif()
 
-           // Reproducir el audio de Gritos
-           estadoAudio = "play"
-           iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
+            // Reproducir el audio de Gritos
+            estadoAudio = "play"
+            iniciarServicioAudio(estadoAudio, ListaRecursos.audio_Gritos)
 
-           // Elementos a ocultar
-           binding.btnComprobarBadatoz.visibility = Button.GONE
-           binding.btnVolverExplicacionBadatoz.visibility = Button.GONE
+            // Elementos a ocultar
+            binding.btnComprobarBadatoz.visibility = Button.GONE
+            binding.btnVolverExplicacionBadatoz.visibility = Button.GONE
 
-           // Elementos a mostrar
-           binding.btnFinalizarBadatoz.visibility = Button.VISIBLE
+            // Elementos a mostrar
+            binding.btnFinalizarBadatoz.visibility = Button.VISIBLE
 
-       } else {
-           // Resultado INCORRECTO
-           // Resetear la Activity
-           finish()
-           startActivity(Intent(this, BadatozEstatuaActivity::class.java)
-               .putExtra("resultadoJuego", "mal")
-           )
+        } else {
+            // Resultado INCORRECTO
+            // Resetear la Activity
+            finish()
+            startActivity(
+                Intent(this, BadatozEstatuaActivity::class.java)
+                    .putExtra("resultadoJuego", "mal")
+            )
         }
     }
 

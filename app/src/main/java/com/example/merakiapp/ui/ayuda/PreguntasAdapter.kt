@@ -7,14 +7,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.merakiapp.R
 import com.example.merakiapp.databinding.ItemPreguntaBinding
 
-class PreguntasAdapter(private val preguntas:List<Pregunta>) : RecyclerView.Adapter<PreguntasAdapter.ViewHolder>() {
+class PreguntasAdapter(private val preguntas: List<Pregunta>) :
+    RecyclerView.Adapter<PreguntasAdapter.ViewHolder>() {
 
     // Encargado de crear el viewholder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         // Infla el archivo de diseño item_pregunta
-        val view=LayoutInflater
+        val view = LayoutInflater
             .from(parent.context)
-            .inflate(R.layout.item_pregunta,parent,false)
+            .inflate(R.layout.item_pregunta, parent, false)
         // Devuelve una instancia de ViewHolder
         return ViewHolder(view)
     }
@@ -24,16 +25,18 @@ class PreguntasAdapter(private val preguntas:List<Pregunta>) : RecyclerView.Adap
         // llama al metodo bind del viewholder
         holder.bind(preguntas[position])
     }
+
     // Devuelve el número de elementos en la lista de preguntas
     override fun getItemCount(): Int = preguntas.size
 
-    class ViewHolder(view:View) : RecyclerView.ViewHolder(view){
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         // Variable de enlace del layout item_pregunta
-        val binding=ItemPreguntaBinding.bind(view)
+        val binding = ItemPreguntaBinding.bind(view)
+
         // Metodo para establecer la pregunta y respuesta en las vistas correspondientes
         fun bind(pregunta: Pregunta) {
-                binding.Pregunta.text = pregunta.Pregunta.toString()
-                binding.Respuesta.text = pregunta.Respuesta.toString()
+            binding.Pregunta.text = pregunta.Pregunta.toString()
+            binding.Respuesta.text = pregunta.Respuesta.toString()
         }
     }
 

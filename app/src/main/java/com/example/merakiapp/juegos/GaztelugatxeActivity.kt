@@ -64,7 +64,8 @@ class GaztelugatxeActivity() : AppCompatActivity(), Explicaciones {
         // -------------------------------------------------------------------------
         // FONDO
         val activityGaztelugatxe = binding.activityGaztelugatxe
-        activityGaztelugatxe.background = resources.getDrawable(ListaRecursos.fondo_Gaztelugatxe, theme)
+        activityGaztelugatxe.background =
+            resources.getDrawable(ListaRecursos.fondo_Gaztelugatxe, theme)
 
         // Ocultar el GIF de los aplausos
         binding.gifAplausos.visibility = ImageView.INVISIBLE

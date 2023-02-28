@@ -61,7 +61,8 @@ class PuertaSanJuanActivity : AppCompatActivity(), Explicaciones {
         // -------------------------------------------------------------------------
         // FONDO
         val activityPuertaSanJuan = binding.activityPuertaSanJuan
-        activityPuertaSanJuan.background = resources.getDrawable(ListaRecursos.fondo_PuertaSanJuan, theme)
+        activityPuertaSanJuan.background =
+            resources.getDrawable(ListaRecursos.fondo_PuertaSanJuan, theme)
 
         // Ocultar el GIF de los aplausos
         binding.gifAplausosPuertaSanJuan.visibility = ImageView.INVISIBLE

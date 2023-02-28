@@ -77,7 +77,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
 
     // LISTA Y CONTADOR
     // Lista para asociar valores a cada botón
-    private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5,6,6)
+    private val listaParejas = listOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6)
     private var contador = -1
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -98,7 +98,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
-        if(resultadoJuego == "mal") {
+        if (resultadoJuego == "mal") {
             listaDialogos.mostrar_fallo_juego(this)
         }
 
@@ -305,7 +305,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
     // Función para controlar que columna de botones ha sido seleccionada
     private fun controlBotones(btnValor: ImageButton) {
         if (btnValor == btn11 || btnValor == btn21 || btnValor == btn31
-            || btnValor == btn41 || btnValor == btn51 || btnValor == btn61) {
+            || btnValor == btn41 || btnValor == btn51 || btnValor == btn61
+        ) {
             estadoBotonesIzquierda(false)
             estadoBotonesDerecha(true)
         } else {
@@ -326,6 +327,7 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
         if (estado_btn51) btn51.isEnabled = estado
         if (estado_btn61) btn61.isEnabled = estado
     }
+
     private fun estadoBotonesDerecha(estado: Boolean) {
         if (estado_btn12) btn12.isEnabled = estado
         if (estado_btn22) btn22.isEnabled = estado
@@ -394,7 +396,8 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
     // Función para comprobar el resultado de las respuestas
     private fun comprobarRespuestas() {
         if ((boton11 == boton22) && (boton21 == boton52) && (boton31 == boton12)
-            && (boton41 == boton42) && (boton51 == boton32) && (boton61 == boton62)) {
+            && (boton41 == boton42) && (boton51 == boton32) && (boton61 == boton62)
+        ) {
 
             // Elementos a ocultar
             btnVolver.visibility = Button.GONE
@@ -414,8 +417,9 @@ class OlatuaEstatuaActivity : AppCompatActivity(), Explicaciones {
         } else {
             // Resetear el juego
             finish()
-            startActivity(Intent(this, OlatuaEstatuaActivity::class.java)
-                .putExtra("resultadoJuego", "mal")
+            startActivity(
+                Intent(this, OlatuaEstatuaActivity::class.java)
+                    .putExtra("resultadoJuego", "mal")
             )
         }
     }
