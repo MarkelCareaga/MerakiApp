@@ -145,11 +145,12 @@ class ChatFragment : Fragment() {
                     _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
                     if (mensajesAdapter.itemCount > 0) {
                         _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
-
                     }
                 }
             }
-            .setNegativeButton(getString(R.string.cancelar), null)
+            .setCancelable(false)
+            .setNegativeButton(getString(R.string.cancelar)){_,_ ->
+            }
             .create()
         dialog.show()
     }
