@@ -143,6 +143,10 @@ class ChatFragment : Fragment() {
                     mensajesAdapter =
                         MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
                     _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+                    if (mensajesAdapter.itemCount > 0) {
+                        _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
+
+                    }
                 }
             }
             .setNegativeButton(getString(R.string.cancelar), null)
@@ -160,6 +164,9 @@ class ChatFragment : Fragment() {
             sleep(2000)
             mensajesAdapter = MensajeAdapter(ServicioChat.mensajes, ServicioChat.socketId, sala)
             _binding!!.mensajesRecyclerView.adapter = mensajesAdapter
+            if (mensajesAdapter.itemCount > 0) {
+                _binding!!.mensajesRecyclerView.smoothScrollToPosition(mensajesAdapter.itemCount - 1)
+            }
             println(ServicioChat.mensajes)
         }
     }
