@@ -11,10 +11,12 @@ import com.example.merakiapp.databinding.FragmentAyudaBinding
 class AyudaFragment : Fragment() {
 
     private var _binding: FragmentAyudaBinding? = null
+
     // Declara una variable "preguntas" de tipo List<Pregunta> que es una variable lateinit
     lateinit private var preguntas: List<Pregunta>
+
     // Declara una variable "PreguntasAdapter" de tipo PreguntasAdapter
-    private lateinit var preguntasAdapter :PreguntasAdapter
+    private lateinit var preguntasAdapter: PreguntasAdapter
 
     // Esta propiedad solo es válida entre onCreateView y onDestroyView.
     private val binding get() = _binding!!
@@ -30,8 +32,9 @@ class AyudaFragment : Fragment() {
 
         return binding.root
     }
+
     // este método se llama inmediatamente después de onCreateView
-    override fun onViewCreated(view:View,savedInstanceState: Bundle?) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // Aqui se llama a la funcion cargarPreguntas
         cargarPreguntas()
@@ -46,12 +49,12 @@ class AyudaFragment : Fragment() {
     }
 
     // este método se utiliza para cargar preguntas
-    private fun cargarPreguntas (){
+    private fun cargarPreguntas() {
         // las preguntas se definen predefinidos aquí
-        preguntas= listOf(
-            Pregunta(R.string.pregunta1, R.string.respuesta1),
-            Pregunta(R.string.pregunta2, R.string.respuesta2),
-            Pregunta(R.string.pregunta3, R.string.respuesta3)
+        preguntas = listOf(
+            Pregunta(resources.getString(R.string.pregunta1), resources.getString(R.string.respuesta1)),
+            Pregunta(resources.getString(R.string.pregunta2), resources.getString(R.string.respuesta2)),
+            Pregunta(resources.getString(R.string.pregunta3), resources.getString(R.string.respuesta3))
         )
     }
 }

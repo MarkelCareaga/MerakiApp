@@ -15,7 +15,7 @@ import com.example.merakiapp.listas.ListaDialogos
 import com.example.merakiapp.listas.ListaRecursos
 import com.example.merakiapp.servicios.ServicioAudios
 
-class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
+class FeriaPescadoActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityFeriaPescadoBinding
     var estadoAudio = ""
 
@@ -68,7 +68,7 @@ class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
     private var screenSize: Boolean = false
 
     // Lista para asociar valores a cada botón
-    private val listaParejas = listOf(1,1,2,2,3,3,4,4,5,5)
+    private val listaParejas = listOf(1, 1, 2, 2, 3, 3, 4, 4, 5, 5)
     private var contador = -1
 
 
@@ -119,7 +119,8 @@ class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
         // ------------------------------------------------------------------------
         // FONDO
         val activityFeriaPescado = binding.activityFeriaPescado
-        activityFeriaPescado.background = resources.getDrawable(ListaRecursos.fondo_FeriaPescado, theme)
+        activityFeriaPescado.background =
+            resources.getDrawable(ListaRecursos.fondo_FeriaPescado, theme)
 
         // BOTONES
         btn11 = binding.btn11
@@ -278,8 +279,7 @@ class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
     // ---------------------- FUNCIONES ADICIONALES ----------------------
     // Función para controlar que columna de botones ha sido seleccionada
     private fun controlBotones(btnValor: ImageButton) {
-        if (btnValor == btn11 || btnValor == btn21 || btnValor == btn31
-            || btnValor == btn41 || btnValor == btn51) {
+        if (btnValor == btn11 || btnValor == btn21 || btnValor == btn31 || btnValor == btn41 || btnValor == btn51) {
             estadoBotonesIzquierda(false)
             estadoBotonesDerecha(true)
         } else {
@@ -354,8 +354,7 @@ class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
 
     // Función para comprobar el resultado de las respuestas
     private fun comprobarRespuestas() {
-        if ((boton11 == boton52) && (boton21 == boton42) && (boton31 == boton22)
-            && (boton41 == boton32) && (boton51 == boton12)) {
+        if ((boton11 == boton52) && (boton21 == boton42) && (boton31 == boton22) && (boton41 == boton32) && (boton51 == boton12)) {
 
             // Elementos a ocultar
             btnVolver.visibility = Button.GONE
@@ -375,8 +374,8 @@ class FeriaPescadoActivity: AppCompatActivity(), Explicaciones {
         } else {
             // Resetear el juego
             finish()
-            startActivity(Intent(this, FeriaPescadoActivity::class.java)
-                .putExtra("resultadoJuego", "mal")
+            startActivity(
+                Intent(this, FeriaPescadoActivity::class.java).putExtra("resultadoJuego", "mal")
             )
         }
     }

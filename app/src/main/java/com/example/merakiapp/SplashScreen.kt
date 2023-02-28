@@ -32,30 +32,30 @@ class SplashScreen : AppCompatActivity() {
         val progressBar = findViewById<ProgressBar>(R.id.progressBar)
 
         // Crea un ObjectAnimator para animar el progreso del ProgressBar
-        val progressAnimator = ObjectAnimator.ofInt(progressBar,"progress",0,100)
+        val progressAnimator = ObjectAnimator.ofInt(progressBar, "progress", 0, 100)
 
         // La barra de progeso durara 2 segundos
         progressAnimator.duration = 2000
         progressAnimator.interpolator = LinearInterpolator()
         progressAnimator.start()
 
-        val progreso= findViewById<TextView>(R.id.txtPorcentaje)
+        val progreso = findViewById<TextView>(R.id.txtPorcentaje)
         Thread(Runnable {
-            for (i in 0 .. 100) {
+            for (i in 0..100) {
                 Thread.sleep(duracion_splash.tiempo_hilo())
-                runOnUiThread {progreso.text = "$i%" }
+                runOnUiThread { progreso.text = "$i%" }
             }
         }).start()
 
-        val intent = Intent(this,Inicio::class.java)
+        val intent = Intent(this, Inicio::class.java)
 
         // Crea un temporizador para cambiar a la siguiente actividad después del tiempo de pantalla de bienvenida
-        Timer().schedule(object : TimerTask(){
+        Timer().schedule(object : TimerTask() {
             override fun run() {
                 startActivity(intent)
                 finish()
             }
-        },duracion_splash.milisegundos())
+        }, duracion_splash.milisegundos())
     }
 
     // Funciones de extensión

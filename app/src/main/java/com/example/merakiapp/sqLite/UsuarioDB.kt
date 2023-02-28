@@ -6,24 +6,29 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 
-class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null, 1) {
+class UsuarioDB(context: Context) : SQLiteOpenHelper(context, "UsuarioDB.db", null, 1) {
     companion object {
         // nombre de la tabla
         const val NOMBRE_TABLA = "usuarios"
+
         // campos de la tabla
         //id de la tabla
         const val CAMPO_ID = "id"
+
         //nombre Usuario  de la tabla
         const val CAMPO_NAME_USUARIO = "nombreUsuario"
+
         //Pasos usuarios de la tabla
         const val CAMPO_PASOS_USUARIOS = "pasosUsuarios"
+
         //Pasos usuarios de la tabla
         const val CAMPO_IMAGEN = "imageUsuario"
     }
 
     override fun onCreate(db: SQLiteDatabase?) {
         // creamos la tabla con las referencias del companion object
-        val crear = "CREATE TABLE $NOMBRE_TABLA ($CAMPO_ID INTEGER PRIMARY KEY, $CAMPO_NAME_USUARIO TEXT, $CAMPO_PASOS_USUARIOS INTEGER, $CAMPO_IMAGEN TEXT)"
+        val crear =
+            "CREATE TABLE $NOMBRE_TABLA ($CAMPO_ID INTEGER PRIMARY KEY, $CAMPO_NAME_USUARIO TEXT, $CAMPO_PASOS_USUARIOS INTEGER, $CAMPO_IMAGEN TEXT)"
         // creamos la tabla en el room y nunca va a ser nulla
         db!!.execSQL(crear)
     }
@@ -37,7 +42,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         onCreate(db)
     }
 
-    fun insertar_datos(id:Int, nombreUsuario:String, pasosUsuario:Int, imagen: String?){
+    fun insertar_datos(id: Int, nombreUsuario: String, pasosUsuario: Int, imagen: String?) {
         //decimos que la tabla es modificable y de lectura
         val db = this.writableDatabase
         /*
@@ -51,7 +56,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
          */
         //FORMA 2 DE HACERLO
         //datos coge el valor del contenido
-        val datos = ContentValues().apply{
+        val datos = ContentValues().apply {
             //añadimos a datos los valores que queremos pasar a la tabla
             put(CAMPO_ID, id)
             put(CAMPO_NAME_USUARIO, nombreUsuario)
@@ -64,7 +69,7 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         db.insert(NOMBRE_TABLA, null, datos)
     }
 
-    fun listaTodos(): MutableList<Usuario>{
+    fun listaTodos(): MutableList<Usuario> {
         // creamos una lista tipo Alumnos
         val listaAlumnos: MutableList<Usuario> = arrayListOf()
         //decimos que la tabla sea de lectura
@@ -72,16 +77,21 @@ class UsuarioDB(context: Context): SQLiteOpenHelper(context,"UsuarioDB.db", null
         //recogemos en el select en una variable
         val cursor = db.rawQuery("SELECT * FROM $NOMBRE_TABLA", null)
         // nos movemos al primero de la tabla
-        if (cursor.moveToFirst()){
+        if (cursor.moveToFirst()) {
             //si hay valores en la tabla
-            do{
+            do {
                 // añadimos a una variable los datos que hemos obtenido del cursor en
-                val todo = Usuario(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3))
+                val todo = Usuario(
+                    cursor.getInt(0),
+                    cursor.getString(1),
+                    cursor.getInt(2),
+                    cursor.getString(3)
+                )
                 // añadimos a la lista los valores de
                 listaAlumnos.add(todo)
             }
             // se ejecutara mientras haya datos en las siguientes filas
-            while(cursor.moveToNext())
+            while (cursor.moveToNext())
         }
         //se devuelve listaAlumnos
         return listaAlumnos

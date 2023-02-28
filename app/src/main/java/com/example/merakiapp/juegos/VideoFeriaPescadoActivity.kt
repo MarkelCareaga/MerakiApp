@@ -45,7 +45,8 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Explicaciones {
         // -------------------------------------------------------------------------
         // FONDO
         val activityVideoFeriaPescado = binding.activityVideoFeriaPescado
-        activityVideoFeriaPescado.background = resources.getDrawable(ListaRecursos.fondo_FeriaPescado, theme)
+        activityVideoFeriaPescado.background =
+            resources.getDrawable(ListaRecursos.fondo_FeriaPescado, theme)
 
         // VIDEO PLAYER
         reproducirVideo()
@@ -55,8 +56,8 @@ class VideoFeriaPescadoActivity : AppCompatActivity(), Explicaciones {
         binding.btnVolverDesdeVideo.setOnClickListener {
             finish()
 
-            this.getSharedPreferences("pref",0).edit().putInt("PlayPause",0).apply()
-            this.getSharedPreferences("pref",0).edit().putBoolean("Stop",false).apply()
+            this.getSharedPreferences("pref", 0).edit().putInt("PlayPause", 0).apply()
+            this.getSharedPreferences("pref", 0).edit().putBoolean("Stop", false).apply()
 
             val intent_feria_pescado = abrirExplicacion(this, ListaRecursos.pantalla_FeriaPescado)
             startActivity(intent_feria_pescado)

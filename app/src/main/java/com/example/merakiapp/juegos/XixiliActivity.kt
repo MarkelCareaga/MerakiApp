@@ -23,7 +23,7 @@ import com.example.merakiapp.servicios.ServicioAudios
 
 class XixiliActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityXixiliBinding
-    private lateinit var imagen : ImageView
+    private lateinit var imagen: ImageView
     private var estadoAudio = ""
 
     private var listaDialogos = ListaDialogos()
@@ -43,7 +43,7 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
         // Comprobar si el juego ha sido reiniciado.
         // En dicho caso, mostrará un aviso sobre que el resultado del juego es incorrecto.
         val resultadoJuego = intent.getStringExtra("resultadoJuego").toString()
-        if(resultadoJuego == "mal") {
+        if (resultadoJuego == "mal") {
             listaDialogos.mostrar_fallo_juego(this)
         }
 
@@ -100,7 +100,7 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
 
         // -------------------------- CONTROL DE BOTONES --------------------------
         // COMPROBAR
-        binding.btnComprobarXixili.setOnClickListener{
+        binding.btnComprobarXixili.setOnClickListener {
             comprobarpuzzle()
         }
 
@@ -131,6 +131,7 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
             size.set(view.width, view.height)
             touch.set(view.width / 3, view.height / 1)
         }
+
         override fun onDrawShadow(canvas: Canvas) {
             v.draw(canvas)
             v.setVisibility(ImageView.INVISIBLE)
@@ -154,7 +155,7 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
         imagen = v as ImageView
         val myShadow = MyDragShadowBuilder(v)
 
-        v.startDragAndDrop(dragData, myShadow,null,0)
+        v.startDragAndDrop(dragData, myShadow, null, 0)
         true
     }
 
@@ -204,19 +205,21 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
 
             DragEvent.ACTION_DRAG_ENDED -> {
                 true
-            } else -> {
+            }
+            else -> {
                 false
             }
         }
     }
 
     // Función para comprobar el resultado
-    private fun comprobarpuzzle(){
+    private fun comprobarpuzzle() {
         if (
             binding.imgTexto1original.getAlpha().toInt() == 255
             && binding.imgTexto2original.getAlpha().toInt() == 255
             && binding.imgTexto3original.getAlpha().toInt() == 255
-            && binding.imgTexto4original.getAlpha().toInt() == 255) {
+            && binding.imgTexto4original.getAlpha().toInt() == 255
+        ) {
             binding.gifAplausosXixili.visibility = ImageView.VISIBLE
 
             // Mostrar Gif de aplausos
@@ -236,8 +239,9 @@ class XixiliActivity : AppCompatActivity(), Explicaciones {
         } else {
             // Resetear el juego
             finish()
-            startActivity(Intent(this, XixiliActivity::class.java)
-                .putExtra("resultadoJuego", "mal")
+            startActivity(
+                Intent(this, XixiliActivity::class.java)
+                    .putExtra("resultadoJuego", "mal")
             )
         }
     }

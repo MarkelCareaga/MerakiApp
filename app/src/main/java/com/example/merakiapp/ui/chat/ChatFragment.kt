@@ -70,7 +70,8 @@ class ChatFragment : Fragment() {
         this.requireContext().startService(intent)
 
         dialogoSala()
-        LocalBroadcastManager.getInstance(requireContext()).registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
+        LocalBroadcastManager.getInstance(requireContext())
+            .registerReceiver(mMessageReceiver, IntentFilter("mensajes"))
 
         val datosUsuario = activity?.getSharedPreferences("datosUsuario", 0)
         nombre = datosUsuario!!.getString("nombre", "").toString()

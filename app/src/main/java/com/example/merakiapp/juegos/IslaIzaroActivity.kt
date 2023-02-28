@@ -29,7 +29,7 @@ import org.json.JSONObject
 class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
     private lateinit var binding: ActivityIslaIzaroBinding
     private lateinit var sala: String
-    private lateinit var estadoAudio :String
+    private lateinit var estadoAudio: String
     var socket = IO.socket("https://merakiapp-servicio-multijugador.glitch.me")
     var boolean = false
     private var usuario1: Boolean = false
@@ -51,17 +51,17 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         socket.connect()
 
         // Definimos que no se ven al princpio de la actividad
-        binding.txtBuscaarJugador?.visibility  = View.GONE
-        binding.cargar?.visibility  = View.GONE
+        binding.txtBuscaarJugador?.visibility = View.GONE
+        binding.cargar?.visibility = View.GONE
         binding.constraintLayout3.visibility = View.GONE
         binding.versus.visibility = View.GONE
         binding.txtOponente.visibility = View.GONE
-        binding.imagenOponente.visibility= View.GONE
+        binding.imagenOponente.visibility = View.GONE
         binding.btnFinalizarCarrera?.visibility = View.GONE
         binding.gifAplausosCarrera?.visibility = View.GONE
         binding.btnJugar.visibility = View.GONE
         binding.constraintLayout3.visibility = View.GONE
-        
+
         // Los seekbars no se puden desplazar con los dedos 
         binding.barraOponente?.isEnabled = false
         binding.barraUsuario?.isEnabled = false
@@ -83,9 +83,9 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
             binding.imagenUsuario.setImageURI(imagen.toUri())
         }
 
-       
+
         // Llamamos al metodo del socket para actualizar los valores de los usuarios
-        socket.on("actualizarJuego"){usuarioString->
+        socket.on("actualizarJuego") { usuarioString ->
             // Hacemos un runOnUiThread para que no se salte niguns salto y carge bien los datos
             runOnUiThread {
                 // Pasamos a un JSONarray todos los usuarios
@@ -98,8 +98,8 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                     if (objeto["idcode"] == socket.id()) {
                         // Si tiene la misma id, es el jugador 1 (propietario del dispositivo)
                         // Le damos los valores del nombre al usuario con los datos que recibimpos del socket
-                        binding.txtUsuario.text = ""+objeto["nombre"]
-                        binding.txtUser?.text = ""+objeto["nombre"]
+                        binding.txtUsuario.text = "" + objeto["nombre"]
+                        binding.txtUser?.text = "" + objeto["nombre"]
                         // Le damos los valores de los puntos al usuario con los datos que recibimpos del socket
                         binding.barraUsuario?.progress = objeto.getInt("punto")
                         // Le damos el valor del audio que recogemos del socket
@@ -107,10 +107,10 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
 
                     } else {
                         // Si es el oponente...
-                        if (!jsonarray.getJSONObject(1).isNull("nombre")){
+                        if (!jsonarray.getJSONObject(1).isNull("nombre")) {
                             // Escondemos el txtBuscaarJugador y el progresBar
-                            binding.txtBuscaarJugador?.visibility  = View.GONE
-                            binding.cargar?.visibility  = View.GONE
+                            binding.txtBuscaarJugador?.visibility = View.GONE
+                            binding.cargar?.visibility = View.GONE
 
                             // Hacemos visible las siguientes cosas
                             binding.imagenOponente.visibility = View.VISIBLE
@@ -119,8 +119,8 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                             binding.btnJugar.visibility = View.VISIBLE
 
                             // Le damos los valores del nombre al usuario con los datos que recibimpos del socket
-                            binding.txtOponente.text = ""+objeto["nombre"]
-                            binding.txtUserOponent?.text = ""+objeto["nombre"]
+                            binding.txtOponente.text = "" + objeto["nombre"]
+                            binding.txtUserOponent?.text = "" + objeto["nombre"]
                             // Le damos los valores de los puntos al usuario con los datos que recibimpos del socket
                             binding.barraOponente?.progress = objeto.getInt("punto")
                             // Le damos el valor del audio que recogemos del socket
@@ -132,12 +132,12 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                 }
 
                 // Comprobamos si los dos usuario han escuchado el audio
-                    if (usuario1 && usuario2) {
-                        // Si lo han escuchado...
-                        // Hacemos visble los botones para la carrera
-                        binding.botonMoverBarco?.visibility = View.VISIBLE
-                        binding.btnSprint?.visibility = View.VISIBLE
-                        
+                if (usuario1 && usuario2) {
+                    // Si lo han escuchado...
+                    // Hacemos visble los botones para la carrera
+                    binding.botonMoverBarco?.visibility = View.VISIBLE
+                    binding.btnSprint?.visibility = View.VISIBLE
+
                 }
             }
         }
@@ -158,7 +158,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                 binding.txtSala2?.visibility = View.GONE
                 binding.txtSala2?.visibility = View.GONE
                 // Se hacen visibles las siguientes cosas
-                binding.txtBuscaarJugador?.visibility  = View.VISIBLE
+                binding.txtBuscaarJugador?.visibility = View.VISIBLE
                 binding.cargar?.visibility = View.VISIBLE
             } else {
                 // Si no a insertado un número...
@@ -173,8 +173,8 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
             binding.constraintLayout2.visibility = View.GONE
             binding.imagenOponente.visibility = View.GONE
             binding.imagenUsuario.visibility = View.GONE
-            binding.botonMoverBarco?.visibility  = View.GONE
-            binding.btnSprint?.visibility  = View.GONE
+            binding.botonMoverBarco?.visibility = View.GONE
+            binding.btnSprint?.visibility = View.GONE
 
             // Se hacen visibles las siguientes cosas
             binding.constraintLayout3.visibility = View.VISIBLE
@@ -185,8 +185,8 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         }
 
         // Le damos valores a los seekbars
-        binding.barraUsuario?.max  =100
-        binding.barraOponente?.max  =100
+        binding.barraUsuario?.max = 100
+        binding.barraOponente?.max = 100
         binding.barraUsuario?.progress = 0
         binding.barraOponente?.progress = 0
 
@@ -194,7 +194,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
 //------------------------------------ BOTÓN MOVER BARCO ----------------------------------------//
         binding.botonMoverBarco?.setOnClickListener {
             // Llamamos al socket io a la funcion incrementation y le pasamos unos argumentos
-            socket.emit("incrementation", name,binding.barraUsuario?.progress,imagen)
+            socket.emit("incrementation", name, binding.barraUsuario?.progress, imagen)
             // Comprobar si alguien ya ha ganado
             if (binding.barraUsuario?.progress == 100) {
                 // Si ha gando el usuario 1
@@ -259,7 +259,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         binding.btnSprint?.isEnabled = false
         binding.botonMoverBarco?.isEnabled = false
         // Ocultar la animacion
-        binding.animationView?.visibility  = View.GONE
+        binding.animationView?.visibility = View.GONE
         // Hacer visibles los siguientes botones
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
         binding.gifAplausosCarrera?.visibility = View.VISIBLE
@@ -283,7 +283,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         binding.btnSprint?.isEnabled = false
         binding.botonMoverBarco?.isEnabled = false
         // Ocultar la animacion
-        binding.animationView?.visibility  = View.GONE
+        binding.animationView?.visibility = View.GONE
         // Hacer visible el siguiente botones
         binding.btnFinalizarCarrera?.visibility = ImageButton.VISIBLE
 
@@ -308,17 +308,21 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
         var intent = Intent(this, ServicioAudios::class.java)
         stopService(intent)
 
-        intent = Intent(this,SeleccionarUsuario::class.java)
+        intent = Intent(this, SeleccionarUsuario::class.java)
         startActivity(intent)
         super.onBackPressed()
     }
 
     // Iniciar audio del juego
-    private fun iniciarServicioAudio(estadoAudio:String, audioSeleccionado:Int, conDialog: Boolean) {
+    private fun iniciarServicioAudio(
+        estadoAudio: String,
+        audioSeleccionado: Int,
+        conDialog: Boolean
+    ) {
         // Llamar al servicio del audio
-        val intent = Intent(this,ServicioAudios::class.java)
-        intent.putExtra("estadoAudio",estadoAudio)
-        intent.putExtra("audioSeleccionado",audioSeleccionado)
+        val intent = Intent(this, ServicioAudios::class.java)
+        intent.putExtra("estadoAudio", estadoAudio)
+        intent.putExtra("audioSeleccionado", audioSeleccionado)
         startService(intent)
         Thread(Runnable {
             // Dar 40 segundos para que se reproduzca el audio
@@ -326,7 +330,7 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
             runOnUiThread {
                 // Lanzar un dialog cuando se acaben los segundos
                 if (conDialog) {
-                   AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
+                    AlertDialog.Builder(this).setMessage("3, 2, 1 .... YA")
                         .setTitle("¿Preparados?")
                         // Botón "aceptar"
                         .setPositiveButton("¡Vamos!", DialogInterface.OnClickListener
@@ -337,7 +341,11 @@ class IslaIzaroActivity : AppCompatActivity(), Explicaciones {
                                 binding.botonMoverBarco?.visibility = View.VISIBLE
                                 binding.btnSprint?.visibility = View.VISIBLE
                             } else {
-                                Toast.makeText(this, "Espera al otro jugador", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    this,
+                                    "Espera al otro jugador",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                             }
                         })
                         // Obliga a elegir uno de los botones para cerrar el cuadro de diálogo

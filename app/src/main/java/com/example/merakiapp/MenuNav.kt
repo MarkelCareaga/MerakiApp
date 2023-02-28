@@ -33,19 +33,6 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-
-
-       /*
-        acceder a assets
-
-
-            val audio  = assets.open("ahoraostoca.m4a")
-
-
-        */
-
         // Se establece una barra de herramientas
         setSupportActionBar(binding.appBarMain.toolbar)
 
@@ -61,7 +48,13 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
         // Se establecen las opciones de navegación
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_map, R.id.nav_acerca, R.id.nav_inicio, R.id.nav_help, R.id.nav_salida,R.id.nav_chat, R.id.chatFragment
+                R.id.nav_map,
+                R.id.nav_acerca,
+                R.id.nav_inicio,
+                R.id.nav_help,
+                R.id.nav_salida,
+                R.id.nav_chat,
+                R.id.chatFragment
             ), drawerLayout
         )
         // Se configura la barra de herramientas con el controlador de navegación
@@ -71,7 +64,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
         val salida = navView.menu.findItem(R.id.nav_salida)
 
         // Se establece un escucha de clic en el elemento "salida" del menú de navegación
-        salida.setOnMenuItemClickListener(){
+        salida.setOnMenuItemClickListener() {
             borrar = true
             finish()
             return@setOnMenuItemClickListener true
@@ -81,7 +74,7 @@ class MenuNav : AppCompatActivity(), OnMapReadyCallback {
         val inicio = navView.menu.findItem(R.id.nav_inicio)
 
         // Se establece un escucha de clic en el elemento "inicio" del menú de navegación
-        inicio.setOnMenuItemClickListener(){
+        inicio.setOnMenuItemClickListener() {
             borrar = false
             finish()
             return@setOnMenuItemClickListener true

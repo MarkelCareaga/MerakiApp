@@ -61,7 +61,7 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
     @SuppressLint("MissingPermission")
     private val callback = OnMapReadyCallback { googleMap ->
         binding.btnJugar.isEnabled = false
-        if((activity?.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false)) {
+        if ((activity?.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false)) {
             /**
              * Manipulates the map once available.
              * This callback is triggered when the map is ready to be used.
@@ -109,9 +109,9 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                         val ln = String.valueOf(location.getLongitude())
                         // le damos dichos valores a ubica que es tipo LatLng
                         ubica = LatLng(lt.toFloat().toDouble(), ln.toFloat().toDouble())
-                    }else{
+                    } else {
                         // si la localizacion es nula le damos valores 0 en latitud y 0 en longitude
-                        ubica = LatLng(0.toFloat().toDouble(),0.toFloat().toDouble())
+                        ubica = LatLng(0.toFloat().toDouble(), 0.toFloat().toDouble())
                     }
                 }
             }
@@ -140,32 +140,44 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
             // cargar los valores que tendra el mapa de referencia para los juegos
             googleMap.setOnMapLoadedCallback {
                 // comprobar si juego1 es true
-                juego1 = activity?.getSharedPreferences("validar1", 0)?.getBoolean("validar1", false)!!
+                juego1 =
+                    activity?.getSharedPreferences("validar1", 0)?.getBoolean("validar1", false)!!
                 if (juego1) {
                     // comprobar si juego2 es true
-                    juego2 = activity?.getSharedPreferences("validar2", 0)?.getBoolean("validar2", false)!!
+                    juego2 = activity?.getSharedPreferences("validar2", 0)
+                        ?.getBoolean("validar2", false)!!
                     if (juego2) {
                         // comprobar si juego3 es true
-                        juego3 = activity?.getSharedPreferences("validar3", 0)?.getBoolean("validar3", false)!!
+                        juego3 = activity?.getSharedPreferences("validar3", 0)
+                            ?.getBoolean("validar3", false)!!
                         if (juego3) {
                             // comprobar si juego4 es true
-                            juego4 = activity?.getSharedPreferences("validar4", 0)?.getBoolean("validar4", false)!!
+                            juego4 = activity?.getSharedPreferences("validar4", 0)
+                                ?.getBoolean("validar4", false)!!
                             if (juego4) {
                                 // comprobar si juego5 es true
-                                juego5 = activity?.getSharedPreferences("validar5", 0)?.getBoolean("validar5", false)!!
+                                juego5 = activity?.getSharedPreferences("validar5", 0)
+                                    ?.getBoolean("validar5", false)!!
                                 if (juego5) {
                                     // comprobar si juego6 es true
-                                    juego6 = activity?.getSharedPreferences("validar6", 0)?.getBoolean("validar6", false)!!
+                                    juego6 = activity?.getSharedPreferences("validar6", 0)
+                                        ?.getBoolean("validar6", false)!!
                                     if (juego6) {
                                         // comprobar si juego7 es true
-                                        juego7 = activity?.getSharedPreferences("validar7", 0)?.getBoolean("validar7", false)!!
+                                        juego7 = activity?.getSharedPreferences("validar7", 0)
+                                            ?.getBoolean("validar7", false)!!
                                         if (juego7) {
                                             MapaModoSeguimiento().mapa(mapa, 8)
 
                                             binding.btnVerFinal.visibility = View.VISIBLE
 
                                             binding.btnVerFinal.setOnClickListener {
-                                                startActivity(Intent(this.requireContext(), FinalActivity::class.java))
+                                                startActivity(
+                                                    Intent(
+                                                        this.requireContext(),
+                                                        FinalActivity::class.java
+                                                    )
+                                                )
                                             }
                                             //Puerta de San Juan
                                             juegos1 = LatLng(43.421301, -2.722980)
@@ -341,12 +353,15 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
             MapaModoSeguimiento().mapa(mapa, 8)
 
             // pulsar el marcador donde se encuentran los juegos
-            mapa.setOnMarkerClickListener{ marker ->
+            mapa.setOnMarkerClickListener { marker ->
 
                 // comprobar si un marker de los 7 que hay es la misma que el juego 1
                 if (juego1 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_PuertaSanJuan)
+                    val intent_puerta_san_juan = abrirExplicacion(
+                        this.requireActivity(),
+                        ListaRecursos.pantalla_PuertaSanJuan
+                    )
                     startActivity(intent_puerta_san_juan)
                     //finalizamos este activity
                     activity?.finish()
@@ -355,7 +370,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 // comprobar si un marker de los 7 que hay es la misma que el juego 2
                 if (juego2 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_badatoz = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
+                    val intent_badatoz =
+                        abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
                     startActivity(intent_badatoz)
                     //finalizamos este activity
                     activity?.finish()
@@ -363,14 +379,18 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 // comprobar si un marker de los 7 que hay es la misma que el juego 3
                 if (juego3 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_feria_pescado = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_FeriaPescado)
+                    val intent_feria_pescado = abrirExplicacion(
+                        this.requireActivity(),
+                        ListaRecursos.pantalla_FeriaPescado
+                    )
                     startActivity(intent_feria_pescado)
                     //finalizamos este activity
                     activity?.finish()
                 }
                 // comprobar si un marker de los 7 que hay es la misma que el juego 4
                 if (juego4 == marker.position) {
-                    val intent_olatua = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
+                    val intent_olatua =
+                        abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
                     startActivity(intent_olatua)
                     //finalizamos este activity
                     activity?.finish()
@@ -378,7 +398,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 // comprobar si un marker de los 7 que hay es la misma que el juego 5
                 if (juego5 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_xixili = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Xixili)
+                    val intent_xixili =
+                        abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Xixili)
                     startActivity(intent_xixili)
                     //finalizamos este activity
                     activity?.finish()
@@ -386,7 +407,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 // comprobar si un marker de los 7 que hay es la misma que el juego 6
                 if (juego6 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_isla_izaro = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Izaro)
+                    val intent_isla_izaro =
+                        abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Izaro)
                     startActivity(intent_isla_izaro)
                     //finalizamos este activity
                     activity?.finish()
@@ -394,7 +416,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 // comprobar si un marker de los 7 que hay es la misma que el juego 7
                 if (juego7 == marker.position) {
                     // si lo es se llama al activity de ese juego
-                    val intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Gaztelugatxe)
+                    val intent_gaztelugatxe = abrirExplicacion(
+                        this.requireActivity(),
+                        ListaRecursos.pantalla_Gaztelugatxe
+                    )
                     startActivity(intent_gaztelugatxe)
                     //finalizamos este activity
                     activity?.finish()
@@ -419,7 +444,11 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
 
         // BOTONES AYUDA Y ROTACIÓN
         binding.btnAyudaMapa.setOnClickListener {
-            listaDialogos.mostrar_dialog(requireActivity(), ListaRecursos.tituloMapa, ListaRecursos.mensajeMapa)
+            listaDialogos.mostrar_dialog(
+                requireActivity(),
+                ListaRecursos.tituloMapa,
+                ListaRecursos.mensajeMapa
+            )
         }
         binding.btnInfoPantallaMapa.setOnClickListener {
             listaDialogos.mostrar_info_pantalla(requireActivity(), false)
@@ -431,11 +460,11 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         // comprobar si esta en modo libre
-        if((activity?.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false)) {
+        if ((activity?.getSharedPreferences("pref", 0)?.getBoolean("libre", false) == false)) {
             // si no esta en modo libre
             // hacer el boton jugar visible si es modo explorador
             binding.btnJugar.visibility = View.VISIBLE
-        }else{
+        } else {
             // si esta en modo libre
             // hacer el boton jugar se oculte si es modo libre
             binding.btnJugar.visibility = View.GONE
@@ -443,7 +472,9 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
         //--------------------------- Boton jugar ------------------------------//
         binding.btnJugar.setOnClickListener {
             // comprobar si la ubica no es 0
-            if (ubica.latitude != 0.toFloat().toDouble() && ubica.longitude != 0.toFloat().toDouble()) {
+            if (ubica.latitude != 0.toFloat().toDouble() && ubica.longitude != 0.toFloat()
+                    .toDouble()
+            ) {
                 // si el resultado true
                 // comprobar si el idJuego es == 1
                 if (idJuego == 1) {
@@ -511,18 +542,18 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
             } else {
                 // si el resultado true
                 // es porque no tiene el gps activaso
-                Toast.makeText(this.requireActivity(), R.string.errorUbicacion, Toast.LENGTH_SHORT).show()
+                Toast.makeText(this.requireActivity(), R.string.errorUbicacion, Toast.LENGTH_SHORT)
+                    .show()
             }
         }
         // dar al mapFragment el valor del callback
         val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
         mapFragment?.getMapAsync(callback)
 
-        }
+    }
 
 
-
-// funcion de distancia a los juegos
+    // funcion de distancia a los juegos
     private fun distancia_a_puntoA(localitation: Location) {
         //definimos la localizacion
         val location1 = Location("Juego")
@@ -535,7 +566,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
             activity?.finish()
 
             // llamamos al activity del juegoq1 y lo lanzamos
-            val intent_puerta_san_juan = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_PuertaSanJuan)
+            val intent_puerta_san_juan =
+                abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_PuertaSanJuan)
             startActivity(intent_puerta_san_juan)
 
         } else {
@@ -551,7 +583,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                 activity?.finish()
 
                 // llamamos al activity del juegoq2 y lo lanzamos
-                val intent_badatoz = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
+                val intent_badatoz =
+                    abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Badatoz)
                 startActivity(intent_badatoz)
             } else {
                 //si no estamos a 50 metros o menos
@@ -567,7 +600,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                     activity?.finish()
 
                     // llamamos al activity del juegoq3 y lo lanzamos
-                    val intent_feria_pescado = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_FeriaPescado)
+                    val intent_feria_pescado = abrirExplicacion(
+                        this.requireActivity(),
+                        ListaRecursos.pantalla_FeriaPescado
+                    )
                     startActivity(intent_feria_pescado)
                 } else {
                     //si no estamos a 50 metros o menos
@@ -583,7 +619,8 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                         activity?.finish()
 
                         // llamamos al activity del juegoq4 y lo lanzamos
-                        val intent_olatua = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
+                        val intent_olatua =
+                            abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Olatua)
                         startActivity(intent_olatua)
                     } else {
                         //si no estamos a 50 metros o menos
@@ -599,7 +636,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                             activity?.finish()
 
                             // llamamos al activity del juegoq5 y lo lanzamos
-                            val intent_xixili = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Xixili)
+                            val intent_xixili = abrirExplicacion(
+                                this.requireActivity(),
+                                ListaRecursos.pantalla_Xixili
+                            )
                             startActivity(intent_xixili)
 
                         } else {
@@ -616,7 +656,10 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                                 activity?.finish()
 
                                 // llamamos al activity del juegoq6 y lo lanzamos
-                                val intent_isla_izaro = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Izaro)
+                                val intent_isla_izaro = abrirExplicacion(
+                                    this.requireActivity(),
+                                    ListaRecursos.pantalla_Izaro
+                                )
                                 startActivity(intent_isla_izaro)
                             } else {
                                 //si no estamos a 50 metros o menos
@@ -632,11 +675,18 @@ class MapaFragment() : Fragment(), OnMapReadyCallback, Explicaciones {
                                     activity?.finish()
 
                                     // llamamos al activity del juegoq7 y lo lanzamos
-                                    val intent_gaztelugatxe = abrirExplicacion(this.requireActivity(), ListaRecursos.pantalla_Gaztelugatxe)
+                                    val intent_gaztelugatxe = abrirExplicacion(
+                                        this.requireActivity(),
+                                        ListaRecursos.pantalla_Gaztelugatxe
+                                    )
                                     startActivity(intent_gaztelugatxe)
                                 } else {
                                     //si no estamos a 50 metros o menos de ningun juego
-                                    Toast.makeText(this.requireContext(),getString(R.string.distancia), Toast.LENGTH_LONG).show()
+                                    Toast.makeText(
+                                        this.requireContext(),
+                                        getString(R.string.distancia),
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                 }
                             }
                         }
