@@ -52,9 +52,9 @@ class AyudaFragment : Fragment() {
     private fun cargarPreguntas() {
         // las preguntas se definen predefinidos aquí
         preguntas = listOf(
-            Pregunta(R.string.pregunta1, R.string.respuesta1),
-            Pregunta(R.string.pregunta2, R.string.respuesta2),
-            Pregunta(R.string.pregunta3, R.string.respuesta3)
+            Pregunta(resources.getString(R.string.pregunta1), resources.getString(R.string.respuesta1)),
+            Pregunta(resources.getString(R.string.pregunta2), resources.getString(R.string.respuesta2)),
+            Pregunta(resources.getString(R.string.pregunta3), resources.getString(R.string.respuesta3))
         )
     }
 }
