@@ -20,14 +20,22 @@ class ServicioChat : Service() {
         var mensajes: MutableList<Mensajes> = mutableListOf()
         var socketId: String = ""
 
+        // Envia el usuario al servidor, donde se almacena en un array
         fun usuario(nombreUsuario: String) {
             socketChat.emit("usuario", nombreUsuario)
         }
 
+        /*
+        Envia la sala al servidor, donde se comprueba el identificador y la sala pertenecientes al
+        usuario logeado.
+        Además, comprueba si los mensajes existentes se han enviado hace más de 24 horas. En caso
+        afirmativo, se eliminarán dichos mensajes.
+        */
         fun sala(nombreUsuario: String, sala: String) {
             socketChat.emit("sala", sala, nombreUsuario)
         }
 
+        // Envia el mensaje al servidor, donde se almacena en un array
         fun enviarmensaje(nombreUsuario: String, sala: String, mensaje: String, fecha: String) {
             socketChat.emit("EnviarMensaje", nombreUsuario, sala, mensaje, fecha)
         }
@@ -35,7 +43,9 @@ class ServicioChat : Service() {
 
     @SuppressLint("SuspiciousIndentation")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        // Comprueba si se ha conectado con el servidor
         if (socketChat.connected()) {
+            // Comprueba si se han recibido los mensajes desde el servidor
             socketChat.on("actualizarMensaje") { usuarioString ->
                 mensajes.removeAll(mensajes)
                 // Pasamos a un JSONarray todos los usuarios
@@ -58,14 +68,16 @@ class ServicioChat : Service() {
                     }
                 }
 
+                // Envia un aviso al Broadcast, ubicado en el ChatFragment
                 val intent = Intent("mensajes")
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
             }
-
             socketId = socketChat.id()
 
         } else {
+            // Se activa la conexión con el servidor
             socketChat.connect()
+            // Comprueba si se han recibido los mensajes desde el servidor
             socketChat.on("actualizarMensaje") { usuarioString ->
                 mensajes.removeAll(mensajes)
                 // Pasamos a un JSONarray todos los usuarios
@@ -87,12 +99,14 @@ class ServicioChat : Service() {
                         }
                     }
                     socketId = socketChat.id()
-
                 }
+
+                // Envia un aviso al Broadcast, ubicado en el ChatFragment
                 val intent = Intent("mensajes")
                 LocalBroadcastManager.getInstance(applicationContext).sendBroadcast(intent)
             }
         }
+
         return super.onStartCommand(intent, flags, startId)
     }
 
